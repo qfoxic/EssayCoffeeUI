@@ -1,0 +1,68 @@
+{% load i18n render_status %}
+<thead>
+    <tr>
+        <!--
+        id
+        order name
+        ass type
+        status
+        marks *****
+        site (url)
+        owner
+        admin
+        writer
+        editor
+        Local time
+        Created
+        Urgency
+        Full Deadline
+        Writer's deadline
+        Updated
+        Order type priv/public
+        in review 1/0
+        Discount (%)
+        Payment status
+        Price
+        Priority hi/md/lo
+        -->
+        <th class="sorter-digit">{% trans 'ID' %}</th>
+        <th class="sorter-text" style="white-space: nowrap">{% trans 'Order name' %}</th>
+        <!-- <th class="sorter-text">{% trans 'Status' %}</th> -->
+        <th class="sorter-text">{% trans 'Assignment' %}</th>
+        <th class="sorter-text">{% trans 'Mark' %}</th>
+        <th class="sorter-text">{% trans 'Writer' %}</th>
+        <th class="sorter-text">{% trans 'Editor' %}</th>
+        <th class="sorter-text">{% trans 'Created' %}</th>
+        <!-- <th class="sorter-text">{% trans 'Updated' %}</th> -->
+        <th class="sorter-text">{% trans 'Urgency' %}</th>
+        <!--th class="sorter-text">{% trans 'Loc. time' %}</th -->
+        <th class="sorter-text">{% trans 'Full DL' %}</th>
+        <th class="sorter-text">{% trans 'Writer DL' %}</th>
+        <th class="sorter-text">{% trans 'Revision' %}</th>
+        <!-- <th class="sorter-text">{% trans 'Discount (%)' %}</th> -->
+        <th class="sorter-text">{% trans 'Priority' %}</th>
+    </tr>
+</thead>
+<tbody>
+    {% for task in tasks %}
+    <tr>
+        <td>{{task.id}}</td>
+        <td><a href="{% url 'task_view' task.id %}">{{task.paper_title}}</a></td>
+        <!-- <td>{{task.status|render_status}} - {{task.status}}</td> -->
+        <td>{{task.get_assigment}}</td>
+        <td>{{task.mark}}</td>
+        <td>{% if task.assignee %}<a href="{% url 'user_edit' task.assignee.id %}">{{task.assignee}}</a>{% endif %}</td>
+        <td>{% if task.editor %}<a href="{% url 'user_edit' task.editor.id %}">{{task.editor}}</a>{% endif %}</td>
+        <td>{{task.created}}</td>
+        <td>{{task.get_urgency}}</td>
+        <!--td>loc.time not implemented</td-->
+        <td class="momdl">{{task.admin_deadline}}</td>
+        <td class="momdl">{{task.writer_deadline}}</td>
+        <td>{{task.revision}}</td>
+        <td>{{task.priority}}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+<tfoot>
+    <tr></tr>
+</tfoot>

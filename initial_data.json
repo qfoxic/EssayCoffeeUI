@@ -1,0 +1,464 @@
+[
+{
+  "pk": 1, 
+  "model": "auth.group", 
+  "fields": {
+    "name": "admin", 
+    "permissions": []
+  }
+},
+{
+  "pk": 2, 
+  "model": "auth.group", 
+  "fields": {
+    "name": "writer", 
+    "permissions": []
+  }
+},
+{
+  "pk": 3, 
+  "model": "auth.group", 
+  "fields": {
+    "name": "customer", 
+    "permissions": []
+  }
+},
+{
+  "pk": 4, 
+  "model": "auth.group", 
+  "fields": {
+    "name": "editor", 
+    "permissions": []
+  }
+},
+{
+  "pk": 1, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "transport", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": true, 
+    "is_staff": true, 
+    "last_login": "2014-04-22T12:17:08Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$12000$Vd9a38P5xyHa$pquwZlnbEx5/dir+UYvjiem1GzmAxBshCHCOfZstrdg=", 
+    "email": "wwwww@www.com", 
+    "date_joined": "2014-04-15T12:27:25Z"
+  }
+},
+{
+  "pk": 2, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "admin", 
+    "first_name": "Admin", 
+    "last_name": "Admin", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-06-04T04:08:13Z", 
+    "groups": [
+      1
+    ], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$12000$eKbqEddEt0hP$tDfzGlx02Wl9pwAKsxTRop0LsrBURBOTAl9FUIkCv6M=", 
+    "email": "foxandkamarus@gmail.com", 
+    "date_joined": "2014-04-15T12:31:15Z"
+  }
+},
+{
+  "pk": 3, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "customer", 
+    "first_name": "Customer", 
+    "last_name": "Customer", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-04-17T14:45:58Z", 
+    "groups": [
+      3
+    ], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$12000$iDEzJ6pfWoYY$TisahZaho3s6r0NjPjWfIGvdsuneQfYm3eXKaDlsz90=", 
+    "email": "cust@ukt.rnt", 
+    "date_joined": "2014-04-15T12:31:43Z"
+  }
+},
+{
+  "pk": 4, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "editor", 
+    "first_name": "Editor", 
+    "last_name": "Editor", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-04-15T12:32:03Z", 
+    "groups": [
+      4
+    ], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$12000$V4vfmI3S4fkZ$D25TeJnUBVH50YsRcMzNfRie2pUPyh1W6pvDYNk+OHw=", 
+    "email": "employer@tr.com", 
+    "date_joined": "2014-04-15T12:32:03Z"
+  }
+},
+{
+  "pk": 5, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "writer", 
+    "first_name": "Writer", 
+    "last_name": "Writer", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-04-15T12:32:28Z", 
+    "groups": [
+      2
+    ], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$12000$ZytjcJhqF2gk$fYcALTdm+3wmLhyYtJ7uJnoMzhTRRrcAAQbJH5PW1hY=", 
+    "email": "employee@tr.com", 
+    "date_joined": "2014-04-15T12:32:29Z"
+  }
+},
+{
+  "pk": 6, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "admin1", 
+    "first_name": "Admin1", 
+    "last_name": "Admin1", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-04-15T15:11:33Z", 
+    "groups": [
+      1
+    ], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$12000$BVaZsFFBmEu4$2gJAvBhK9/81zvyfy5M9n8F6fplaRvthorKs7qlIKqU=", 
+    "email": "wwww@qq.qq", 
+    "date_joined": "2014-04-15T15:11:26Z"
+  }
+},
+{
+  "pk": 1, 
+  "model": "general.task", 
+  "fields": {
+    "payment_status": 1, 
+    "site": "85.17.249.125:8089", 
+    "assignee": null, 
+    "manager": null, 
+    "source_number": 2, 
+    "owner": 3, 
+    "discipline": "ln", 
+    "style": 1, 
+    "assigment": "es", 
+    "mark": null, 
+    "priority": false, 
+    "access_level": "1", 
+    "page_number": 2, 
+    "editor": null, 
+    "ttype": 1, 
+    "revision": false, 
+    "status": 1, 
+    "updated": "2014-04-22T11:53:16Z", 
+    "completed": null, 
+    "spacing": 1, 
+    "discount": "1233", 
+    "accept_terms": true, 
+    "instructions": "Michael Jackson's mother has been ordered by a US court to pay AEG Live $800,000 (\u00a3480,000) for costs defending the failed negligence case she brought against the concert promoter.\r\n\r\nThe company was cleared of liability over the 2009 death of the pop star in a five-month trial last October.\r\n\r\nAEG Live had sought $1.2m (\u00a3720,000) to cover costs, but Katherine Jackson's lawyers claimed it was not justified.\r\n\r\nBoth parties agreed not to challenge the court's decision, but may appeal.\r\n\r\nThe exact amount to be paid is expected to be finalised after AEG Live submits an amended list of its costs for items such as court filing fees and travel.", 
+    "level": "hs", 
+    "created": "2014-04-15T12:45:53Z", 
+    "urgency": 21600, 
+    "paper_title": "22222"
+  }
+},
+{
+  "pk": 2, 
+  "model": "general.task", 
+  "fields": {
+    "payment_status": 1, 
+    "site": "85.17.249.125:8089", 
+    "assignee": null, 
+    "manager": null, 
+    "source_number": 1, 
+    "owner": 3, 
+    "discipline": "ln", 
+    "style": 1, 
+    "assigment": "re", 
+    "mark": null, 
+    "priority": false, 
+    "access_level": "1", 
+    "page_number": 1, 
+    "editor": null, 
+    "ttype": 1, 
+    "revision": false, 
+    "status": 7, 
+    "updated": "2014-04-15T14:46:11Z", 
+    "completed": null, 
+    "spacing": 1, 
+    "discount": "123", 
+    "accept_terms": true, 
+    "instructions": "Michael Jackson's mother has been ordered by a US court to pay AEG Live $800,000 (\u00a3480,000) for costs defending the failed negligence case she brought against the concert promoter.\r\n\r\nThe company was cleared of liability over the 2009 death of the pop star in a five-month trial last October.\r\n\r\nAEG Live had sought $1.2m (\u00a3720,000) to cover costs, but Katherine Jackson's lawyers claimed it was not justified.\r\n\r\nBoth parties agreed not to challenge the court's decision, but may appeal.\r\n\r\nThe exact amount to be paid is expected to be finalised after AEG Live submits an amended list of its costs for items such as court filing fees and travel.", 
+    "level": "hs", 
+    "created": "2014-04-15T14:46:08Z", 
+    "urgency": 21600, 
+    "paper_title": "paper1"
+  }
+},
+{
+  "pk": 3, 
+  "model": "general.task", 
+  "fields": {
+    "payment_status": 1, 
+    "site": "85.17.249.125:8089", 
+    "assignee": null, 
+    "manager": null, 
+    "source_number": 1, 
+    "owner": 3, 
+    "discipline": "ln", 
+    "style": 1, 
+    "assigment": "ab", 
+    "mark": null, 
+    "priority": false, 
+    "access_level": "1", 
+    "page_number": 1, 
+    "editor": null, 
+    "ttype": 1, 
+    "revision": false, 
+    "status": 7, 
+    "updated": "2014-04-15T14:46:44Z", 
+    "completed": null, 
+    "spacing": 1, 
+    "discount": "123", 
+    "accept_terms": true, 
+    "instructions": "Michael Jackson's mother has been ordered by a US court to pay AEG Live $800,000 (\u00a3480,000) for costs defending the failed negligence case she brought against the concert promoter.\r\n\r\nThe company was cleared of liability over the 2009 death of the pop star in a five-month trial last October.\r\n\r\nAEG Live had sought $1.2m (\u00a3720,000) to cover costs, but Katherine Jackson's lawyers claimed it was not justified.\r\n\r\nBoth parties agreed not to challenge the court's decision, but may appeal.\r\n\r\nThe exact amount to be paid is expected to be finalised after AEG Live submits an amended list of its costs for items such as court filing fees and travel.", 
+    "level": "hs", 
+    "created": "2014-04-15T14:46:41Z", 
+    "urgency": 43200, 
+    "paper_title": "paper2"
+  }
+},
+{
+  "pk": 4, 
+  "model": "general.task", 
+  "fields": {
+    "payment_status": 1, 
+    "site": "85.17.249.125:8089", 
+    "assignee": null, 
+    "manager": null, 
+    "source_number": 22, 
+    "owner": 3, 
+    "discipline": "hs", 
+    "style": 1, 
+    "assigment": "es", 
+    "mark": null, 
+    "priority": false, 
+    "access_level": "1", 
+    "page_number": 2, 
+    "editor": null, 
+    "ttype": 1, 
+    "revision": false, 
+    "status": 1, 
+    "updated": "2014-04-15T15:10:34Z", 
+    "completed": null, 
+    "spacing": 1, 
+    "discount": "111", 
+    "accept_terms": true, 
+    "instructions": "Michael Jackson's mother has been ordered by a US court to pay AEG Live $800,000 (\u00a3480,000) for costs defending the failed negligence case she brought against the concert promoter.\r\n\r\nThe company was cleared of liability over the 2009 death of the pop star in a five-month trial last October.\r\n\r\nAEG Live had sought $1.2m (\u00a3720,000) to cover costs, but Katherine Jackson's lawyers claimed it was not justified.\r\n\r\nBoth parties agreed not to challenge the court's decision, but may appeal.\r\n\r\nThe exact amount to be paid is expected to be finalised after AEG Live submits an amended list of its costs for items such as court filing fees and travel.", 
+    "level": "hs", 
+    "created": "2014-04-15T14:53:10Z", 
+    "urgency": 21600, 
+    "paper_title": "Paepr2"
+  }
+},
+{
+  "pk": 5, 
+  "model": "general.task", 
+  "fields": {
+    "payment_status": 1, 
+    "site": "85.17.249.125:8089", 
+    "assignee": null, 
+    "manager": null, 
+    "source_number": 22, 
+    "owner": 3, 
+    "discipline": "lt", 
+    "style": 2, 
+    "assigment": "re", 
+    "mark": null, 
+    "priority": false, 
+    "access_level": "1", 
+    "page_number": 13, 
+    "editor": null, 
+    "ttype": 1, 
+    "revision": false, 
+    "status": 4, 
+    "updated": "2014-04-16T14:34:35Z", 
+    "completed": null, 
+    "spacing": 2, 
+    "discount": "123", 
+    "accept_terms": true, 
+    "instructions": "The company was cleared of liability over the 2009 death of the pop star in a five-month trial last October.\r\n\r\nAEG Live had sought $1.2m (\u00a3720,000) to cover costs, but Katherine Jackson's lawyers claimed it was not justified.\r\n\r\nBoth parties agreed not to challenge the court's decision, but may appeal.\r\n\r\nThe exact amount to be paid is expected to be finalised after AEG Live submits an amended list of its costs for items such as court filing fees and travel.", 
+    "level": "co", 
+    "created": "2014-04-16T13:26:29Z", 
+    "urgency": 86400, 
+    "paper_title": "qqqqqqqq"
+  }
+},
+{
+  "pk": 1, 
+  "model": "history.history", 
+  "fields": {
+    "old_values": "assignee=<django.db.models.fields.related.RelatedManager object at 0xa7ad1ec>,country=AF,editor=<django.db.models.fields.related.RelatedManager object at 0xa7ad1ec>,manager=<django.db.models.fields.related.RelatedManager object at 0xa7ad94c>", 
+    "created": "2014-06-04T04:08:41Z", 
+    "fields": "assignee,country,editor,manager", 
+    "object_type": "UserProfile", 
+    "object_id": 2, 
+    "parent_id": 2, 
+    "howner": 2, 
+    "action_type": "change", 
+    "new_values": "assignee=<django.db.models.fields.related.RelatedManager object at 0xa7ad9cc>,country=AZ,editor=<django.db.models.fields.related.RelatedManager object at 0xa7ad94c>,manager=<django.db.models.fields.related.RelatedManager object at 0xa7adacc>"
+  }
+},
+{
+  "pk": 2, 
+  "model": "history.history", 
+  "fields": {
+    "old_values": "assignee=<django.db.models.fields.related.RelatedManager object at 0xb599dd8c>,country=AZ,editor=<django.db.models.fields.related.RelatedManager object at 0xb599dd8c>,manager=<django.db.models.fields.related.RelatedManager object at 0xb598230c>", 
+    "created": "2014-06-04T04:09:57Z", 
+    "fields": "assignee,country,editor,manager", 
+    "object_type": "UserProfile", 
+    "object_id": 2, 
+    "parent_id": 2, 
+    "howner": 2, 
+    "action_type": "change", 
+    "new_values": "assignee=<django.db.models.fields.related.RelatedManager object at 0xb599d74c>,country=BY,editor=<django.db.models.fields.related.RelatedManager object at 0xb599d74c>,manager=<django.db.models.fields.related.RelatedManager object at 0xb599d74c>"
+  }
+},
+{
+  "pk": 3, 
+  "model": "history.history", 
+  "fields": {
+    "old_values": "assignee=<django.db.models.fields.related.RelatedManager object at 0xb5bb5d2c>,country=BY,editor=<django.db.models.fields.related.RelatedManager object at 0xb5bb5d2c>,manager=<django.db.models.fields.related.RelatedManager object at 0xb5bb5e2c>", 
+    "created": "2014-06-04T04:10:57Z", 
+    "fields": "assignee,country,editor,manager", 
+    "object_type": "UserProfile", 
+    "object_id": 2, 
+    "parent_id": 2, 
+    "howner": 2, 
+    "action_type": "change", 
+    "new_values": "assignee=<django.db.models.fields.related.RelatedManager object at 0xb5bb5fec>,country=AT,editor=<django.db.models.fields.related.RelatedManager object at 0xb5bb5e2c>,manager=<django.db.models.fields.related.RelatedManager object at 0xb5bb5b6c>"
+  }
+},
+{
+  "pk": 1, 
+  "model": "msgs.message", 
+  "fields": {
+    "body": "qqqq", 
+    "updated": "2014-04-17T14:46:21Z", 
+    "created": "2014-04-17T14:46:12Z", 
+    "title": "title111", 
+    "readby": ":3:", 
+    "visibility": 0, 
+    "mowner": 3, 
+    "mtask": 4
+  }
+},
+{
+  "pk": 1, 
+  "model": "userprofile.userprofile", 
+  "fields": {
+    "updated": "2014-04-15T14:30:00Z", 
+    "gender": 1, 
+    "site": "customers.yourseller.com:8081", 
+    "phone": "123", 
+    "groups": [], 
+    "country": "ua", 
+    "user_permissions": []
+  }
+},
+{
+  "pk": 2, 
+  "model": "userprofile.userprofile", 
+  "fields": {
+    "updated": "2014-06-04T04:11:03Z", 
+    "gender": 0, 
+    "site": "customers.yourseller.com:8081", 
+    "phone": "1111", 
+    "groups": [
+      1
+    ], 
+    "country": "AT", 
+    "user_permissions": []
+  }
+},
+{
+  "pk": 3, 
+  "model": "userprofile.userprofile", 
+  "fields": {
+    "updated": "2014-04-15T12:32:00Z", 
+    "gender": 0, 
+    "site": "customers.yourseller.com:8081", 
+    "phone": "1111", 
+    "groups": [
+      3
+    ], 
+    "country": "AF", 
+    "user_permissions": []
+  }
+},
+{
+  "pk": 4, 
+  "model": "userprofile.userprofile", 
+  "fields": {
+    "updated": "2014-04-15T12:32:25Z", 
+    "gender": 0, 
+    "site": "customers.yourseller.com:8081", 
+    "phone": "1111", 
+    "groups": [
+      4
+    ], 
+    "country": "AF", 
+    "user_permissions": []
+  }
+},
+{
+  "pk": 5, 
+  "model": "userprofile.userprofile", 
+  "fields": {
+    "updated": "2014-04-15T12:32:55Z", 
+    "gender": 0, 
+    "site": "customers.yourseller.com:8081", 
+    "phone": "1111", 
+    "groups": [
+      2
+    ], 
+    "country": "AF", 
+    "user_permissions": []
+  }
+},
+{
+  "pk": 6, 
+  "model": "userprofile.userprofile", 
+  "fields": {
+    "updated": "2014-04-15T15:11:26Z", 
+    "gender": 0, 
+    "site": "customers.yourseller.com:8081", 
+    "phone": "123", 
+    "groups": [
+      1
+    ], 
+    "country": "AF", 
+    "user_permissions": []
+  }
+}
+]

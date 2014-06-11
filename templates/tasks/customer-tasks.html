@@ -1,0 +1,39 @@
+{% load i18n render_status %}
+<thead>
+    <tr>
+        <th class="sorter-digit">{% trans 'ID' %}</th>
+        <th class="sorter-text">{% trans 'Order name' %}</th>
+        <th class="sorter-text">{% trans 'Assigment' %}</th>
+        <th class="sorter-status">{% trans 'Status' %}</th>
+        <th class="sorter-text">{% trans 'Writer' %}</th>
+        <th>{% trans 'Created' %}</th>
+        <th class="sorter-text">{% trans 'Urgency' %}</th>
+        <th class="sorter-text">{% trans 'Deadline' %}</th>
+        <th class="sorter-text">{% trans 'Revision' %}</th>
+        <th class="sorter-text">{% trans 'Payment status' %}</th>
+        <th class="sorter-text">{% trans 'Price' %}</th>
+    </tr>
+</thead>
+<tbody>
+    {% for task in tasks %}
+    <tr>
+        <td>{{task.id}}</td>
+        <td><a href="{% url 'task_view' task.id %}">{{task.paper_title}}</a></td>
+        <td>{{task.get_assigment}}</td>
+        <td data-status="{% if task.status == co.SENT %}{{co.PROCESSING}}{% else %}{{task.status}}{% endif %}"
+            style="font-size:1.4em;line-height:100%">
+          {% if task.status == co.SENT %}{{co.PROCESSING|render_status}}{% else %}{{task.status|render_status}}{% endif %}
+        </td>
+        <td>{% if task.assignee %}{{task.assignee}}{% endif %}</td>
+        <td>{{task.created}}</td>
+        <td>{{task.get_urgency}}</td>
+        <td class="momdl">{{task.admin_deadline}}</td>
+        <td>{{task.review}}</td>
+        <td>{{task.get_payment_status}}</td>
+        <td>{{task.get_price}}$</td>
+    </tr>
+    {% endfor %}
+</tbody>
+<tfoot>
+    <tr></tr>
+</tfoot>
