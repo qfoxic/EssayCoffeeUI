@@ -1,5 +1,6 @@
 import os, re
 import time
+import math
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -158,7 +159,7 @@ class Task(BaseModel):
     urgency_percent = percents['urgency'].get(self.urgency, 0)
     spacing_percent = percents['spacing'].get(self.spacing, 0)
     page_sum = (mpp*assig_percent + mpp*level_percent + mpp*urgency_percent)
-    return (page_sum + page_sum*spacing_percent) * self.page_number
+    return '%.2f' % (math.ceil((page_sum + page_sum*spacing_percent) * self.page_number) - 0.05)
  
   @classmethod 
   def get_finished_tasks(cls, count_only, **kwargs):
