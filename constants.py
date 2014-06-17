@@ -387,7 +387,7 @@ COUNTRIES = (
   ('EH', 'Western Sahara'),  ('YE', 'Yemen'),
   ('ZM', 'Zambia'),  ('ZW', 'Zimbabwe'))
 
-MAX_PAGE_PRICE = 40.00
+MAX_PAGE_PRICE = 48.00
 ITEMS_PERCENTS = {
   # Max 33%
   'assigments': {
@@ -427,8 +427,19 @@ DISCIPLINES = (
 
 ASSIGMENTS = (
   ('', '- Please choose -'),
-  ('es', 'Essay'), ('re', 'Report'), ('ab', 'Abstract'),
-  ('an', 'Annotated bibliography'), ('rw', 'Review'), ('cs', 'Case Study'))
+  ('es', 'Essay'), ('ab', 'Abstract'),
+  ('an', 'Annotated bibliography'), ('cs', 'Case Study'),
+  ('31', 'Admission/Application Essay'), ('5',  'Article'),
+  ('57', 'Assignment'), ('65', 'Book Report/Review'), ('56', 'Coursework'),
+  ('00', 'Dissertation'), ('10', 'Dissertation Chapter - Abstract'), ('11', 'Dissertation Chapter - Introduction Chapter'),
+  ('12', 'Dissertation Chapter - Literature Review'), ('13', 'Dissertation Chapter - Methodology'),
+  ('14', 'Dissertation Chapter - Results'), ('15', 'Dissertation Chapter - Discussion'),('16', 'Dissertation Chapter - Hypothesis'),
+  ('17', 'Dissertation Chapter - Conclusion Chapter'), ('8', 'Editing'),
+  ('81', 'Formatting'), ('61', 'Lab Report'), ('62', 'Math Problem'), ('66', 'Movie Review'),
+  ('51', 'Personal Statement'), ('9', 'PowerPoint Presentation'), ('82', 'Proofreading'),
+  ('41', 'Research Paper'), ('2', 'Research Proposal'), ('32', 'Scholarship Essay'),
+  ('63', 'Speech/Presentation'), ('64', 'Statistics Project'), ('4', 'Term Paper'), 
+  ('1', 'Thesis'), ('21', 'Thesis Proposal'))
 
 
 LEVELS = (
