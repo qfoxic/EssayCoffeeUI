@@ -51,9 +51,20 @@ def serve(request, path):
   ftp.cp(path, tmp_file)
   return djserve(request, tmp_file.name, '/')
 
-def get_payments(request):
+def get_status_payments(request):
   # Task_id: payment status
   return {}
+
+LIQPAY = 1
+
+def get_payment_url(ptype, request, params):
+  """Params: price, title, order_id"""
+  if ptype == LIQPAY:
+    params['mode'] = 1#To disable test mode use 0
+    params['callback_url'] = request.get_host()
+    return ('https://www.liqpay.com/api/pay?public_key=i77735892077&amount=%(price)s'
+            '&currency=USD&description=%(title)s&type=buy&sandbox=%(mode)s&pay_way'
+            '=card&server_url=%(callback_url)s&order_id=%(order_id)s&language=en' % params)
 
 
 def get_stats(request):
@@ -389,6 +400,11 @@ class SwitchStatusView(UpdateTaskView):
     pass
  
   def get_success_url(self):
+    if self.object.status == co.UNPROCESSED:
+      params = {'price': self.object.get_price(),
+                'title': self.object.paper_title,
+                'order_id': self.object.pk}
+      return get_payment_url(LIQPAY, self.request, params)
     return self.object.to_link()
 
 

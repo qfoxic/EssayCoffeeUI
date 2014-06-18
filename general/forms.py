@@ -8,6 +8,7 @@ import constants as co
 
 
 #TODO. 1. Save payments. 2. Do redirect to url. 3. Add handler for payment systems.
+# 4. Display payment status of a task
 class BaseForm(ModelForm):
   class Meta:
     model = Task
