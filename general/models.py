@@ -5,7 +5,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from history.models import new_event, change_event, delete_event
-
 import constants as co
 
   
@@ -105,7 +104,6 @@ class Task(BaseModel):
     return self.paper_title
 
   get_status = lambda self: co.TASK_STATUSES_DICT.get(self.status)
-  get_payment_status = lambda self: co.PAYMENT_STATUS_DICT.get(0)
   get_discipline = lambda self: co.DISCIPLINES_DICT.get(self.discipline)
   get_spacing = lambda self: co.SPACING_DICT.get(self.spacing)
   get_assigment = lambda self: co.ASSIGMENTS_DICT.get(self.assigment)
@@ -149,7 +147,7 @@ class Task(BaseModel):
       self.manager = None 
     elif group == co.EDITOR_GROUP:
       self.editor = None
-  
+
   def get_price(self):
     percents = co.ITEMS_PERCENTS
     mpp = co.MAX_PAGE_PRICE
@@ -234,7 +232,8 @@ class Task(BaseModel):
     flds = set(self._meta.get_all_field_names())
     if self.pk or self.id:
       # Don't update fields below.
-      flds = flds.difference(['owner', 'site', 'id', 'mtask', 'rtask', 'ftask', 'howner', 'ctask'])
+      flds = flds.difference(['owner', 'site', 'id', 'mtask', 'rtask', 'ftask', 'howner',
+                              'ctask', 'ptask'])
       kwargs.update({'update_fields': flds})
       return super(Task, self).save(*args, **kwargs)
     return super(Task, self).save(*args, **kwargs)

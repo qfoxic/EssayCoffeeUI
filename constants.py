@@ -70,7 +70,7 @@ UNDERPAID = 3
 PAYMENT_STATUS = (
   (UNPAID, 'Unpaid'),
   (PAID, 'Paid'),
-  (IN_PROCESS, 'In process')
+  (IN_PROCESS, 'In process'),
   (UNDERPAID, 'Underpaid')
 )
 PAYMENT_STATUS_DICT = dict(PAYMENT_STATUS)

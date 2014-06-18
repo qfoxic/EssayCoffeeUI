@@ -51,6 +51,10 @@ def serve(request, path):
   ftp.cp(path, tmp_file)
   return djserve(request, tmp_file.name, '/')
 
+def get_payments(request):
+  # Task_id: payment status
+  return {}
+
 
 def get_stats(request):
   user = request.user
@@ -382,7 +386,7 @@ class SwitchStatusView(UpdateTaskView):
   owner_required = False 
 
   def _check_permissions(self):
-    pass  
+    pass
  
   def get_success_url(self):
     return self.object.to_link()

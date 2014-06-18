@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'general',
     'history',
     'msgs',
+    'payments',
     'ftpstorage',
     'userprofile',
 )

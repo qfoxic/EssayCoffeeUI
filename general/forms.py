@@ -2,9 +2,12 @@ from django.forms import ModelForm, ValidationError, FileField
 from general.models import Task
 from ftpstorage.models import Upload
 from userprofile.models import UserProfile
+from payments.models import Payment
 
 import constants as co
 
+
+#TODO. 1. Save payments. 2. Do redirect to url. 3. Add handler for payment systems.
 class BaseForm(ModelForm):
   class Meta:
     model = Task
@@ -70,6 +73,10 @@ class TaskForm(BaseForm):
                         ftask=self.instance, fowner=self.request.user,
                         access_level=co.PRIVATE_ACCESS)
         upload.save()
+        # Add unpaid payment.
+        payment = Payment(powner=self.request.user, ptask=self.instance,
+                          values='{}', payment_status=co.UNPAID) 
+        payment.save()
     return res
 
 
@@ -127,4 +134,9 @@ class SwitchStatusForm(BaseForm):
     status = self.cleaned_data['status']
     if status == co.PROCESSING:
       self.instance.access_level = co.PUBLIC_ACCESS
+    if status == co.UNPROCESSED:
+      # Add procesing payment.
+      payment = Payment(powner=self.request.user, ptask=self.instance,
+                        values='{}', payment_status=co.IN_PROCESS) 
+      payment.save()
     return super(SwitchStatusForm, self).save(*args, **kwargs)
