@@ -9,6 +9,11 @@ import constants as co
 
 #TODO. 3. Add handler for payment systems. Get status of payment.
 # 4. Display payment status of a task
+# Get status using this sql.
+# Update status using api.
+# SELECT max(id) as id, powner_id, ptask_id,
+# SUBSTRING_INDEX(GROUP_CONCAT(`payment_status` ORDER BY `Id` DESC SEPARATOR ','),',',1)
+# status FROM payments GROUP BY ptask_id;
 class BaseForm(ModelForm):
   class Meta:
     model = Task
