@@ -19,6 +19,7 @@ from msgs.models import Message
 from ftpstorage.models import Upload
 from ftpstorage.storage import FTPStorage
 from general.forms import TaskForm, SwitchStatusForm
+from payments.views import get_payments_status,get_payment_url,update_payment_status 
 
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import CreateView
@@ -51,60 +52,15 @@ def serve(request, path):
   ftp.cp(path, tmp_file)
   return djserve(request, tmp_file.name, '/')
 
-def get_status_payments(request):
-  # Task_id: payment status
-  return {}
-
-LIQPAY = 1
-
-def get_payment_url(ptype, request, params):
-  """Params: price, title, order_id"""
-  if ptype == LIQPAY:
-    params['mode'] = 1#To disable test mode use 0
-    params['callback_url'] = request.get_host()
-    return ('https://www.liqpay.com/api/pay?public_key=i77735892077&amount=%(price)s'
-            '&currency=USD&description=%(title)s&type=buy&sandbox=%(mode)s&pay_way'
-            '=card&server_url=%(callback_url)s&order_id=%(order_id)s&language=en' % params)
-
 
 def get_stats(request):
-  user = request.user
-  group = user.is_anonymous() or request.user.get_group()
-  if group == co.WRITER_GROUP:
-    return {
-      'finished': Task.get_finished_tasks(1, **{'assignee': user}), 
-      'all': Task.get_all_tasks(1, **{'assignee': user}), 
-      'sent': Task.get_sent_tasks(1, **{'assignee': user}), 
-      'unprocessed': Task.get_unprocessed_tasks(1, **{'assignee': user}),
-      'active': Task.get_processing_tasks(1, **{'assignee': user}),
-      'expired': Task.get_expired_tasks(1, **{'assignee': user}),
-    }
-  elif group == co.ADMIN_GROUP or group == co.EDITOR_GROUP: 
-    return {
-      'completed': Task.get_finished_tasks(1), 
-      'all': Task.get_all_tasks(1), 
-      'draft': Task.get_draft_tasks(1), 
-      'sent': Task.get_sent_tasks(1), 
-      'unproc': Task.get_unprocessed_tasks(1),
-      'suspect': Task.get_suspicious_tasks(1), 
-      'rejected': Task.get_rejected_tasks(1), 
-      'process': Task.get_processing_tasks(1),
-      'expired': Task.get_expired_tasks(1),
-      'adm_reports': 0#Report.objects.all().count() 
-    }
-  else:
-    return {}
+  return {}
 
 
 def get_msgs_for_task(request, task_id):
   """Returns messages for a task."""
-  if request.user.get_group() == co.CUSTOMER_GROUP:
-    return Message.objects.filter(Q(mtask_id__exact=task_id),
-        Q(visibility__in=[co.MSGS_CUSTOMER])|Q(mowner_id__exact=request.user.id))
-  elif request.user.get_group() == co.WRITER_GROUP:
-    return Message.objects.filter(Q(mtask_id__exact=task_id),
-        Q(visibility__in=[co.MSGS_WRITER])|Q(mowner_id__exact=request.user.id))
-  return Message.objects.filter(mtask_id__exact=task_id)
+  return Message.objects.filter(Q(mtask_id__exact=task_id),
+      Q(visibility__in=[co.MSGS_CUSTOMER])|Q(mowner_id__exact=request.user.id))
 
 
 class BaseView(View):
@@ -197,6 +153,7 @@ class BaseView(View):
       'can_message': co.CheckPermissions(user, obj, co.CAN_MESSAGE)
     }
     context['stats'] = get_stats(self.request)
+    context['payments'] = get_payments_status()
     context['action_label'] = self.action_label
     return super(BaseView, self).render_to_response(context, **response_kwargs)
 
@@ -353,6 +310,7 @@ class DetailTaskView(BaseView, DetailView):
     task_id = self.kwargs.get('pk')
     group = self.request.user.get_group()
     #context['reports'] = Report.objects.filter(rtask_id__exact=task_id)
+    update_payment_status(co.LIQPAY, self.get_object())
     context['msgs'] = get_msgs_for_task(self.request, task_id)
     task_q = Q(ftask_id__exact=task_id)
     or_q = Q(access_level__in=(co.PUBLIC_ACCESS,))
@@ -404,7 +362,7 @@ class SwitchStatusView(UpdateTaskView):
       params = {'price': self.object.get_price(),
                 'title': self.object.paper_title,
                 'order_id': self.object.pk}
-      return get_payment_url(LIQPAY, self.request, params)
+      return get_payment_url(co.LIQPAY, self.request, params)
     return self.object.to_link()
 
 

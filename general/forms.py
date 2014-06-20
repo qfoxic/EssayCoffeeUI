@@ -7,13 +7,6 @@ from payments.models import Payment
 import constants as co
 
 
-#TODO. 3. Add handler for payment systems. Get status of payment.
-# 4. Display payment status of a task
-# Get status using this sql.
-# Update status using api.
-# SELECT max(id) as id, powner_id, ptask_id,
-# SUBSTRING_INDEX(GROUP_CONCAT(`payment_status` ORDER BY `Id` DESC SEPARATOR ','),',',1)
-# status FROM payments GROUP BY ptask_id;
 class BaseForm(ModelForm):
   class Meta:
     model = Task
@@ -81,7 +74,7 @@ class TaskForm(BaseForm):
         upload.save()
         # Add unpaid payment.
         payment = Payment(powner=self.request.user, ptask=self.instance,
-                          values='{}', payment_status=co.UNPAID) 
+                          values='{}', payment_status=co.UNPAID)
         payment.save()
     return res
 
@@ -143,6 +136,7 @@ class SwitchStatusForm(BaseForm):
     if status == co.UNPROCESSED:
       # Add procesing payment.
       payment = Payment(powner=self.request.user, ptask=self.instance,
-                        values='{}', payment_status=co.IN_PROCESS) 
+                        values='{}', payment_status=co.IN_PROCESS,
+                        payment_type=self.request.get('ptype', co.LIQPAY))
       payment.save()
     return super(SwitchStatusForm, self).save(*args, **kwargs)

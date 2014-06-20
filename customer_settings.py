@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 #BASE_DIR = '/var/www'
-PROJECT_DIR = os.path.join(BASE_DIR, 'transport')
+PROJECT_DIR = os.path.join(BASE_DIR, 'transport_cust')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
