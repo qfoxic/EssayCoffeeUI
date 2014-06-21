@@ -137,6 +137,6 @@ class SwitchStatusForm(BaseForm):
       # Add procesing payment.
       payment = Payment(powner=self.request.user, ptask=self.instance,
                         values='{}', payment_status=co.IN_PROCESS,
-                        payment_type=self.request.get('ptype', co.LIQPAY))
+                        payment_type=self.request.GET.get('ptype', co.LIQPAY))
       payment.save()
     return super(SwitchStatusForm, self).save(*args, **kwargs)

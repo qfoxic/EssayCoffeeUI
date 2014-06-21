@@ -153,9 +153,13 @@ class BaseView(View):
       'can_message': co.CheckPermissions(user, obj, co.CAN_MESSAGE)
     }
     context['stats'] = get_stats(self.request)
-    context['payments'] = get_payments_status()
     context['action_label'] = self.action_label
     return super(BaseView, self).render_to_response(context, **response_kwargs)
+
+  def get_context_data(self, **kwargs):
+    context = super(BaseView, self).get_context_data(**kwargs)
+    context['payments'] = get_payments_status()
+    return context
 
   def get_template_names(self):
     return [self.template_name]
@@ -307,10 +311,11 @@ class DetailTaskView(BaseView, DetailView):
 
   def get_context_data(self, **kwargs):
     context = super(DetailTaskView, self).get_context_data(**kwargs)
-    task_id = self.kwargs.get('pk')
+    task_id = self.get_object().pk
     group = self.request.user.get_group()
-    #context['reports'] = Report.objects.filter(rtask_id__exact=task_id)
-    update_payment_status(co.LIQPAY, self.get_object())
+    task_payments = context['payments'].get(task_id)
+    if task_payments and task_payments[1] in [co.IN_PROCESS]:
+      update_payment_status(task_payments[3], self.get_object())
     context['msgs'] = get_msgs_for_task(self.request, task_id)
     task_q = Q(ftask_id__exact=task_id)
     or_q = Q(access_level__in=(co.PUBLIC_ACCESS,))

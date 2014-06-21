@@ -29,7 +29,9 @@
         <td>{{task.get_urgency}}</td>
         <td class="momdl">{{task.admin_deadline}}</td>
         <td>{{task.review}}</td>
-        <td>{{payments|dget:task.id|default:'Unpaid'}}</td>
+        {% with payments|dget:task.id as p %}
+        <td>{{p.0|default:'Unpaid'}}</td>
+        {% endwith %}
         <td>{{task.get_price}}$</td>
     </tr>
     {% endfor %}

@@ -7,8 +7,6 @@ import constants as co
 # add get_payment_status.
 # test update_payment_status.
 def update_payment_status(ptype, task):
-  if not task.status in [co.IN_PROCESS]:
-    return
   if ptype == co.LIQPAY:
     from liqpay.liqpay import LiqPay
     liq = LiqPay(co.LIQ_PUB_KEY, co.LIQ_PRIV_KEY)
@@ -30,16 +28,16 @@ def update_payment_status(ptype, task):
 def get_payments_status():
   sql = ('SELECT max(id) as id, powner_id, ptask_id,'
          ' SUBSTRING_INDEX(GROUP_CONCAT(`payment_status` ORDER BY `Id` DESC SEPARATOR \',\'),\',\',1)'
-         ' as status FROM payments GROUP BY ptask_id')
+         ' as status, payment_type FROM payments GROUP BY ptask_id')
   _d = {}
-  [_d.setdefault(int(i.ptask_id), co.PAYMENT_STATUS_DICT.get(int(i.status))) for i in Payment.objects.raw(sql)]
+  [_d.setdefault(int(i.ptask_id), [
+             co.PAYMENT_STATUS_DICT.get(int(i.status)),
+             int(i.status),
+             i.powner_id,
+             int(i.payment_type)]) for i in Payment.objects.raw(sql)]
   return _d
 
  
-def get_payment_status(task_id):
-  pass 
-
-
 def get_payment_url(ptype, request, params):
   """Params: price, title, order_id"""
   if ptype == co.LIQPAY:
