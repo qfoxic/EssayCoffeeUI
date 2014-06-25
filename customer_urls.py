@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.core.urlresolvers import reverse_lazy
 
-from general.views import RemoveTaskView,SwitchStatusView, LoginView
+from general.views import RemoveTaskView,SwitchStatusView, LoginView, HomeView
 from general.views import CreateTaskView,UpdateTaskView,DetailTaskView,TaskIndexView
 from general.models import Task
 from msgs.views import CreateMsgView, RemoveMsgView, ListMsgsView,DetailMsgView
@@ -45,7 +45,8 @@ task_update = login_required(
   login_url=reverse_lazy('login'))
 
 urlpatterns = patterns('',
-    url(r'^$', task_list),
+#    url(r'^$', task_list),
+    url(r'^$', HomeView.as_view(), name='html'),
     url(r'^tasks/$', task_list, name='task_list'),
     url(r'^task/(?P<pk>\d+)/$', task_details, name='task_view'),
     url(r'^task/(?P<pk>\d+)/remove$', task_rm, name='task_remove'),

@@ -376,3 +376,7 @@ class StaticHtmlView(BaseView, TemplateView):
     template_name = 'html/' + self.kwargs['path']  
     return [template_name]
 
+class HomeView(BaseView, TemplateView):
+  def get_template_names(self):
+    template_name = 'html/home.html'  
+    return [template_name]
