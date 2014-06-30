@@ -163,18 +163,18 @@ ul.red_bar > li {
 	position: relative;
 	float: left;
 	width: 25%;
-	min-height: 80px;
+	min-height: 120px;
 	color: #fff;
 	padding: 0;
 }
 ul.red_bar > li > p {
-	font-size: .9em;
-	padding: 1em 2em 1em 5em;
+	font-size: .8em;
+	padding: 1em 5em 1em 6em;
 	color: #fff;
+	z-index: 10 !important;
 }
 strong.idigit {
     bottom: 0;
-    color: green;
     display: block;
     font-size: 8em;
     font-weight: bolder;
@@ -183,6 +183,9 @@ strong.idigit {
     padding: 0;
     position: absolute;
     right: 0;
+    z-index: 0 !important;
+    color: #fff;
+    opacity:.5;
 }
 i.icard {
 	padding: .6em 10px 0;
