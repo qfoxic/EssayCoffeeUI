@@ -156,7 +156,7 @@ div.duration > .btn {
 }
 ul.red_bar {
 	margin: 1em 0;
-	overflow: auto;
+
 }
 ul.red_bar > li {
 	display: block;
