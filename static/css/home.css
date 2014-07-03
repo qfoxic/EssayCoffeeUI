@@ -214,3 +214,16 @@ li.card4 {
 	background-color: #E84E1C;
 	margin-left: -10px;
 }
+footer {
+	background-color:#262626;
+	color: #EEE;
+	width: 100%;
+	font-weight: 200;
+	font-size: .9em;
+	font-family: Arial, Helvetica, sans-serif;
+	overflow: auto;
+}
+footer > div.container {
+	vertical-align: middle;
+	margin: 1.5em auto;
+}
