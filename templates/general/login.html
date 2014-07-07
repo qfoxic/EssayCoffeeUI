@@ -1,45 +1,53 @@
-{% extends "layout.html" %}
+{% extends "html/home.html" %}
 {% load i18n %}
-{% block pagetitle %}All Tasks{% endblock %}
-{% block info_block %}
-<section class="info">
-    <h4>In order to access, please login or register</h4>
-</section>
-{% endblock %}
+{% block pagetitle %}Please login{% endblock %}
 {% block content %}
-<div class="panel panel-default" style="width:430px;margin:3em auto">
-    <!-- Default panel contents -->
-    <div class="panel-heading" style="font-size:1.5em">
-        <i class="fa fa-key" style="margin-right:1em;font-size:1.2em"></i> {% trans "Login" %}
+<div class="row">
+    <div class="col-md-3 col-md-offset-1">
+        <ul class="fa-ul menu-list">
+            <li style="margin-bottom:2em;background:none;">
+                <a href="#" style="color:#333">Home</a><i class="fa fa-angle-right lm rm"></i><span class="active">Login</span>
+            </li>
+            <li>
+                <i class="fa fa-angle-right"></i><a href="#" class="active">Login/Register</a>
+            </li>
+            <li>
+                <i class="fa fa-angle-right"></i><a href="#">Restore Password</a>
+            </li>
+            <li>
+                <i class="fa fa-angle-right"></i><a href="#">My account</a>
+            </li>
+        </ul>
     </div>
-    <div class="panel-body">
-        <form action="{% url "login" %}" method="post" class="form-horizontal" role="form">
+    <div class="col-md-6">
+        <h2 class="subtitle" style="margin-top:3em">Login</h2>
+        <form action="{% url "login" %}" method="post" class="form-horizontal" role="form" id="login-form">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{next}}">
             <div class="form-group{% if form.username.errors %} has-error{% endif %}">
-                <div class="input-group margin-bottom-sm"  style="width:90%;margin:.5em auto">
-                    <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                    <input id="user_input" type="text" name="username" class="form-control" placeholder="{% trans "Enter username" %}">
+                <label for="user_input" class="col-sm-4 control-label">Email <sup><i class="active fa fa-asterisk lm"></i></sup></label>
+                <div class="col-sm-6">
+                    <input type="email" class="form-control" name="username" id="user_input" placeholder="Email">
                 </div>
             </div>
             <div class="form-group{% if form.password.errors %} has-error{% endif %}">
-                <div class="input-group margin-bottom-sm"  style="width:90%;margin: 0 auto">
-                    <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-                    <input id="passwd_input" type="password" name="password" class="form-control" placeholder="{% trans "Enter password" %}">
+                <label for="passwd_input" class="col-sm-4 control-label">Password <sup><i class="active fa fa-asterisk lm"></i></sup></label>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control" name="password" id="passwd_input" placeholder="Password">
                 </div>
             </div>
             <div class="form-group">
-                <div style="text-align:center;margin: .5em auto 0">
-                    <button type="submit" class="btn btn-primary btn-lg" role="button">
-                        {% trans "Sign in" %}<i class='fa fa-sign-in fa-lg' style="margin-left:.5em"></i>
+                <div class="col-sm-offset-4 col-sm-6">
+                    <a href="#" class="forget_pass">Forget Password?</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-6">
+                    <button type="submit" class="btn btn-danger submit">
+                        Login
                     </button>
                 </div>
-            </div><!--
-            {% if form.errors %}
-            <div class="alert alert-danger" style="margin-bottom:.2em">
-                {{form.errors}}
             </div>
-            {% endif %}-->
         </form>
     </div>
 </div>
