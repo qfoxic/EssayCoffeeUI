@@ -15,7 +15,7 @@
                 <i class="fa fa-angle-right"></i><a href="#">Restore Password</a>
             </li>
             <li>
-                <i class="fa fa-angle-right"></i><a href="#">My account</a>
+                <i class="fa fa-angle-right"></i><a href="{% if object %}{% url "user_edit" object.pk %}{% else %}{% url 'login' %}{% endif %}">My account</a>
             </li>
         </ul>
     </div>
