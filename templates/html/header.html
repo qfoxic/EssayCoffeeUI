@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+    <head>    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        
+        <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
+        <link href="{{ STATIC_URL }}css/font-awesome.css" rel="stylesheet" media="screen">
+        <link href="{{ STATIC_URL }}css/settings.css" rel="stylesheet" media="screen">
+        <link href="{{ STATIC_URL }}css/owl.carousel.css" rel="stylesheet" media="screen">
+        <link href="{{ STATIC_URL }}css/owl.theme.css" rel="stylesheet" media="screen">
+        <link href="{{ STATIC_URL }}css/uniform.default.css" rel="stylesheet" media="screen">
+        <link href="{{ STATIC_URL }}css/theme.default.css" rel="stylesheet" media="screen">
+        <link href="{{ STATIC_URL }}css/style.css?v=6" rel="stylesheet" media="screen">
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery.themepunch.plugins.min.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery.themepunch.revolution.min.js"></script>
+        <script src="{{ STATIC_URL }}js/revo-slider-init.js"></script>
+        <script src="{{ STATIC_URL }}js/owl.carousel.min.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery.appear.js"></script>
+        <script src="{{ STATIC_URL }}js/jqury.countTo.js"></script>
+        <script src="{{ STATIC_URL }}js/moment.js"></script>
+        <script src="{{ STATIC_URL }}js/bootstrap-datetimepicker.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery.uniform.min.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery.slimscroll.js"></script>
+        <script src="{{ STATIC_URL }}js/theme_scripts.js"></script>
+
+        <title>{% block pagetitle %}{% endblock %}</title>
+    </head>
+
+    <body>
+        <div class="wrap">
+        <section id="pre-header">
+            <div class="container">
+                <div class="row">
+                    <!-- BEGIN TOP BAR LEFT PART -->
+                    <div class="col-md-6 col-sm-6 additional-info">
+                        <ul>
+                            <li><i class="fa fa-phone"></i><span>+1 907 331 4392</span></li>
+                            <li><i class="fa fa-envelope-o"></i><span>info@mywriters.com</span></li>
+                        </ul>
+                    </div>
+                    <!-- END TOP BAR LEFT PART -->
+                    <!-- BEGIN TOP BAR MENU -->
+                    <div class="col-md-6 col-sm-6 additional-nav">
+                        <ul class="pull-right">
+                            <li><a href="login.php">Log In</a></li>
+                            <li><a href="registration.php">Registration</a></li>
+                            <!--
+                            
+                            // Це меню повинне бути тоді коли, користувач авторизувався
+                            
+                            <li><a href="#">My Orders</a></li>
+                            <li><a href="#">Exit</a></li>
+                            -->
+                        </ul>
+
+                    </div>
+                    <!-- END TOP BAR MENU -->
+                </div>
+            </div>        
+        </section><!--pre-header-->
+
+
+        <header id="header">
+            <div class="container">
+                <div id="logo"><a href="/"><img src="{{ STATIC_URL }}images/demo/logo.png"></a></div>
+
+                <a href="javascript:void(0);" class="mobi-toggler"></a>
+
+                <!-- BEGIN NAVIGATION -->
+                <div id="main-navigation" class="pull-right">
+                    <ul>
+                        <li class="active"><a href="/">Home</a></li>
+                        
+                        <li class="<?/*active*/?> dropdown">
+                            <a href="#">Our Services</a>
+                            <ul class="dropdown-menu">
+                                <li class="active"><a href="/html/service.html">Services</a></li>
+                                <li><a href="/html/service.html">Prices</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href="/html/pricing.html">Pricing</a></li>
+                        
+                        <li><a href="/html/guarantees.html">Guarantees</a></li>
+                        
+                        <li><a href="/html/guarantees.html">Our writers</a></li>
+                        
+                        <li><a href="/html/faq.html">FAQ</a></li>
+                        
+                        <li><a href="/html/blog.html">Blog</a></li>
+                        
+                        <li><a href="/html/contacts.html">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- END NAVIGATION -->
+            </div>
+        </header><!--header-->
