@@ -24,6 +24,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^profile/(?P<pk>\d+)/remove$', user_remove, name='user_remove'),
     url(r'^upload/(?P<pk>\d+)/download$', upload_download, name='upload_download'),
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve'),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve'),
 )
 
