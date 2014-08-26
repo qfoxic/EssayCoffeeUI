@@ -1,3 +1,4 @@
+{% load i18n staticfiles raw %}
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +17,7 @@
         <link href="{{ STATIC_URL }}css/uniform.default.css" rel="stylesheet" media="screen">
         <link href="{{ STATIC_URL }}css/theme.default.css" rel="stylesheet" media="screen">
         <link href="{{ STATIC_URL }}css/style.css?v=6" rel="stylesheet" media="screen">
-
+{% block styles %}{% endblock %}
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
         <script src="{{ STATIC_URL }}js/jquery.themepunch.plugins.min.js"></script>
@@ -31,7 +32,7 @@
         <script src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script>
         <script src="{{ STATIC_URL }}js/jquery.slimscroll.js"></script>
         <script src="{{ STATIC_URL }}js/theme_scripts.js"></script>
-
+{% block scripts %}{% endblock %}
         <title>{% block pagetitle %}{% endblock %}</title>
     </head>
 
@@ -51,16 +52,14 @@
                     <!-- BEGIN TOP BAR MENU -->
                     <div class="col-md-6 col-sm-6 additional-nav">
                         <ul class="pull-right">
+                            {% if user.username %}  
+                            <li><a href="{% url 'task_list' %}">My Orders</a></li>
+                            <li><a href="{% url 'logout' %}">Exit</a></li>
+                            {% else %}
                             <li><a href="{% url 'login' %}">Log In</a></li>
                             <li><a href="{% url 'user_new' %}">Registration</a></li>
-                            <!--
-                            
-                            // Це меню повинне бути тоді коли, користувач авторизувався
-                            
-                            <li><a href="#">My Orders</a></li>
-                            <li><a href="#">Exit</a></li>
-                            -->
-                        </ul>
+                            {% endif %}
+                       </ul>
 
                     </div>
                     <!-- END TOP BAR MENU -->
@@ -104,3 +103,6 @@
                 <!-- END NAVIGATION -->
             </div>
         </header><!--header-->
+{% block content %}
+{% endblock %}
+      
