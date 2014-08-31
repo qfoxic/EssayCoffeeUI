@@ -34,9 +34,7 @@ task_list = lambda request: login_required(
     login_url=reverse_lazy('login'))(request)
 task_details = login_required(DetailTaskView.as_view(module_name='customer', owner_required=True),
                               login_url=reverse_lazy('login'))
-task_new = login_required(
-  CreateTaskView.as_view(module_name='customer'),
-  login_url=reverse_lazy('login'))
+task_new = CreateTaskView.as_view(module_name='customer')
 task_status = login_required(
   SwitchStatusView.as_view(module_name='customer'),
   login_url=reverse_lazy('login'))

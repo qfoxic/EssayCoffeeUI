@@ -284,7 +284,7 @@ class UpdateTaskView(BaseView, UpdateView):
 class CreateTaskView(BaseView, CreateView):
   form_class = TaskForm
   queryset = Task.objects.all()
-  template_name = 'tasks/edit.html'
+  template_name = 'tasks/new.html'
 
   def get_form_kwargs(self):
     kwargs = super(CreateTaskView, self).get_form_kwargs()
