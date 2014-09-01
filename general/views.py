@@ -246,6 +246,15 @@ class TaskIndexView(BaseView, ListView):
   """Displays all tasks for signed users."""
   template_name = 'tasks/index.html'
   context_object_name = 'tasks'
+  model=Task
+
+  def get_context_data(self, **kwargs):
+    context = super(TaskIndexView, self).get_context_data(**kwargs)
+    context['tasks'] = Task.get_all_tasks(0, **{'owner__id': self.request.user.id})
+    context['draft_tasks'] = Task.get_draft_tasks(0, **{'owner__id': self.request.user.id})
+    context['processing_tasks'] = Task.get_processing_tasks(0, **{'owner__id': self.request.user.id})
+    context['completed_tasks'] = Task.get_finished_tasks(0, **{'owner__id': self.request.user.id})
+    return context
 
 
 class UpdateTaskView(BaseView, UpdateView):
@@ -325,7 +334,6 @@ class DetailTaskView(BaseView, DetailView):
     w_ups = Upload.objects.filter(fowner__groups__name=co.WRITER_GROUP).filter(task_q, or_q, not_owner_q)
     ups.extend(w_ups), ups.extend(m_ups)
     context['uploads'] = ups
-       
     return context
 
   def user_id(self):
