@@ -1,388 +1,417 @@
-{% extends "html/home.html" %}
-{% load i18n attr %}
-{% block pagetitle %}
-  {% trans "Add New Order" %}
-{% endblock %}
+  <main id="main">
+   <div class="container">
 
-{% block content %}
-<main id="main">
-  <div class="container">
-
-  {% include 'html/nav.html' %}
+   {% include 'html/nav.html' %}
 
     <!-- BEGIN CONTENT -->
     <div class="row">
     
-      <!-- BEGIN MIDDLE LAYOUT -->
-      <div id="layout-middle" class="col-md-9 col-sm-9 pricing-page content-page">
+     <!-- BEGIN MIDDLE LAYOUT -->
+     <div id="layout-middle" class="col-md-9 col-sm-9 pricing-page content-page">
 
-        <h1 class="page-title margin-top">Place a new order</h1>
-        
-        <p><b>Please fill out all the required fields below to proceed with your order.<br>
-        Provide maximum details about your future paper. This will help us complete it with maximum accuracy.</b></p>
+      <h1 class="page-title margin-top">Place a new order</h1>
+      
+      <p><b>Please fill out all the required fields below to proceed with your order.<br>
+      Provide maximum details about your future paper. This will help us complete it with maximum accuracy.</b></p>
 
-        <!-- BEGIN PRICE FORM -->
-        <div class="row">
-          <div class="col-md-12 col-sm-12">
-            <form class="form-horizontal new-order-form-wrapper">
-              <div class="price-form">
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">
-                    Your Email
-                    <span class="tooltip-wrapper">
-                      <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Please fill out all the required fields below to proceed with your order. Provide maximum details about your future paper. This will help us complete it with maximum accuracy.">
-                        <i class="icon-info-popup"></i>
-                      </a>
-                    </span>
-                  </label>
-                  <div class="col-sm-5">
-                    <input type="email" class="form-control">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">Type of Paper Needed</label>
-                  <div class="col-sm-5">
-                    <select class="form-control">
-                      <option value="" disabled selected>Select One</option>
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                      <option>Option 4</option>
-                      <option>Option 5</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">Paper Format</label>
-                  <div class="col-sm-5">
-                    <select class="form-control">
-                      <option value="" disabled selected>Please select</option>
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                      <option>Option 4</option>
-                      <option>Option 5</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">
-                    Subject or Discipline
-                    <span class="tooltip-wrapper">
-                      <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Subject or Discipline tooltip">
-                        <i class="icon-info-popup"></i>
-                      </a>
-                    </span>
-                  </label>
-                  <div class="col-sm-5">
-                    <select class="form-control">
-                      <option value="" disabled selected>Please select</option>
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                      <option>Option 4</option>
-                      <option>Option 5</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">
-                    Topic
-                    <span class="tooltip-wrapper">
-                      <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Topic tooltip">
-                        <i class="icon-info-popup"></i>
-                      </a>
-                    </span>
-                  </label>
-                  <div class="col-sm-5">
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-
-                <div class="form-group has-error">
-                  <label class="col-sm-5 control-label">Number of Sources Required</label>
-                  <div class="col-sm-5">
-                    <select class="form-control">
-                      <option value="" disabled selected>Please select</option>
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                      <option>Option 4</option>
-                      <option>Option 5</option>
-                    </select>
-                    <span class="validation-message">Fill in this field</span>
-                  </div>
-                </div>
-
-                <div class="form-group has-error">
-                  <label class="col-sm-5 control-label">
-                    Paper Instructions
-                    <span class="tooltip-wrapper">
-                      <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Paper Instructions tooltip">
-                        <i class="icon-info-popup"></i>
-                      </a>
-                    </span>
-                  </label>
-                  <div class="col-sm-5">
-                    <textarea class="form-control" rows="2"></textarea>
-                    <span class="validation-message">Fill in this field</span>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">
-                    Pages
-                    <span class="tooltip-wrapper">
-                      <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages tooltip">
-                        <i class="icon-info-popup"></i>
-                      </a>
-                    </span>
-                  </label>
-                  <div class="col-sm-5">
-                    <select class="form-control">
-                      <option value="" disabled selected>Please select</option>
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                      <option>Option 4</option>
-                      <option>Option 5</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">
-                    Will you upload any additional materials?
-                    <span class="tooltip-wrapper">
-                      <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Additional materials tooltip">
-                        <i class="icon-info-popup"></i>
-                      </a>
-                    </span>
-                  </label>
-                  <div class="col-sm-6">
-                    <label class="radio-inline">
-                      <input type="radio" name="materials"><span>Yes</span>
-                    </label>
-
-                    <label class="radio-inline">
-                      <input type="radio" name="materials" checked><span>No</span>
-                    </label>
-
-                    <p>Please note that in case your paper requires specific information/materials to be used, your writer will need additional time to retrieve them.</p>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">Academic Level</label>
-                  <div class="col-sm-5">
-                    <select class="form-control">
-                      <option value="" disabled selected>Select One</option>
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                      <option>Option 4</option>
-                      <option>Option 5</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">
-                    First Draft Deadline
-                    <span class="tooltip-wrapper">
-                      <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="First Draft Deadline tooltip">
-                        <i class="icon-info-popup"></i>
-                      </a>
-                    </span>
-                  </label>
-                  <label class="col-sm-5 control-label text-left">
-                    Select <a href="#">Academic Level</a> first!
-                  </label>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">
-                    Final Submission Deadline
-                    <span class="tooltip-wrapper">
-                      <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Final Submission Deadline tooltip">
-                        <i class="icon-info-popup"></i>
-                      </a>
-                    </span>
-                  </label>
-                  <div class="col-sm-5">
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">
-                    Writers Preferences
-                    <span class="tooltip-wrapper">
-                      <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Writers Preferences tooltip">
-                        <i class="icon-info-popup"></i>
-                      </a>
-                    </span>
-                  </label>
-                  <div class="col-sm-6">
-                    <div class="radio-inline-list">
-                      <label class="radio-inline">
-                        <input type="radio" name="name3"><span>Please assign the best available writer (standard pricing)</span>
-                      </label>
-
-
-                      <label class="radio-inline">
-                        <input type="radio" name="name3"><span>I want to choose the category of writer (price depends on the category)</span>
-                        <span class="tooltip-wrapper">
-                          <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Tooltip: I want to choose the category of writer (price depends on the category)">
-                            <i class="icon-info-popup"></i>
-                          </a>
-                        </span>
-                      </label>
-
-                      <label class="radio-inline">
-                        <input type="radio" name="name3"><span>I want a specific writer to complete my order, if possible</span>
-                        <span class="tooltip-wrapper">
-                          <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Tooltip: I want a specific writer to complete my order, if possible">
-                            <i class="icon-info-popup"></i>
-                          </a>
-                        </span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                
-
-                <div class="form-note">
-                  Mind that no particular level of writing quality may be guaranteed (if the high quality writers are busy, your order may go to the best writer available at the moment). Those who seek only high writing quality results, may choose "ENL" or "Advanced writer" options.
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">
-                    Get a copy of sources used
-                    <span class="tooltip-wrapper">
-                      <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Get a copy of sources used tooltip">
-                        <i class="icon-info-popup"></i>
-                      </a>
-                    </span>
-                  </label>
-                  <div class="col-sm-6">
-                    <label class="radio-inline">
-                      <input type="radio" name="copy"><span>Yes</span>
-                    </label>
-
-                    <label class="radio-inline">
-                      <input type="radio" name="copy" checked><span>No</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">
-                    Progressive Delivery
-                    <span class="tooltip-wrapper">
-                      <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Progressive Delivery tooltip">
-                        <i class="icon-info-popup"></i>
-                      </a>
-                    </span>
-                  </label>
-                  <div class="col-sm-6">
-                    <div class="checkbox disabled">
-                      <label>
-                        <input type="checkbox" disabled>&nbsp;
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-5 control-label">
-                    Order Writer's Samples
-                    <span class="tooltip-wrapper">
-                      <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Order Writer's Samples tooltip">
-                        <i class="icon-info-popup"></i>
-                      </a>
-                    </span>
-                  </label>
-                  <div class="col-sm-6">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox">&nbsp;
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                </br></br>
-                {% comment %}
-                <div class="form-group captcha">
-                  <label class="col-sm-5 control-label">
-                    Security Code
-                    <span class="tooltip-wrapper">
-                      <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Discount tooltip">
-                        <i class="icon-info-popup"></i>
-                      </a>
-                    </span>
-                  </label>
-                  <div>
-                    <div class="col-sm-2">
-                      <div class="captcha-wrapper">
-                        <img src="images/demo/captcha.png" alt="">
-                      </div>
-                    </div>
-                    <div class="col-sm-3">                        
-                      <input type="text" class="form-control captcha-control">
-                    </div>
-                  </div>
-                </div>
-                {% endcomment %}
-
-                <div class="form-group total">
-                  <label class="col-sm-5 control-label large-text">Total Price</label>
-                  <label class="col-sm-5 control-label text-left">Select <a href="#">type of paper</a> first!</label>
-                </div>
-
-                <div class="form-group">
-                  <div class="checkbox col-sm-12 text-center">
-                    <label class=" control-label">
-                      <input type="checkbox"> I agree with <a href="#">Terms and Conditions</a>  and <a href="#">MoneyBack Policy</a> and <a href="#">Privacy Policy</a>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="form-group pay-systems">
-                  <div class="col-sm-7 text-right"><a href="#" class="btn btn-primary">Order Now</a></div>
-                  {% comment %}
-                  <div class="col-sm-6 text-right"><a href="#"><img src="images/demo/paypal_btn.png" alt=""></a></div>
-                  <div class="col-sm-6 text-left"><a href="#"><img src="images/demo/moneybookers_btn.png" alt=""></a></div>
-                  {% endcomment %}
-                </div>
-
-              </div><!--price-form-->
-            </form>
+      <!-- BEGIN PRICE FORM -->
+      <div class="row">
+       <div class="col-md-12 col-sm-12">
+        <form class="form-horizontal new-order-form-wrapper">
+         <div class="price-form">
+         
+          <ul class="nav nav-tabs margin10353530" role="tablist">
+           <li class="active"><a href="#paper_details" role="tab" data-toggle="tab">Paper details</a></li>
+          </ul>
+         
+          <div class="form-group">
+           <label class="col-sm-5 control-label">Academic Level</label>
+           <div class="col-sm-5">
+            <select class="form-control">
+             <option value="" disabled selected>Select One</option>
+             <option>Option 1</option>
+             <option>Option 2</option>
+             <option>Option 3</option>
+             <option>Option 4</option>
+             <option>Option 5</option>
+            </select>
+           </div>
           </div>
-        </div>
-        <!-- END PRICE FORM -->
-        
-      </div>
-      <!-- END MIDDLE LAYOUT -->
+         
+         
+          <div class="form-group">
+           <label class="col-sm-5 control-label">Type of Paper Needed</label>
+           <div class="col-sm-5">
+            <select class="form-control">
+             <option value="" disabled selected>Select One</option>
+             <option>Option 1</option>
+             <option>Option 2</option>
+             <option>Option 3</option>
+             <option>Option 4</option>
+             <option>Option 5</option>
+            </select>
+           </div>
+          </div>
+          
+          
+          <div class="form-group">
+           <label class="col-sm-5 control-label">
+            Subject or Discipline
+            <span class="tooltip-wrapper">
+             <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Subject or Discipline tooltip">
+              <i class="icon-info-popup"></i>
+             </a>
+            </span>
+           </label>
+           <div class="col-sm-5">
+            <select class="form-control">
+             <option value="" disabled selected>Please select</option>
+             <option>Option 1</option>
+             <option>Option 2</option>
+             <option>Option 3</option>
+             <option>Option 4</option>
+             <option>Option 5</option>
+            </select>
+           </div>
+          </div>
 
-      <!-- BEGIN LEFT SIDEBAR LAYOUT -->
-      <div id="layout-left" class="col-md-3 col-sm-12">
-        {% include 'html/sidebar-left.html' %}
+          
+          <div class="form-group">
+           <label class="col-sm-5 control-label">
+            Topic
+            <span class="tooltip-wrapper">
+             <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Topic tooltip">
+              <i class="icon-info-popup"></i>
+             </a>
+            </span>
+           </label>
+           <div class="col-sm-5">
+            <input type="text" class="form-control">
+           </div>
+          </div>
+          
+          
+          <div class="form-group has-error">
+           <label class="col-sm-5 control-label">
+            Paper Instructions
+            <span class="tooltip-wrapper">
+             <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Paper Instructions tooltip">
+              <i class="icon-info-popup"></i>
+             </a>
+            </span>
+           </label>
+           <div class="col-sm-5">
+            <textarea class="form-control" rows="2"></textarea>
+            <span class="validation-message">Fill in this field</span>
+           </div>
+          </div>
+
+          
+          <div class="form-group has-error">
+           <label class="col-sm-5 control-label">
+            Sources
+            <span class="tooltip-wrapper">
+             <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Paper Instructions tooltip">
+              <i class="icon-info-popup"></i>
+             </a>
+            </span>
+           </label>
+           <div class="col-sm-5">
+            <select class="form-control">
+             <option value="" disabled selected>Please select</option>
+             <option>Option 1</option>
+             <option>Option 2</option>
+             <option>Option 3</option>
+             <option>Option 4</option>
+             <option>Option 5</option>
+            </select>
+            <span class="validation-message">Fill in this field</span>
+           </div>
+          </div>
+
+          
+          <div class="form-group">
+           <label class="col-sm-5 control-label">
+            Will you upload any additional materials?
+            <span class="tooltip-wrapper">
+             <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Additional materials tooltip">
+              <i class="icon-info-popup"></i>
+             </a>
+            </span>
+           </label>
+           <div class="col-sm-6">
+            <label class="radio-inline">
+             <input type="radio" name="materials"><span>Yes</span>
+            </label>
+
+            <label class="radio-inline">
+             <input type="radio" name="materials" checked><span>No</span>
+            </label>
+
+            <p>Please note that in case your paper requires specific information/materials to be used, your writer will need additional time to retrieve them.</p>
+           </div>
+          </div>
+          
+          
+          <div class="form-group">
+           <label class="col-sm-5 control-label">Paper format or citation style</label>
+           <div class="col-sm-5">
+            <select class="form-control">
+             <option value="" disabled selected>Please select</option>
+             <option>Option 1</option>
+             <option>Option 2</option>
+             <option>Option 3</option>
+             <option>Option 4</option>
+             <option>Option 5</option>
+            </select>
+           </div>
+          </div>
+          
+
+          <div class="form-group">
+           <label class="col-sm-5 control-label">
+            Pages
+            <span class="tooltip-wrapper">
+             <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages tooltip">
+              <i class="icon-info-popup"></i>
+             </a>
+            </span>
+           </label>
+           <div class="col-sm-5">
+            <select class="form-control">
+             <option value="" disabled selected>Please select</option>
+             <option>Option 1</option>
+             <option>Option 2</option>
+             <option>Option 3</option>
+             <option>Option 4</option>
+             <option>Option 5</option>
+            </select>
+           </div>
+          </div>
+
+          
+          <div class="form-group">
+           <label class="col-sm-5 control-label">
+            First Draft Deadline
+            <span class="tooltip-wrapper">
+             <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages tooltip">
+              <i class="icon-info-popup"></i>
+             </a>
+            </span>
+           </label>
+           <div class="col-sm-5">
+            <select class="form-control">
+             <option value="" disabled selected>Please select</option>
+             <option>8 hours</option>
+             <option>24 hours</option>
+             <option>48 hours</option>
+             <option>3 days</option>
+             <option>5 days</option>
+             <option>7 days</option>
+             <option>14 days</option>
+            </select>
+           </div>
+          </div>
+
+          
+          <!--BEGIN TABS-->
+          <ul class="nav nav-tabs margin3035350" role="tablist">
+           <li class="active"><a href="#new_customer" role="tab" data-toggle="tab">New customer</a></li>
+           <li><a href="#log_in" role="tab" data-toggle="tab">Log In</a></li>
+          </ul>
+          
+          <div class="tab-content" style="border-left:2px #e6400c solid; border-top:0px; border-right:2px #e6400c solid; border-bottom:2px #e6400c solid; margin-left: 20px; margin-right: 20px; padding-bottom:20px;">
+           <!-- Begin new_customer Tab -->
+           <div class="tab-pane active" id="new_customer">
+
+            <fieldset>
+
+             <div class="form-group">
+              <label class="col-sm-4 control-label">Email <span class="require">*</span></label>
+              <div class="col-sm-8">
+               <input type="email" name="email" class="form-control" required>
+              </div>
+             </div>
+             
+             <div class="form-group">
+              <label class="col-sm-4 control-label">Password <span class="require">*</span></label>
+              <div class="col-sm-8">
+               <input type="password" name="password" class="form-control" required>
+              </div>
+             </div>
+             
+             <div class="form-group">
+              <label class="col-sm-4 control-label">Confirm password <span class="require">*</span></label>
+              <div class="col-sm-8">
+               <input type="password" name="repeat_password" class="form-control" required>
+              </div>
+             </div>
+             </br>
+             
+             <div class="form-group">
+              <label class="col-sm-4 control-label">Name <span class="require">*</span></label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" required>
+              </div>
+             </div>
+             
+             <div class="form-group">
+              <label class="col-sm-4 control-label">Your country <span class="require">*</span></label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" required>
+              </div>
+             </div>
+             
+             <div class="form-group">
+              <label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" required>
+              </div>
+             </div>
+             
+             <div class="form-group">
+              <div class="col-sm-12 text-center">
+               <p>Please note that in case your paper requires specific information/materials to be used, your writer will need additional time to retrieve them.</p>
+              </div>
+             </div>
+             
+            </fieldset>
+             
+           </div><!-- End new_customer Tab -->
+
+           <!-- Begin log_in Tab -->
+           <div class="tab-pane" id="log_in">
+            <form action="login" method="post" class="form-horizontal form-without-legend auth-form">
+           
+             <fieldset>
+             
+              <div class="form-group <?/*has-error*/?>">
+               <label class="col-sm-4 control-label">Email <span class="require">*</span></label>
+               <div class="col-sm-8">
+                <input type="email" name="email" class="form-control" required>
+               </div>
+              </div>
+
+              <div class="form-group <?/*has-error*/?>">
+               <label class="col-sm-4 control-label">Password <span class="require">*</span></label>
+               <div class="col-sm-8">
+                <input type="password" name="password" class="form-control" required>
+                
+                <?/*<span class="validation-message">Не вірний логін або пароль</span>'*/?>
+                
+               </div>
+              </div>
+              
+              <div class="form-group">
+               <div class="col-sm-12 text-center">
+                <a href="forgot">Forget Password?</a> 
+               </div>
+              </div>
+              
+             </fieldset>
+            
+            </form>
+           </div><!-- End log_in Tab -->
+          </div>
+          <!--END TABS-->
+          
+          </br></br>
+          
+          <div class="form-group">
+           <label class="col-sm-5 control-label">
+            Payment system
+            <span class="tooltip-wrapper">
+             <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages tooltip">
+              <i class="icon-info-popup"></i>
+             </a>
+            </span>
+           </label>
+           <div class="col-sm-6">
+            <label class="radio-inline" style="border:1px #ddd solid; height:34px; margin-right:10px;  padding:6px 12px; float:left;">
+             <input type="radio" name="materials"><span><img src="https://essayhave.com/img/common/cs/paypalsmall.png" alt=""></span>
+            </label>
+
+            <label class="radio-inline" style="border:1px #ddd solid; height:34px; margin-left:0px;  margin-top:-1px; padding:6px 12px;">
+             <input type="radio" name="materials" checked><span><img src="https://essayhave.com/img/common/cs/moneybookerssmall.png" alt=""></span>
+            </label>
+           </div>
+          </div>
+          
+          
+          <div class="form-group total">
+           <label class="col-sm-5 control-label large-text">Total Price</label>
+           <label class="col-sm-5 control-label text-left">$72.00</label>
+          </div>
+
+          
+          <div class="form-group">
+           <div class="col-sm-12 text-center">
+            <p>By clicking "Proceed to safe payment" button you agree to the <a href="#">Terms and Conditions</a>, <a href="#">MoneyBack Policy</a> and <a href="#">Privacy Policy</a></p> 
+           </div>
+          </div>
+  
+  
+          </br>
+          <div class="form-group">
+           <div class="col-sm-8 col-md-offset-4">
+            <button type="submit" name="send_auth" class="btn btn-primary" style="">Proceed to safe payment</button>
+           </div>
+          </div>
+          </br></br>
+
+         </div><!--price-form-->
+        </form>
+       </div>
       </div>
-      <!-- END LEFT SIDEBAR LAYOUT -->
+      <!-- END PRICE FORM -->
+      
+     </div>
+     <!-- END MIDDLE LAYOUT -->
+
+     <!-- BEGIN LEFT SIDEBAR LAYOUT -->
+     <div id="layout-left" class="col-md-3 col-sm-12">
+      {% include 'html/sidebar-left.html' %}
+     </div>
+     <!-- END LEFT SIDEBAR LAYOUT -->
 
     </div>
     <!-- END CONTENT -->
-  </div>    
-</main>
-{% endblock %}
+   </div>  
+  </main>
+
+<script src="{{ STATIC_URL }}js/lib/jquery.sprintf.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/lib/bootstrap.file-input.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/lib/bootbox.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/lib/jquery.tablesorter.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/lib/jquery.tablesorter.widgets.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/app.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.themepunch.plugins.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.themepunch.revolution.min.js"></script>
+<script src="{{ STATIC_URL }}js/revo-slider-init.js"></script>
+<script src="{{ STATIC_URL }}js/owl.carousel.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.appear.js"></script>
+<script src="{{ STATIC_URL }}js/jqury.countTo.js"></script>
+<script src="{{ STATIC_URL }}js/moment.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap-datetimepicker.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.uniform.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.slimscroll.js"></script>
+<script src="{{ STATIC_URL }}js/theme_scripts.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/theme.default.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="{{ STATIC_URL }}css/font-awesome.css" rel="stylesheet" media="screen">
+<link href="{{ STATIC_URL }}css/settings.css" rel="stylesheet" media="screen">
+<link href="{{ STATIC_URL }}css/owl.carousel.css" rel="stylesheet" media="screen">
+<link href="{{ STATIC_URL }}css/owl.theme.css" rel="stylesheet" media="screen">
+<link href="{{ STATIC_URL }}css/uniform.default.css" rel="stylesheet" media="screen">
+<link href="{{ STATIC_URL }}css/theme.default.css" rel="stylesheet" media="screen">
+<link href="{{ STATIC_URL }}css/style.css?v=6" rel="stylesheet" media="screen">
 
 
 
-
-{% block info_block %}
-{% endblock %}

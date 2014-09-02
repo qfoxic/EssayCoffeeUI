@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-Control" content="no-cache">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
+  <link href="{{ STATIC_URL }}css/font-awesome.css" rel="stylesheet" media="screen">
+  <link href="{{ STATIC_URL }}css/settings.css" rel="stylesheet" media="screen">
+  <link href="{{ STATIC_URL }}css/owl.carousel.css" rel="stylesheet" media="screen">
+  <link href="{{ STATIC_URL }}css/owl.theme.css" rel="stylesheet" media="screen">
+  <link href="{{ STATIC_URL }}css/uniform.default.css" rel="stylesheet" media="screen">
+  <link href="{{ STATIC_URL }}css/theme.default.css" rel="stylesheet" media="screen">
+  <link href="{{ STATIC_URL }}css/style.css?v=6" rel="stylesheet" media="screen">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+  <script src="{{ STATIC_URL }}js/jquery.themepunch.plugins.min.js"></script>
+  <script src="{{ STATIC_URL }}js/jquery.themepunch.revolution.min.js"></script>
+  <script src="{{ STATIC_URL }}js/revo-slider-init.js"></script>
+  <script src="{{ STATIC_URL }}js/owl.carousel.min.js"></script>
+  <script src="{{ STATIC_URL }}js/jquery.appear.js"></script>
+  <script src="{{ STATIC_URL }}js/jqury.countTo.js"></script>
+  <script src="{{ STATIC_URL }}js/moment.js"></script>
+  <script src="{{ STATIC_URL }}js/bootstrap-datetimepicker.js"></script>
+  <script src="{{ STATIC_URL }}js/jquery.uniform.min.js"></script>
+  <script src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script>
+  <script src="{{ STATIC_URL }}js/jquery.slimscroll.js"></script>
+  <script src="{{ STATIC_URL }}js/theme_scripts.js"></script>
+
+  {% block page_title %}<title>Index</title>{% endblock %}
+</head>
+  <body>
+    <div class="wrap">
+      {% include 'html/header.html' %}
+    {% block content %}
+      {% include 'html/main.html' %}
+    {% endblock %}
+    </div>
+    {% include 'html/footer.html' %}
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+{% comment %}
+////////// ALL
+if($_GET['c'] == 'pricing')
+{
+	include_once('inc/pricing.php');
+}
+elseif($_GET['c'] == 'service')
+{
+	include_once('inc/service.php');
+}
+elseif($_GET['c'] == 'guarantees')
+{
+	include_once('inc/guarantees.php');
+}
+elseif($_GET['c'] == 'faq')
+{
+	include_once('inc/faq.php');
+}
+elseif($_GET['c'] == 'blog')
+{
+	include_once('inc/blog.php');
+}
+elseif($_GET['c'] == 'post')
+{
+	include_once('inc/post.php');
+}
+elseif($_GET['c'] == 'contacts')
+{
+	include_once('inc/contacts.php');
+}
+
+
+
+////////// AUTH
+elseif($_GET['c'] == 'login')
+{
+	include_once('inc/login.php');
+}
+elseif($_GET['c'] == 'registration')
+{
+	include_once('inc/registration.php');
+}
+elseif($_GET['c'] == 'forgot')
+{
+	include_once('inc/forgot.php');
+}
+
+
+//////// ACCOUNT
+elseif($_GET['c'] == 'new-order')
+{
+	include_once('inc/new-order.php');
+}
+elseif($_GET['c'] == 'my-orders')
+{
+	include_once('inc/my-orders.php');
+}
+elseif($_GET['c'] == 'order-id')
+{
+	include_once('inc/order_id.php');
+}
+elseif($_GET['c'] == 'order-id-edit')
+{
+	include_once('inc/order_id_edit.php');
+}
+
+
+////////// MAIN
+elseif(empty($_GET['c']))
+{
+	include_once('inc/main.php');
+}
+{% endcomment %}
