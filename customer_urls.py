@@ -42,7 +42,7 @@ task_update = login_required(
   login_url=reverse_lazy('login'))
 
 urlpatterns = patterns('',
-#    url(r'^$', task_list),
+	#url(r'^$', task_list),
     url(r'^$', HomeView.as_view(), name='html'),
     url(r'^tasks/$', task_list, name='task_list'),
     url(r'^task/(?P<pk>\d+)/$', task_details, name='task_view'),
