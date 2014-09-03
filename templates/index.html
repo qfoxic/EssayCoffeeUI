@@ -37,10 +37,27 @@
 </head>
   <body>
     <div class="wrap">
-	{% include 'html/header.html' %}
-    {% block content %}
-      {% include 'html/main.html' %}
-    {% endblock %}
+    {% include 'html/header.html' %}
+    {# hack due to incorrect design of home page#}
+      {% block start_main_wrapper %}
+        <main id="main">
+          <div class="container">
+      {% endblock %}
+      {% block breadcrump %}{% endblock %}
+      {% block start_content %}
+            <div class="row">
+      {% endblock %}
+      {% block sidebar_right %}{% endblock %}
+      {% block content %}
+          {% include 'html/main.html' %}
+      {% endblock %}
+      {% block end_content %}
+            </div>
+      {% endblock %}
+      {% block end_main_wrapper %}
+          </div>
+        </main>
+      {% endblock %}
     </div>
     {% include 'html/footer.html' %}
   </body>

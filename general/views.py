@@ -166,7 +166,7 @@ class BaseView(View):
 
 
 class LoginView(BaseView, TemplateView):
-  template_name='general/login.html'
+  template_name='auth/login.html'
 
   def render_to_response(self, context, **response_kwargs):
     context.update(self.settings)
@@ -386,5 +386,5 @@ class StaticHtmlView(BaseView, TemplateView):
 
 class HomeView(BaseView, TemplateView):
   def get_template_names(self):
-    template_name = 'index.html'
+    template_name = 'html/main.html'
     return [template_name]

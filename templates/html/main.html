@@ -1,7 +1,11 @@
-{% include 'html/slider.html' %}
+{% extends 'index.html' %}
 
+{% block start_main_wrapper %}{% endblock %}
+{% block start_content %}{% endblock %}
+{% block content %}
+{% include 'html/slider.html' %}
 <main id="main">
-   
+
    <!-- BEGIN SERVICE BOX -->
    <section id="service">
     <div class="container">
@@ -386,3 +390,6 @@
    <!-- END BENEFITS BLOCK -->
   
 </main>
+{% endblock %}
+{% block end_content %}{% endblock %}
+{% block end_main_wrapper %}{% endblock %}
