@@ -1,40 +1,53 @@
-<main id="main">
-	<div class="container">	
+{% extends 'index.html' %}
 
-		{% include 'include/nav.html' %}
+{% block breadcrump %}
+<div class="breadcrumbs">
+	<a href="{% url 'home' %}">Home</a>
+	<span class="separator"><i class="fa fa-angle-right"></i></span>
+	<a href="{% url 'forgot' %}" class="active">Restore Password</a>
+</div>
+{% endblock %}
 
-		<!-- BEGIN CONTENT -->
-		<div class="row">
-		
-			{% include '../html/sidebar-left.html' %}
 
-			<!-- BEGIN MIDDLE LAYOUT -->
-			<div id="layout-middle" class="col-md-9 col-sm-9">
-			
-				<h1 class="page-title">Forgot Your Password?</h1>
-				
-				<div class="col-md-8 col-sm-8">
-					<form action="forgot" method="post" id="forgot-form" class="form-horizontal form-without-legend">
-						<div class="form-group {# has-error #}">
-							<label class="col-sm-4 control-label">Email <span class="require">*</span></label>
-							<div class="col-sm-8">
-								<input type="email" name="email" class="form-control">
-								
-								{# <span class="validation-message">Електронна пошта не знайдена!</span> #}
-								
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-4 control-label">&nbsp;</label>
-							<div class="col-sm-8">
-								<button type="submit" name="send_forgot" class="btn btn-primary">Send</button>
-							</div>
-						</div>
-					</form>
+{% block sidebar_right %}
+<div id="layout-right" class="col-md-3 col-sm-12">
+  <section class="sibebar-section">
+	<ul class="list-group">
+	  <li class="list-group-item active"><a href="{% url 'login' %}">Log In</a></li>
+	  <li class="list-group-item"><a href="{% url 'registration' %}">Registration</a></li>
+	  <li class="list-group-item"><a href="{% url 'forgot' %}">Restore Password</a></li>
+	</ul>
+  </section>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- BEGIN MIDDLE LAYOUT -->
+<div id="layout-middle" class="col-md-9 col-sm-9">
+
+	<h1 class="page-title">Forgot Your Password?</h1>
+	
+	<div class="col-md-8 col-sm-8">
+		<form action="{% url 'forgot' %}" method="post" id="forgot-form" class="form-horizontal form-without-legend">
+			<div class="form-group {# has-error #}">
+				<label class="col-sm-4 control-label">Email <span class="require">*</span></label>
+				<div class="col-sm-8">
+					<input type="email" name="email" class="form-control">
+					{# TODO: Якщо е-мейл відсутній то помилка #}
+					
+					{# TODO: Якщо е-мейл присутній в БД, то зникає форта разом з кнопкою та зявляється лише повідомлення про те що на е-мейл було відправлено листа з посиланям про відновлення #}
+					{# TODO: Якщо е-мейл присутній в БД, то на електронну адресу відправляється лист з посиланням про відновлення паролю #}
+					{# <span class="validation-message">Електронна пошта не знайдена!</span> #}
 				</div>
 			</div>
-			<!-- END MIDDLE LAYOUT -->
-		</div>
-		<!-- END CONTENT -->
-	</div>		
-</main>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">&nbsp;</label>
+				<div class="col-sm-8">
+					<button type="submit" name="send_forgot" class="btn btn-primary">Send</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- END MIDDLE LAYOUT -->
+{% endblock %}

@@ -1,4 +1,24 @@
-{% extends 'auth/login.html' %}
+{% extends 'index.html' %}
+
+{% block breadcrump %}
+<div class="breadcrumbs">
+	<a href="{% url 'home' %}">Home</a>
+	<span class="separator"><i class="fa fa-angle-right"></i></span>
+	<a href="{% url 'registration' %}" class="active">Registration</a>
+</div>
+{% endblock %}
+
+{% block sidebar_right %}
+<div id="layout-right" class="col-md-3 col-sm-12">
+  <section class="sibebar-section">
+    <ul class="list-group">
+      <li class="list-group-item active"><a href="{% url 'login' %}">Log In</a></li>
+      <li class="list-group-item"><a href="{% url 'registration' %}">Registration</a></li>
+      <li class="list-group-item"><a href="{% url 'forgot' %}">Restore Password</a></li>
+    </ul>
+  </section>
+</div>
+{% endblock %}
 
 {% block content %}
    <!-- BEGIN MIDDLE LAYOUT -->
@@ -19,36 +39,51 @@
         <label class="col-sm-4 control-label">Email <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="email" name="email" class="form-control" required value="{{form.email.value|default:''}}">
+		 {# TODO: Не має перевірки: на те що такий мейл вже використаний, або на те, що поле не може бути пустим #}
+		 <span class="validation-message">Не коректний мейл</span>
         </div>
        </div>
        <div class="form-group {% if form.username.errors %} has-error {% endif %}" title="{{form.username.errors|striptags}}">
         <label class="col-sm-4 control-label">Nickname <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="text" name="username" class="form-control" required value="{{form.username.value|default:''}}">
+		 {# TODO: Не має перевірки: мінімальна к-ть знаків в логіні 5шт.;  максимальна 15шт.; на дублікат логуну, бо можливо такий логін вже існує в БД, або на те, що поле не може бути пустим #}
+		 <span class="validation-message">Не коректний логін</span>
         </div>
        </div>
        <div class="form-group {% if form.first_name.errors %} has-error {% endif %}" title="{{form.first_name.errors|striptags}}">
         <label class="col-sm-4 control-label">First Name <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="text" name="first_name" class="form-control" required value="{{form.first_name.value|default:''}}">
+		 {# TODO: Не має перевірки: мінімальна к-ть знаків в полі 3шт.;  максимальна 20шт.; на те, що поле не може бути пустим #}
+		 {# TODO: Імя - не можуть містити знаків (наприклад "№;%@/./) #}
+		 <span class="validation-message">Не коректне поле</span>
         </div>
        </div>
        <div class="form-group {% if form.last_name.errors %} has-error {% endif %}" title="{{form.last_name.errors|striptags}}">
         <label class="col-sm-4 control-label">Last Name <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="text" name="last_name" class="form-control" required value="{{form.last_name.value|default:''}}">
+		 {# TODO: Не має перевірки: мінімальна к-ть знаків в полі 3шт.;  максимальна 20шт.; на те, що поле не може бути пустим #}
+		 {# TODO: Прізвище - не можуть містити знаків (наприклад "№;%@/./) #}
+		 <span class="validation-message">Не коректне поле</span>
         </div>
        </div>
        <div class="form-group {% if form.country.errors %} has-error {% endif %}" title="{{form.country.errors|striptags}}">
         <label class="col-sm-4 control-label">Your country <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="text" name="country" class="form-control" required value="{{form.country.value|default:''}}">
+		 {# TODO: Не має перевірки: мінімальна к-ть знаків в полі 3шт.;  максимальна 20шт.; на те, що поле не може бути пустим #}
+		 {# TODO: Країна - не можуть містити знаків (наприклад "№;%@/./) #}
+		 <span class="validation-message">Не коректне поле</span>
         </div>
        </div>
        <div class="form-group {% if form.phone.errors %} has-error {% endif %}" title="{{form.phone.errors|striptags}}">
         <label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
         <div class="col-sm-8">
-         <input type="tel" name="phone" class="form-control" value="{{form.phone.value|default:''}}" required >
+		 {# TODO: Телефон - не можуть містити знаків (наприклад "№;%@/./), крім знаків, які може містити тільки: +(); на те, що поле не може бути пустим #}
+         <input type="tel" name="phone" class="form-control" required value="{{form.phone.value|default:''}}">
+		 <span class="validation-message">Не коректне поле</span>
         </div>
        </div>
       </fieldset>
@@ -57,13 +92,16 @@
        <div class="form-group {% if form.password.errors %} has-error {% endif %}">
         <label class="col-sm-4 control-label">Password <span class="require">*</span></label>
         <div class="col-sm-8">
-         <input type="password" name="password" class="form-control" required>
+         <input type="password" name="password" required class="form-control">
         </div>
        </div>
        <div class="form-group {% if form.password.errors %} has-error {% endif %}">
         <label class="col-sm-4 control-label">Confirm password <span class="require">*</span></label>
         <div class="col-sm-8">
-         <input type="password" name="password2" class="form-control" required>
+         <input type="password" name="password2" required class="form-control">
+		 {# TODO: Не має перевірки на схожість першого та другого пароля (field name: password and password2)#}
+		 {# TODO: Не має перевірки: мінімальна к-ть знаків в полі 4шт.;  максимальна 20шт.; не має перевірки та те що поле 1 чи два не можу бути пустим #}
+		 <span class="validation-message">Не коректне поле</span>
         </div>
        </div>
       </fieldset>
@@ -79,3 +117,25 @@
    <!-- END MIDDLE LAYOUT -->
 {% endblock %}
 
+
+
+
+{% comment %}
+	Якщо коротко то:
+	1.  Проблема з кожний полем.  Кожне поле містить дефекти в перевірці. Чи то на кількість знаків, чи то на допустимі знаки.
+	2. Поле пароль1 та пароль2 не перевіряє на індентичність
+	3. Не має перевірки на обов'язковість полів
+	4. Не має перевірки на Логін та Е-мейл чи такі вже є в БД.
+
+	5. На пошту не приходить Е-мейл про реєстрацію.
+	6. Після реєстрації, користувач має автоматично авторизовуватися на сайті, а одразу перенаправлятися на сторінку My orders (url: my-orders) 
+	
+	
+пункт 2, 3 звідки взяв :)
+точніше 3, 4
+
+
+2 - перевірив. в полі пароль1 вказав один пароль, а полі пароль2 вказав інший пароль, і система мене зареєструвала.
+3 - Догадка, так як перевірка форми є лише на фронтендному рівні, а на бекендному я не протестував, але написав так щоб ти додатково перевірив і якщо це так то добавив таку перевірку на бекенді.
+4 - Я два рази зміг зареєструватися з різними логінами на один і той же е-мейл. Мала би бути перевірка в полі е-мейл на ідентичність в БД.
+{% endcomment %}

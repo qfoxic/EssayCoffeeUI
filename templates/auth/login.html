@@ -2,7 +2,9 @@
 
 {% block breadcrump %}
 <div class="breadcrumbs">
-  <a href="{% url 'home' %}">Home</a>
+	<a href="{% url 'home' %}">Home</a>
+	<span class="separator"><i class="fa fa-angle-right"></i></span>
+	<a href="{% url 'login' %}" class="active">Login</a>
 </div>
 {% endblock %}
 
@@ -12,7 +14,7 @@
     <ul class="list-group">
       <li class="list-group-item active"><a href="{% url 'login' %}">Log In</a></li>
       <li class="list-group-item"><a href="{% url 'registration' %}">Registration</a></li>
-      <li class="list-group-item"><a href="forgot">Restore Password</a></li>
+      <li class="list-group-item"><a href="{% url 'forgot' %}">Restore Password</a></li>
     </ul>
   </section>
 </div>
@@ -24,13 +26,13 @@
  <div class="col-md-8 col-sm-8">
   <form action="{% url "login" %}" method="post" class="form-horizontal form-without-legend auth-form">
    {% csrf_token %}
-   <div class="form-group {% if form.username.error %}has-error{% endif %}">
+   <div class="form-group {% if form.errors %}has-error{% endif %}">
     <label class="col-sm-4 control-label">Username <span class="require">*</span></label>
     <div class="col-sm-8">
      <input type="text" name="username" class="form-control" required>
     </div>
    </div>
-   <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+   <div class="form-group {% if form.errors %}has-error{% endif %}">
     <label class="col-sm-4 control-label">Password <span class="require">*</span></label>
     <div class="col-sm-8">
      <input type="password" name="password" class="form-control" required>
@@ -43,7 +45,7 @@
    </div>
    <div class="row">
     <div class="col-sm-8 col-md-offset-4 forgot-link">
-     <a href="forgot">Forget Password?</a>
+     <a href="{% url 'forgot' %}">Forget Password?</a>
     </div>
    </div>
    

@@ -61,6 +61,7 @@ urlpatterns = patterns('',
     #url(r'^upload/(?P<pk>\d+)/visibility$', upload_visibility, name='upload_visibility'),
 
     url(r'registration', user_new, name='registration'),
+	url(r'forgot', user_new, name='forgot'),
     url(r'profile/(?P<pk>\d+)/$', user_edit, name='user_details'),
     url(r'profile/(?P<pk>\d+)/edit$', user_edit, name='user_edit'),
 
