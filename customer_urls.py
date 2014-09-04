@@ -67,5 +67,19 @@ urlpatterns = patterns('',
 
     url(r'^login/$', LoginView.as_view(module_name='customer'), name='login'),
     url(r'', include('common_urls')),
+	
+	
+	# Auth
+	url(r'my-orders', user_new, name='my-orders'),
+	
+	# Account
+	
+	
+	# Статичні сторінки
+	url(r'service', user_new, name='service'),
+	url(r'pricing', user_new, name='pricing'),
+	url(r'guarantees', user_new, name='guarantees'),
+	url(r'faq', user_new, name='faq'),
+	url(r'contact', user_new, name='contact'),
 )
 
