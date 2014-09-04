@@ -71,6 +71,7 @@ class BaseView(View):
   owner_required = False # raise an Error if owner is required.
   allowed_groups = [] # For these groups owner won't be checked.
   action_label = 'all'
+  group_name = ''
 
   def __init__(self, **kwargs):
     super(BaseView, self).__init__(**kwargs)
@@ -86,11 +87,11 @@ class BaseView(View):
   def _check_permissions(self):
     # Do nothing by default should be overloaded for different groups.
     pass
-  
+
   def _add_request_to_obj(self, request, instance):
     """Add request attribute to an object's model."""
     instance.__class__.cur_rqst = request
-  
+
   def _owner_required(self, user, owner_id):
     """Checks whether user is owner of an entity."""
     user_group = UserProfile.objects.get(
@@ -119,7 +120,6 @@ class BaseView(View):
     except Exception, e:
       messages.add_message(request, messages.ERROR, str(e))
       return HttpResponseRedirect('/')
-    
 
   def render_to_response(self, context, **response_kwargs):
     context.update(self.settings)

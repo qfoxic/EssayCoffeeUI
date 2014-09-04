@@ -43,7 +43,7 @@ task_update = login_required(
 
 urlpatterns = patterns('',
 	#url(r'^$', task_list),
-    url(r'^$', HomeView.as_view(), name='html'),
+    url(r'^$', HomeView.as_view(), name='home'),
     url(r'^tasks/$', task_list, name='task_list'),
     url(r'^task/(?P<pk>\d+)/$', task_details, name='task_view'),
     url(r'^task/(?P<pk>\d+)/remove$', task_rm, name='task_remove'),
@@ -60,7 +60,7 @@ urlpatterns = patterns('',
     url(r'^upload/(?P<pk>\d+)/remove$', upload_rm, name='upload_remove'),
     #url(r'^upload/(?P<pk>\d+)/visibility$', upload_visibility, name='upload_visibility'),
 
-    url(r'profile/new', user_new, name='user_new'),
+    url(r'registration', user_new, name='registration'),
     url(r'profile/(?P<pk>\d+)/$', user_edit, name='user_details'),
     url(r'profile/(?P<pk>\d+)/edit$', user_edit, name='user_edit'),
 

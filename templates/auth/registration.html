@@ -1,98 +1,81 @@
-<main id="main">
-	<div class="container">	
+{% extends 'auth/login.html' %}
 
-		{% include 'include/nav.html' %}
-
-		<!-- BEGIN CONTENT -->
-		<div class="row">
-
-			{% include '../html/sidebar-left.html' %}
-
-			<!-- BEGIN MIDDLE LAYOUT -->
-			<div id="layout-middle" class="col-md-9 col-sm-9">
-			
-				<h1 class="page-title">Create an account</h1>
-				
-				<div class="col-md-8 col-sm-8">
-					<form action="registration" method="post" id="registration-form" class="form-horizontal">
-						<fieldset>
-							<legend>Your personal details</legend>
-
-							<div class="form-group">
-								<label class="col-sm-4 control-label">Email <span class="require">*</span></label>
-								<div class="col-sm-8">
-									<input type="email" name="email" class="form-control" required>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label">Name <span class="require">*</span></label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" required>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-sm-4 control-label">Your country <span class="require">*</span></label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" required>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" required>
-								</div>
-							</div>
-							
-						</fieldset>
-
-						<fieldset>
-							<legend>Your password</legend>
-							<div class="form-group">
-								<label class="col-sm-4 control-label">Password <span class="require">*</span></label>
-								<div class="col-sm-8">
-									<input type="password" name="password" class="form-control" required>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label">Confirm password <span class="require">*</span></label>
-								<div class="col-sm-8">
-									<input type="password" name="repeat_password" class="form-control" required>
-								</div>
-							</div>
-						</fieldset>
-
-						{% comment %}
-						Тимчасово ми прибираєм цей функціонал
-						<fieldset class="newsletter">
-							<legend>Newsletter</legend>
-							<div class="form-group">
-								<label class="col-sm-4 control-label">Singup for<br>Newsletter</label>
-								<div class="col-sm-8">
-									<input type="checkbox">
-								</div>
-							</div>
-						</fieldset>
-						{% endcomment %}
-
-						
-						<div class="form-group submit-group">
-							<label class="col-sm-4 control-label">&nbsp;</label>
-							<div class="col-sm-8">
-								<button type="submit" name="send_registration" class="btn btn-primary">Create an account</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-			<!-- END MIDDLE LAYOUT -->
-		</div>
-		<!-- END CONTENT -->
-	</div>		
-</main>
-
-
-
-
+{% block content %}
+   <!-- BEGIN MIDDLE LAYOUT -->
+   <div id="layout-middle" class="col-md-9 col-sm-9">
+    <h1 class="page-title">Create an account</h1>
+    <div class="col-md-8 col-sm-8">
+     <form action="{% url 'registration' %}" method="post" id="registration-form" class="form-horizontal">
+       {% csrf_token %}
+       
+      <fieldset>
+       <legend>Your personal details</legend>
+       {% if form.non_field_errors %}
+          {% for error in form.non_field_errors %}
+            <span class="validation-message">{{error|striptags}}</span>
+          {% endfor %}
+       {% endif %}
+       <div class="form-group {% if form.email.errors %} has-error {% endif %}" title="{{form.email.errors|striptags}}">
+        <label class="col-sm-4 control-label">Email <span class="require">*</span></label>
+        <div class="col-sm-8">
+         <input type="email" name="email" class="form-control" required value="{{form.email.value|default:''}}">
+        </div>
+       </div>
+       <div class="form-group {% if form.username.errors %} has-error {% endif %}" title="{{form.username.errors|striptags}}">
+        <label class="col-sm-4 control-label">Nickname <span class="require">*</span></label>
+        <div class="col-sm-8">
+         <input type="text" name="username" class="form-control" required value="{{form.username.value|default:''}}">
+        </div>
+       </div>
+       <div class="form-group {% if form.first_name.errors %} has-error {% endif %}" title="{{form.first_name.errors|striptags}}">
+        <label class="col-sm-4 control-label">First Name <span class="require">*</span></label>
+        <div class="col-sm-8">
+         <input type="text" name="first_name" class="form-control" required value="{{form.first_name.value|default:''}}">
+        </div>
+       </div>
+       <div class="form-group {% if form.last_name.errors %} has-error {% endif %}" title="{{form.last_name.errors|striptags}}">
+        <label class="col-sm-4 control-label">Last Name <span class="require">*</span></label>
+        <div class="col-sm-8">
+         <input type="text" name="last_name" class="form-control" required value="{{form.last_name.value|default:''}}">
+        </div>
+       </div>
+       <div class="form-group {% if form.country.errors %} has-error {% endif %}" title="{{form.country.errors|striptags}}">
+        <label class="col-sm-4 control-label">Your country <span class="require">*</span></label>
+        <div class="col-sm-8">
+         <input type="text" name="country" class="form-control" required value="{{form.country.value|default:''}}">
+        </div>
+       </div>
+       <div class="form-group {% if form.phone.errors %} has-error {% endif %}" title="{{form.phone.errors|striptags}}">
+        <label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
+        <div class="col-sm-8">
+         <input type="tel" name="phone" class="form-control" value="{{form.phone.value|default:''}}" required >
+        </div>
+       </div>
+      </fieldset>
+      <fieldset>
+       <legend>Your password</legend>
+       <div class="form-group {% if form.password.errors %} has-error {% endif %}">
+        <label class="col-sm-4 control-label">Password <span class="require">*</span></label>
+        <div class="col-sm-8">
+         <input type="password" name="password" class="form-control" required>
+        </div>
+       </div>
+       <div class="form-group {% if form.password.errors %} has-error {% endif %}">
+        <label class="col-sm-4 control-label">Confirm password <span class="require">*</span></label>
+        <div class="col-sm-8">
+         <input type="password" name="password2" class="form-control" required>
+        </div>
+       </div>
+      </fieldset>
+      <div class="form-group submit-group">
+       <label class="col-sm-4 control-label">&nbsp;</label>
+       <div class="col-sm-8">
+        <button type="submit" class="btn btn-primary">Create an account</button>
+       </div>
+      </div>
+     </form>
+    </div>
+   </div>
+   <!-- END MIDDLE LAYOUT -->
+{% endblock %}
 

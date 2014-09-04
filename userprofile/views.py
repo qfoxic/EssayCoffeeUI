@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
 from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView
-from django.views.generic import TemplateView,ListView
+from django.views.generic import ListView
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.db.models import Count
@@ -15,9 +15,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from userprofile.models import UserProfile
 
-import constants as co
-
-
+#TODO. CUSTOMER DETAILS., customer edit.
 class ProfileForm(forms.ModelForm):
   def __init__(self, group_name=None, user_id=None, request=None, *args, **kwargs):
     super(ProfileForm, self).__init__(*args, **kwargs)
@@ -30,20 +28,21 @@ class ProfileForm(forms.ModelForm):
 
   class Meta:
     model = UserProfile
-    fields = ['username', 'password', 'first_name', 'last_name', 'email', 'gender',
+    #TODO gender temporary disabled.
+    fields = ['username', 'password', 'first_name', 'last_name', 'email',
               'country', 'phone', 'site']
 
   def clean_site(self):
     """Specifies default Host parameter."""
     return self.request.get_host()
-  
+
   def save(self, commit=True):
     if self.user_id:
       user = UserProfile.objects.get(pk=self.user_id)
       user.first_name=self.cleaned_data['first_name']
       user.last_name=self.cleaned_data['last_name']
       user.email=self.cleaned_data['email']
-      user.gender=self.cleaned_data['gender']
+      #user.gender=self.cleaned_data['gender']
       user.country=self.cleaned_data['country']
       user.phone=self.cleaned_data['phone']
     else:
@@ -54,11 +53,9 @@ class ProfileForm(forms.ModelForm):
 
 
 class CreateProfileView(BaseView, CreateView):
-  module_name = ''
   form_class = ProfileForm
   queryset = UserProfile.objects.all()
-  template_name = 'userprofile/edit.html'
-  group_name = ''
+  template_name = 'auth/registration.html'
 
   def get_form_kwargs(self):
     kwargs = super(CreateProfileView, self).get_form_kwargs()
@@ -90,7 +87,6 @@ class UpdateProfileView(BaseView, UpdateView):
   template_name = 'userprofile/edit.html'
   form_class = ProfileForm
   queryset = UserProfile.objects.all()
-  group_name = ''
 
   def get_form_kwargs(self):
     kwargs = super(UpdateProfileView, self).get_form_kwargs()
@@ -108,15 +104,7 @@ class RemoveProfileView(BaseView, DeleteView):
   template_name = 'userprofile/delete.html'
 
   def get_success_url(self):
-    group = self.object.get_group()
-    if group == co.ADMIN_GROUP:
-      return reverse_lazy('admins')
-    elif group == co.EDITOR_GROUP:
-      return reverse_lazy('editors')
-    elif group == co.WRITER_GROUP:
-      return reverse_lazy('writers')
-    else:
-      return reverse_lazy('customers')
+    return reverse_lazy('home')
 
   def form_invalid(self, form):
     messages.add_message(self.request, messages.ERROR, str(form.errors))

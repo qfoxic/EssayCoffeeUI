@@ -2,11 +2,7 @@
 
 {% block breadcrump %}
 <div class="breadcrumbs">
-  <a href="#">Home</a>
-  <span class="separator"><i class="fa fa-angle-right"></i></span>
-  <a href="#">Blog</a>
-  <span class="separator"><i class="fa fa-angle-right"></i></span>
-  <a href="#" class="active">Dissertation Online</a>
+  <a href="{% url 'home' %}">Home</a>
 </div>
 {% endblock %}
 
@@ -14,8 +10,8 @@
 <div id="layout-right" class="col-md-3 col-sm-12">
   <section class="sibebar-section">
     <ul class="list-group">
-      <li class="list-group-item active"><a href="login">Log In</a></li>
-      <li class="list-group-item"><a href="registration">Registration</a></li>
+      <li class="list-group-item active"><a href="{% url 'login' %}">Log In</a></li>
+      <li class="list-group-item"><a href="{% url 'registration' %}">Registration</a></li>
       <li class="list-group-item"><a href="forgot">Restore Password</a></li>
     </ul>
   </section>
@@ -38,10 +34,10 @@
     <label class="col-sm-4 control-label">Password <span class="require">*</span></label>
     <div class="col-sm-8">
      <input type="password" name="password" class="form-control" required>
-     {% if form.errors %}
-       {% for k, error in form.errors.items %}
-         <span class="validation-message">{{error}}</span>
-       {% endfor %}
+     {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+          <span class="validation-message">{{error|striptags}}</span>
+        {% endfor %}
      {% endif %}
     </div>
    </div>
