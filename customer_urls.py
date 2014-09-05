@@ -1,11 +1,10 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.decorators import permission_required
 from django.core.urlresolvers import reverse_lazy
 
 from general.views import RemoveTaskView,SwitchStatusView, LoginView, HomeView
+from general.views import StaticPageView
 from general.views import CreateTaskView,UpdateTaskView,DetailTaskView,TaskIndexView
-from general.models import Task
 from msgs.views import CreateMsgView, RemoveMsgView, ListMsgsView,DetailMsgView
 from ftpstorage.views import UploadFileView,RemoveUploadView
 
@@ -42,12 +41,12 @@ task_update = login_required(
   login_url=reverse_lazy('login'))
 
 urlpatterns = patterns('',
-	#url(r'^$', task_list),
+    #url(r'^$', task_list),
     url(r'^$', HomeView.as_view(), name='home'),
-    url(r'^tasks/$', task_list, name='task_list'),
+    url(r'^tasks/$', task_list, name='my-orders'),
     url(r'^task/(?P<pk>\d+)/$', task_details, name='task_view'),
     url(r'^task/(?P<pk>\d+)/remove$', task_rm, name='task_remove'),
-    url(r'^task/new$', task_new, name='task_new'),
+    url(r'^task/new$', task_new, name='new-order'),
     url(r'^task/(?P<pk>\d+)/edit$', task_update, name='task_edit'),
     url(r'^task/(?P<pk>\d+)/status$', task_status, name='task_status'),
 
@@ -61,25 +60,23 @@ urlpatterns = patterns('',
     #url(r'^upload/(?P<pk>\d+)/visibility$', upload_visibility, name='upload_visibility'),
 
     url(r'registration', user_new, name='registration'),
-	url(r'forgot', user_new, name='forgot'),
+    url(r'forgot', user_new, name='forgot'),
     url(r'profile/(?P<pk>\d+)/$', user_edit, name='user_details'),
     url(r'profile/(?P<pk>\d+)/edit$', user_edit, name='user_edit'),
 
     url(r'^login/$', LoginView.as_view(module_name='customer'), name='login'),
     url(r'', include('common_urls')),
-	
-	
-	# Auth
-	url(r'my-orders', user_new, name='my-orders'),
-	
-	# Account
-	
-	
-	# Статичні сторінки
-	url(r'service', user_new, name='service'),
-	url(r'pricing', user_new, name='pricing'),
-	url(r'guarantees', user_new, name='guarantees'),
-	url(r'faq', user_new, name='faq'),
-	url(r'contact', user_new, name='contact'),
+
+    # Account
+    url(r'service', StaticPageView.as_view(module_name='customer',
+                                           template_name='service.html'), name='service'),
+    url(r'pricing', StaticPageView.as_view(module_name='customer',
+                                           template_name='pricing.html'), name='pricing'),
+    url(r'guarantees', StaticPageView.as_view(module_name='customer',
+                                              template_name='guarantees.html'), name='guarantees'),
+    url(r'faq', StaticPageView.as_view(module_name='customer',
+                                       template_name='faq.html'), name='faq'),
+    url(r'contact', StaticPageView.as_view(module_name='customer',
+                                           template_name='contact.html'), name='contact'),
 )
 

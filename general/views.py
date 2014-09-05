@@ -381,8 +381,15 @@ class SwitchStatusView(UpdateTaskView):
 
 class StaticHtmlView(BaseView, TemplateView):
   def get_template_names(self):
-    template_name = 'html/' + self.kwargs['path']  
+    template_name = 'html/' + self.kwargs['path']
     return [template_name]
+
+
+class StaticPageView(BaseView, TemplateView):
+  template_name = ''
+  def get_template_names(self):
+    return ['pages/' + self.template_name]
+
 
 class HomeView(BaseView, TemplateView):
   def get_template_names(self):
