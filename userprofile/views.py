@@ -8,6 +8,7 @@ from django.views.generic import ListView
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.db.models import Count
+from django.contrib.auth.views import login
 
 from general.views import BaseView
 from general.models import Task
@@ -36,6 +37,17 @@ class ProfileForm(forms.ModelForm):
     """Specifies default Host parameter."""
     return self.request.get_host()
 
+  def clean_email(self):
+    if UserProfile.objects.filter(email=self.request.POST.get('email')):
+      raise forms.ValidationError('Email already exists',
+                                  code='email_exists')
+    return self.request.POST.get('email')
+
+  def clean_password(self):
+    if self.request.POST.get('password') != self.request.POST.get('password2'):
+      raise forms.ValidationError('Passwords do not match.')
+    return self.request.POST.get('password')
+
   def save(self, commit=True):
     if self.user_id:
       user = UserProfile.objects.get(pk=self.user_id)
@@ -63,6 +75,10 @@ class CreateProfileView(BaseView, CreateView):
     kwargs['user_id'] = None
     kwargs['request'] = self.request
     return kwargs
+
+  def get_success_url(self):
+    login(request=self.request)
+    return reverse_lazy('my-orders')
 
 
 class ListProfileView(BaseView, ListView):

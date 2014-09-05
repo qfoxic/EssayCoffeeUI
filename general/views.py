@@ -8,13 +8,9 @@ from django.contrib.auth.views import password_reset_done, password_reset_confir
 from django.core.urlresolvers import reverse_lazy
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
-from django.http import HttpResponse
-from django.template import RequestContext, Template
-import json
 
 from general.models import Task
 from userprofile.models import UserProfile
-from history.models import list_task_events
 from msgs.models import Message
 from ftpstorage.models import Upload
 from ftpstorage.storage import FTPStorage
