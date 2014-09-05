@@ -24,7 +24,7 @@ upload_rm = login_required(RemoveUploadView.as_view(module_name='customer'), log
 
 user_new = CreateProfileView.as_view(module_name='customer',
                                      group_name=co.CUSTOMER_GROUP)
-user_edit = login_required(UpdateProfileView.as_view(module_name='customer'),
+user_edit = login_required(UpdateProfileView.as_view(module_name='customer',  owner_required=True),
                            login_url=reverse_lazy('login'))
 
 task_list = lambda request: login_required(
@@ -41,7 +41,6 @@ task_update = login_required(
   login_url=reverse_lazy('login'))
 
 urlpatterns = patterns('',
-    #url(r'^$', task_list),
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^tasks/$', task_list, name='my-orders'),
     url(r'^task/(?P<pk>\d+)/$', task_details, name='task_view'),

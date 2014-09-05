@@ -18,14 +18,10 @@ from userprofile.models import UserProfile
 
 #TODO. CUSTOMER DETAILS., customer edit.
 class ProfileForm(forms.ModelForm):
-  def __init__(self, group_name=None, user_id=None, request=None, *args, **kwargs):
+  def __init__(self, group_name=None, request=None, *args, **kwargs):
     super(ProfileForm, self).__init__(*args, **kwargs)
     self.group_name = group_name
-    self.user_id = user_id
     self.request = request
-    if user_id:
-      self.fields['password'].required = False
-      self.fields['username'].required = False
 
   class Meta:
     model = UserProfile
@@ -49,17 +45,32 @@ class ProfileForm(forms.ModelForm):
     return self.request.POST.get('password')
 
   def save(self, commit=True):
-    if self.user_id:
-      user = UserProfile.objects.get(pk=self.user_id)
-      user.first_name=self.cleaned_data['first_name']
-      user.last_name=self.cleaned_data['last_name']
-      user.email=self.cleaned_data['email']
-      #user.gender=self.cleaned_data['gender']
-      user.country=self.cleaned_data['country']
-      user.phone=self.cleaned_data['phone']
-    else:
-      user = UserProfile.objects.create_user(**self.cleaned_data)
-      user.groups.add(Group.objects.get(name=self.group_name))
+    user = UserProfile.objects.create_user(**self.cleaned_data)
+    user.groups.add(Group.objects.get(name=self.group_name))
+    user.save()
+    return user
+
+
+class EditProfileForm(forms.ModelForm):
+  def __init__(self, user_id=None, request=None, *args, **kwargs):
+    super(EditProfileForm, self).__init__(*args, **kwargs)
+    self.user_id = user_id
+    self.request = request
+    self.fields['username'].required = False
+    self.fields['email'].required = False
+
+  class Meta:
+    model = UserProfile
+    #TODO gender temporary disabled.
+    fields = ['username','email', 'first_name', 'last_name', 'country', 'phone']
+
+  def save(self, commit=True):
+    user = UserProfile.objects.get(pk=self.user_id)
+    user.first_name=self.cleaned_data['first_name']
+    user.last_name=self.cleaned_data['last_name']
+    #user.gender=self.cleaned_data['gender']
+    user.country=self.cleaned_data['country']
+    user.phone=self.cleaned_data['phone']
     user.save()
     return user
 
@@ -72,7 +83,6 @@ class CreateProfileView(BaseView, CreateView):
   def get_form_kwargs(self):
     kwargs = super(CreateProfileView, self).get_form_kwargs()
     kwargs['group_name'] = self.group_name
-    kwargs['user_id'] = None
     kwargs['request'] = self.request
     return kwargs
 
@@ -94,19 +104,13 @@ class ListProfileView(BaseView, ListView):
     return context
 
 
-class DetailProfileView(BaseView, DetailView):
-  template_name = 'userprofile/detail.html' 
-  queryset = UserProfile.objects.all()
-
-
 class UpdateProfileView(BaseView, UpdateView):
-  template_name = 'userprofile/edit.html'
-  form_class = ProfileForm
+  template_name = 'userprofile/registration.html'
+  form_class = EditProfileForm
   queryset = UserProfile.objects.all()
 
   def get_form_kwargs(self):
     kwargs = super(UpdateProfileView, self).get_form_kwargs()
-    kwargs['group_name'] = self.group_name
     kwargs['user_id'] = self.user_id()
     kwargs['request'] = self.request
     return kwargs

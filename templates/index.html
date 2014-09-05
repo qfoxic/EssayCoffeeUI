@@ -37,6 +37,13 @@
 </head>
   <body>
     <div class="wrap">
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
     {% include 'html/header.html' %}
     {# hack due to incorrect design of home page#}
       {% block start_main_wrapper %}
