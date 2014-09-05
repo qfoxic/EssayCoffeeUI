@@ -4,8 +4,8 @@
 		  <!-- BEGIN TOP BAR LEFT PART -->
 		  <div class="col-md-6 col-sm-6 additional-info">
 			  <ul>
-				  <li><i class="fa fa-phone"></i><span>+1 907 331 4392</span></li>
-				  <li><i class="fa fa-envelope-o"></i><span>info@mywriters.com</span></li>
+				  <li><i class="fa fa-phone"></i><span>+1 000 000 0000</span></li>
+				  <li><i class="fa fa-envelope-o"></i><span>info@essaycoffee.com</span></li>
 			  </ul>
 		  </div>
 		  <!-- END TOP BAR LEFT PART -->
@@ -13,7 +13,7 @@
 		  <div class="col-md-6 col-sm-6 additional-nav">
 			<ul class="pull-right">
 			  {% if request.user.is_authenticated %}
-				<li><a href="my-orders{% url 'my-orders' %}">My Orders</a></li>
+				<li><a href="{% url 'my-orders' %}">My Orders</a></li>
 				<li><a href="{% url 'logout' %}">Exit</a></li>
 			  {% else %}
 				<li><a href="{% url 'login' %}">Log In</a></li>

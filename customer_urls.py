@@ -41,8 +41,49 @@ task_update = login_required(
   login_url=reverse_lazy('login'))
 
 urlpatterns = patterns('',
-    url(r'^$', HomeView.as_view(), name='home'),
-    url(r'^tasks/$', task_list, name='my-orders'),
+	# Pages
+	url(r'^$', HomeView.as_view(), name='home'),
+    url(r'service', StaticPageView.as_view(module_name='customer',
+                                           template_name='service.html'), name='service'),
+    url(r'pricing', StaticPageView.as_view(module_name='customer',
+                                           template_name='pricing.html'), name='pricing'),
+    url(r'guarantees', StaticPageView.as_view(module_name='customer',
+                                              template_name='guarantees.html'), name='guarantees'),
+    url(r'faq', StaticPageView.as_view(module_name='customer',
+                                       template_name='faq.html'), name='faq'),
+    url(r'contact', StaticPageView.as_view(module_name='customer',
+                                           template_name='contact.html'), name='contact'),
+
+    # Auth
+    url(r'registration', user_new, name='registration'),
+    url(r'forgot', user_new, name='forgot'),
+    url(r'^login/$', LoginView.as_view(module_name='customer'), name='login'),
+										   
+	# Account	
+    url(r'my-account', StaticPageView.as_view(module_name='customer',
+                                           template_name='my-account.html'), name='my-account'),
+    url(r'password-change', StaticPageView.as_view(module_name='customer',
+                                           template_name='password-change.html'), name='password-change'),
+    url(r'profile/(?P<pk>\d+)/$', user_edit, name='user_details'),
+    url(r'profile/(?P<pk>\d+)/edit$', user_edit, name='user_edit'),
+
+	# Orders
+    url(r'new-order', StaticPageView.as_view(module_name='customer',
+                                           template_name='new-order.html'), name='new-order'),	
+    #url(r'^my-orders/$', task_list, name='my-orders'),
+    url(r'my-orders', StaticPageView.as_view(module_name='customer',
+                                           template_name='my-orders.html'), name='my-orders'),		   
+    url(r'order-id', StaticPageView.as_view(module_name='customer',
+                                           template_name='order_id.html'), name='order-id'),
+    url(r'order-id-edit', StaticPageView.as_view(module_name='customer',
+                                           template_name='order_id_edit.html'), name='order-id-edit'),	
+
+										   
+										   
+    url(r'payment-id',  HomeView.as_view(), name='payment-id'),
+										   
+										   
+										   
     url(r'^task/(?P<pk>\d+)/$', task_details, name='task_view'),
     url(r'^task/(?P<pk>\d+)/remove$', task_rm, name='task_remove'),
     url(r'^task/new$', task_new, name='new-order'),
@@ -58,24 +99,8 @@ urlpatterns = patterns('',
     url(r'^upload/(?P<pk>\d+)/remove$', upload_rm, name='upload_remove'),
     #url(r'^upload/(?P<pk>\d+)/visibility$', upload_visibility, name='upload_visibility'),
 
-    url(r'registration', user_new, name='registration'),
-    url(r'forgot', user_new, name='forgot'),
-    url(r'profile/(?P<pk>\d+)/$', user_edit, name='user_details'),
-    url(r'profile/(?P<pk>\d+)/edit$', user_edit, name='user_edit'),
 
-    url(r'^login/$', LoginView.as_view(module_name='customer'), name='login'),
+
     url(r'', include('common_urls')),
-
-    # Account
-    url(r'service', StaticPageView.as_view(module_name='customer',
-                                           template_name='service.html'), name='service'),
-    url(r'pricing', StaticPageView.as_view(module_name='customer',
-                                           template_name='pricing.html'), name='pricing'),
-    url(r'guarantees', StaticPageView.as_view(module_name='customer',
-                                              template_name='guarantees.html'), name='guarantees'),
-    url(r'faq', StaticPageView.as_view(module_name='customer',
-                                       template_name='faq.html'), name='faq'),
-    url(r'contact', StaticPageView.as_view(module_name='customer',
-                                           template_name='contact.html'), name='contact'),
 )
 
