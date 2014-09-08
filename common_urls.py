@@ -21,9 +21,8 @@ urlpatterns = patterns('',
     url(r'^resetconfirm/(?P<uidb64>.*)/(?P<token>.*)$', ResetPswdConfirmView.as_view(), name='pswd_reset_confirm'),
     url(r'^resetcomplete/$', ResetPswdCompleteView.as_view(), name='pswd_reset_complete'),
     url(r'^html/(?P<path>.*)$', StaticHtmlView.as_view(), name='html'),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^profile/(?P<pk>\d+)/remove$', user_remove, name='user_remove'),
-    url(r'^upload/(?P<pk>\d+)/download$', upload_download, name='upload_download'),
+    #url(r'^admin/', include(admin.site.urls)),
+    #url(r'^profile/(?P<pk>\d+)/remove$', user_remove, name='user_remove'),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve'),
 )
 

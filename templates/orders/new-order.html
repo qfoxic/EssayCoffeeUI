@@ -1,0 +1,347 @@
+{% extends 'index.html' %}
+
+{% block breadcrump %}
+<div class="breadcrumbs">
+ <a href="{% url 'home' %}">Home</a>
+ <span class="separator"><i class="fa fa-angle-right"></i></span>
+ <a href="{% url 'new-order' %}" class="active">New Order</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- BEGIN MIDDLE LAYOUT -->
+<div id="layout-middle" class="col-md-9 col-sm-9 pricing-page content-page">
+
+ <h1 class="page-title margin-top">Place a new order</h1>
+
+ <p><b>Please fill out all the required fields below to proceed with your order.<br>
+ Provide maximum details about your future paper. This will help us complete it with maximum accuracy.</b></p>
+
+ <!-- BEGIN PRICE FORM -->
+ <div class="row">
+  <div class="col-md-12 col-sm-12">
+   <form action="{% url 'new-order' %}" class="form-horizontal new-order-form-wrapper" method="post">
+     {% csrf_token %}
+     
+    <div class="price-form">
+     <ul class="nav nav-tabs margin10353530" role="tablist">
+      <li class="active"><a href="#paper_details" role="tab" data-toggle="tab">Paper details</a></li>
+     </ul>
+     {% comment %}
+     TODO. Add multiple forms error handling.
+     
+     {{form.non_field_errors}}
+     {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+          <span class="validation-message">{{error|striptags}}</span>
+        {% endfor %}
+     {% endif %}
+     {% endcomment %}
+     <div class="form-group {% if form.level.errors %}has-error{% endif %}">
+      <label class="col-sm-5 control-label">Academic Level</label>
+      <div class="col-sm-5">
+       <select name="level" class="form-control">
+         {% for val in co.LEVELS %}
+           <option value="{{val.0}}" {%if form.level.value == val.0%}selected{% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+         {% endfor %}
+       </select>
+       {% if form.level.errors %}<span class="validation-message">{{form.level.errors|striptags}}</span>{% endif %}
+      </div>
+     </div>
+     {% comment %}
+     TODO. What is type of paper. Please provide options.
+     TODO. Add error handling for each control
+          For example. {% if form.email.errors %}<span class="validation-message">{{form.email.errors|striptags}}</span>{% endif %}
+     TODO. Add error class to each control
+           {% if form.email.errors %}has-error{% endif %}
+     <div class="form-group">
+      <label class="col-sm-5 control-label">Type of Paper Needed</label>
+      <div class="col-sm-5">
+       <select class="form-control">
+         {% for val in co.SPACING %}
+           <option value="{{val.0}}" {% if not val.0 %}disabled selected{% endif %}>{{val.1}}</option>
+         {% endfor %}
+       </select>
+      </div>
+     </div>
+     {% endcomment %}
+
+     <div class="form-group">
+      <label class="col-sm-5 control-label">
+       Subject or Discipline
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Subject or Discipline tooltip">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-5">
+       <select name="discipline" class="form-control">
+         {% for val in co.DISCIPLINES %}
+           <option value="{{val.0}}" {%if form.discipline.value == val.0%}selected{% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+         {% endfor %}
+       </select>
+      </div>
+     </div>
+     <div class="form-group {% if form.paper_title.errors %}has-error{% endif %}">
+      <label class="col-sm-5 control-label">
+       Topic
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Topic tooltip">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-5">
+       <input name="paper_title" type="text" class="form-control" value="{{form.paper_title.value|default:''}}">
+       {% if form.paper_title.errors %}<span class="validation-message">{{form.paper_title.errors|striptags}}</span>{% endif %}
+      </div>
+     </div>
+
+     <div class="form-group {% if form.instructions.errors %}has-error{% endif %}">
+      <label class="col-sm-5 control-label">
+       Paper Instructions
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Paper Instructions tooltip">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-5">
+       <textarea name="instructions" class="form-control" rows="2">{{form.instructions.value|default:''}}</textarea>
+       {% if form.instructions.errors %}<span class="validation-message">{{form.instructions.errors|striptags}}</span>{% endif %}
+      </div>
+     </div>
+
+     {% comment %}
+     <div class="form-group">
+      <label class="col-sm-5 control-label">
+       Sources
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Paper Instructions tooltip">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-5">
+       <select class="form-control">
+        <option value="" disabled selected>Please select</option>
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+        <option>Option 4</option>
+        <option>Option 5</option>
+       </select>
+       <span class="validation-message">Fill in this field</span>
+      </div>
+     </div>
+     {% endcomment %}
+     <div class="form-group">
+      <label class="col-sm-5 control-label">Paper format or citation style</label>
+      <div class="col-sm-5">
+       <select name="style" class="form-control">
+         {% for val in co.STYLES %}
+           <option value="{{val.0}}" {%if form.style.value == val.0%}selected{% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+         {% endfor %}
+       </select>
+      </div>
+     </div>
+     <div class="form-group">
+      <label class="col-sm-5 control-label">
+       Pages
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages tooltip">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-5">
+       <select name="page_number" class="form-control">
+        <option value="" disabled >Please select</option>
+        <option value=1 {%if form.page_number.value == val.0%}selected{% endif %}>1</option>
+        <option value=2 {%if form.page_number.value == val.0%}selected{% endif %}>2</option>
+        <option value=3 {%if form.page_number.value == val.0%}selected{% endif %}>3</option>
+        <option value=4 {%if form.page_number.value == val.0%}selected{% endif %}>4</option>
+        <option value=5 {%if form.page_number.value == val.0%}selected{% endif %}>5</option>
+       </select>
+      </div>
+     </div>
+     <div class="form-group">
+      <label class="col-sm-5 control-label">
+       First Draft Deadline
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages tooltip">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-5">
+       <select name="urgency" class="form-control">
+         {% for val in co.URGENCY %}
+           <option value="{{val.0}}" {%if form.urgency.value == val.0%}selected{% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+         {% endfor %}
+       </select>
+      </div>
+     </div>
+     <!--BEGIN TABS-->
+     {% if not user.is_authenticated %}
+     <ul class="nav nav-tabs margin3035350" role="tablist">
+      <li class="active"><a href="#new_customer" role="tab" data-toggle="tab">New customer</a></li>
+      <li><a href="#log_in" role="tab" data-toggle="tab">Log In</a></li>
+     </ul>
+     <div class="tab-content" style="border-left:2px #e6400c solid; border-top:0px; border-right:2px #e6400c solid; border-bottom:2px #e6400c solid; margin-left: 20px; margin-right: 20px; padding-bottom:20px;">
+      <!-- Begin new_customer Tab -->
+      <div class="tab-pane active" id="new_customer">
+       <fieldset>
+        <div class="form-group {% if request.usr_form.email.errors %}has-error{% endif %}">
+         <label class="col-sm-4 control-label">Email <span class="require">*</span></label>
+         <div class="col-sm-8">
+          <input type="email" name="email" class="form-control" value="{{request.usr_form.email.value}}">
+          {% if request.usr_form.email.errors %}<span class="validation-message">{{request.usr_form.email.errors|striptags}}</span>{% endif %}
+         </div>
+        </div>
+        <div class="form-group {% if request.usr_form.password.errors %}has-error{% endif %}" >
+         <label class="col-sm-4 control-label">Password <span class="require">*</span></label>
+         <div class="col-sm-8">
+          <input type="password" name="password" class="form-control">
+          {% if request.usr_form.password.errors %}<span class="validation-message">{{request.usr_form.password.errors|striptags}}</span>{% endif %}
+         </div>
+        </div>
+        <div class="form-group" {% if request.usr_form.password.errors %}has-error{% endif %}>
+         <label class="col-sm-4 control-label">Confirm password <span class="require">*</span></label>
+         <div class="col-sm-8">
+          <input type="password" name="password2" class="form-control">
+          {% if request.usr_form.password.errors %}<span class="validation-message">{{request.usr_form.password.errors|striptags}}</span>{% endif %}
+         </div>
+        </div>
+        </br>
+       <div class="form-group {% if request.usr_form.username %} has-error {% endif %}" title="{{form.username.errors|striptags}}">
+        <label class="col-sm-4 control-label">Login <span class="require">*</span></label>
+        <div class="col-sm-8">
+         <input type="text" name="username" class="form-control" value="{{request.usr_form.username.value|default:''}}">
+       {# TODO: мінімальна кількість симв  олів 4 шт. та не може містити знаків #}
+         {% if request.usr_form.username.errors %}<span class="validation-message">{{request.usr_form.username.errors|striptags}}</span>{% endif %}
+        </div>
+       </div>
+       <div class="form-group {% if request.usr_form.first_name.errors %} has-error {% endif %}" title="{{request.usr_form.first_name.errors|striptags}}">
+        <label class="col-sm-4 control-label">First Name <span class="require">*</span></label>
+        <div class="col-sm-8">
+         <input type="text" name="first_name" class="form-control" value="{{request.usr_form.first_name.value|default:''}}">
+       {# TODO: мінімальна кількість символів 3 шт. та не може містити знаків #}
+         {% if request.usr_form.first_name.errors %}<span class="validation-message">{{request.usr_form.first_name.errors|striptags}}</span>{% endif %}
+        </div>
+       </div>
+       <div class="form-group {% if request.usr_form.last_name.errors %} has-error {% endif %}" title="{{request.usr_form.first_name.errors|striptags}}">
+        <label class="col-sm-4 control-label">Last Name <span class="require">*</span></label>
+        <div class="col-sm-8">
+         <input type="text" name="last_name" class="form-control" value="{{request.usr_form.first_name.value|default:''}}">
+       {# TODO: мінімальна кількість символів 3 шт. та не може містити знаків #}
+         {% if request.usr_form.first_name.errors %}<span class="validation-message">{{request.usr_form.first_name.errors|striptags}}</span>{% endif %}
+        </div>
+       </div>
+        <div class="form-group {% if request.usr_form.country.errors %}has-error{% endif %}">
+         <label class="col-sm-4 control-label">Your country <span class="require">*</span></label>
+         <div class="col-sm-8">
+          <input name="country" type="text" class="form-control" value="{{request.usr_form.country.value|default:''}}">
+          {% if request.usr_form.country.errors %}<span class="validation-message">{{request.usr_form.country.errors|striptags}}</span>{% endif %}
+         </div>
+        </div>
+        <div class="form-group">
+         <label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
+         <div class="col-sm-8">
+          <input name="phone" type="text" class="form-control" value="{{request.usr_form.country.value|default:''}}">
+          {% if request.usr_form.phone.errors %}<span class="validation-message">{{request.usr_form.phone.errors|striptags}}</span>{% endif %}
+         </div>
+        </div>
+        <div class="form-group">
+         <div class="col-sm-12 text-center">
+          <p>Please note that in case your paper requires specific information/materials to be used, your writer will need additional time to retrieve them.</p>
+         </div>
+        </div>
+       </fieldset>
+      </div><!-- End new_customer Tab -->
+      <!-- Begin log_in Tab -->
+      <div class="tab-pane" id="log_in">
+        <fieldset>
+         <div class="form-group {% if form.errors.auth_error %}has-error{% endif %}">
+          <label class="col-sm-4 control-label">Email <span class="require">*</span></label>
+          <div class="col-sm-8">
+           <input type="email" name="auth_email" class="form-control">
+          </div>
+         </div>
+
+         <div class="form-group {% if form.errors.auth_error %}has-error{% endif %}">
+          <label class="col-sm-4 control-label">Password <span class="require">*</span></label>
+          <div class="col-sm-8">
+           <input type="password" name="auth_password" class="form-control">
+           {% if form.errors.auth_error %}<span class="validation-message">Incorrect password or email</span>{% endif %}
+          </div>
+         </div>
+         
+         <div class="form-group">
+          <div class="col-sm-12 text-center">
+           <a href="forgot">Forget Password?</a> 
+          </div>
+         </div>
+         
+        </fieldset>
+       
+      </div><!-- End log_in Tab -->
+     </div>
+     <!--END TABS-->
+     {% endif %}
+     </br>
+     <div class="form-group">
+      <label class="col-sm-5 control-label">
+       Payment system
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages tooltip">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-6">
+       <label class="radio-inline" style="border:1px #ddd solid; height:34px; margin-right:10px;  padding:6px 12px; float:left;">
+        <input type="radio" name="materials"><span><img src="https://essayhave.com/img/common/cs/paypalsmall.png" alt=""></span>
+       </label>
+       <label class="radio-inline" style="border:1px #ddd solid; height:34px; margin-left:0px;  margin-top:-1px; padding:6px 12px;">
+        <input type="radio" name="materials" checked><span><img src="https://essayhave.com/img/common/cs/moneybookerssmall.png" alt=""></span>
+       </label>
+      </div>
+     </div>
+     <div class="form-group total">
+      <label class="col-sm-5 control-label large-text">Total Price</label>
+      <label class="col-sm-5 control-label text-left">$72.00</label>
+     </div>
+     <div class="form-group">
+      <div class="col-sm-12 text-center">
+       <p>By clicking "Proceed to safe payment" button you agree to the <a href="#">Terms and Conditions</a>, <a href="#">MoneyBack Policy</a> and <a href="#">Privacy Policy</a></p> 
+      </div>
+     </div>
+     </br>
+     <div class="form-group">
+      <div class="col-sm-8 col-md-offset-4">
+       <button type="submit" name="send_auth" class="btn btn-primary" style="">Proceed to safe payment</button>
+      </div>
+     </div>
+     </br></br>
+
+    </div><!--price-form-->
+   </form>
+  </div>
+ </div>
+ <!-- END PRICE FORM -->
+ 
+</div>
+<!-- END MIDDLE LAYOUT -->
+
+<!-- BEGIN LEFT SIDEBAR LAYOUT -->
+<div id="layout-left" class="col-md-3 col-sm-12">
+ {% include 'html/sidebar-left.html' %}
+</div>
+<!-- END LEFT SIDEBAR LAYOUT -->
+{% endblock %}
+
+
+
+

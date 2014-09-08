@@ -7,9 +7,12 @@ from userprofile.getuser import get_current_request
 import constants as co
 
 class UserProfileBackend(ModelBackend):
-  def authenticate(self, username=None, password=None):
+  def authenticate(self, username=None, password=None, email=None):
     try:
-      user = self.user_class.objects.get(username=username)
+      if username:
+          user = self.user_class.objects.get(username=username)
+      elif email:
+          user = self.user_class.objects.get(email=email)
       request_host = get_current_request().get_host()
       if not user.is_superuser and settings.ACTIVE_GROUP != user.get_group():
         return None

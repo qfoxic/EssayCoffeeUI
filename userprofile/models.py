@@ -20,7 +20,7 @@ class UserProfile(BaseModel, User):
 
   @models.permalink
   def get_absolute_url(self):
-    return  ('user_details', (), {'pk': self.pk})
+    return  ('my-account', (), {'pk': self.pk})
   to_link = get_absolute_url
 
   def get_group(self):

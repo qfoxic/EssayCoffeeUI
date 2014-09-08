@@ -95,7 +95,7 @@ STATUS_SWITCH_TABLE = {
   PROCESSING: [SUSPICIOUS,REJECTED,SENT],
   UNPROCESSED: [PROCESSING,SUSPICIOUS,REJECTED],
   SUSPICIOUS: [PROCESSING,REJECTED],
-  DRAFT: [UNPROCESSED],
+  DRAFT: [PROCESSING],
   SENT: [COMPLETED]
 }
 
@@ -142,29 +142,38 @@ CAN_CH_VISIBILITY = 'can_visibility'
 # If specific permissions wasn't found here then it is concerned as not allowed.
 PERMISSIONS_TABLE = {
   'message': {
+  CUSTOMER_GROUP+str(DRAFT)+CAN_MESSAGE: 1,
+  ADMIN_GROUP+str(DRAFT)+CAN_MESSAGE: 1,
+
   # Unprocessed permissions.
   ADMIN_GROUP+str(UNPROCESSED)+CAN_DELETE: 1,
   ADMIN_GROUP+str(UNPROCESSED)+CAN_EDIT: 1,
+  CUSTOMER_GROUP+str(UNPROCESSED)+CAN_MESSAGE: 1,
 
   # Active or in progress permissions.
   ADMIN_GROUP+str(PROCESSING)+CAN_DELETE: 1,
   ADMIN_GROUP+str(PROCESSING)+CAN_EDIT: 1,
+  CUSTOMER_GROUP+str(PROCESSING)+CAN_MESSAGE: 1,
 
   # Suspicious permissions.
   ADMIN_GROUP+str(SUSPICIOUS)+CAN_DELETE: 1,
   ADMIN_GROUP+str(SUSPICIOUS)+CAN_EDIT: 1,
+  CUSTOMER_GROUP+str(SUSPICIOUS)+CAN_MESSAGE: 1,
 
   # Rejected 
   ADMIN_GROUP+str(REJECTED)+CAN_DELETE: 1,
   ADMIN_GROUP+str(REJECTED)+CAN_EDIT: 1,
+  CUSTOMER_GROUP+str(REJECTED)+CAN_MESSAGE: 1,
 
   # Completed
   ADMIN_GROUP+str(COMPLETED)+CAN_DELETE: 1,
   ADMIN_GROUP+str(COMPLETED)+CAN_EDIT: 1,
+  CUSTOMER_GROUP+str(COMPLETED)+CAN_MESSAGE: 1,
 
   # Send
   ADMIN_GROUP+str(SENT)+CAN_DELETE: 1,
   ADMIN_GROUP+str(SENT)+CAN_EDIT: 1,
+  CUSTOMER_GROUP+str(SENT)+CAN_MESSAGE: 1,
   },
   'upload': {
   # Draft permissions.
@@ -429,7 +438,7 @@ ITEMS_PERCENTS = {
 }
 
 DISCIPLINES = (
-  (0, '- Please choose -'),
+  (0, 'Please select'),
   ('hs', 'History'), ('ln', 'Linguistics'), ('lt', 'Literature'),
   ('pa', 'Performing arts'), ('ph', 'Philosophy'), ('rg', 'Religion'),
   ('va', 'Visual arts'), ('an', 'Anthropology'), ('ar', 'Archaeology'),
@@ -458,22 +467,22 @@ ASSIGMENTS = (
 
 
 LEVELS = (
-  ('', '- Please choose -'),
+  ('', 'Select One'),
   ('hs', 'High School'), ('co', 'College'), ('un', 'University'),
   ('ms', 'Master\'s'), ('ph', 'PHD'))
 
 # Urgency is more convenient to represent as time in seconds and label
 URGENCY = (
-  (0, '- Please choose -'),
+  (0, 'Please select'),
   (21600, '6 hours'), (43200, '12 hours'), (86400, '1 day'), (172800, '2 days'),
   (259200, '3 days'), (518400, '6 days'), (1036800, '12 days'),
   (2073600, '24+ days'))
 
 
-SPACING = ((0, '- Please choose -'), (1, 'Single'), (2, 'Double'))
+SPACING = ((0, 'Select One'), (1, 'Single'), (2, 'Double'))
 
 STYLES = (
-  (0, '- Please choose -'),
+  (0, 'Please select'),
   (1, 'MLA'), (2, 'APA'), (3, 'Chicago'), (4, 'Turabian'), (5, 'Harvar'),
   (6, 'other'))
 

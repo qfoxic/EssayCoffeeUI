@@ -3,7 +3,6 @@ from django.contrib.auth.models import Group
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
 from django.views.generic.edit import UpdateView
-from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -105,7 +104,7 @@ class ListProfileView(BaseView, ListView):
 
 
 class UpdateProfileView(BaseView, UpdateView):
-  template_name = 'userprofile/registration.html'
+  template_name = 'profile/profile.html'
   form_class = EditProfileForm
   queryset = UserProfile.objects.all()
 

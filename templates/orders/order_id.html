@@ -1,0 +1,398 @@
+{% extends 'index.html' %}
+
+{% block breadcrump %}
+<div class="breadcrumbs">
+ <a href="{% url 'home' %}">Home</a>
+ <span class="separator"><i class="fa fa-angle-right"></i></span>
+ <a href="{% url 'my-orders' %}">My Orders</a>
+ <span class="separator"><i class="fa fa-angle-right"></i></span>
+ <a href="{% url 'order-id' order.pk %}" class="active">#{{order.pk}}</a>
+</div>
+{% endblock %}
+
+{% block sidebar_right %}
+<!-- BEGIN RIGHT SIDEBAR LAYOUT -->
+<div id="layout-right" class="col-md-3 col-sm-12">
+ <section class="sibebar-section">
+  <ul class="list-group">
+   <li class="list-group-item active"><a href="{% url 'my-orders' %}">My Orders</a></li>
+   <li class="list-group-item"><a href="{% url 'my-account' request.user.pk %}">My account</a></li>
+   <li class="list-group-item"><a href="{% url 'password-change' %}">Password change</a></li>
+   <li class="list-group-item"><a href="{% url 'logout' %}">Exit</a></li>
+  </ul>
+ </section>
+</div>
+<!-- END RIGHT SIDEBAR LAYOUT -->
+{% endblock %}
+{% block content %}
+<!-- BEGIN MIDDLE LAYOUT -->
+<div id="layout-middle" class="col-md-9 col-sm-12 col-xs-12">
+
+ <h1 class="page-title pull-left">Order ID: {{order.pk}}</h1>
+ 
+ <!--div style="margin-top: 16px; margin-bottom: 24px;"><a href="#" class="btn btn-default pull-right btn-back"><i class="fa fa-angle-left"></i> Back</a></div-->
+
+ <div class="clearfix"></div>
+
+ <!--BEGIN TABS-->
+ <ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#details" role="tab" data-toggle="tab">Order details</a></li>
+  <li><a href="#files" role="tab" data-toggle="tab">Files</a></li>
+  <li><a href="#messages" role="tab" data-toggle="tab">Messages ({{msgs|length}})</a></li>
+ </ul>
+ 
+ <div class="tab-content">
+  <!-- Begin Details Tab -->
+  <div class="tab-pane active" id="details">
+   <div class="table-responsive">
+    <table class="table table-striped">
+     <tbody>
+      <tr>
+       <th width="155px">Order</th>
+       <td>{{order.pk}}</td>
+      </tr>
+
+      <tr>
+       <th>Topic</th>
+       <td>{{order.paper_title}}</td>
+      </tr>
+
+      <tr>
+       <th>Type of assignment</th>
+       <td>{{order.get_assigment}}</td>
+      </tr>
+
+      <tr>
+       <th>Urgency</th>
+       <td>{{order.get_urgency}}</td>
+      </tr>
+
+      {% comment %}
+      <tr>
+       <th>Writer level</th>
+       <td>Master's</td>
+      </tr>
+      {% endcomment %}
+
+      <tr>
+       <th>Style</th>
+       <td>{{order.get_style}}</td>
+      </tr>
+
+      {% comment %}
+      <tr>
+       <th>Sources</th>
+       <td>5</td>
+      </tr>
+      <tr>
+       <th>Language</th>
+       <td>English</td>
+      </tr>
+      {% endcomment %}
+      
+      <tr>
+       <th>Description</th>
+       <td>{{order.instructions}}</td>
+      </tr>
+
+      <tr>
+       <th>Added</th>
+       <td>{{order.created}}</td>
+      </tr>
+
+      <tr>
+       <th>Delivery</th>
+       <td class="momdl">{{order.writer_deadline}}
+        {% comment %}
+        // Тимчасово відсутня функція
+        <a href="#" class="btn-extend" data-toggle="modal" data-target="#modalExtend">
+         <span class="fa-stack">
+          <i class="fa fa-circle-thin fa-stack-2x"></i>
+          <i class="fa fa-plus fa-stack-1x"></i>
+         </span>
+         Extend
+        </a>
+        {% endcomment %}
+       </td>
+      </tr>
+
+      <tr>
+       <th>Spacing</th>
+       <td>{{order.get_spacing}}</td>
+      </tr>
+
+      <tr>
+       <th>Page price</th>
+       <td>{{order.get_page_price}}$</td>
+      </tr>
+
+      <tr>
+       <th>Pages</th>
+       <td>{{order.page_number}}</td>
+      </tr>
+
+      {% comment %}
+      <tr>
+       <th>Additional services</th>
+       <td>5</td>
+      </tr>
+      <tr>
+       <th>Discount</th>
+       <td>0%</td>
+      </tr>
+      {% endcomment %}
+
+      <tr>
+       <th>Price</th>
+       <td>{{order.get_price}}$</td>
+      </tr>
+
+      {% comment %}
+      <tr>
+       <th>Payment details</th>
+       <td>&nbsp;</td>
+      </tr>
+      {% endcomment %}
+      <tr>
+       <th>Writer ID</th>
+       <td>{{order.assignee.username}}</td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+
+   <div class="row text-center order-actions">
+    <a href="{% url 'order-id-delete' order.pk %}" class="btn btn-default" data-toggle="modal" data-target="#modalDelete">Delete</a> 
+    <a href="{% url 'order-id-edit' order.pk %}" class="btn btn-default">Edit</a>
+    <a href="{% url 'order-id-buy' order.pk %}" class="btn btn-primary">Pay now ({{order.get_price}}$)</a>
+   </div>
+
+  </div><!-- End Details Tab -->
+
+  <!-- Begin Files Tab -->
+  <div class="tab-pane" id="files">
+   <!-- Begin If no files found CODE -->
+   <form action="{% url 'order-upload' order.pk %}" class="form-horizontal">
+    <div class="form-group">
+     <label class="col-sm-3 control-label">No files found</label>
+     <div class="col-sm-9">
+      <a class="btn btn-default" data-toggle="modal" data-target="#modalUploadFile">Upload file</a>
+     </div>
+    </div>
+   </form>
+   <!-- End If no files found CODE -->
+
+   <!-- Begin If files uploaded -->
+   <br><br>
+   <div class="table-responsive">
+    <table class="table table-striped table-bordered tablesorter">
+     <thead>
+      <tr>
+       <th>Date created</th>
+       <th>File name</th>
+       <th>Visibility</th>
+      </tr>
+     </thead>
+     <tbody>
+      {% for upload in uploads %}
+        <tr>
+         <td>{{upload.created}}</td>
+         <td><a href="{% url 'order-upload-download' upload.pk %}">{{upload.attach}}</a></td>
+         <td>{% if not upload.access_level %}Public{% else %}Private{% endif %}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">No files found yet.</td>
+        </tr>
+      {% endfor %}
+     </tbody>
+    </table>
+   </div>
+   <a class="btn btn-default" data-toggle="modal" data-target="#modalUploadFile">Upload file</a>
+   <!-- End If files uploaded -->
+
+  </div><!-- End Files Tab -->
+
+
+
+  <!-- Begin Messages Tab -->
+  <div class="tab-pane" id="messages">
+   <div id="messages-list">
+    {% for msg in msgs %}
+      {% if request.user.pk == msg.mowner.pk %}
+      <div class="row message-mine">
+       <div class="col-md-2 col-sm-2 col-xs-2">
+        <div>Me</div>
+       </div>
+       <div class="col-md-10 col-sm-10 col-xs-10 message">
+        <div class="message-time">{{msg.created}}</div>
+        <div class="message-subj">{{msg.title}}</div>
+        <div class="message-text">{{msg.body}}</div>
+       </div>
+      </div>
+      {% else %}
+      <div class="row message-support">
+       <div class="col-md-10 col-sm-10 col-xs-10 message">
+        <div class="message-time">{{msg.created}}</div>
+        <div class="message-subj">{{msg.title}}</div>
+        <div class="message-text">{{msg.body}}</div>
+       </div>
+       <div class="col-md-2 col-sm-2 col-xs-2">
+        <div>{{msg.mowner.username}}</div>
+       </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+   </div>
+
+   <div class="row message-reply-form">
+    <form action="{% url 'order-msg-new' order.pk %}" class="form-horizontal" method="post">
+     {% csrf_token %}
+     <div class="form-group">
+      <div class="col-md-12 col-sm-12">
+       <label class="col-md-2 col-sm-2 col-xs-12 control-label">Send to:</label>
+       <div class="col-md-4 col-sm-4 col-xs-12">
+        <select name="visibility" class="form-control">
+         <option value="{{co.MSGS_WRITER}}" >Writer</option>
+         <option value="{{co.MSGS_ADM}}" >Admin&Editor</option>
+        </select>
+       </div>
+      </div>
+     </div>
+
+     <div class="form-group">
+      <div class="col-md-12 col-sm-12">
+       <input type="text" name="title" class="form-control" placeholder="Subject">
+      </div>
+     </div>
+
+     <div class="form-group">
+      <div class="col-md-12 col-sm-12">
+      <textarea name="body" class="form-control" placeholder="Type a message here..." rows="3"></textarea>
+      </div>
+     </div>
+
+     <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+   </div>
+  </div><!-- End Messages Tab -->
+ </div>
+ <!--END TABS-->
+
+ <!-- BEGIN MODALS -->
+ <!-- begin Extend modal-->
+ <div class="modal fade order-modal" id="modalExtend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+   <div class="modal-content">
+    <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal">
+      <span aria-hidden="true"></span><span class="sr-only">Close</span>
+     </button>
+     <h4 class="modal-title" id="myModalLabel">Extend Deadline</h4>
+    </div>
+
+    <div class="modal-body">
+     <form class="form-inline">
+      <div class="form-group">
+       <label>Add</label>
+       <input type="text" class="form-control" placeholder="1">
+      </div>
+      <div class="form-group">
+       <label>day(s) and</label>
+       <input type="text" class="form-control" placeholder="0">
+       <label>hours</label>
+      </div>
+      <div class="submit-group">
+       <button class="btn btn-primary">Extend</button>
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+ </div>
+ <!-- end Extend modal-->
+ 
+ <!-- begin Delete modal-->
+ <form action="{% url 'order-id-delete' order.pk %}" method="post">
+ {% csrf_token %}
+ <div class="modal fade order-modal" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+   <div class="modal-content">
+    <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal">
+      <span aria-hidden="true"></span><span class="sr-only">Close</span>
+     </button>
+     <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
+    </div>
+    <div class="modal-footer">
+     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+     <button type="submit" data-toggle="modal" data-target="#modalDeleteSuccess" class="btn btn-primary">Delete</button>
+   </div>
+   </div>
+  </div>
+ </div>
+ </form>
+
+ <!-- begin Upload File modal-->
+ <div class="modal fade order-modal" id="modalUploadFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+   <div class="modal-content">
+    <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal">
+      <span aria-hidden="true"></span><span class="sr-only">Close</span>
+     </button>
+     <h4 class="modal-title" id="myModalLabel">Upload file</h4>
+    </div>
+    <div class="modal-body">
+     <form action="{% url 'order-upload' order.pk %}" class="form-horizontal" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+       <label class="col-sm-3 control-label">File input</label>
+       <div class="col-sm-8">
+        <input type="file" name="attach" class="form-control">
+        <input type="hidden" name="access_level" value="1">
+       </div>
+      </div>
+      {% comment %}
+      <div class="form-group">
+       <label class="col-sm-3 control-label">Comment</label>
+       <div class="col-sm-8">
+        <textarea class="form-control"></textarea>
+       </div>
+      </div>
+      {% endcomment %}
+      <div class="submit-group">
+       <button type="submit" data-toggle="modal" data-target="#modalUploadSuccess" class="btn btn-primary">Upload</button>
+      </div>
+     </form>
+    </div>
+
+   </div>
+  </div>
+ </div>
+ <!-- end Upload File modal-->
+
+ <!-- begin Upload Success modal-->
+ <div class="modal fade order-modal notification-modal" id="modalUploadSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+   <div class="modal-content">
+    <div class="modal-body">File uploaded successfull</div>
+   </div>
+  </div>
+ </div>
+ <!-- end Upload Success modal-->
+
+ <!-- begin Delete Success modal-->
+ <div class="modal fade order-modal notification-modal" id="modalDeleteSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+   <div class="modal-content">
+    <div class="modal-body">File deleted successfull</div>
+   </div>
+  </div>
+ </div>
+ <!-- end Delete Success modal-->
+ <!-- END MODALS -->
+</div>
+<!-- END MIDDLE LAYOUT -->
+{% endblock %}

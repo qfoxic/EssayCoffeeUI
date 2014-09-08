@@ -27,6 +27,7 @@ SESSION_COOKIE_NAME = 'sessc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -63,6 +64,7 @@ MIDDLEWARE_CLASSES = (
 AUTHENTICATION_BACKENDS = (
     'userprofile.auth.UserProfileBackend',
 )
+EMAIL_BACKEND = 'userprofile.smtp.SSLEmailBackend'
 
 FTP_DATA = ('127.0.0.1', 2121, 'ftp', 'q1w2e3r4t5y6')
 

@@ -7,6 +7,7 @@ import constants as co
 # add get_payment_status.
 # test update_payment_status.
 def update_payment_status(ptype, task):
+  status = co.IN_PROCESS
   if ptype == co.LIQPAY:
     from liqpay.liqpay import LiqPay
     liq = LiqPay(co.LIQ_PUB_KEY, co.LIQ_PRIV_KEY)
@@ -37,7 +38,7 @@ def get_payments_status():
              int(i.payment_type)]) for i in Payment.objects.raw(sql)]
   return _d
 
- 
+
 def get_payment_url(ptype, request, params):
   """Params: price, title, order_id"""
   if ptype == co.LIQPAY:

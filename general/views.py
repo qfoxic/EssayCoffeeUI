@@ -14,7 +14,7 @@ from userprofile.models import UserProfile
 from msgs.models import Message
 from ftpstorage.models import Upload
 from ftpstorage.storage import FTPStorage
-from general.forms import TaskForm, SwitchStatusForm
+from general.forms import TaskForm, SwitchStatusForm, NewTaskForm
 from payments.views import get_payments_status,get_payment_url,update_payment_status 
 
 from django.views.generic.edit import UpdateView
@@ -102,7 +102,7 @@ class BaseView(View):
     """Main purpose of that function is to create an event."""
     self._add_request_to_obj(self.request, form.instance)
     return super(BaseView, self).form_valid(form)
-  
+
   def dispatch(self, request, *args, **kwargs):
     if self.owner_required:
       self._owner_required(request.user, self.user_id())
@@ -177,7 +177,7 @@ class LoginView(BaseView, TemplateView):
 
 class LogoutView(BaseView, TemplateView):
   def render_to_response(self, context, **response_kwargs):
-    return logout(request=self.request, next_page=reverse_lazy('task_list'))
+    return logout(request=self.request, next_page=reverse_lazy('my-orders'))
 
 
 class ResetPswdView(BaseView, TemplateView):
@@ -240,21 +240,21 @@ class ResetPswdDoneView(BaseView, TemplateView):
 
 class TaskIndexView(BaseView, ListView):
   """Displays all tasks for signed users."""
-  template_name = 'tasks/index.html'
+  template_name = 'orders/my-orders.html'
   context_object_name = 'tasks'
   model=Task
 
   def get_context_data(self, **kwargs):
     context = super(TaskIndexView, self).get_context_data(**kwargs)
-    context['tasks'] = Task.get_all_tasks(0, **{'owner__id': self.request.user.id})
     context['draft_tasks'] = Task.get_draft_tasks(0, **{'owner__id': self.request.user.id})
+    #context['unprocessed_tasks'] = Task.get_unprocessed_tasks(0, **{'owner__id': self.request.user.id})
     context['processing_tasks'] = Task.get_processing_tasks(0, **{'owner__id': self.request.user.id})
     context['completed_tasks'] = Task.get_finished_tasks(0, **{'owner__id': self.request.user.id})
     return context
 
 
 class UpdateTaskView(BaseView, UpdateView):
-  template_name = 'tasks/edit.html'
+  template_name = 'orders/order_id_edit.html'
   form_class = TaskForm
   queryset = Task.objects.all()
   owner_required = True
@@ -287,9 +287,9 @@ class UpdateTaskView(BaseView, UpdateView):
 
 
 class CreateTaskView(BaseView, CreateView):
-  form_class = TaskForm
+  form_class = NewTaskForm
   queryset = Task.objects.all()
-  template_name = 'tasks/new.html'
+  template_name = 'orders/new-order.html'
 
   def get_form_kwargs(self):
     kwargs = super(CreateTaskView, self).get_form_kwargs()
@@ -299,37 +299,19 @@ class CreateTaskView(BaseView, CreateView):
 
 class DetailTaskView(BaseView, DetailView):
   queryset = Task.objects.all()
-  template_name = 'tasks/details.html'
-  
-  def _check_permissions(self):
-    user = self.request.user
-    group = user.get_group()
-    try:
-      obj = self.get_object()
-    except:
-      obj = None
-    if group == co.WRITER_GROUP:
-      # For writers we should check whether task
-      # has been already assigned to another writer.
-      if obj and obj.assignee and user.id != obj.assignee.id:
-        raise PermissionDenied
+  template_name = 'orders/order_id.html'
+  context_object_name = 'order'
 
   def get_context_data(self, **kwargs):
     context = super(DetailTaskView, self).get_context_data(**kwargs)
     task_id = self.get_object().pk
-    group = self.request.user.get_group()
     task_payments = context['payments'].get(task_id)
     if task_payments and task_payments[1] in [co.IN_PROCESS]:
       update_payment_status(task_payments[3], self.get_object())
     context['msgs'] = get_msgs_for_task(self.request, task_id)
     task_q = Q(ftask_id__exact=task_id)
-    or_q = Q(access_level__in=(co.PUBLIC_ACCESS,))
-    not_owner_q = ~Q(fowner_id__exact=self.request.user.id)
     m_ups = Upload.objects.filter(task_q, Q(fowner_id__exact=self.request.user.id))
-    ups = []
-    w_ups = Upload.objects.filter(fowner__groups__name=co.WRITER_GROUP).filter(task_q, or_q, not_owner_q)
-    ups.extend(w_ups), ups.extend(m_ups)
-    context['uploads'] = ups
+    context['uploads'] = m_ups
     return context
 
   def user_id(self):
@@ -338,36 +320,34 @@ class DetailTaskView(BaseView, DetailView):
 
 class RemoveTaskView(BaseView, DeleteView):
   queryset = Task.objects.all()
-  success_url = reverse_lazy('task_list')
-  template_name = 'tasks/delete.html'
+  success_url = reverse_lazy('my-orders')
+  template_name = 'orders/my-orders.html'
   owner_required = True
 
   def _check_permissions(self):
     user = self.request.user
-    group = user.get_group()
     try:
       obj = self.get_object()
     except:
       obj = None
-    if group in co.CUSTOMER_GROUP:
-      # We can remove task only in draft version.
-      if not co.CheckPermissions(user, obj, co.CAN_DELETE):
-        raise PermissionDenied
+    # We can remove task only in draft version.
+    if not co.CheckPermissions(user, obj, co.CAN_DELETE):
+      raise PermissionDenied
 
   def user_id(self):
     return self.get_object().owner.pk
 
 
 class SwitchStatusView(UpdateTaskView):
-  form_class = SwitchStatusForm 
-  template_name = 'tasks/details.html'
+  form_class = SwitchStatusForm
+  template_name = 'orders/order_id.html'
   owner_required = False 
 
   def _check_permissions(self):
     pass
  
   def get_success_url(self):
-    if self.object.status == co.UNPROCESSED:
+    if self.object.status == co.PROCESSING:
       params = {'price': self.object.get_price(),
                 'title': self.object.paper_title,
                 'order_id': self.object.pk}
@@ -389,5 +369,8 @@ class StaticPageView(BaseView, TemplateView):
 
 class HomeView(BaseView, TemplateView):
   def get_template_names(self):
+    #from django.core.mail import send_mail
+    #send_mail('Test', 'Here is the message.', 'workforum@ukr.net',
+    #['foxandkamarus@gmail.com'], fail_silently=False)
     template_name = 'html/main.html'
     return [template_name]

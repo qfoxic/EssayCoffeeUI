@@ -32,7 +32,6 @@
   <script src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script>
   <script src="{{ STATIC_URL }}js/jquery.slimscroll.js"></script>
   <script src="{{ STATIC_URL }}js/theme_scripts.js"></script>
-
   {% block page_title %}<title>Index</title>{% endblock %}
 </head>
   <body>
@@ -55,7 +54,6 @@
             <div class="row">
       {% endblock %}
       {% block sidebar_right %}{% endblock %}
-	  {% block sidebar_account %}{% endblock %}
       {% block content %}
           {% include 'html/main.html' %}
       {% endblock %}
@@ -68,6 +66,13 @@
       {% endblock %}
     </div>
     {% include 'html/footer.html' %}
+    <!-- Some useful functions. Don't remove. -->
+    <script>
+    $( '.momdl' ).each( function( ) {
+        var ts = $( this ).html( );
+        $( this ).html( moment( ts, 'X' ).fromNow( ) );
+    });
+    </script>
   </body>
 </html>
 

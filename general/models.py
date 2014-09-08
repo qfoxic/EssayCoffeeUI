@@ -59,23 +59,24 @@ class BaseModel(models.Model):
 class Task(BaseModel):
   paper_title = models.CharField(max_length=co.TITLE_MAX_LEN, validators=[ValidateMinSize(4)])
   discipline = models.CharField(choices=co.DISCIPLINES, max_length=co.TITLE_MAX_LEN,
-                                default=co.DISCIPLINES[0], validators=[ValidateEmptySelect])
+                                default=co.DISCIPLINES[0][0], validators=[ValidateEmptySelect])
   assigment = models.CharField(choices=co.ASSIGMENTS, max_length=co.TITLE_MAX_LEN,
-                               default=co.ASSIGMENTS[0], validators=[ValidateEmptySelect])
-  level = models.CharField(choices=co.LEVELS, max_length=co.TITLE_MAX_LEN, default=co.LEVELS[0])
-  urgency = models.IntegerField(choices=co.URGENCY, default=co.URGENCY[0],
+                               default=co.ASSIGMENTS[0][0], validators=[ValidateEmptySelect])
+  level = models.CharField(choices=co.LEVELS, max_length=co.TITLE_MAX_LEN, default=co.LEVELS[0][0])
+  urgency = models.IntegerField(choices=co.URGENCY, default=co.URGENCY[0][0],
                                validators=[ValidateEmptySelect])
-  spacing = models.SmallIntegerField(choices=co.SPACING, default=co.SPACING[0],
+  spacing = models.SmallIntegerField(choices=co.SPACING, default=co.SPACING[0][0],
                                      validators=[ValidateEmptySelect])
   page_number = models.SmallIntegerField()
-  style = models.SmallIntegerField(choices=co.STYLES, default=co.STYLES[0],
+  style = models.SmallIntegerField(choices=co.STYLES, default=co.STYLES[0][0],
                                    validators=[ValidateEmptySelect])
-  source_number = models.SmallIntegerField()
+  source_number = models.SmallIntegerField(null=True, blank=True, default=1)#TODO temporary false.
   mark = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
   instructions = models.TextField(max_length=co.INSTRUCTION_MAX_LEN,
                                   validators=[ValidateMinSize(100)])
   discount = models.CharField(max_length=co.TITLE_MAX_LEN, null=True, blank=True)
-  accept_terms = models.BooleanField(validators=[ValidateTerms])
+  #accept_terms = models.BooleanField(validators=[ValidateTerms])
+  accept_terms = models.NullBooleanField(null=True, blank=True, default=True)
   priority = models.BooleanField(default=False, blank=True)
   #######################################
   site = models.TextField(blank=True,null=True)
@@ -157,7 +158,10 @@ class Task(BaseModel):
     spacing_percent = percents['spacing'].get(self.spacing, 0)
     page_sum = (mpp*assig_percent + mpp*level_percent + mpp*urgency_percent)
     return '%.2f' % (math.ceil((page_sum + page_sum*spacing_percent) * self.page_number) - 0.05)
- 
+
+  def get_page_price(self):
+    return (float(self.get_price()) / float(self.page_number))
+
   @classmethod 
   def get_finished_tasks(cls, count_only, **kwargs):
     if count_only:
@@ -182,12 +186,6 @@ class Task(BaseModel):
       return cls.objects.filter(status__exact=co.SENT).filter(**kwargs).count()
     return cls.objects.filter(status__exact=co.SENT).filter(**kwargs)
 
-  @classmethod 
-  def get_all_tasks(cls, count_only, **kwargs):
-    if count_only:
-      return cls.objects.filter(**kwargs).count()
-    return cls.objects.filter(**kwargs)
-  
   @classmethod 
   def get_unprocessed_tasks(cls, count_only, **kwargs):
     if count_only:
@@ -222,7 +220,7 @@ class Task(BaseModel):
   
   @models.permalink
   def get_absolute_url(self):
-    return  ('task_view', (), {'pk': self.id})
+    return  ('order-id', (), {'pk': self.id})
   to_link = get_absolute_url
 
   class Meta:

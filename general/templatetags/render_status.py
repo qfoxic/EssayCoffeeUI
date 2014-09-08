@@ -1,7 +1,7 @@
 from django import template
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
-import constants
+import constants as co
  
 register = template.Library()
  
@@ -13,6 +13,14 @@ def is_msg_new(msg, user):
 @register.filter(name='dget')
 def dget(d, k):
   return d.get(k)
+
+@register.filter(name='is_bought')
+def is_bought(d, task_id):
+    res = d.get(task_id)
+    if res and res[1] == co.UNPAID:
+        return False
+    return True
+
 
 @register.filter(name='locked_by_user')
 def locked_by_user(task, user):

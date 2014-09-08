@@ -1,0 +1,172 @@
+{% extends 'index.html' %}
+{% load render_status %}
+{% block breadcrump %}
+<div class="breadcrumbs">
+ <a href="{% url 'home' %}">Home</a>
+ <span class="separator"><i class="fa fa-angle-right"></i></span>
+ <a href="{% url 'my-orders' %}" class="active">My Orders</a>
+</div>
+{% endblock %}
+
+{% block sidebar_right %}
+<!-- BEGIN RIGHT SIDEBAR LAYOUT -->
+<div id="layout-right" class="col-md-3 col-sm-12">
+ <section class="sibebar-section">
+  <ul class="list-group">
+   <li class="list-group-item active"><a href="{% url 'my-orders' %}">My Orders</a></li>
+   <li class="list-group-item"><a href="{% url 'my-account' request.user.pk %}">My account</a></li>
+   <li class="list-group-item"><a href="{% url 'password-change' %}">Password change</a></li>
+   <li class="list-group-item"><a href="{% url 'logout' %}">Exit</a></li>
+  </ul>
+ </section>
+</div>
+<!-- END RIGHT SIDEBAR LAYOUT -->
+{% endblock %}
+
+{% block content %}
+<!-- BEGIN MIDDLE LAYOUT -->
+<div id="layout-middle" class="col-md-9 col-sm-12 col-xs-12">
+ 
+ <h1 class="page-title">My orders</h3>
+
+ <div class="clearfix"></div>
+
+ <!--BEGIN TABS-->
+ <ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#draft" role="tab" data-toggle="tab">Draft ({{draft_tasks|length}})</a></li>
+  <li><a href="#processing" role="tab" data-toggle="tab">Processing ({{processing_tasks|length}})</a></li>
+  <li><a href="#completed" role="tab" data-toggle="tab">Completed ({{completed_tasks|length}})</a></li>
+ </ul>
+ 
+ <div class="tab-content">
+  <!-- Begin Details Tab -->
+  <div class="tab-pane active" id="draft">
+   <div class="table-responsive">
+     <table class="table table-striped table-bordered tablesorter">
+      <thead>
+       <tr>
+        <th>Order #</th>
+        <th>Order name</th>
+        <th>Writer</th>
+        <th>Created date</th>
+        <th>Deadline</th>
+        <th>Revision</th>
+        <th>Price</th>
+        <th>Actions</th>
+       </tr>
+      </thead>
+      <tbody>
+      {% for draft in draft_tasks %}
+       <tr>
+        <td>{{draft.pk}}</td>
+        <td><a href="{% url 'order-id' draft.pk %}">{{draft.paper_title}}</a></td>
+        <td>{{draft.assignee.username}}</td>
+        <td>{{draft.created}}</td>
+        <td class="momdl">{{draft.admin_deadline}}</td>
+        <td>{{draft.revision}}</td>
+        <td>{{draft.get_price}}$
+          <form action="{% url 'order-id-buy' draft.pk %}" method="POST">
+            <input type="hidden" name="status" value="{{co.PROCESSING}}">
+            {% csrf_token %}
+            <button class="btn btn-primary btn-xs" type="submit">Pay now</button>
+          </form>
+        </td>
+        <td align="center">
+         <a href="{% url 'order-id' draft.pk %}" class="order-action-btn order-search"></a>
+         <a href="{% url 'order-id-edit' draft.pk %}" class="order-action-btn order-edit"></a>
+         <a href="{% url 'order-id-delete' draft.pk %}" class="order-action-btn order-remove"></a>
+        </td>
+       </tr>
+       {% empty %}
+       <tr><td colspan=8>No orders yet.</td></tr>
+       {% endfor %}
+      </tbody>
+     </table>
+   </div>
+  </div><!-- End Details Tab -->
+
+  <!-- Begin Processing Tab -->
+  <div class="tab-pane" id="processing">
+   <div class="table-responsive">
+     <table class="table table-striped table-bordered tablesorter">
+      <thead>
+       <tr>
+        <th>Order #</th>
+        <th>Order name</th>
+        <th>Writer</th>
+        <th>Created date</th>
+        <th>Deadline</th>
+        <th>Revision</th>
+        <th>Price</th>
+        <th>Actions</th>
+       </tr>
+      </thead>
+      <tbody>
+      {% for order in processing_tasks %}
+       <tr>
+        <td>{{order.pk}}</td>
+        <td><a href="{% url 'order-id' order.pk %}">{{order.paper_title}}</a></td>
+        <td>{{order.assignee.username}}</td>
+        <td>{{order.created}}</td>
+        <td class="momdl">{{order.admin_deadline}}</td>
+        <td>{{order.revision}}</td>
+        <td>{{order.get_price}}$</td>
+        <td align="center">
+         <a href="{% url 'order-id' order.pk %}" class="order-action-btn order-search"></a>
+         <a href="{% url 'order-id-edit' order.pk %}" class="order-action-btn order-edit"></a>
+         <a href="{% url 'order-id-delete' order.pk %}" class="order-action-btn order-remove"></a>
+        </td>
+       </tr>
+       {% empty %}
+       <tr><td colspan=8>No orders yet.</td></tr>
+       {% endfor %}
+      </tbody>
+     </table>
+   </div>
+  </div><!-- End Processing Tab -->
+
+  <!-- Begin Completed Tab -->
+  <div class="tab-pane" id="completed">
+   <div class="table-responsive">
+     <table class="table table-striped table-bordered tablesorter">
+      <thead>
+       <tr>
+        <th>Order #</th>
+        <th>Order name</th>
+        <th>Writer</th>
+        <th>Created date</th>
+        <th>Deadline</th>
+        <th>Revision</th>
+        <th>Price</th>
+        <th>Actions</th>
+       </tr>
+      </thead>
+      <tbody>
+      {% for order in completed_tasks %}
+       <tr>
+        <td>{{order.pk}}</td>
+        <td><a href="{% url 'order-id' order.pk %}">{{order.paper_title}}</a></td>
+        <td>{{order.assignee.username}}</td>
+        <td>{{order.created}}</td>
+        <td class="momdl">{{order.admin_deadline}}</td>
+        <td>{{order.revision}}</td>
+        <td>{{order.get_price}}$</td>
+        <td align="center">
+         <a href="{% url 'order-id' order.pk %}" class="order-action-btn order-search"></a>
+         <a href="{% url 'order-id-edit' order.pk %}" class="order-action-btn order-edit"></a>
+         <a href="{% url 'order-id-delete' order.pk %}" class="order-action-btn order-remove"></a>
+        </td>
+       </tr>
+       {% empty %}
+       <tr><td colspan=8>No orders yet.</td></tr>
+       {% endfor %}
+      </tbody>
+     </table>
+   </div>
+  </div><!-- End Completed Tab -->
+ </div>
+ <!--END TABS-->
+
+</div>
+<!-- END MIDDLE LAYOUT -->
+{% endblock %}
