@@ -6,9 +6,9 @@
 	<span class="separator"><i class="fa fa-angle-right"></i></span>
 	<a href="{% url 'my-orders' %}">My Orders</a>
 	<span class="separator"><i class="fa fa-angle-right"></i></span>
-	<a href="{% url 'order-id' %}">#454545454545</a>
+	<a href="{% url 'order-id' order.pk %}" class="active">#{{order.pk}}</a>
 	<span class="separator"><i class="fa fa-angle-right"></i></span>
-	<a href="{% url 'order-id-edit' %}" class="active">edit</a>
+	<a href="{% url 'order-id-edit' order.pk %}" class="active">edit</a>
 </div>
 {% endblock %}
 
@@ -32,7 +32,7 @@
 <!-- BEGIN MIDDLE LAYOUT -->
 <div id="layout-middle" class="col-md-9 col-sm-12 col-xs-12">
 
-	<h1 class="page-title pull-left">Order ID: 454545454545</h1>
+	<h1 class="page-title pull-left">Order ID: #{{order.pk}}</h1>
 	
 	<div style="margin-top: 16px; margin-bottom: 24px;"><a href="#" class="btn btn-default pull-right btn-back"><i class="fa fa-angle-left"></i> Back</a></div>
 
