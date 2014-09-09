@@ -95,7 +95,7 @@ STATUS_SWITCH_TABLE = {
   PROCESSING: [SUSPICIOUS,REJECTED,SENT],
   UNPROCESSED: [PROCESSING,SUSPICIOUS,REJECTED],
   SUSPICIOUS: [PROCESSING,REJECTED],
-  DRAFT: [PROCESSING],
+  DRAFT: [UNPROCESSED],
   SENT: [COMPLETED]
 }
 
@@ -450,7 +450,7 @@ DISCIPLINES = (
 
 
 ASSIGMENTS = (
-  ('', '- Please choose -'),
+  (0, 'Please select'),
   ('es', 'Essay'), ('ab', 'Abstract'),
   ('an', 'Annotated bibliography'), ('cs', 'Case Study'),
   ('31', 'Admission/Application Essay'), ('5',  'Article'),
@@ -467,7 +467,7 @@ ASSIGMENTS = (
 
 
 LEVELS = (
-  ('', 'Select One'),
+  (0, 'Select One'),
   ('hs', 'High School'), ('co', 'College'), ('un', 'University'),
   ('ms', 'Master\'s'), ('ph', 'PHD'))
 

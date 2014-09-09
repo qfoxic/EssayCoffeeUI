@@ -247,8 +247,7 @@ class TaskIndexView(BaseView, ListView):
   def get_context_data(self, **kwargs):
     context = super(TaskIndexView, self).get_context_data(**kwargs)
     context['draft_tasks'] = Task.get_draft_tasks(0, **{'owner__id': self.request.user.id})
-    #context['unprocessed_tasks'] = Task.get_unprocessed_tasks(0, **{'owner__id': self.request.user.id})
-    context['processing_tasks'] = Task.get_processing_tasks(0, **{'owner__id': self.request.user.id})
+    context['proc_tasks'] = list(Task.get_processing_tasks(0, **{'owner__id': self.request.user.id})) + list(Task.get_unprocessed_tasks(0, **{'owner__id': self.request.user.id}))
     context['completed_tasks'] = Task.get_finished_tasks(0, **{'owner__id': self.request.user.id})
     return context
 
@@ -258,10 +257,10 @@ class UpdateTaskView(BaseView, UpdateView):
   form_class = TaskForm
   queryset = Task.objects.all()
   owner_required = True
+  context_object_name = 'order'
 
   def _check_permissions(self):
     user = self.request.user
-    group = user.get_group()
     try:
       obj = self.get_object()
     except:
@@ -276,6 +275,21 @@ class UpdateTaskView(BaseView, UpdateView):
     kwargs = super(UpdateTaskView, self).get_form_kwargs()
     kwargs['request'] = self.request
     return kwargs
+
+  def get_context_data(self, **kwargs):
+    context = super(UpdateTaskView, self).get_context_data(**kwargs)
+    task_id = self.get_object().pk
+    task_payments = context['payments'].get(task_id)
+    if task_payments and task_payments[1] in [co.IN_PROCESS]:
+      update_payment_status(task_payments[3], self.get_object())
+    context['msgs'] = get_msgs_for_task(self.request, task_id)
+    task_q = Q(ftask_id__exact=task_id)
+    m_ups = Upload.objects.filter(task_q, Q(fowner_id__exact=self.request.user.id))
+    context['uploads'] = m_ups
+    return context
+
+  def get_success_url(self):
+      return reverse_lazy('order-id-edit', args=(self.get_object().pk,))
 
   def form_invalid(self, form):
     # If form is invalid redirect to task details with an error.
@@ -347,7 +361,7 @@ class SwitchStatusView(UpdateTaskView):
     pass
  
   def get_success_url(self):
-    if self.object.status == co.PROCESSING:
+    if self.object.status == co.UNPROCESSED:
       params = {'price': self.object.get_price(),
                 'title': self.object.paper_title,
                 'order_id': self.object.pk}

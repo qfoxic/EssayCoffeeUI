@@ -24,7 +24,7 @@ class UploadFileView(BaseView, CreateView):
     return kwargs
   
   def get_success_url(self):
-    return reverse('order-id', kwargs={'pk': self.kwargs.get('task_id')})
+    return reverse('order-id', kwargs={'pk': self.kwargs.get('task_id')}) + '?files=1'
 
   def form_invalid(self, form):
     # If form is invalid redirect to task details with an error.

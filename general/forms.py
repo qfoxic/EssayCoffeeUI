@@ -1,4 +1,4 @@
-from django.forms import ModelForm, ValidationError, FileField
+from django.forms import ModelForm, ValidationError, FileField, EmailField
 from general.models import Task
 from ftpstorage.models import Upload
 from userprofile.models import UserProfile
@@ -11,7 +11,8 @@ import constants as co
 
 #TODO. Avoid using that.
 class NewProfileForm(ModelForm):
-    #COPIED AND PASTED TO AVOID CIRCULAR IMPORTS.
+  email = EmailField(required=True)
+
   def __init__(self, group_name=None, request=None, *args, **kwargs):
     super(NewProfileForm, self).__init__(*args, **kwargs)
     self.group_name = group_name
@@ -63,29 +64,10 @@ class BaseForm(ModelForm):
 class TaskForm(BaseForm):
   attach = FileField(required=False)
   class Meta(BaseForm.Meta):
-    fields = ('site',
-              'paper_title', 'discipline', 'assigment', 'level', 'urgency',
+    fields = ('paper_title', 'discipline', 'assigment', 'level', 'urgency',
               'spacing', 'page_number', 'style', 'source_number',
-              'instructions', 'discount', 'accept_terms',
-              'owner', 'assignee',
-              'priority', 'attach',
-              'access_level',
-              'revision', 'mark'
-              )
+              'instructions', 'discount')
 
-  def __init__(self, request=None, *args, **kwargs):
-    super(TaskForm, self).__init__(request, *args, **kwargs)
-    self.writers = UserProfile.objects.filter(groups__name=co.WRITER_GROUP)
-    self.fields['assignee'].queryset = self.writers
-
-  def clean_owner(self):
-    """Specifies default User parameter."""
-    return self.request.user
-
-  def clean_site(self):
-    """Specifies default Host parameter."""
-    return self.request.get_host()
-  
   def check_permissions(self, cleaned_data):
     """Raise an exception if user can't perform a status change."""
     user = self.request.user
@@ -98,23 +80,8 @@ class TaskForm(BaseForm):
     #                        'domain': co.ADMIN_DOMAIN}
     # TODO: this is a bug!!!!
     #    send_mail(co.ORDER_MAIL_SUBJECT, mail, co.ADMIN_EMAIL,
-    #              [self.request.user.email])
-    is_new = True
-    if self.instance.pk:
-      is_new = False
-
-    res = super(TaskForm, self).save(*args, **kwargs)
-    if is_new:
-      if self.cleaned_data['attach']:
-        upload = Upload(attach=self.cleaned_data['attach'],
-                        ftask=self.instance, fowner=self.request.user,
-                        access_level=co.PRIVATE_ACCESS)
-        upload.save()
-        # Add unpaid payment.
-        payment = Payment(powner=self.request.user, ptask=self.instance,
-                          values='{}', payment_status=co.UNPAID)
-        payment.save()
-    return res
+    #              [self.request.user.email]
+    return super(TaskForm, self).save(*args, **kwargs)
 
 
 class NewTaskForm(BaseForm):
@@ -122,7 +89,7 @@ class NewTaskForm(BaseForm):
   class Meta(BaseForm.Meta):
     fields = ('site',
               'paper_title', 'discipline', 'level', 'urgency',
-              'page_number', 'style',
+              'page_number', 'style', 'spacing', 'assigment', 'source_number',
               'instructions', 'owner')
 
   def clean_owner(self):
@@ -160,12 +127,6 @@ class NewTaskForm(BaseForm):
     pass
 
   def save(self, *args, **kwargs):
-    # send email
-    #mail = co.ORDER_MAIL % {'first_name': self.request.user.first_name,
-    #                        'domain': co.ADMIN_DOMAIN}
-    # TODO: this is a bug!!!!
-    #    send_mail(co.ORDER_MAIL_SUBJECT, mail, co.ADMIN_EMAIL,
-    #              [self.request.user.email])
     res = super(NewTaskForm, self).save(*args, **kwargs)
     # Add unpaid payment.
     payment = Payment(powner=self.request.user, ptask=self.instance,
@@ -215,17 +176,10 @@ class SwitchStatusForm(BaseForm):
     status = self.cleaned_data['status']
     if status == co.PROCESSING:
       self.instance.access_level = co.PUBLIC_ACCESS
-      # Add procesing payment.
+    if status == co.UNPROCESSED:
+      # Add processing payment.
       payment = Payment(powner=self.request.user, ptask=self.instance,
                         values='{}', payment_status=co.IN_PROCESS,
                         payment_type=self.request.GET.get('ptype', co.LIQPAY))
       payment.save()
-    #if status == co.PROCESSING:
-    #  self.instance.access_level = co.PUBLIC_ACCESS
-    #if status == co.UNPROCESSED:
-    #  # Add processing payment.
-    #  payment = Payment(powner=self.request.user, ptask=self.instance,
-    #                    values='{}', payment_status=co.IN_PROCESS,
-    #                    payment_type=self.request.GET.get('ptype', co.LIQPAY))
-    #  payment.save()
     return super(SwitchStatusForm, self).save(*args, **kwargs)

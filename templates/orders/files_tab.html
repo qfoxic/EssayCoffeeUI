@@ -1,0 +1,40 @@
+<div class="tab-pane {% if request.GET.files %}active{% endif %}" id="files">
+   <!-- Begin If no files found CODE -->
+   <form action="{% url 'order-upload' order.pk %}" class="form-horizontal">
+    <div class="form-group">
+     <label class="col-sm-3 control-label">No files found</label>
+     <div class="col-sm-9">
+      <a class="btn btn-default" data-toggle="modal" data-target="#modalUploadFile">Upload file</a>
+     </div>
+    </div>
+   </form>
+   <!-- End If no files found CODE -->
+   <!-- Begin If files uploaded -->
+   <br><br>
+   <div class="table-responsive">
+    <table class="table table-striped table-bordered tablesorter">
+     <thead>
+      <tr>
+       <th>Date created</th>
+       <th>File name</th>
+       <th>Visibility</th>
+      </tr>
+     </thead>
+     <tbody>
+      {% for upload in uploads %}
+        <tr>
+         <td>{{upload.created}}</td>
+         <td><a href="{% url 'order-upload-download' upload.pk %}">{{upload.attach}}</a></td>
+         <td>{% if not upload.access_level %}Public{% else %}Private{% endif %}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">No files found yet.</td>
+        </tr>
+      {% endfor %}
+     </tbody>
+    </table>
+   </div>
+   <a class="btn btn-default" data-toggle="modal" data-target="#modalUploadFile">Upload file</a>
+   <!-- End If files uploaded -->
+  </div><!-- End Files Tab -->
