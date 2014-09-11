@@ -1,5 +1,3 @@
-from django import forms
-from django.contrib.auth.models import Group
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
 from django.views.generic.edit import UpdateView
@@ -14,68 +12,11 @@ from general.models import Task
 from django.core.urlresolvers import reverse_lazy
 
 from userprofile.models import UserProfile
-
-#TODO. CUSTOMER DETAILS., customer edit.
-class ProfileForm(forms.ModelForm):
-  def __init__(self, group_name=None, request=None, *args, **kwargs):
-    super(ProfileForm, self).__init__(*args, **kwargs)
-    self.group_name = group_name
-    self.request = request
-
-  class Meta:
-    model = UserProfile
-    #TODO gender temporary disabled.
-    fields = ['username', 'password', 'first_name', 'last_name', 'email',
-              'country', 'phone', 'site']
-
-  def clean_site(self):
-    """Specifies default Host parameter."""
-    return self.request.get_host()
-
-  def clean_email(self):
-    if UserProfile.objects.filter(email=self.request.POST.get('email')):
-      raise forms.ValidationError('Email already exists',
-                                  code='email_exists')
-    return self.request.POST.get('email')
-
-  def clean_password(self):
-    if self.request.POST.get('password') != self.request.POST.get('password2'):
-      raise forms.ValidationError('Passwords do not match.')
-    return self.request.POST.get('password')
-
-  def save(self, commit=True):
-    user = UserProfile.objects.create_user(**self.cleaned_data)
-    user.groups.add(Group.objects.get(name=self.group_name))
-    user.save()
-    return user
-
-
-class EditProfileForm(forms.ModelForm):
-  def __init__(self, user_id=None, request=None, *args, **kwargs):
-    super(EditProfileForm, self).__init__(*args, **kwargs)
-    self.user_id = user_id
-    self.request = request
-    self.fields['username'].required = False
-    self.fields['email'].required = False
-
-  class Meta:
-    model = UserProfile
-    #TODO gender temporary disabled.
-    fields = ['username','email', 'first_name', 'last_name', 'country', 'phone']
-
-  def save(self, commit=True):
-    user = UserProfile.objects.get(pk=self.user_id)
-    user.first_name=self.cleaned_data['first_name']
-    user.last_name=self.cleaned_data['last_name']
-    #user.gender=self.cleaned_data['gender']
-    user.country=self.cleaned_data['country']
-    user.phone=self.cleaned_data['phone']
-    user.save()
-    return user
+from userprofile.forms import NewProfileForm, EditProfileForm
 
 
 class CreateProfileView(BaseView, CreateView):
-  form_class = ProfileForm
+  form_class = NewProfileForm
   queryset = UserProfile.objects.all()
   template_name = 'auth/registration.html'
 

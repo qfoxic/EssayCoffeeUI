@@ -11,10 +11,28 @@ Regards,
 
 Administration
 """
+
+NEW_PROFILE_EMAIL = """ 
+Dear %(first_name)s 
+
+Thank you for registering at %(domain)s.
+Your username: %(username)s
+Your email: %(email)s
+
+Regards,
+Administration
+"""
+
+NEW_PROFILE_SUBJECT = 'Thanks for registering.'
 ORDER_MAIL_SUBJECT = 'Thanks for ordering.'
 
-ADMIN_EMAIL = 'workforum@ukr.net'
-ADMIN_DOMAIN = 'workforum@ukr.net'
+EMAIL_HOST = 'smtp.ukr.net'
+EMAIL_HOST_PASSWORD = 'QAZqaz1983'
+EMAIL_HOST_USER = 'workforum@ukr.net'
+EMAIL_PORT = 465
+
+ADMIN_EMAIL = 'workforum@ukr.net'#'no-reply@essaycoffee.com'
+ADMIN_DOMAIN = 'www.essaycoffee.com'
 
 # Settings related variables.
 CONFIG_PATH = 'config'

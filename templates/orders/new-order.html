@@ -223,7 +223,6 @@
         <label class="col-sm-4 control-label">Login <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="text" name="username" class="form-control" value="{{request.usr_form.username.value|default:''}}">
-         {# TODO: мінімальна кількість симв  олів 4 шт. та не може містити знаків #}
          {% if request.usr_form.username.errors %}<span class="validation-message">{{request.usr_form.username.errors|striptags}}</span>{% endif %}
         </div>
        </div>
@@ -232,7 +231,6 @@
         <label class="col-sm-4 control-label">First Name </label>
         <div class="col-sm-8">
          <input type="text" name="first_name" class="form-control" value="{{request.usr_form.first_name.value|default:''}}">
-         {# TODO: мінімальна кількість символів 3 шт. та не може містити знаків #}
          {% if request.usr_form.first_name.errors %}<span class="validation-message">{{request.usr_form.first_name.errors|striptags}}</span>{% endif %}
         </div>
        </div>
@@ -241,7 +239,6 @@
         <label class="col-sm-4 control-label">Last Name </label>
         <div class="col-sm-8">
          <input type="text" name="last_name" class="form-control" value="{{request.usr_form.last_name.value|default:''}}">
-         {# TODO: мінімальна кількість символів 3 шт. та не може містити знаків #}
          {% if request.usr_form.last_name.errors %}<span class="validation-message">{{request.usr_form.last_name.errors|striptags}}</span>{% endif %}
         </div>
        </div>

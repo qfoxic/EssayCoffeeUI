@@ -1,14 +1,15 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
 
-from general.views import RemoveTaskView,SwitchStatusView, LoginView, HomeView
+from general.views import RemoveTaskView,SwitchStatusView, HomeView
 from general.views import StaticPageView
 from general.views import CreateTaskView,UpdateTaskView,DetailTaskView,TaskIndexView
 from msgs.views import CreateMsgView, RemoveMsgView, ListMsgsView,DetailMsgView
 from ftpstorage.views import UploadFileView,RemoveUploadView
 from ftpstorage.views import DownloadFileView
-
+from general.views import LoginView, LogoutView, ResetPswdView, StaticHtmlView
+from general.views import ResetPswdDoneView, ResetPswdConfirmView, ResetPswdCompleteView
 
 from userprofile.views import CreateProfileView, UpdateProfileView
 
@@ -56,12 +57,16 @@ urlpatterns = patterns('',
                                               name='contact'),
     # Auth
     url(r'^registration/$', user_new, name='registration'),
-    url(r'^forgot/$', user_new, name='forgot'), #TODO fake url.
     url(r'^login/$', LoginView.as_view(module_name='customer'), name='login'),
+    url(r'^logout/$', LogoutView.as_view(module_name='customer'), name='logout'),
 
     # Account
     url(r'^profile/(?P<pk>\d+)/$', user_edit, name='my-account'),
     url(r'^profile/(?P<pk>\d+)/edit$', user_edit, name='my-account-edit'),
+    url(r'^password-change/$', ResetPswdView.as_view(module_name='customer'), name='password-change'),
+    url(r'^resetdone/$', ResetPswdDoneView.as_view(module_name='customer'), name='pswd_reset_done'),
+    url(r'^resetconfirm/(?P<uidb64>.*)/(?P<token>.*)$', ResetPswdConfirmView.as_view(module_name='customer'), name='pswd_reset_confirm'),
+    url(r'^resetcomplete/$', ResetPswdCompleteView.as_view(module_name='customer'), name='pswd_reset_complete'),
     url(r'^password-change/$', StaticPageView.as_view(module_name='customer',
                                                    template_name='password-change.html'),
                                                    name='password-change'),
@@ -76,18 +81,11 @@ urlpatterns = patterns('',
 
     url(r'^upload/(?P<task_id>\d+)/new/$', upload_file, name='order-upload'),
     url(r'^upload/(?P<pk>\d+)/download/$', upload_download, name='order-upload-download'),
-    #url(r'^task/(?P<pk>\d+)/$', task_details, name='task_view'),
-    #url(r'^task/(?P<pk>\d+)/remove$', task_rm, name='task_remove'),
-    #url(r'^task/(?P<pk>\d+)/edit$', task_update, name='task_edit'),
-    #url(r'^task/(?P<pk>\d+)/status$', task_status, name='task_status'),
 
     url(r'^msg/(?P<task_id>\d+)/new$', msg_add, name='order-msg-new'),
-    #url(r'^msg/(?P<pk>\d+)/remove$', msg_rm, name='msg_remove'),
-    #url(r'^msgs/$', msg_list, name='msgs_list'),
-    #url(r'^msg/(?P<pk>\d+)/$', msg_detail, name='msg_detail'),
-    #url(r'^upload/(?P<pk>\d+)/remove$', upload_rm, name='upload_remove'),
-    #url(r'^upload/(?P<pk>\d+)/visibility$', upload_visibility, name='upload_visibility'),
-    url(r'', include('common_urls')),
+
+    url(r'^html/(?P<path>.*)$', StaticHtmlView.as_view(), name='html'),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve'),
 )
 
 
