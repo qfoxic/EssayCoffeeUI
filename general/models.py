@@ -70,7 +70,7 @@ class Task(BaseModel):
   page_number = models.SmallIntegerField()
   style = models.SmallIntegerField(choices=co.STYLES, default=co.STYLES[0][0],
                                    validators=[ValidateEmptySelect])
-  source_number = models.SmallIntegerField(null=True, blank=True, default=1)#TODO temporary false.
+  source_number = models.SmallIntegerField(null=True, blank=True, default=1)
   mark = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
   instructions = models.TextField(max_length=co.INSTRUCTION_MAX_LEN,
                                   validators=[ValidateMinSize(100)])

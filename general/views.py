@@ -1,4 +1,3 @@
-import os
 import tempfile
 
 from django.views.generic import TemplateView, View
@@ -111,11 +110,11 @@ class BaseView(View):
       self._add_request_to_obj(request, self.get_object())
     except AttributeError:
       pass
-    try:
-      return super(BaseView, self).dispatch(request, *args, **kwargs)
-    except Exception, e:
-      messages.add_message(request, messages.ERROR, str(e))
-      return HttpResponseRedirect('/')
+    #try:
+    return super(BaseView, self).dispatch(request, *args, **kwargs)
+    #except Exception, e:
+    #  messages.add_message(request, messages.ERROR, str(e))
+    #  return HttpResponseRedirect('/')
 
   def render_to_response(self, context, **response_kwargs):
     context.update(self.settings)
@@ -181,17 +180,18 @@ class LogoutView(BaseView, TemplateView):
 
 
 class ResetPswdView(BaseView, TemplateView):
-  template_name='general/password_reset_form.html'
-  email_template_name='general/password_reset_email.html'
+  template_name='auth/password_reset_form.html'
+  email_template_name='auth/password_reset_email.html'
 
   def get_email_template(self):
-    return os.path.join(self.module_name, self.email_template_name)
+    return self.email_template_name
 
   def render_to_response(self, context, **response_kwargs):
     context.update(self.settings)
     return password_reset(request=self.request,
                           template_name=self.get_template_names(),
                           email_template_name=self.get_email_template(),
+                          from_email=co.ADMIN_EMAIL,
                           post_reset_redirect=reverse_lazy('pswd_reset_done'),
                           extra_context=context)
 
@@ -199,11 +199,12 @@ class ResetPswdView(BaseView, TemplateView):
     return password_reset(request=self.request,
                           template_name=self.get_template_names(),
                           email_template_name=self.get_email_template(),
+                          from_email=co.ADMIN_EMAIL,
                           post_reset_redirect=reverse_lazy('pswd_reset_done'))
 
 
 class ResetPswdConfirmView(BaseView, TemplateView):
-  template_name='general/password_reset_confirm.html'
+  template_name='auth/password_reset_confirm.html'
 
   def render_to_response(self, context, **response_kwargs):
     context.update(self.settings)
@@ -220,7 +221,7 @@ class ResetPswdConfirmView(BaseView, TemplateView):
 
 
 class ResetPswdCompleteView(BaseView, TemplateView):
-  template_name='general/password_reset_complete.html'
+  template_name='auth/password_reset_complete.html'
 
   def render_to_response(self, context, **response_kwargs):
     context.update(self.settings)
@@ -229,7 +230,7 @@ class ResetPswdCompleteView(BaseView, TemplateView):
 
 
 class ResetPswdDoneView(BaseView, TemplateView):
-  template_name='general/password_reset_done.html'
+  template_name='auth/password_reset_done.html'
 
   def render_to_response(self, context, **response_kwargs):
     context.update(self.settings)

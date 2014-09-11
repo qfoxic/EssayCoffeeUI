@@ -1,49 +1,10 @@
-from django.forms import ModelForm, ValidationError, FileField, EmailField
+from django.forms import ModelForm, ValidationError, FileField
 from general.models import Task
-from ftpstorage.models import Upload
-from userprofile.models import UserProfile
 from payments.models import Payment
-from django.contrib.auth.models import Group
 from django.contrib.auth import login, authenticate
+from userprofile.forms import NewProfileForm
 
 import constants as co
-
-
-#TODO. Avoid using that.
-class NewProfileForm(ModelForm):
-  email = EmailField(required=True)
-
-  def __init__(self, group_name=None, request=None, *args, **kwargs):
-    super(NewProfileForm, self).__init__(*args, **kwargs)
-    self.group_name = group_name
-    self.request = request
-
-  class Meta:
-    model = UserProfile
-    #TODO gender temporary disabled.
-    fields = ['username', 'password', 'first_name', 'last_name', 'email',
-              'country', 'phone', 'site']
-
-  def clean_site(self):
-    """Specifies default Host parameter."""
-    return self.request.get_host()
-
-  def clean_email(self):
-    if UserProfile.objects.filter(email=self.request.POST.get('email')):
-      raise ValidationError('Email already exists',
-                                  code='email_exists')
-    return self.request.POST.get('email')
-
-  def clean_password(self):
-    if self.request.POST.get('password') != self.request.POST.get('password2'):
-      raise ValidationError('Passwords do not match.')
-    return self.request.POST.get('password')
-
-  def save(self, commit=True):
-    user = UserProfile.objects.create_user(**self.cleaned_data)
-    user.groups.add(Group.objects.get(name=self.group_name))
-    user.save()
-    return user
 
 
 class BaseForm(ModelForm):
@@ -78,7 +39,7 @@ class TaskForm(BaseForm):
     # send email
     #mail = co.ORDER_MAIL % {'first_name': self.request.user.first_name,
     #                        'domain': co.ADMIN_DOMAIN}
-    # TODO: this is a bug!!!!
+    #
     #    send_mail(co.ORDER_MAIL_SUBJECT, mail, co.ADMIN_EMAIL,
     #              [self.request.user.email]
     return super(TaskForm, self).save(*args, **kwargs)
@@ -155,10 +116,7 @@ class SwitchStatusForm(BaseForm):
   def check_permissions(self, cleaned_data):
     """Raise an exception if user can't perform a status change."""
     user = self.request.user
-    status = int(self.request.POST.get('status'))
-    group = user.get_group()
-    if (group == co.CUSTOMER_GROUP
-        and not co.CheckPermissions(user, self.instance, co.CAN_SUBMIT)):
+    if not co.CheckPermissions(user, self.instance, co.CAN_SUBMIT):
       raise ValidationError('Operation can not be performed.')
 
   def clean_status(self):

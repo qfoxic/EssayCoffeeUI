@@ -2,10 +2,7 @@ from payments.models import Payment
 import json
 import constants as co
 
-#TODO. 1. Add payment_type to payments to all handlers. Just test.
-# Update mysql dump in both projects.
-# add get_payment_status.
-# test update_payment_status.
+
 def update_payment_status(ptype, task):
   status = co.IN_PROCESS
   if ptype == co.LIQPAY:

@@ -51,7 +51,6 @@
         <label class="col-sm-4 control-label">First Name <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="text" name="first_name" class="form-control" required value="{{form.first_name.value|default:''}}">
-		 {# TODO: мінімальна кількість символів 3 шт. та не може містити знаків #}
          {% if form.first_name.errors %}<span class="validation-message">{{form.first_name.errors|striptags}}</span>{% endif %}
         </div>
        </div>
@@ -59,7 +58,6 @@
         <label class="col-sm-4 control-label">Last Name <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="text" name="last_name" class="form-control" required value="{{form.last_name.value|default:''}}">
-		 {# TODO: мінімальна кількість символів 3 шт. та не може містити знаків #}
          {% if form.last_name.errors %}<span class="validation-message">{{form.last_name.errors|striptags}}</span>{% endif %}
         </div>
        </div>
@@ -67,7 +65,6 @@
         <label class="col-sm-4 control-label">Your country <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="text" name="country" class="form-control" required value="{{form.country.value|default:''}}">
-		 {# TODO: мінімальна кількість символів 3 шт. та не може містити знаків #}
          {% if form.country.errors %}<span class="validation-message">{{form.country.errors|striptags}}</span>{% endif %}
         </div>
        </div>
@@ -75,7 +72,6 @@
         <label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="tel" name="phone" class="form-control" required value="{{form.phone.value|default:''}}">
-		 {# TODO: валідатор телефону #}
          {% if form.phone.errors %}<span class="validation-message">{{form.phone.errors|striptags}}</span>{% endif %}
         </div>
        </div>

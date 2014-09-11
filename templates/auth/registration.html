@@ -14,7 +14,7 @@
     <ul class="list-group">
       <li class="list-group-item"><a href="{% url 'login' %}">Log In</a></li>
       <li class="list-group-item active"><a href="{% url 'registration' %}">Registration</a></li>
-      <li class="list-group-item"><a href="{% url 'forgot' %}">Restore Password</a></li>
+      <li class="list-group-item"><a href="{% url 'password-change' %}">Restore Password</a></li>
     </ul>
   </section>
 </div>
@@ -45,7 +45,6 @@
         <label class="col-sm-4 control-label">Login <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="text" name="username" class="form-control" required value="{{form.username.value|default:''}}">
-		 {# TODO: мінімальна кількість символів 4 шт. та не може містити знаків #}
          {% if form.username.errors %}<span class="validation-message">{{form.username.errors|striptags}}</span>{% endif %}
         </div>
        </div>
@@ -53,7 +52,6 @@
         <label class="col-sm-4 control-label">First Name <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="text" name="first_name" class="form-control" required value="{{form.first_name.value|default:''}}">
-		 {# TODO: мінімальна кількість символів 3 шт. та не може містити знаків #}
          {% if form.first_name.errors %}<span class="validation-message">{{form.first_name.errors|striptags}}</span>{% endif %}
         </div>
        </div>
@@ -61,7 +59,6 @@
         <label class="col-sm-4 control-label">Last Name <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="text" name="last_name" class="form-control" required value="{{form.last_name.value|default:''}}">
-		 {# TODO: мінімальна кількість символів 3 шт. та не може містити знаків #}
          {% if form.last_name.errors %}<span class="validation-message">{{form.last_name.errors|striptags}}</span>{% endif %}
         </div>
        </div>
@@ -69,7 +66,6 @@
         <label class="col-sm-4 control-label">Your country <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="text" name="country" class="form-control" required value="{{form.country.value|default:''}}">
-		 {# TODO: мінімальна кількість символів 3 шт. та не може містити знаків #}
          {% if form.country.errors %}<span class="validation-message">{{form.country.errors|striptags}}</span>{% endif %}
         </div>
        </div>
@@ -77,7 +73,6 @@
         <label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="tel" name="phone" class="form-control" required value="{{form.phone.value|default:''}}">
-		 {# TODO: валідатор телефону #}
          {% if form.phone.errors %}<span class="validation-message">{{form.phone.errors|striptags}}</span>{% endif %}
         </div>
        </div>
@@ -94,7 +89,6 @@
         <label class="col-sm-4 control-label">Confirm password <span class="require">*</span></label>
         <div class="col-sm-8">
          <input type="password" name="password2" required class="form-control" value="">
-		 {# TODO: Перевірки на к-ть символів (мін. 4 символів) #}
          {% if form.password.errors %}<span class="validation-message">{{form.password.errors|striptags}}</span>{% endif %}
         </div>
        </div>
@@ -110,9 +104,3 @@
    </div>
    <!-- END MIDDLE LAYOUT -->
 {% endblock %}
-
-
-{% comment %}
- 5. TODO. На пошту не приходить Е-мейл про реєстрацію.
- 6. TODO. Add phone regexp.
-{% endcomment %}

@@ -5,7 +5,6 @@ import constants as co
 
 
 class UserProfile(BaseModel, User):
-  #TODO gender Temporary disabled.
   gender = models.SmallIntegerField(choices=co.GENDER, default=co.MALE, null=True, blank=True)
   #country = models.CharField(choices=co.COUNTRIES, max_length=co.TITLE_MAX_LEN,
   #                           default=co.COUNTRIES[0])
