@@ -485,7 +485,7 @@ ASSIGMENTS = (
 
 
 LEVELS = (
-  (0, 'Select One'),
+  (0, 'Please select'),
   ('hs', 'High School'), ('co', 'College'), ('un', 'University'),
   ('ms', 'Master\'s'), ('ph', 'PHD'))
 
@@ -497,7 +497,7 @@ URGENCY = (
   (2073600, '24+ days'))
 
 
-SPACING = ((0, 'Select One'), (1, 'Single'), (2, 'Double'))
+SPACING = ((0, 'Please select'), (1, 'Single'), (2, 'Double'))
 
 STYLES = (
   (0, 'Please select'),

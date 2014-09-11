@@ -59,16 +59,16 @@ class BaseModel(models.Model):
 class Task(BaseModel):
   paper_title = models.CharField(max_length=co.TITLE_MAX_LEN, validators=[ValidateMinSize(4)])
   discipline = models.CharField(choices=co.DISCIPLINES, max_length=co.TITLE_MAX_LEN,
-                                default=co.DISCIPLINES[0][0], validators=[ValidateEmptySelect])
+                                default=0, validators=[ValidateEmptySelect])
   assigment = models.CharField(choices=co.ASSIGMENTS, max_length=co.TITLE_MAX_LEN,
-                               default=co.ASSIGMENTS[0][0], validators=[ValidateEmptySelect])
-  level = models.CharField(choices=co.LEVELS, max_length=co.TITLE_MAX_LEN, default=co.LEVELS[0][0])
-  urgency = models.IntegerField(choices=co.URGENCY, default=co.URGENCY[0][0],
+                               default=0, validators=[ValidateEmptySelect])
+  level = models.CharField(choices=co.LEVELS, max_length=co.TITLE_MAX_LEN, default=0)
+  urgency = models.IntegerField(choices=co.URGENCY, default=0,
                                validators=[ValidateEmptySelect])
-  spacing = models.SmallIntegerField(choices=co.SPACING, default=co.SPACING[0][0],
+  spacing = models.SmallIntegerField(choices=co.SPACING, default=0,
                                      validators=[ValidateEmptySelect])
   page_number = models.SmallIntegerField()
-  style = models.SmallIntegerField(choices=co.STYLES, default=co.STYLES[0][0],
+  style = models.SmallIntegerField(choices=co.STYLES, default=0,
                                    validators=[ValidateEmptySelect])
   source_number = models.SmallIntegerField(null=True, blank=True, default=1)
   mark = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
