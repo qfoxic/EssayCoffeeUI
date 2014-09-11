@@ -15,14 +15,16 @@
       {% else %}
       <div class="row message-support">
        <div class="col-md-10 col-sm-10 col-xs-10 message">
-        <div class="message-time">{# OR writer #}Support at: {{msg.created}}</div>
+        <div class="message-time">{# OR writer #}Support am at: {{msg.created}}</div>
         <div class="message-subj">{{msg.title}}</div>
         <div class="message-text">{{msg.body}}</div>
        </div>
        <div class="col-md-2 col-sm-2 col-xs-2">
-        <div>{{msg.mowner.username}}</div>
-    {# OR writer: http://genttech.com/essaycoffee/images/thumb-writter-default.png #}
-    <div class="user-avatar"><img src="{{ STATIC_URL }}images/thumb-support-default.png" alt=""></div>
+		 {% if msg.mowner.get_group == co.ADMIN_GROUP %}
+           <div class="user-avatar"><img src="{{ STATIC_URL }}images/thumb-support-default.png" alt=""></div>
+		 {% else %}
+           <div class="user-avatar"><img src="{{ STATIC_URL }}images/thumb-writter-default.png" alt=""></div>
+		 {% endif %}
        </div>
       </div>
       {% endif %}

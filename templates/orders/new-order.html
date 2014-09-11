@@ -16,11 +16,10 @@
 
  <p><b>Please fill out all the required fields below to proceed with your order.<br>
  Provide maximum details about your future paper. This will help us complete it with maximum accuracy.</b></p>
-
  <!-- BEGIN PRICE FORM -->
  <div class="row">
   <div class="col-md-12 col-sm-12">
-   <form action="{% url 'new-order' %}" class="form-horizontal new-order-form-wrapper" method="post">
+   <form action="{% url 'new-order' %}" method="post" class="form-horizontal new-order-form-wrapper" >
 
      {% csrf_token %}
 
@@ -74,7 +73,7 @@
       <div class="col-sm-5">
        <select name="discipline" class="form-control">
          {% for val in co.DISCIPLINES %}
-           <option value="{{val.0}}" {%if form.discipline.value == val.0%}selected{% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+           <option value="{{val.0}}" {%if form.discipline.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
          {% endfor %}
        </select>
        {% if form.discipline.errors %}<span class="validation-message">{{form.discipline.errors|striptags}}</span>{% endif %}
@@ -145,7 +144,7 @@
       <div class="col-sm-5">
        <select name="style" class="form-control">
          {% for val in co.STYLES %}
-           <option value="{{val.0}}" {%if form.style.value == val.0%}selected{% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+           <option value="{{val.0}}" {%if form.style.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
          {% endfor %}
        </select>
        {% if form.style.errors %}<span class="validation-message">{{form.style.errors|striptags}}</span>{% endif %}
