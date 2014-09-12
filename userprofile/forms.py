@@ -13,15 +13,15 @@ class ProfileForm(forms.ModelForm):
                               'Username should contains only characters on lower or upper case.',
                               'invalid')])
   first_name = forms.CharField(min_length=3, validators=[
-    validators.RegexValidator(re.compile('^[\w]+$'),
+    validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'First name should contains only characters on lower or upper case.',
                               'invalid')])
   last_name = forms.CharField(min_length=3, validators=[
-    validators.RegexValidator(re.compile('^[\w]+$'),
+    validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'Last name should contains only characters on lower or upper case.',
                               'invalid')])
   country =  forms.CharField(min_length=3, validators=[
-    validators.RegexValidator(re.compile('^[\w]+$'),
+    validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'Country should contains only characters on lower or upper case.',
                               'invalid')])
   def __init__(self, group_name=None, request=None, *args, **kwargs):
@@ -62,15 +62,15 @@ class EditProfileForm(forms.ModelForm):
                               'Username should contains only characters on lower or upper case.',
                               'invalid')])
   first_name = forms.CharField(min_length=3, validators=[
-    validators.RegexValidator(re.compile('^[\w]+$'),
+    validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'First name should contains only characters on lower or upper case.',
                               'invalid')])
   last_name = forms.CharField(min_length=3, validators=[
-    validators.RegexValidator(re.compile('^[\w]+$'),
+    validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'Last name should contains only characters on lower or upper case.',
                               'invalid')])
   country =  forms.CharField(min_length=3, validators=[
-    validators.RegexValidator(re.compile('^[\w]+$'),
+    validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'Country should contains only characters on lower or upper case.',
                               'invalid')])
   def __init__(self, user_id=None, request=None, *args, **kwargs):
