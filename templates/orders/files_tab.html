@@ -1,5 +1,6 @@
 <div class="tab-pane {% if request.GET.files %}active{% endif %}" id="files">
    <!-- Begin If no files found CODE -->
+   {% if perm.can_upload %}
    <form action="{% url 'order-upload' order.pk %}" class="form-horizontal">
     <div class="form-group">
      <label class="col-sm-3 control-label">No files found</label>
@@ -8,6 +9,7 @@
      </div>
     </div>
    </form>
+   {% endif %}
    <!-- End If no files found CODE -->
    <!-- Begin If files uploaded -->
    <br><br>
@@ -35,6 +37,8 @@
      </tbody>
     </table>
    </div>
+   {% if perm.can_upload %}
    <a class="btn btn-default" data-toggle="modal" data-target="#modalUploadFile">Upload file</a>
+   {% endif %}
    <!-- End If files uploaded -->
   </div><!-- End Files Tab -->

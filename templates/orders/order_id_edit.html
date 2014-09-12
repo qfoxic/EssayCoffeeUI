@@ -7,8 +7,10 @@
  <a href="{% url 'my-orders' %}">My Orders</a>
  <span class="separator"><i class="fa fa-angle-right"></i></span>
  <a href="{% url 'order-id' order.pk %}" class="active">#{{order.pk}}</a>
+ {% if perm.can_edit %}
  <span class="separator"><i class="fa fa-angle-right"></i></span>
  <a href="{% url 'order-id-edit' order.pk %}" class="active">edit</a>
+ {% endif %}
 </div>
 {% endblock %}
 

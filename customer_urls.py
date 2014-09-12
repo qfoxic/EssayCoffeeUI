@@ -9,7 +9,7 @@ from msgs.views import CreateMsgView, RemoveMsgView, ListMsgsView,DetailMsgView
 from ftpstorage.views import UploadFileView,RemoveUploadView
 from ftpstorage.views import DownloadFileView
 from general.views import LoginView, LogoutView, ResetPswdView, StaticHtmlView
-from general.views import ResetPswdDoneView, ResetPswdConfirmView, ResetPswdCompleteView
+from general.views import ResetPswdDoneView, ResetPswdConfirmView, ResetPswdCompleteView, UpdatePswdView, UpdatePswdDoneView
 
 from userprofile.views import CreateProfileView, UpdateProfileView
 
@@ -24,7 +24,7 @@ msg_detail = login_required(DetailMsgView.as_view(module_name='customer'), login
 upload_file = login_required(UploadFileView.as_view(module_name='customer'), login_url=reverse_lazy('login'))
 upload_rm = login_required(RemoveUploadView.as_view(module_name='customer'), login_url=reverse_lazy('login'))
 upload_download = login_required(DownloadFileView.as_view(), login_url=reverse_lazy('login'))
-user_new = CreateProfileView.as_view(module_name='customer',
+user_new = CreateProfileView.as_view(module_name='customer', non_login_required=True,
                                      group_name=co.CUSTOMER_GROUP)
 user_edit = login_required(UpdateProfileView.as_view(module_name='customer',  owner_required=True),
                            login_url=reverse_lazy('login'))
@@ -55,8 +55,6 @@ urlpatterns = patterns('',
                                           name='faq'),
     url(r'^contact/$', StaticPageView.as_view(module_name='customer', template_name='contact.html'),
                                               name='contact'),
-	
-	# 								  
     url(r'^terms-conditions/$', StaticPageView.as_view(module_name='customer', template_name='terms-conditions.html'),
                                               name='terms-conditions'),
     url(r'^cookie-policy/$', StaticPageView.as_view(module_name='customer', template_name='cookie-policy.html'),
@@ -75,24 +73,19 @@ urlpatterns = patterns('',
                                               name='revisions-policy'),
     url(r'^disclaimer/$', StaticPageView.as_view(module_name='customer', template_name='disclaimer.html'),
                                               name='disclaimer'),
-											  
-											  
     # Auth
     url(r'^registration/$', user_new, name='registration'),
-    url(r'^login/$', LoginView.as_view(module_name='customer'), name='login'),
+    url(r'^login/$', LoginView.as_view(module_name='customer', non_login_required=True), name='login'),
     url(r'^logout/$', LogoutView.as_view(module_name='customer'), name='logout'),
-
     # Account
     url(r'^profile/(?P<pk>\d+)/$', user_edit, name='my-account'),
     url(r'^profile/(?P<pk>\d+)/edit$', user_edit, name='my-account-edit'),
-    url(r'^password-change/$', ResetPswdView.as_view(module_name='customer'), name='forgot'),
-    url(r'^resetdone/$', ResetPswdDoneView.as_view(module_name='customer'), name='pswd_reset_done'),
-    url(r'^resetconfirm/(?P<uidb64>.*)/(?P<token>.*)$', ResetPswdConfirmView.as_view(module_name='customer'), name='pswd_reset_confirm'),
-    url(r'^resetcomplete/$', ResetPswdCompleteView.as_view(module_name='customer'), name='pswd_reset_complete'),
-    url(r'^password-change/$', StaticPageView.as_view(module_name='customer',
-                                                   template_name='password-change.html'),
-                                                   name='password-change'),
-
+    url(r'^forgot/$', ResetPswdView.as_view(module_name='customer', non_login_required=True), name='forgot'),
+    url(r'^resetdone/$', ResetPswdDoneView.as_view(module_name='customer', non_login_required=True), name='pswd_reset_done'),
+    url(r'^resetconfirm/(?P<uidb64>.*)/(?P<token>.*)$', ResetPswdConfirmView.as_view(module_name='customer', non_login_required=True), name='pswd_reset_confirm'),
+    url(r'^resetcomplete/$', ResetPswdCompleteView.as_view(module_name='customer', non_login_required=True), name='pswd_reset_complete'),
+    url(r'^password-change/$', UpdatePswdView.as_view(module_name='customer'), name='password-change'),
+    url(r'^change-done/$', UpdatePswdDoneView.as_view(module_name='customer'), name='password-change-done'),
     # Orders
     url(r'^orders/$', task_list, name='my-orders'),
     url(r'^order/new/$', task_new, name='new-order'),
@@ -100,12 +93,9 @@ urlpatterns = patterns('',
     url(r'^order/(?P<pk>\d+)/edit/$', task_update, name='order-id-edit'),
     url(r'^order/(?P<pk>\d+)/buy/$', task_status, name='order-id-buy'),
     url(r'^order/(?P<pk>\d+)/delete/$', task_rm, name='order-id-delete'),
-
     url(r'^upload/(?P<task_id>\d+)/new/$', upload_file, name='order-upload'),
     url(r'^upload/(?P<pk>\d+)/download/$', upload_download, name='order-upload-download'),
-
     url(r'^msg/(?P<task_id>\d+)/new$', msg_add, name='order-msg-new'),
-
     url(r'^html/(?P<path>.*)$', StaticHtmlView.as_view(), name='html'),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve'),
 )

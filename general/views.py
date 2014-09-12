@@ -2,7 +2,7 @@ import tempfile
 
 from django.views.generic import TemplateView, View
 from django.views.generic import ListView
-from django.contrib.auth.views import login, logout, password_reset
+from django.contrib.auth.views import login, logout, password_reset, password_change
 from django.contrib.auth.views import password_reset_done, password_reset_confirm, password_reset_complete
 from django.core.urlresolvers import reverse_lazy
 from django.core.exceptions import PermissionDenied
@@ -67,6 +67,7 @@ class BaseView(View):
   allowed_groups = [] # For these groups owner won't be checked.
   action_label = 'all'
   group_name = ''
+  non_login_required = False
 
   def __init__(self, **kwargs):
     super(BaseView, self).__init__(**kwargs)
@@ -103,6 +104,8 @@ class BaseView(View):
     return super(BaseView, self).form_valid(form)
 
   def dispatch(self, request, *args, **kwargs):
+    if request.user.is_authenticated() and self.non_login_required:
+        raise Http404
     if self.owner_required:
       self._owner_required(request.user, self.user_id())
     self._check_permissions()
@@ -110,11 +113,11 @@ class BaseView(View):
       self._add_request_to_obj(request, self.get_object())
     except AttributeError:
       pass
-    #try:
-    return super(BaseView, self).dispatch(request, *args, **kwargs)
-    #except Exception, e:
-    #  messages.add_message(request, messages.ERROR, str(e))
-    #  return HttpResponseRedirect('/')
+    try:
+      return super(BaseView, self).dispatch(request, *args, **kwargs)
+    except Exception, e:
+      messages.add_message(request, messages.ERROR, str(e))
+      return HttpResponseRedirect('/')
 
   def render_to_response(self, context, **response_kwargs):
     context.update(self.settings)
@@ -201,6 +204,32 @@ class ResetPswdView(BaseView, TemplateView):
                           email_template_name=self.get_email_template(),
                           from_email=co.ADMIN_EMAIL,
                           post_reset_redirect=reverse_lazy('pswd_reset_done'))
+
+
+class UpdatePswdDoneView(BaseView, TemplateView):
+  template_name='auth/password_update_done.html'
+
+  def render_to_response(self, context, **response_kwargs):
+    context.update(self.settings)
+    return password_reset_done(request=self.request,
+                               template_name=self.get_template_names(),
+                               extra_context=context)
+
+
+class UpdatePswdView(BaseView, TemplateView):
+  template_name='auth/password_update_form.html'
+
+  def render_to_response(self, context, **response_kwargs):
+    context.update(self.settings)
+    return password_change(request=self.request,
+                           template_name=self.template_name,
+                           post_change_redirect=reverse_lazy('password-change-done'),
+                           extra_context=context)
+
+  def post(self, *args, **kwargs):
+    return password_change(request=self.request,
+                           template_name=self.template_name,
+                           post_change_redirect=reverse_lazy('password-change-done'))
 
 
 class ResetPswdConfirmView(BaseView, TemplateView):

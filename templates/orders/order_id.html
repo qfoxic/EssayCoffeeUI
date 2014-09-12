@@ -163,8 +163,12 @@
    </div>
 
    <div class="row text-center order-actions">
-    <a href="{% url 'order-id-delete' order.pk %}" class="btn btn-default" data-toggle="modal" data-target="#modalDelete">Delete</a> 
-    <a href="{% url 'order-id-edit' order.pk %}" class="btn btn-default">Edit</a>
+    {% if perm.can_delete %}
+      <a href="{% url 'order-id-delete' order.pk %}" class="btn btn-default" data-toggle="modal" data-target="#modalDelete">Delete</a>
+    {% endif %}
+    {% if perm.can_edit %}
+      <a href="{% url 'order-id-edit' order.pk %}" class="btn btn-default">Edit</a>
+    {% endif %}
     <a href="{% url 'order-id-buy' order.pk %}" class="btn btn-primary">Pay now ({{order.get_price}}$)</a>
    </div>
   </div><!-- End Details Tab -->

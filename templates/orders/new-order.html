@@ -20,31 +20,28 @@
  <div class="row">
   <div class="col-md-12 col-sm-12">
    <form action="{% url 'new-order' %}" method="post" class="form-horizontal new-order-form-wrapper" >
-
      {% csrf_token %}
-
     <div class="price-form">
      <ul class="nav nav-tabs margin10353530" role="tablist">
       <li class="active"><a href="#paper_details" role="tab" data-toggle="tab">Paper details</a></li>
      </ul>
-  
      {% comment %}
-     TODO. Add multiple forms error handling.
-     
-     {{form.non_field_errors}}
-     {% if form.non_field_errors %}
+     {% if form.errors %}
         {% for error in form.non_field_errors %}
           <span class="validation-message">{{error|striptags}}</span>
         {% endfor %}
      {% endif %}
      {% endcomment %}
-  
      <div class="form-group {% if form.level.errors %}has-error{% endif %}">
       <label class="col-sm-5 control-label">Academic Level</label>
       <div class="col-sm-5">
        <select name="level" class="form-control">
          {% for val in co.LEVELS %}
-           <option value="{{val.0}}" {%if form.level.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+           {% if forloop.first %}
+             <option value="{{val.0}}" {% if not form.level.value %}selected {% endif %} disabled>{{val.1}}</option>
+           {% else %}
+             <option value="{{val.0}}" {% if form.level.value == val.0 %}selected{% endif %}>{{val.1}}</option>
+           {% endif %}
          {% endfor %}
        </select>
        {% if form.level.errors %}<span class="validation-message">{{form.level.errors|striptags}}</span>{% endif %}
@@ -55,7 +52,11 @@
       <div class="col-sm-5">
        <select name="spacing" class="form-control">
          {% for val in co.SPACING %}
-           <option value="{{val.0}}" {%if form.spacing.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+           {% if forloop.first %}
+             <option value="{{val.0}}" {% if not form.spacing.value %}selected {% endif %} disabled>{{val.1}}</option>
+           {% else %}
+             <option value="{{val.0}}" {% if form.spacing.value == val.0 %}selected{% endif %}>{{val.1}}</option>
+           {% endif %}
          {% endfor %}
        </select>
        {% if form.spacing.errors %}<span class="validation-message">{{form.spacing.errors|striptags}}</span>{% endif %}
@@ -73,7 +74,11 @@
       <div class="col-sm-5">
        <select name="discipline" class="form-control">
          {% for val in co.DISCIPLINES %}
-           <option value="{{val.0}}" {%if form.discipline.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+           {% if forloop.first %}
+             <option value="{{val.0}}" {% if not form.discipline.value %}selected {% endif %} disabled>{{val.1}}</option>
+           {% else %}
+             <option value="{{val.0}}" {% if form.discipline.value == val.0 %}selected{% endif %}>{{val.1}}</option>
+           {% endif %}
          {% endfor %}
        </select>
        {% if form.discipline.errors %}<span class="validation-message">{{form.discipline.errors|striptags}}</span>{% endif %}
@@ -91,7 +96,11 @@
       <div class="col-sm-5">
        <select name="assigment" class="form-control">
          {% for val in co.ASSIGMENTS %}
-           <option value="{{val.0}}" {%if form.assigment.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+           {% if forloop.first %}
+             <option value="{{val.0}}" {% if not form.assigment.value %}selected {% endif %} disabled>{{val.1}}</option>
+           {% else %}
+             <option value="{{val.0}}" {% if form.assigment.value == val.0 %}selected{% endif %}>{{val.1}}</option>
+           {% endif %}
          {% endfor %}
        </select>
        {% if form.assigment.errors %}<span class="validation-message">{{form.assigment.errors|striptags}}</span>{% endif %}
@@ -144,7 +153,11 @@
       <div class="col-sm-5">
        <select name="style" class="form-control">
          {% for val in co.STYLES %}
-           <option value="{{val.0}}" {%if form.style.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+           {% if forloop.first %}
+             <option value="{{val.0}}" {% if not form.style.value %}selected {% endif %} disabled>{{val.1}}</option>
+           {% else %}
+             <option value="{{val.0}}" {% if form.style.value == val.0 %}selected{% endif %}>{{val.1}}</option>
+           {% endif %}
          {% endfor %}
        </select>
        {% if form.style.errors %}<span class="validation-message">{{form.style.errors|striptags}}</span>{% endif %}
@@ -176,7 +189,11 @@
       <div class="col-sm-5">
        <select name="urgency" class="form-control">
          {% for val in co.URGENCY %}
-           <option value="{{val.0}}" {%if form.urgency.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+           {% if forloop.first %}
+             <option value="{{val.0}}" {% if not form.urgency.value %}selected {% endif %} disabled>{{val.1}}</option>
+           {% else %}
+             <option value="{{val.0}}" {% if form.urgency.value == val.0 %}selected{% endif %}>{{val.1}}</option>
+           {% endif %}
          {% endfor %}
        </select>
        {% if form.urgency.errors %}<span class="validation-message">{{form.urgency.errors|striptags}}</span>{% endif %}
