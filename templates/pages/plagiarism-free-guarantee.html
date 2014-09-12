@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+
+{% block head_meta %}<meta name="robots" content="nofollow" />{% endblock %}
+
+{% block meta_title %}Plagiarism-Free Guarantee{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block meta_keywords %}{% endblock %}
+
+{% block breadcrump %}
+<div class="breadcrumbs">
+	<a href="{% url 'home' %}">Home</a>
+	<span class="separator"><i class="fa fa-angle-right"></i></span>
+	<a href="{% url 'plagiarism-free-guarantee' %}" class="active">Plagiarism-Free Guarantee</a>
+</div>
+{% endblock %}
+			
+{% block content %}
+<!-- BEGIN MIDDLE LAYOUT -->
+
+<div id="layout-middle" class="col-md-9 col-sm-9 content-page">
+
+	<h1 class="page-title margin-top">Plagiarism-Free Guarantee</h1>
+	
+	<section>
+		<p>At <strong>EssayCoffee.com</strong>, we check each paper for plagiarism before returning it to our customers in order to be sure of the originality of our writers' work. Each paper is checked for uniqueness using specially designed plagiarism detection software. We constantly upgrade this software to make certain it provides the most reliable results. Because of this, as a reputable academic assistance company, we guarantee each piece of writing is free of plagiarism against on-line based sources, all sample- or free-paper databases, and all work ever checked by our own software.</p>
+		<p>If you have any doubt regarding the originality of the piece you receive from our company, we are glad to investigate the issue and revise the suspect content free of charge. In the case of a dispute due to plagiarism detected in a paper our writer has completed, we only accept a scanned version of the plagiarism report from either <a href="http://turnitin.com" class="more" target="_blank">turnitin.com</a> itself, or your professor or university. No other document can serve as valid proof that the paper is plagiarized.</p>
+		<p>With good reason, <strong>EssayCoffee.com</strong> has earned the reputation of a reliable and trustworthy company. Our repeat customers are the best proof that <strong>EssayCoffee.com</strong> is a top-quality writing service to which it is possible to entrust one's academic career. You can be sure that our Plagiarism-Free Guarantee is not something we would jeopardize by putting our customers' trust and loyalty at risk.</p>
+	</section>
+</div>
+<!-- END MIDDLE LAYOUT -->
+
+<!-- BEGIN LEFT SIDEBAR LAYOUT -->
+<div id="layout-left" class="col-md-3 col-sm-12">
+	{% include 'html/sidebar-left.html' %}
+</div>
+<!-- END LEFT SIDEBAR LAYOUT -->
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+
+{% block head_meta %}<meta name="robots" content="nofollow" />{% endblock %}
+
+{% block meta_title %}Revision Policy{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block meta_keywords %}{% endblock %}
+
+{% block breadcrump %}
+<div class="breadcrumbs">
+	<a href="{% url 'home' %}">Home</a>
+	<span class="separator"><i class="fa fa-angle-right"></i></span>
+	<a href="{% url 'revisions-policy' %}" class="active">Revision Policy</a>
+</div>
+{% endblock %}
+			
+{% block content %}
+<!-- BEGIN MIDDLE LAYOUT -->
+
+<div id="layout-middle" class="col-md-9 col-sm-9 content-page">
+
+	<h1 class="page-title margin-top">Revision Policy</h1>
+	
+	<section>
+		<p>At <strong>EssayCoffee.com</strong>, we take pride in providing high-quality academic assistance. We are always ready to revise your paper if it does not entirely meet your expectations. We will revise your paper free of charge if your revision request follows our main terms:</p>
+		<ul class="red-bullets">
+			<li>INSTRUCTIONS: Your revision directions should <strong>remain the same</strong> and not conflict with your initial instructions.</li>
+			<li>SUBMISSION: You must submit <strong>your request for revision using the request revision</strong> button on your personal order page.</li>
+			<li>DEADLINE: You can request a revision at any time before approving your order, but you have <strong>only 7 days after the order is initially approved</strong> to request a revision.</li>
+		</ul>
+		<p>If you require significant alternations to the original order or request a revision <strong>7 days</strong> after an order is approved, you will have to pay an extra fee. Contact our operators for an estimate.</p>
+		<p>For orders with the Progressive Delivery feature (most frequently full Thesis or Dissertation orders) the deadline for a revision request is limited to <strong>21 days</strong> after initial approval.</p>
+		<p>Please note that we hold the rights to extend the deadline for revision as per the writer’s request in cases, when the time frame you have initially paid for allows such extension.</p>
+	</section>
+</div>
+<!-- END MIDDLE LAYOUT -->
+
+<!-- BEGIN LEFT SIDEBAR LAYOUT -->
+<div id="layout-left" class="col-md-3 col-sm-12">
+	{% include 'html/sidebar-left.html' %}
+</div>
+<!-- END LEFT SIDEBAR LAYOUT -->
+{% endblock %}

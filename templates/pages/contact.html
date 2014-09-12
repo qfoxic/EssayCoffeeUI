@@ -1,5 +1,7 @@
 {% extends 'index.html' %}
 
+{% block meta_title %}Contact us{% endblock %}
+
 {% block breadcrump %}
 <div class="breadcrumbs">
 	<a href="{% url 'home' %}">Home</a>
@@ -39,19 +41,22 @@
 
 <!-- BEGIN LEFT SIDEBAR LAYOUT -->
 <div id="layout-left" class="col-md-3 col-sm-9">
+	{% comment %}
 	<address>
 		<h3>Our location</h3>
 		795 Park Ave, Suite 120<br>
 		San Francisco, CA 94107<br>
 		<abbr title="Phone">P:</abbr> (234) 145-1810
 	</address>
+	{% endcomment %}
 
 	<address>
 		<strong>Email</strong>
-		<a href="mailto:info@email.com">info@email.com</a><br>
-		<a href="mailto:support@example.com">support@example.com</a>
+		<a href="mailto:support@essaycoffee.com">support@essaycoffee.com</a><br>
+		<a href="mailto:info@essaycoffee.com">info@essaycoffee.com</a>
 	</address>
 
+	{% comment %}
 	<section class="sibebar-section">
 		<ul class="social-icons">
 			<li><a href="#" title="Facebook" class="facebook"></a></li>
@@ -61,6 +66,7 @@
 			<li><a href="#" title="RSS" class="rss"></a></li>
 		</ul>
 	</section>
+	{% endcomment %}
 
 	<section id="sidebar-about" class="sibebar-section">
 		<h3>About Us</h3>

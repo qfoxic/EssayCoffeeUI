@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+
+{% block head_meta %}<meta name="robots" content="nofollow" />{% endblock %}
+
+{% block meta_title %}Director's Notice On Social Responsibility{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block meta_keywords %}{% endblock %}
+
+{% block breadcrump %}
+<div class="breadcrumbs">
+	<a href="{% url 'home' %}">Home</a>
+	<span class="separator"><i class="fa fa-angle-right"></i></span>
+	<a href="{% url 'social-responsibility-notice' %}" class="active">Director's Notice On Social Responsibility</a>
+</div>
+{% endblock %}
+			
+{% block content %}
+<!-- BEGIN MIDDLE LAYOUT -->
+
+<div id="layout-middle" class="col-md-9 col-sm-9 content-page">
+
+	<h1 class="page-title margin-top">Director's Notice On Social Responsibility</h1>
+	
+	<section>
+		<p>Dear customers and visitors to our website.</p>
+		<p>As a business, we are not only responsible to our customers and writers to fulfill our main business functions, but must also adhere to established general social morals and tenets.</p>
+		<p>While we cannot provide guarantees against misuse of any research material we produce, or effectively protect infringement of our writers’ copyrights, we can certainly raise our service to a higher level where social responsibility and compliance with academic rules are concerned.</p>
+		<p>As a first step, we have identified subjects and fields of study where misuse of research material by the customer could possibly lead to a fake or unearned degree. We have also acknowledged situations where primary human rights, life and health might directly depend on the decisions of our customers, in real-world professional situations.</p>
+		<p>We believe these areas include:</p>
+		<ul class="red-bullets">
+			<li>Engineering</li>
+			<li>Civil Engineering</li>
+			<li>Criminology and Criminal Law</li>
+			<li>Criminal Justice</li>
+			<li>Medicine</li>
+			<li>Medical Sciences (Anatomy, Physiology, Pharmacology etc.)</li>
+			<li>Nursing</li>
+			<li>Aviation</li>
+			<li>Health Care</li>
+			<li>Architecture, Building and Planning</li>
+		</ul>
+		<p>* This list will be further developed and additional disciplines might be added.</p>
+		<p>To affect or ensure academic integrity in these areas on our side, if an order falls under the policy, we resign such an order and issue a full refund.</p>
+		<blockquote>
+		<p><strong>THIS POLICY DOES NOT APPLY TO SUBJECTS OTHER THAN MEDICINE and similar (as listed above).</strong></p>
+
+		</blockquote>
+		
+	</section>
+</div>
+<!-- END MIDDLE LAYOUT -->
+
+<!-- BEGIN LEFT SIDEBAR LAYOUT -->
+<div id="layout-left" class="col-md-3 col-sm-12">
+	{% include 'html/sidebar-left.html' %}
+</div>
+<!-- END LEFT SIDEBAR LAYOUT -->
+{% endblock %}

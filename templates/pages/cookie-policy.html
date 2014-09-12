@@ -1,0 +1,71 @@
+{% extends 'index.html' %}
+
+{% block head_meta %}<meta name="robots" content="nofollow" />{% endblock %}
+
+{% block meta_title %}Cookie Policy{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block meta_keywords %}{% endblock %}
+
+{% block breadcrump %}
+<div class="breadcrumbs">
+	<a href="{% url 'home' %}">Home</a>
+	<span class="separator"><i class="fa fa-angle-right"></i></span>
+	<a href="{% url 'cookie-policy' %}" class="active">Cookie Policy</a>
+</div>
+{% endblock %}
+			
+{% block content %}
+<!-- BEGIN MIDDLE LAYOUT -->
+
+<div id="layout-middle" class="col-md-9 col-sm-9 content-page">
+
+	<h1 class="page-title margin-top">The Cookie Policy</h1>
+	
+	<section>
+		<h4>About Cookies</h4>
+		<p>Cookies are text files which are stored on your computer or any other device that has Internet access, by a browser every time you visit a web site.</p>
+		<p>Cookies help us to fit the web site to the needs of our visitors and thus, to enhance your user experience on our web site. Cookies make your use of the web-site more convenient; for example, they enable you to stay logged into our web site for a period of time.</p>
+		<p>If you do not wish us to collect or send cookies from or to your computer, you can manage or delete them. However, if you disable cookies, we can not guarantee that our web site will function properly on your computer.</p>
+	</section>
+	
+	<section>
+		<h4>What Cookies We Use.</h4>
+		<p>We use both session and persistent cookies.</p>
+		<p>Session cookies are temporary files stored only until you close your browser. They help our web site to remember your activity on the previous page, for example, when you are making an order for the first time.</p>
+		<p>Persistent cookies are long term. They remain on your device for a period of time after you close your browser.</p>
+	</section>
+	
+	<section>
+		<h4>How We Use Cookies.</h4>
+		<p>We use cookies in our order forms. If cookies are disabled, you will not be able to apply for our services.</p>
+		<ul class="red-bullets">
+			<li>To remember that you are in the process of making an order.</li>
+			<li>To remember that you are signed into our web site.</li>
+			<li>To track your use of our online plagiarism checker.</li>
+		</ul>
+		<p>In order to improve your user experience, we also use cookies:</p>
+		<ul class="red-bullets">
+			<li>To provide you with support through Live Chat.</li>
+			<li>To track your activity via Google Analytics.</li>
+		</ul>
+	</section>
+	
+	<section>
+		<h4>How We Work with Third Parties.</h4>
+		<p>We only use cookies in the case when you need to complete a transaction when paying for an order or services.</p>
+		<p>We do NOT distribute your personal information to any third party uninvolved in the process of placing, completing and delivering an order.</p>
+	</section>
+	
+	<section>
+		<h4>Managing Cookies.</h4>
+		<p>If cookies are disabled on your computer, we cannot guarantee that our web site will function correctly and you might not get the best of your browsing experience. Otherwise, if you wish to block or restrict cookies, you can do so in browser settings. The help function in the menu of your preferred browser will help you in this.</p>
+	</section>
+</div>
+<!-- END MIDDLE LAYOUT -->
+
+<!-- BEGIN LEFT SIDEBAR LAYOUT -->
+<div id="layout-left" class="col-md-3 col-sm-12">
+	{% include 'html/sidebar-left.html' %}
+</div>
+<!-- END LEFT SIDEBAR LAYOUT -->
+{% endblock %}

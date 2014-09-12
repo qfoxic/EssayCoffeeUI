@@ -3,8 +3,9 @@
   <head>
   <meta charset="utf-8">
   <meta http-equiv="Cache-Control" content="no-cache">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block head_meta %}{% endblock %} 
+  
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -32,7 +33,9 @@
   <script src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script>
   <script src="{{ STATIC_URL }}js/jquery.slimscroll.js"></script>
   <script src="{{ STATIC_URL }}js/theme_scripts.js"></script>
-  {% block page_title %}<title>Index</title>{% endblock %}
+  <title>{% block meta_title %}Index{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Index{% endblock %}" />
+  <meta name="keywords" content="{% block meta_keywords %}Index{% endblock %}" />
 </head>
   <body>
     <div class="wrap">

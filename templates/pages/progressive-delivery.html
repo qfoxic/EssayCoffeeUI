@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+
+{% block head_meta %}<meta name="robots" content="nofollow" />{% endblock %}
+
+{% block meta_title %}Progressive Delivery{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block meta_keywords %}{% endblock %}
+
+{% block breadcrump %}
+<div class="breadcrumbs">
+	<a href="{% url 'home' %}">Home</a>
+	<span class="separator"><i class="fa fa-angle-right"></i></span>
+	<a href="{% url 'progressive-delivery' %}" class="active">Progressive Delivery</a>
+</div>
+{% endblock %}
+			
+{% block content %}
+<!-- BEGIN MIDDLE LAYOUT -->
+
+<div id="layout-middle" class="col-md-9 col-sm-9 content-page">
+
+	<h1 class="page-title margin-top">Progressive Delivery</h1>
+	
+	<section>
+		<p><strong>Progressive Delivery is an outstanding service launched by our company to manage large or complex orders, and to keep clients updated about the progress of work in hand.</strong></p>
+		<h4>The <strong>advantages</strong> are:</h4>
+		<ol class="red-bullets">
+			<li>You can have your academic <strong>paper delivered gradually</strong>, as our writer progresses;</li>
+			<li>You do not have to pay the whole amount for your thesis or dissertation at once. Your <strong>payment is broken down</strong> into several affordable installments;</li>
+			<li>You have a <strong>personal manager</strong> responsible for your order, who constantly informs you of the progress of your assignment;</li>
+			<li>We provide you with a <strong>personal schedule</strong> that saves your time, and lets you know exactly when your work will be delivered;</li>
+			<li>We <strong>revise</strong> your paper <strong>free of charge</strong> within 21 days after the first order’s approval.</li>
+		</ol>
+		<p>This method of managing orders was created after a thorough examination of our customers’ needs and the academic writing market in general. Since fraudulent practice has been found within the industry, we want you to feel secure with us.</p>
+	</section>
+	
+	<section>
+		<h4>Progressive Delivery gives you a chance to:</h4>
+		<ul class="red-bullets">
+			<li><strong>minimize the risk</strong> of getting a low quality paper;</li>
+			<li><strong>avoid major revisions</strong>, because you receive it stage by stage;</li>
+			<li><strong>avoid investing money</strong> in a paper you cannot observe being completed.</li>
+		</ul>
+	</section>
+	
+	<section>
+		<h4>How much does it <strong>cost</strong> and how can you order it?</h4>
+		<p>Our Progressive Delivery service costs <strong>only 10% more</strong> than the original price of your paper. To include this feature, simply check the "Progressive Delivery" box in your order form and get an instant quote.</p>
+	</section>
+	
+	<section>
+		<h4><strong>Limitations:</strong></h4>
+		<p>Please note there are some limitations to this feature - it is not applicable on orders with deadlines from 8 hours to 3 days and/or a total value of less than $200, but is mandatory for papers with a deadline that exceeds or equals 7-10 days and a total price over $600.</p>
+	</section>
+</div>
+<!-- END MIDDLE LAYOUT -->
+
+<!-- BEGIN LEFT SIDEBAR LAYOUT -->
+<div id="layout-left" class="col-md-3 col-sm-12">
+	{% include 'html/sidebar-left.html' %}
+</div>
+<!-- END LEFT SIDEBAR LAYOUT -->
+{% endblock %}
