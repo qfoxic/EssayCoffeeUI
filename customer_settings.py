@@ -25,10 +25,10 @@ SESSION_COOKIE_NAME = 'sessc'
 #CSRF_COOKIE_DOMAIN = '.customers.yourseller.net'
 #SESSION_COOKIE_DOMAIN = '.customers.yourseller.net'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False 
+DEBUG = True 
 
 
-TEMPLATE_DEBUG = False 
+TEMPLATE_DEBUG = True 
 
 ALLOWED_HOSTS = []
 
@@ -97,7 +97,7 @@ DATABASES = {
         'NAME': 'transport',
         'USER': 'transport',
         'PASSWORD': 'Secret677',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }

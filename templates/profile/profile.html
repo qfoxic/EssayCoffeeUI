@@ -11,7 +11,7 @@
 <div class="breadcrumbs">
   <a href="{% url 'home' %}">Home</a>
   <span class="separator"><i class="fa fa-angle-right"></i></span>
-  <a href="{% url 'user_edit' request.user.pk %}" class="active">Account</a>
+  <a href="{% url 'my-account-edit' request.user.pk %}" class="active">Account</a>
 </div>
 {% endblock %}
 
@@ -31,7 +31,7 @@
    <div id="layout-middle" class="col-md-9 col-sm-9">
     <h1 class="page-title">Update an account</h1>
     <div class="col-md-8 col-sm-8">
-     <form action="{% url 'user_edit' request.user.pk %}" method="post" id="registration-form" class="form-horizontal">
+     <form action="{% url 'my-account-edit' request.user.pk %}" method="post" id="registration-form" class="form-horizontal">
        {% csrf_token %}
       <fieldset>
        <legend>Your personal details</legend>
