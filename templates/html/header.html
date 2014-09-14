@@ -16,8 +16,8 @@
 				<li><a href="{% url 'my-orders' %}">My Orders</a></li>
 				<li><a href="{% url 'logout' %}">Exit</a></li>
 			  {% else %}
-				<li><a href="{% url 'login' %}">Log In</a></li>
-				<li><a href="{% url 'registration' %}">Registration</a></li>
+				<li><a href="{% url 'login' %}" rel="nofollow">Log In</a></li>
+				<li><a href="{% url 'registration' %}" rel="nofollow">Registration</a></li>
 			  {% endif %}
 			</ul>
 
