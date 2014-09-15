@@ -26,12 +26,18 @@ Administration
 NEW_PROFILE_SUBJECT = 'Thanks for registering.'
 ORDER_MAIL_SUBJECT = 'Thanks for ordering.'
 
-EMAIL_HOST = 'smtp.ukr.net'
-EMAIL_HOST_PASSWORD = 'QAZqaz1983'
-EMAIL_HOST_USER = 'workforum@ukr.net'
+#EMAIL_HOST = 'smtp.ukr.net'
+#EMAIL_HOST_PASSWORD = 'QAZqaz1983'
+#EMAIL_HOST_USER = 'workforum@ukr.net'
+#EMAIL_PORT = 465
+
+EMAIL_HOST = 'email-smtp.us-west-2.amazonaws.com'
+EMAIL_HOST_PASSWORD = 'ArjbUpVfD8Slt91OAy11bInlmzcIH+NJUxYe8jz/LVvr'
+EMAIL_HOST_USER = 'AKIAILRHCFXQWXJEGIVA'
 EMAIL_PORT = 465
 
-ADMIN_EMAIL = 'workforum@ukr.net'#'no-reply@essaycoffee.com'
+#ADMIN_EMAIL = 'workforum@ukr.net'#'no-reply@essaycoffee.com'
+ADMIN_EMAIL = 'no-reply@essaycoffee.com'
 ADMIN_DOMAIN = 'www.essaycoffee.com'
 
 # Settings related variables.

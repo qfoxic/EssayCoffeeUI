@@ -78,7 +78,8 @@
        <div class="form-group {% if form.phone.errors %} has-error {% endif %}" title="{{form.phone.errors|striptags}}">
         <label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
         <div class="col-sm-8">
-         <input type="tel" name="phone" class="form-control" required value="{{form.phone.value|default:''}}">
+          <label class="col-sm-4 control-label">+1 </label>
+		  <input type="tel" name="phone" class="form-control" required value="{{form.phone.value|default:''}}">
          {% if form.phone.errors %}<span class="validation-message">{{form.phone.errors|striptags}}</span>{% endif %}
         </div>
        </div>
@@ -109,4 +110,4 @@
     </div>
    </div>
    <!-- END MIDDLE LAYOUT -->
-{% endblock %}
+{% endblock %}s
