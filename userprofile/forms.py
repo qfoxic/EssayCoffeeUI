@@ -24,6 +24,8 @@ class ProfileForm(forms.ModelForm):
     validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'Country should contains only characters on lower or upper case.',
                               'invalid')])
+  phone = forms.CharField(min_length=10, required=True, validators=[validators.RegexValidator(re.compile('^[\d ]+$'), 'Phone number should contains only numbers and spaces')])
+
   def __init__(self, group_name=None, request=None, *args, **kwargs):
     super(ProfileForm, self).__init__(*args, **kwargs)
     self.group_name = group_name
@@ -33,6 +35,14 @@ class ProfileForm(forms.ModelForm):
     model = UserProfile
     fields = ['username', 'password', 'first_name', 'last_name', 'email',
               'country', 'phone', 'site']
+
+  def clean_phone(self):
+    phone =self.request.POST.get('phone')
+    phone = phone.strip(' -')
+    if len(phone) > 10:
+      raise forms.ValidationError('Phone should contains less then 10 numbers',
+                                  code='number_overflow')
+    return phone
 
   def clean_site(self):
     """Specifies default Host parameter."""
@@ -73,6 +83,7 @@ class EditProfileForm(forms.ModelForm):
     validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'Country should contains only characters on lower or upper case.',
                               'invalid')])
+  phone = forms.CharField(min_length=10, required=True, validators=[validators.RegexValidator(re.compile('^[\d ]+$'), 'Phone number should contains only numbers and spaces')])
   def __init__(self, user_id=None, request=None, *args, **kwargs):
     super(EditProfileForm, self).__init__(*args, **kwargs)
     self.user_id = user_id
@@ -83,6 +94,14 @@ class EditProfileForm(forms.ModelForm):
   class Meta:
     model = UserProfile
     fields = ['username','email', 'first_name', 'last_name', 'country', 'phone']
+
+  def clean_phone(self):
+    phone =self.request.POST.get('phone')
+    phone = phone.strip(' -')
+    if len(phone) > 10:
+      raise forms.ValidationError('Phone should contains less then 10 numbers',
+                                  code='number_overflow')
+    return phone
 
   def save(self, commit=True):
     user = UserProfile.objects.get(pk=self.user_id)
@@ -101,18 +120,20 @@ class NewProfileForm(forms.ModelForm):
                              'Username should contains only characters on lower or upper case.',
                              'invalid')])
   first_name = forms.CharField(min_length=3,  required=True, validators=[
-    validators.RegexValidator(re.compile('^[\w]+$'),
+    validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'First name should contains only characters on lower or upper case.',
                               'invalid')])
   last_name = forms.CharField(min_length=3,  required=True, validators=[
-    validators.RegexValidator(re.compile('^[\w]+$'),
+    validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'Last name should contains only characters on lower or upper case.',
                               'invalid')])
   country = forms.CharField(min_length=3,  required=True, validators=[
-    validators.RegexValidator(re.compile('^[\w]+$'),
+    validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'Country should contains only characters on lower or upper case.',
                               'invalid')])
   password = forms.CharField(min_length=4, required=True)
+  
+  phone = forms.CharField(min_length=10, required=True, validators=[validators.RegexValidator(re.compile('^[\d ]+$'), 'Phone number should contains only numbers and spaces.')])
 
   def __init__(self, group_name=None, request=None, *args, **kwargs):
     super(NewProfileForm, self).__init__(*args, **kwargs)
@@ -123,6 +144,14 @@ class NewProfileForm(forms.ModelForm):
     model = UserProfile
     fields = ['username', 'password', 'first_name', 'last_name', 'email',
               'country', 'phone', 'site']
+  
+  def clean_phone(self):
+    phone =self.request.POST.get('phone')
+    phone = phone.strip(' -')
+    if len(phone) > 10:
+      raise forms.ValidationError('Phone should contains less then 10 numbers',
+                                  code='number_overflow')
+    return phone
 
   def clean_site(self):
     """Specifies default Host parameter."""
@@ -149,5 +178,5 @@ class NewProfileForm(forms.ModelForm):
                                       'username': user.username,
                                       'email': user.email},
               co.ADMIN_EMAIL,
-              [user.email], fail_silently=False)
+              [user.email])
     return user

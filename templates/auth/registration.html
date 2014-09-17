@@ -68,18 +68,32 @@
          {% if form.last_name.errors %}<span class="validation-message">{{form.last_name.errors|striptags}}</span>{% endif %}
         </div>
        </div>
+
+		<script type='application/javascript'>
+		$.getJSON("http://api.hostip.info/get_json.php", function(data){
+			CountryName = data.country_name;
+			CountryName = CountryName.toLowerCase(); // нижній регістр
+			CountryName = CountryName.slice(0, 1).toUpperCase() + CountryName.slice(1); // перва буква тексту з верхного регістру
+			
+			if("(unknown country?)" != CountryName)
+			{
+				$('#country').val(CountryName);
+			}
+		});  
+		</script>
+	   
        <div class="form-group {% if form.country.errors %} has-error {% endif %}" title="{{form.country.errors|striptags}}">
         <label class="col-sm-4 control-label">Your country <span class="require">*</span></label>
         <div class="col-sm-8">
-         <input type="text" name="country" class="form-control" required value="{{form.country.value|default:''}}">
+         <input type="text" name="country" class="form-control" id="country" value="">
          {% if form.country.errors %}<span class="validation-message">{{form.country.errors|striptags}}</span>{% endif %}
         </div>
        </div>
        <div class="form-group {% if form.phone.errors %} has-error {% endif %}" title="{{form.phone.errors|striptags}}">
         <label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
         <div class="col-sm-8">
-          <label class="col-sm-4 control-label">+1 </label>
-		  <input type="tel" name="phone" class="form-control" required value="{{form.phone.value|default:''}}">
+          <label class="control-label" style="float:left; padding-left:5px; padding-right:5px;">+1 </label>
+		  <input type="tel" name="phone" value="{{form.phone.value|default:''}}" required class="form-control" style="width:226px">
          {% if form.phone.errors %}<span class="validation-message">{{form.phone.errors|striptags}}</span>{% endif %}
         </div>
        </div>
