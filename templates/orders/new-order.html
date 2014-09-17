@@ -15,260 +15,11 @@
  <h1 class="page-title margin-top">Place a new order</h1>
 
 <script type="text/javascript">
-var pricelist = 
-[
-  {
-    "assigments": ["Essay"],
-    "urgencies":
-    {
-        950400: "11 days",
-        604800: "7 days",
-        345600: "4 days",
-        259200: "3 days",
-        172800: "48 hours",
-        86400: "24 hours",
-        43200: "12 hours",
-        28800: "8 hours",
-        21600: "6 hours", 
-        10800: "3 hours"
-    },
-    "levels": {
-        'hs': 'High School',
-        'co': 'College',
-        'un': 'University',
-        'ms': 'Master\'s',
-        'ph': 'PHD'
-    },
-    "prices": 
-    {
-        950400: {hs: 12.99, co: 15.99, un: 17.99, ms: 22.99, ph: 27.99},
-        604800: {hs: 14.99, co: 16.99, un: 18.99, ms: 24.99, ph: 29.99},
-        345600: {hs: 16.99, co: 18.99, un: 19.99, ms: 25.99, ph: 32.99},
-        259200: {hs: 17.99, co: 19.99, un: 21.99, ms: 29.99, ph: 34.99},
-        172800: {hs: 19.99, co: 22.99, un: 25.99, ms: 31.99, ph: 41.99},
-        86400: {hs: 21.99, co: 24.99, un: 27.99, ms: 36.99, ph: 47.99},
-        43200: {hs: 23.99, co: 28.99, un: 35.99, ms: 43.99, ph: 49.99},
-        28800: {hs: 24.99, co: 30.99, un: 36.99, ms: 44.99, ph: 0},
-        21600: {hs: 34.99, co: 38.99, un: 43.99, ms: 0, ph: 0},
-        10800: {hs: 48.99, co: 54.99, un: 61.99, ms: 0, ph: 0}
-    }
-  },
-  {
-    "assigments": ["Online Test"],
-    "urgencies":
-      {
-        21600: "6 hours",
-        10800: "3 hours"
-      },
-    "levels": ["High School", "College", "University", "Master's", "PHD"],
-    "prices":
-      {
-        21600: [34.99, 38.99, 43.99, 0, 0],
-        10800: [48.99, 54.99, 61.99, 0, 0]
-      }
-  },
-  {
-    "assigments": ["Term paper", "Research paper", "Book Report", "Book Review", "Coursework", "Research proposal", "Questions-Answers", "Annotated Bibliography"],
-    "urgencies":
-      {
-        950400: "11 days",
-        604800: "7 days",
-        345600: "4 days",
-        259200: "3 days",
-        172800: "48 hours",
-        86400: "24 hours",
-        43200: "12 hours",
-        28800: "8 hours",
-        21600: "6 hours", 
-        10800: "3 hours"
-      },
-    "levels": ["High School", "College", "University", "Master's", "PHD"],
-    "prices": 
-      {
-        950400: [12.99, 15.99, 17.99, 22.99, 27.99],
-        604800: [14.99, 16.99, 18.99, 24.99, 29.99],
-        345600: [16.99, 18.99, 19.99, 25.99, 32.99],
-        259200: [17.99, 19.99, 21.99, 29.99, 34.99],
-        172800: [19.99, 22.99, 25.99, 31.99, 41.99],
-        86400: [21.99, 24.99, 27.99, 36.99, 47.99],
-        43200: [23.99, 28.99, 35.99, 43.99, 49.99],
-        28800: [24.99, 30.99, 36.99, 44.99, 0],
-        21600: [34.99, 38.99, 43.99, 0, 0],
-        10800: [48.99, 54.99, 61.99, 0, 0]
-      }
-  },
-  {
-    "assigments": ["Dissertation", "Thesis", "Dissertation chapter - Abstract", "Dissertation chapter - Introduction", "Dissertation chapter - Hypothesis", "Dissertation chapter - Literature review", "Dissertation chapter - Methodology", "Dissertation chapter - Results", "Dissertation chapter - Discussion", "Dissertation chapter - Conclusion", "Thesis Proposal", "Thesis/dissertation chapter"],
-    "urgencies":
-      {
-        5184000: "2 months",
-        2592000: "1 month",
-        1814400: "21 days",
-        1209600: "14 days",
-        864000: "10 days",
-        432000: "5 days",
-        172800: "2 days"
-      },
-    "levels": ["Undergraduate", "Master's", "PHD"],
-    "prices":
-      {
-        5184000: [18, 23, 26],
-        2592000: [19, 24, 27],
-        1814400: [21, 26, 28],
-        1209600: [24, 28, 31],
-        864000: [27, 31, 35],
-        432000: [30, 35, 40],
-        172800: [40, 45, 50]
-      }
-  },
-  {
-    "assigments": ["Formatting"],
-    "urgencies":
-      {
-        864000: "10 days",
-        604800: "7 days",
-        345600: "4 days",
-        259200: "3 days",
-        172800: "48 hours",
-        86400: "24 hours",
-        43200: "12 hours",
-        21600: "6 hours",
-        10800: "3 hours"
-      },
-    "levels": ["High School", "College", "Undergraduate", "Master's", "PHD"],
-    "prices":
-      {
-        864000: [1, 1.5, 2, 2.5, 3],
-        604800: [2.5, 3, 3.5, 4, 4.5],
-        345600: [3, 3.5, 4, 4.5, 5],
-        259200: [3.5, 4, 4.5, 5, 5.5],
-        172800: [4, 4.5, 5, 5.5, 6],
-        86400: [4.5, 5, 5.5, 6, 6.5],
-        43200: [5.5, 6, 6.5, 7, 7.5],
-        21600: [6.5, 7, 7.5, 8, 8.5],
-        10800: [8.5, 9, 9.5, 10, 10.5]
-      }
-  },
-  {
-    "assigments": ["Editing"],
-    "urgencies":
-      {
-        1209600: "11 days",
-        864000: "7 days",
-        518400: "4 days",
-        259200: "3 days",
-        172800: "48 hours",
-        86400: "24 hours",
-        43200: "12 hours",
-        28800: "8 hours",
-        21600: "6 hours", 
-        10800: "3 hours"
-      },
-    "levels": ["High School", "College", "Undergraduate", "Master's"],
-    "prices": 
-      {
-        1209600: [5.99, 6.99, 7.99, 11.99],
-        864000: [6.99, 7.99, 8.99, 12.99],
-        518400: [7.99, 8.99, 9.99, 13.99],
-        259200: [8.99, 9.99, 10.99, 14.99],
-        172800: [9.99, 10.99, 12.99, 15.99],
-        86400: [10.99, 12.99, 14.99, 18.99],
-        43200: [12.99, 15.99, 18.99, 21.99], 
-        28800: [13.99, 16.99, 19.99, 22.99],
-        21600: [14.99, 17.99, 20.99, 23.99],
-        10800: [15.99, 18.99, 21.99, 24.99]
-      }
-  },
-  {
-    "assigments": ["Proofreading"],
-    "urgencies":
-      {
-        1209600: "11 days",
-        864000: "7 days",
-        518400: "4 days",
-        259200: "3 days",
-        172800: "48 hours",
-        86400: "24 hours",
-        43200: "12 hours",
-        28800: "8 hours",
-        21600: "6 hours", 
-        10800: "3 hours"
-      },
-    "levels": ["High School", "College", "Undergraduate", "Master's"],
-    "prices":
-      {
-        950400: [4.99, 5.99, 6.99, 8.99],
-        604800: [5.99, 6.99, 7.99, 9.99],
-        345600: [5.99, 7.99, 8.99, 10.99],
-        259200: [6.99, 7.99, 9.99, 11.99],
-        172800: [6.99, 8.99, 10.99, 12.99],
-        86400: [7.99, 9.99, 11.99, 13.99],
-        43200: [7.99, 9.99, 11.99, 14.99],
-        28800: [8.99, 10.99, 12.99, 15.99],
-        21600: [9.99, 11.99, 13.99, 16.99],
-        10800: [11.99, 13.99, 15.99, 18.99]
-      }
-  },
-  {
-    "assigments": ["Rewriting"],
-    "urgencies":
-      {
-        1209600: "11 days",
-        864000: "7 days",
-        518400: "4 days",
-        259200: "3 days",
-        172800: "48 hours",
-        86400: "24 hours",
-        43200: "12 hours",
-        28800: "8 hours",
-        21600: "6 hours", 
-        10800: "3 hours"
-      },
-    "levels": ["High School", "College", "Undergraduate", "Master's", "PHD"],
-    "prices":
-      {
-        2592000: [5.99, 6.99, 8.99, 11.99, 15.99],
-        1814400: [6.99, 7.99, 9.99, 14.99, 21.99],
-        950400: [7.99, 8.99, 10.99, 15.99, 23.99],
-        604800: [8.99, 9.99, 12.99, 16.99, 22.99],
-        345600: [9.99, 11.99, 13.99, 18.99, 25.99],
-        259200: [10.99, 12.99, 14.99, 20.99, 26.99],
-        172800: [12.99, 13.99, 17.99, 22.99, 29.99],
-        86400: [14.99, 17.99, 19.99, 25.99, 33.99],
-        43200: [16.99, 21.99, 25.99, 31.99, 39.99],
-        28800: [17.99, 22.99, 26.99, 32.99, 40.99],
-        21600: [18.99, 23.99, 27.99, 33.99, 41.99],
-        10800: [20.99, 25.99, 29.99, 35.99, 43.99]
-      }
-   },
-   {
-    "assigments": ["Powerpoint Presentation"],
-    "urgencies":
-    {
-        1209600: "11 days",
-        864000: "7 days",
-        518400: "4 days",
-        259200: "3 days",
-        172800: "48 hours",
-        86400: "24 hours",
-        43200: "12 hours",
-        28800: "8 hours"
-    },
-    "levels": ["High School", "College", "University", "Master's", "PHD"],
-    "prices":
-      {
-        950400: [5.99, 7.99, 8.99, 10.99, 13.99],
-        604800: [6.99, 8.99, 9.99, 11.99, 14.99],
-        345600: [7.99, 9.99, 10.99, 12.99, 16.99],
-        259200: [8.99, 10.99, 11.99, 14.99, 17.99],
-        172800: [9.99, 11.99, 12.99, 15.99, 20.99],
-        86400: [10.99, 12.99, 13.99, 16.99, 23.99],
-        28800: [12.99, 15.99, 18.99, 22.99, 0]
-      }
-  }
-];
+  {% autoescape off %}
+    var pricelist = {{co.PRICELIST}};
+  {% endautoescape %}
 
-var getData = function(assigment) {
+  var getData = function(assigment) {
     var foundItems = null;
     $.each(pricelist, function(key, val) {
       if(val.assigments.indexOf(assigment) !== -1) {
@@ -279,7 +30,7 @@ var getData = function(assigment) {
     return foundItems;
   };
 
-  var onAssigmentChange = function(elem) {
+  var onAssigmentChange = function() {
     var curItem = $('select[name=assigment] option:selected').text();
     var items = getData(curItem);
     if (items) {
@@ -299,8 +50,17 @@ var getData = function(assigment) {
     }
   }
 
-  var getPrice = function() {
-    //TODO IMPLEMENT. THIS
+  var displayPrice = function() {
+    var urgency = $('select[name=urgency] option:selected').val(),
+        level = $('select[name=level] option:selected').val(),
+        assigment = $('select[name=assigment] option:selected').text(),
+        pages = $('input[name=page_number]').val(),
+        spacing = $('select[name=spacing] option:selected').val();
+    try {
+      var pagePrice = getData(assigment).prices[urgency][level];
+      var totalPrice = pagePrice * (spacing == '2' ? 2 : 1) * pages;
+      $('label.js-total-price').html('$' + Number(totalPrice).toFixed(2));
+    } catch (e) {}
   }
 </script>
 
@@ -322,10 +82,32 @@ var getData = function(assigment) {
         {% endfor %}
      {% endif %}
      {% endcomment %}
+     <div class="form-group {% if form.assigment.errors %}has-error{% endif %}">
+      <label class="col-sm-5 control-label">
+       Assigment Type
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Assigment Type">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-5">
+       <select name="assigment" class="form-control" onchange="onAssigmentChange(); displayPrice();">
+         {% for val in co.ASSIGMENTS %}
+           {% if forloop.first %}
+             <option value="{{val.0}}" {% if not form.assigment.value %}selected {% endif %} disabled>{{val.1}}</option>
+           {% else %}
+             <option value="{{val.0}}" {% if form.assigment.value == val.0 %}selected{% endif %}>{{val.1}}</option>
+           {% endif %}
+         {% endfor %}
+       </select>
+       {% if form.assigment.errors %}<span class="validation-message">{{form.assigment.errors|striptags}}</span>{% endif %}
+      </div>
+     </div>
      <div class="form-group {% if form.level.errors %}has-error{% endif %}">
       <label class="col-sm-5 control-label">Academic Level</label>
       <div class="col-sm-5">
-       <select name="level" class="form-control">
+       <select name="level" class="form-control" onchange="displayPrice();">
          {% for val in co.LEVELS %}
            {% if forloop.first %}
              <option value="{{val.0}}" {% if not form.level.value %}selected {% endif %} disabled>{{val.1}}</option>
@@ -340,7 +122,7 @@ var getData = function(assigment) {
      <div class="form-group {% if form.spacing.errors %}has-error{% endif %}">
       <label class="col-sm-5 control-label">Type of Paper Needed</label>
       <div class="col-sm-5">
-       <select name="spacing" class="form-control">
+       <select name="spacing" class="form-control" onchange="displayPrice();">
          {% for val in co.SPACING %}
            {% if forloop.first %}
              <option value="{{val.0}}" {% if not form.spacing.value %}selected {% endif %} disabled>{{val.1}}</option>
@@ -372,28 +154,6 @@ var getData = function(assigment) {
          {% endfor %}
        </select>
        {% if form.discipline.errors %}<span class="validation-message">{{form.discipline.errors|striptags}}</span>{% endif %}
-      </div>
-     </div>
-     <div class="form-group {% if form.assigment.errors %}has-error{% endif %}">
-      <label class="col-sm-5 control-label">
-       Assigment Type
-       <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Assigment Type">
-         <i class="icon-info-popup"></i>
-        </a>
-       </span>
-      </label>
-      <div class="col-sm-5">
-       <select name="assigment" class="form-control" onchange="return onAssigmentChange(this);">
-         {% for val in co.ASSIGMENTS %}
-           {% if forloop.first %}
-             <option value="{{val.0}}" {% if not form.assigment.value %}selected {% endif %} disabled>{{val.1}}</option>
-           {% else %}
-             <option value="{{val.0}}" {% if form.assigment.value == val.0 %}selected{% endif %}>{{val.1}}</option>
-           {% endif %}
-         {% endfor %}
-       </select>
-       {% if form.assigment.errors %}<span class="validation-message">{{form.assigment.errors|striptags}}</span>{% endif %}
       </div>
      </div>
      <div class="form-group {% if form.paper_title.errors %}has-error{% endif %}">
@@ -463,7 +223,7 @@ var getData = function(assigment) {
        </span>
       </label>
       <div class="col-sm-5">
-       <input name="page_number" type="number" class="form-control" value="{{form.page_number.value|default:1}}">
+       <input name="page_number" type="number" class="form-control" value="{{form.page_number.value|default:1}}" onchange="displayPrice();">
        {% if form.page_number.errors %}<span class="validation-message">{{form.page_number.errors|striptags}}</span>{% endif %}
       </div>
      </div>
@@ -477,7 +237,7 @@ var getData = function(assigment) {
        </span>
       </label>
       <div class="col-sm-5">
-       <select name="urgency" class="form-control">
+       <select name="urgency" class="form-control" onchange="displayPrice();">
          {% for val in co.URGENCY %}
            {% if forloop.first %}
              <option value="{{val.0}}" {% if not form.urgency.value %}selected {% endif %} disabled>{{val.1}}</option>
@@ -627,12 +387,10 @@ var getData = function(assigment) {
        {% endcomment %}
       </div>
      </div>
-     {% comment %}
      <div class="form-group total">
       <label class="col-sm-5 control-label large-text">Total Price</label>
-      <label class="col-sm-5 control-label text-left">$72.00</label>
+      <label class="js-total-price col-sm-5 control-label text-left">$0.00</label>
      </div>
-     {% endcomment %}
      <div class="form-group">
       <div class="col-sm-12 text-center">
        <p>By clicking "Proceed to safe payment" button you agree to the <a href="#">Terms and Conditions</a>, <a href="#">MoneyBack Policy</a> and <a href="#">Privacy Policy</a></p> 
