@@ -26,12 +26,18 @@ Administration
 NEW_PROFILE_SUBJECT = 'Thanks for registering.'
 ORDER_MAIL_SUBJECT = 'Thanks for ordering.'
 
-EMAIL_HOST = 'smtp.ukr.net'
-EMAIL_HOST_PASSWORD = 'QAZqaz1983'
-EMAIL_HOST_USER = 'workforum@ukr.net'
+#EMAIL_HOST = 'smtp.ukr.net'
+#EMAIL_HOST_PASSWORD = 'QAZqaz1983'
+#EMAIL_HOST_USER = 'workforum@ukr.net'
+#EMAIL_PORT = 465
+
+EMAIL_HOST = 'email-smtp.us-west-2.amazonaws.com'
+EMAIL_HOST_PASSWORD = 'ArjbUpVfD8Slt91OAy11bInlmzcIH+NJUxYe8jz/LVvr'
+EMAIL_HOST_USER = 'AKIAILRHCFXQWXJEGIVA'
 EMAIL_PORT = 465
 
-ADMIN_EMAIL = 'workforum@ukr.net'#'no-reply@essaycoffee.com'
+#ADMIN_EMAIL = 'workforum@ukr.net'#'no-reply@essaycoffee.com'
+ADMIN_EMAIL = 'no-reply@essaycoffee.com'
 ADMIN_DOMAIN = 'www.essaycoffee.com'
 
 # Settings related variables.
@@ -457,55 +463,104 @@ ITEMS_PERCENTS = {
 
 DISCIPLINES = (
   (0, 'Please select'),
-  ('hs', 'History'), ('ln', 'Linguistics'), ('lt', 'Literature'),
-  ('pa', 'Performing arts'), ('ph', 'Philosophy'), ('rg', 'Religion'),
-  ('va', 'Visual arts'), ('an', 'Anthropology'), ('ar', 'Archaeology'),
-  ('as', 'Area studies'), ('cu', 'Cultural and ethnic studies'),
-  ('ec', 'Economics'), ('gs', 'Gender and sexuality studies'),
-  ('ge', 'Geography'), ('ps', 'Political science'), ('py', 'Psychology'),
-  ('so', 'Sociology'), ('ss', 'Space sciences'),
-  ('es', 'Earth sciences'), ('ls', 'Life sciences'), ('ch', 'Chemistry'))
+  ('hs', 'History'),
+  ('ln', 'Linguistics'),
+  ('lt', 'Literature'),
+  ('pa', 'Performing arts'),
+  ('ph', 'Philosophy'),
+  ('rg', 'Religion'),
+  ('va', 'Visual arts'),
+  ('an', 'Anthropology'),
+  ('ar', 'Archaeology'),
+  ('as', 'Area studies'),
+  ('cu', 'Cultural and ethnic studies'),
+  ('ec', 'Economics'),
+  ('gs', 'Gender and sexuality studies'),
+  ('ge', 'Geography'),
+  ('ps', 'Political science'),
+  ('py', 'Psychology'),
+  ('so', 'Sociology'),
+  ('ss', 'Space sciences'),
+  ('es', 'Earth sciences'),
+  ('ls', 'Life sciences'),
+  ('ch', 'Chemistry'))
 
 
 ASSIGMENTS = (
   (0, 'Please select'),
-  ('es', 'Essay'), ('ab', 'Abstract'),
-  ('an', 'Annotated bibliography'), ('cs', 'Case Study'),
-  ('31', 'Admission/Application Essay'), ('5',  'Article'),
-  ('57', 'Assignment'), ('65', 'Book Report/Review'), ('56', 'Coursework'),
-  ('00', 'Dissertation'), ('10', 'Dissertation Chapter - Abstract'), ('11', 'Dissertation Chapter - Introduction Chapter'),
-  ('12', 'Dissertation Chapter - Literature Review'), ('13', 'Dissertation Chapter - Methodology'),
-  ('14', 'Dissertation Chapter - Results'), ('15', 'Dissertation Chapter - Discussion'),('16', 'Dissertation Chapter - Hypothesis'),
-  ('17', 'Dissertation Chapter - Conclusion Chapter'), ('8', 'Editing'),
-  ('81', 'Formatting'), ('61', 'Lab Report'), ('62', 'Math Problem'), ('66', 'Movie Review'),
-  ('51', 'Personal Statement'), ('9', 'PowerPoint Presentation'), ('82', 'Proofreading'),
-  ('41', 'Research Paper'), ('2', 'Research Proposal'), ('32', 'Scholarship Essay'),
-  ('63', 'Speech/Presentation'), ('64', 'Statistics Project'), ('4', 'Term Paper'), 
-  ('1', 'Thesis'), ('21', 'Thesis Proposal'))
-
+  ('0.0', 'Essay'),
+  ('1.0', 'Online Test'),
+  ('2.0', 'Term paper'),
+  ('2.1', 'Research paper'),
+  ('2.2', 'Book Report'),
+  ('2.3', 'Book Review'),
+  ('2.4', 'Coursework'),
+  ('2.5', 'Research proposal'),
+  ('2.6', 'Questions-Answers'),
+  ('2.7', 'Annotated Bibliography'),
+  ('3.0', 'Dissertation'),
+  ('3.1', 'Thesis'),
+  ('3.2', 'Dissertation chapter - Abstract'),
+  ('3.3', 'Dissertation chapter - Introduction'),
+  ('3.4', 'Dissertation chapter - Hypothesis'),
+  ('3.5', 'Dissertation chapter - Literature review'),
+  ('3.6', 'Dissertation chapter - Methodology'),
+  ('3.7', 'Dissertation chapter - Results'),
+  ('3.8', 'Dissertation chapter - Discussion'),
+  ('3.9', 'Dissertation chapter - Conclusion'),
+  ('3.10', 'Thesis Proposal'),
+  ('3.11', 'Thesis/dissertation chapter'),
+  ('4.0', 'Formatting'),
+  ('5.0', 'Editing'),
+  ('6.0', 'Proofreading'),
+  ('7.0', 'Rewriting'),
+  ('8.0', 'Powerpoint Presentation'))  
 
 LEVELS = (
   (0, 'Please select'),
-  ('hs', 'High School'), ('co', 'College'), ('un', 'University'),
-  ('ms', 'Master\'s'), ('ph', 'PHD'))
+  (1, 'High School'),
+  (2, 'College'),
+  (3, 'University'),
+  (4, 'Undergraduate'),
+  (5, 'Master\'s'),
+  (6, 'PHD'))
 
 # Urgency is more convenient to represent as time in seconds and label
-URGENCY = (
+URGENCIES = (
+  (0, 'Please select'),  
+  (10800, '3 hours'),
+  (21600, '6 hours'),
+  (28800, '8 hours'),
+  (43200, '12 hours'),
+  (86400, '24 hours'),
+  (172800, '48 hours'),
+  (259200, '3 days'),
+  (345600, '4 days'),
+  (345600, '5 days'),
+  (864000, '10 days'),
+  (604800, '7 days'),
+  (950400, '11 days'),
+  (1209600, '14 days'),
+  (1814400, '21 days'),
+  (2592000, '1 month'),
+  (5184000, '2 months'))
+
+SPACING = (
   (0, 'Please select'),
-  (21600, '6 hours'), (43200, '12 hours'), (86400, '1 day'), (172800, '2 days'),
-  (259200, '3 days'), (518400, '6 days'), (1036800, '12 days'),
-  (2073600, '24+ days'))
-
-
-SPACING = ((0, 'Please select'), (1, 'Single'), (2, 'Double'))
+  (1, 'Single'),
+  (2, 'Double'))
 
 STYLES = (
   (0, 'Please select'),
-  (1, 'MLA'), (2, 'APA'), (3, 'Chicago'), (4, 'Turabian'), (5, 'Harvar'),
+  (1, 'MLA'),
+  (2, 'APA'),
+  (3, 'Chicago'),
+  (4, 'Turabian'),
+  (5, 'Harvar'),
   (6, 'other'))
 
 TASK_STATUSES_DICT = dict(TASK_STATUSES)
-URGENCY_DICT = dict(URGENCY)
+URGENCY_DICT = dict(URGENCIES)
 SPACING_DICT = dict(SPACING)
 STYLES_DICT = dict(STYLES)
 LEVELS_DICT = dict(LEVELS)
@@ -522,8 +577,12 @@ ACCESS_LEVELS = ((PRIVATE_ACCESS, 'Private'),
 ACCESS_LEVELS_DICT = dict(ACCESS_LEVELS)
 
 # Available ratings for a comments.
-COMMENT_RATINGS = ((0, 'NULL'), (1, 'ONE'), (2, 'TWO'), (3, 'THREE'),
-                   (4, 'FOUR'), (5, 'FIVE'))
+COMMENT_RATINGS = ((0, 'NULL'),
+                   (1, 'ONE'),
+				   (2, 'TWO'),
+				   (3, 'THREE'),
+                   (4, 'FOUR'),
+				   (5, 'FIVE'))
 
 # Deadline time for writers in percents.
 WRITER_DEADLINE_PERCENT = 0.8
