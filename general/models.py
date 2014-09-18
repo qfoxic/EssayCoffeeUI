@@ -62,7 +62,7 @@ class Task(BaseModel):
                                 default=0, validators=[ValidateEmptySelect])
   assigment = models.CharField(choices=co.ASSIGMENTS, max_length=co.TITLE_MAX_LEN,
                                default=0, validators=[ValidateEmptySelect])
-  level = models.IntegerField(choices=co.LEVELS, default=0, validators=[ValidateEmptySelect])
+  level = models.CharField(choices=co.LEVELS, max_length=co.TITLE_MAX_LEN, default=0)
   urgency = models.IntegerField(choices=co.URGENCY, default=0,
                                validators=[ValidateEmptySelect])
   spacing = models.SmallIntegerField(choices=co.SPACING, default=0,
@@ -150,22 +150,14 @@ class Task(BaseModel):
       self.editor = None
 
   def get_price(self):
-    #percents = co.ITEMS_PERCENTS
-    #mpp = co.MAX_PAGE_PRICE
-    #assig_percent = percents['assigments'].get(self.assigment, 0)
-    #level_percent = percents['levels'].get(self.level, 0)
-    #urgency_percent = percents['urgency'].get(self.urgency, 0)
-    #spacing_percent = percents['spacing'].get(self.spacing, 0)
-
-    #page_sum = (mpp*assig_percent + mpp*level_percent + mpp*urgency_percent)
-    #return '%.2f' % (math.ceil((page_sum + page_sum*spacing_percent) * self.page_number) - 0.05)
-    assigment = [i[1] for i in co.ASSIGMENTS if self.assigment == i[0]]
-    assigment = assigment[0] if assigment else ''
-    data = [i['prices'] for i in co.PRICELIST if assigment in i['assigments']]
-    data = data[0] if data else {}
-    pagePrice = data.get(self.urgency, {}).get(self.level, 0.00)
-    totalPrice = pagePrice * (self.spacing == co.SPACING[1][0] and 1 or 2) * self.page_number 
-    return '%.2f' % (totalPrice)
+    percents = co.ITEMS_PERCENTS
+    mpp = co.MAX_PAGE_PRICE
+    assig_percent = percents['assigments'].get(self.assigment, 0)
+    level_percent = percents['levels'].get(self.level, 0)
+    urgency_percent = percents['urgency'].get(self.urgency, 0)
+    spacing_percent = percents['spacing'].get(self.spacing, 0)
+    page_sum = (mpp*assig_percent + mpp*level_percent + mpp*urgency_percent)
+    return '%.2f' % (math.ceil((page_sum + page_sum*spacing_percent) * self.page_number) - 0.05)
 
   def get_page_price(self):
     return (float(self.get_price()) / float(self.page_number))

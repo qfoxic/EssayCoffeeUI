@@ -1,0 +1,207 @@
+[
+{
+  "pk": 1, 
+  "model": "auth.group", 
+  "fields": {
+    "name": "admin", 
+    "permissions": []
+  }
+},
+{
+  "pk": 2, 
+  "model": "auth.group", 
+  "fields": {
+    "name": "writer", 
+    "permissions": []
+  }
+},
+{
+  "pk": 3, 
+  "model": "auth.group", 
+  "fields": {
+    "name": "customer", 
+    "permissions": []
+  }
+},
+{
+  "pk": 4, 
+  "model": "auth.group", 
+  "fields": {
+    "name": "editor", 
+    "permissions": []
+  }
+},
+{
+  "pk": 1, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "transport", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": true, 
+    "is_staff": true, 
+    "last_login": "2014-04-22T12:17:08Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$12000$Vd9a38P5xyHa$pquwZlnbEx5/dir+UYvjiem1GzmAxBshCHCOfZstrdg=", 
+    "email": "wwwww@www.com", 
+    "date_joined": "2014-04-15T12:27:25Z"
+  }
+},
+{
+  "pk": 2, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "admin", 
+    "first_name": "Admin", 
+    "last_name": "Admin", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-06-04T04:08:13Z", 
+    "groups": [
+      1
+    ], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$12000$eKbqEddEt0hP$tDfzGlx02Wl9pwAKsxTRop0LsrBURBOTAl9FUIkCv6M=", 
+    "email": "foxandkamarus@gmail.com", 
+    "date_joined": "2014-04-15T12:31:15Z"
+  }
+},
+{
+  "pk": 3, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "customer", 
+    "first_name": "Customer", 
+    "last_name": "Customer", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-04-17T14:45:58Z", 
+    "groups": [
+      3
+    ], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$12000$iDEzJ6pfWoYY$TisahZaho3s6r0NjPjWfIGvdsuneQfYm3eXKaDlsz90=", 
+    "email": "cust@ukt.rnt", 
+    "date_joined": "2014-04-15T12:31:43Z"
+  }
+},
+{
+  "pk": 4, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "editor", 
+    "first_name": "Editor", 
+    "last_name": "Editor", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-04-15T12:32:03Z", 
+    "groups": [
+      4
+    ], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$12000$V4vfmI3S4fkZ$D25TeJnUBVH50YsRcMzNfRie2pUPyh1W6pvDYNk+OHw=", 
+    "email": "employer@tr.com", 
+    "date_joined": "2014-04-15T12:32:03Z"
+  }
+},
+{
+  "pk": 5, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "writer", 
+    "first_name": "Writer", 
+    "last_name": "Writer", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-04-15T12:32:28Z", 
+    "groups": [
+      2
+    ], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$12000$ZytjcJhqF2gk$fYcALTdm+3wmLhyYtJ7uJnoMzhTRRrcAAQbJH5PW1hY=", 
+    "email": "employee@tr.com", 
+    "date_joined": "2014-04-15T12:32:29Z"
+  }
+},
+{
+  "pk": 1, 
+  "model": "userprofile.userprofile", 
+  "fields": {
+    "updated": "2014-06-04T04:11:03Z", 
+    "gender": 0, 
+    "site": "127.0.0.1", 
+    "phone": "1111", 
+    "groups": [
+      1
+    ], 
+    "country": "AT", 
+    "user_permissions": []
+  }
+},
+{
+  "pk": 2, 
+  "model": "userprofile.userprofile", 
+  "fields": {
+    "updated": "2014-06-04T04:11:03Z", 
+    "gender": 0, 
+    "site": "127.0.0.1", 
+    "phone": "1111", 
+    "groups": [
+      1
+    ], 
+    "country": "AT", 
+    "user_permissions": []
+  }
+},
+{
+  "pk": 3, 
+  "model": "userprofile.userprofile", 
+  "fields": {
+    "updated": "2014-06-04T04:11:03Z", 
+    "gender": 0, 
+    "site": "127.0.0.1", 
+    "phone": "1111", 
+    "groups": [
+      1
+    ], 
+    "country": "AT", 
+    "user_permissions": []
+  }
+},
+{
+  "pk": 4, 
+  "model": "userprofile.userprofile", 
+  "fields": {
+    "updated": "2014-06-04T04:11:03Z", 
+    "gender": 0, 
+    "site": "127.0.0.1", 
+    "phone": "1111", 
+    "groups": [
+      1
+    ], 
+    "country": "AT", 
+    "user_permissions": []
+  }
+},
+{
+  "pk": 5, 
+  "model": "userprofile.userprofile", 
+  "fields": {
+    "updated": "2014-06-04T04:11:03Z", 
+    "gender": 0, 
+    "site": "127.0.0.1", 
+    "phone": "1111", 
+    "groups": [
+      1
+    ], 
+    "country": "AT", 
+    "user_permissions": []
+  }
+}
+]
