@@ -30,11 +30,15 @@
     return foundItems;
   };
 
+  var clearPrice = function() {
+      $('label.js-total-price').html('$0.00');
+  };
+
   var onAssigmentChange = function() {
     var curItem = $('select[name=assigment] option:selected').text();
     var items = getData(curItem);
     if (items)
-	{
+    {
       var urgencySelect = $('select[name=urgency]'), levelSelect = $('select[name=level]');
 		  
       urgencySelect.empty();
@@ -52,8 +56,10 @@
         levelSelect.append($("<option />").val(key).text(val));
       });
 	  
+    } else {
+      clearPrice();
     }
-  }
+  };
 
   var displayPrice = function() {
     var urgency = $('select[name=urgency] option:selected').val(),
@@ -63,8 +69,12 @@
         spacing = $('select[name=spacing] option:selected').val();
     try {
       var pagePrice = getData(assigment).prices[urgency][level];
-      var totalPrice = pagePrice * (spacing == '2' ? 2 : 1) * pages;
-      $('label.js-total-price').html('$' + Number(totalPrice ? totalPrice : 0).toFixed(2));
+      if (pagePrice === 0) {
+        $('label.js-total-price').html('Configuration is not correct.');
+      } else {
+        var totalPrice = pagePrice * (spacing == '2' ? 2 : 1) * pages;
+        $('label.js-total-price').html('$' + Number(totalPrice ? totalPrice : 0).toFixed(2));
+      }
     } catch (e) {}
   }
 </script>
@@ -97,7 +107,7 @@
        </span>
       </label>
       <div class="col-sm-5">
-       <select name="assigment" class="form-control" onchange="onAssigmentChange(); displayPrice();">
+       <select name="assigment" class="form-control" onchange="onAssigmentChange(); displayPrice(); clearPrice();">
          {% for val in co.ASSIGMENTS %}
            {% if forloop.first %}
              <option value="{{val.0}}" {% if not form.assigment.value %}selected {% endif %} disabled>{{val.1}}</option>
