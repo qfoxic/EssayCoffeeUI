@@ -32,7 +32,7 @@
       {% endif %}
     {% endfor %}
    </div>
-   {% if perm.can_message %}
+   {# if perm.can_message #}
    <div class="row message-reply-form">
     <form action="{% url 'order-msg-new' order.pk %}" class="form-horizontal" method="post">
      {% csrf_token %}
@@ -64,5 +64,5 @@
      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
    </div>
-   {% endif %}
+   {# endif #}
   </div><!-- End Messages Tab -->

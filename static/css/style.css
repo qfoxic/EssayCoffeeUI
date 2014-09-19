@@ -69,6 +69,12 @@ span.section-title span{
 	color: #7c858e;
 	border-color: #7c858e;
 }
+.btn-transparent.btn-orage{
+	color: #fff;
+	background: #e6400c;
+	border-color: #e6400c;
+	text-decoration: none;
+}
 .btn-transparent:hover{
 	color: #fff;
 	background: #e6400c;
@@ -1207,7 +1213,7 @@ div.radio{
 }
 .step-col h4{
 	font-size: 20px;
-	margin: 21px 0 10px;
+	margin: 10px 0 10px;
 	position: relative;
 	z-index: 1;
 }
