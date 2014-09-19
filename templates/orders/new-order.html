@@ -33,13 +33,17 @@
   var onAssigmentChange = function() {
     var curItem = $('select[name=assigment] option:selected').text();
     var items = getData(curItem);
-    if (items) {
-      var urgencySelect = $('select[name=urgency]'),
-          levelSelect = $('select[name=level]')
-
+    if (items)
+	{
+      var urgencySelect = $('select[name=urgency]'), levelSelect = $('select[name=level]');
+		  
       urgencySelect.empty();
       levelSelect.empty();
 
+	  
+      urgencySelect.append($("<option />").val('0').text('Please select'));
+	  levelSelect.append($("<option />").val('0').text('Please select'));
+	  
       $.each(items.urgencies, function(key, val) {
         urgencySelect.append($("<option />").val(key).text(val));
       });
@@ -47,6 +51,7 @@
       $.each(items.levels, function(key, val) {
         levelSelect.append($("<option />").val(key).text(val));
       });
+	  
     }
   }
 
@@ -59,13 +64,13 @@
     try {
       var pagePrice = getData(assigment).prices[urgency][level];
       var totalPrice = pagePrice * (spacing == '2' ? 2 : 1) * pages;
-      $('label.js-total-price').html('$' + Number(totalPrice).toFixed(2));
+      $('label.js-total-price').html('$' + Number(totalPrice ? totalPrice : 0).toFixed(2));
     } catch (e) {}
   }
 </script>
 
- <p><b>Please fill out all the required fields below to proceed with your order.<br>
- Provide maximum details about your future paper. This will help us complete it with maximum accuracy.</b></p>
+ <p><strong>Please fill out all the required fields below to proceed with your order.<br>
+ Provide maximum details about your future paper. This will help us complete it with maximum accuracy.</strong></p>
  <!-- BEGIN PRICE FORM -->
  <div class="row">
   <div class="col-md-12 col-sm-12">
