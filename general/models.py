@@ -1,13 +1,20 @@
-import os, re
+import re
 import time
-import math
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from history.models import new_event, change_event, delete_event
 import constants as co
 
-  
+
+def calc_price(cdata):
+    assigment = [i[1] for i in co.ASSIGMENTS if cdata['assigment'] == i[0]]
+    assigment = assigment[0] if assigment else ''
+    data = [i['prices'] for i in co.PRICELIST if assigment in i['assigments']]
+    data = data[0] if data else {}
+    pagePrice = data.get(int(cdata['urgency']), {}).get(int(cdata['level']), 0.00)
+    return pagePrice
+
 
 def ValidateTerms(value):
   if not value:
@@ -165,7 +172,7 @@ class Task(BaseModel):
     data = data[0] if data else {}
     pagePrice = data.get(self.urgency, {}).get(self.level, 0.00)
     totalPrice = pagePrice * (self.spacing == co.SPACING[1][0] and 1 or 2) * self.page_number 
-    return '%.2f' % (totalPrice)
+    return '%.2f' % (abs(totalPrice))
 
   def get_page_price(self):
     return (float(self.get_price()) / float(self.page_number))

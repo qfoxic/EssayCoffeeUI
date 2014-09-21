@@ -1,5 +1,5 @@
-from django.forms import ModelForm, ValidationError, FileField
-from general.models import Task
+from django.forms import ModelForm, ValidationError
+from general.models import Task, calc_price
 from payments.models import Payment
 from django.contrib.auth import login, authenticate
 from userprofile.forms import NewProfileForm
@@ -21,9 +21,22 @@ class BaseForm(ModelForm):
     self.check_permissions(cleaned_data)
     return super(BaseForm, self).clean(*args, **kwargs)
 
+  def clean_urgency(self):
+    price = calc_price(self.data)
+    if price == 0:
+        raise ValidationError('With that deadline configuration is not applicable.')
+    return self.cleaned_data['urgency']
+
+  def clean_page_number(self):
+      try:
+          if not int(self.data['page_number']) > 0:
+              raise ValidationError('For now we do not support free essays, unfortunately. Please try again later.')
+      except (TypeError, ValueError):
+          pass
+      return self.data['page_number']
+
 
 class TaskForm(BaseForm):
-  attach = FileField(required=False)
   class Meta(BaseForm.Meta):
     fields = ('paper_title', 'discipline', 'assigment', 'level', 'urgency',
               'spacing', 'page_number', 'style', 'source_number',
@@ -142,3 +155,4 @@ class SwitchStatusForm(BaseForm):
                         payment_type=self.request.GET.get('ptype', co.LIQPAY))
       payment.save()
     return super(SwitchStatusForm, self).save(*args, **kwargs)
+

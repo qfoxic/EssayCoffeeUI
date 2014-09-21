@@ -14,6 +14,13 @@ def is_msg_new(msg, user):
 def dget(d, k):
   return d.get(k)
 
+@register.filter()
+def to_int(s):
+  try:
+    return int(s)
+  except (TypeError, ValueError):
+    return 0
+
 @register.filter(name='is_bought')
 def is_bought(d, task_id):
     res = d.get(task_id)
