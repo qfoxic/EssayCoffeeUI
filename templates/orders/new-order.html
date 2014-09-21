@@ -14,70 +14,7 @@
 
  <h1 class="page-title margin-top">Place a new order</h1>
 
-<script type="text/javascript">
-  {% autoescape off %}
-    var pricelist = {{co.PRICELIST}};
-  {% endautoescape %}
 
-  var getData = function(assigment) {
-    var foundItems = null;
-    $.each(pricelist, function(key, val) {
-      if(val.assigments.indexOf(assigment) !== -1) {
-        foundItems = val;
-        return;
-      }
-    })
-    return foundItems;
-  };
-
-  var clearPrice = function() {
-      $('label.js-total-price').html('$0.00');
-  };
-
-  var onAssigmentChange = function() {
-    var curItem = $('select[name=assigment] option:selected').text();
-    var items = getData(curItem);
-    if (items)
-    {
-      var urgencySelect = $('select[name=urgency]'), levelSelect = $('select[name=level]');
-		  
-      urgencySelect.empty();
-      levelSelect.empty();
-
-	  
-      urgencySelect.append($("<option />").val('0').text('Please select'));
-	  levelSelect.append($("<option />").val('0').text('Please select'));
-	  
-      $.each(items.urgencies, function(key, val) {
-        urgencySelect.append($("<option />").val(key).text(val));
-      });
-
-      $.each(items.levels, function(key, val) {
-        levelSelect.append($("<option />").val(key).text(val));
-      });
-	  
-    } else {
-      clearPrice();
-    }
-  };
-
-  var displayPrice = function() {
-    var urgency = $('select[name=urgency] option:selected').val(),
-        level = $('select[name=level] option:selected').val(),
-        assigment = $('select[name=assigment] option:selected').text(),
-        pages = $('input[name=page_number]').val(),
-        spacing = $('select[name=spacing] option:selected').val();
-    try {
-      var pagePrice = getData(assigment).prices[urgency][level];
-      if (pagePrice === 0) {
-        $('label.js-total-price').html('Configuration is not correct.');
-      } else {
-        var totalPrice = pagePrice * (spacing == '2' ? 2 : 1) * pages;
-        $('label.js-total-price').html('$' + Number(totalPrice ? totalPrice : 0).toFixed(2));
-      }
-    } catch (e) {}
-  }
-</script>
 
  <p><strong>Please fill out all the required fields below to proceed with your order.<br>
  Provide maximum details about your future paper. This will help us complete it with maximum accuracy.</strong></p>
@@ -110,7 +47,7 @@
        <select name="assigment" class="form-control" onchange="onAssigmentChange(); displayPrice(); clearPrice();">
          {% for val in co.ASSIGMENTS %}
            {% if forloop.first %}
-             <option value="{{val.0}}" {% if not form.assigment.value %}selected {% endif %} disabled>{{val.1}}</option>
+             <option value="{{val.0}}" {% if not form.assigment.value %}selected{% endif %} disabled>{{val.1}}</option>
            {% else %}
              <option value="{{val.0}}" {% if form.assigment.value == val.0 %}selected{% endif %}>{{val.1}}</option>
            {% endif %}
@@ -120,7 +57,7 @@
       </div>
      </div>
      <div class="form-group {% if form.level.errors %}has-error{% endif %}">
-      <label class="col-sm-5 control-label">Academic Level</label>
+      <label class="col-sm-5 control-label">Academic Level {{form.level.value}}</label>
       <div class="col-sm-5">
        <select name="level" class="form-control" onchange="displayPrice();">
          {% for val in co.LEVELS %}
@@ -130,8 +67,30 @@
              <option value="{{val.0}}" {% if form.level.value == val.0 %}selected{% endif %}>{{val.1}}</option>
            {% endif %}
          {% endfor %}
-       </select>
+	   </select>
        {% if form.level.errors %}<span class="validation-message">{{form.level.errors|striptags}}</span>{% endif %}
+      </div>
+     </div>
+     <div class="form-group {% if form.urgency.errors %}has-error{% endif %}">
+      <label class="col-sm-5 control-label">
+       First Draft Deadline  {{form.urgency.value}}
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages tooltip">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-5">
+       <select name="urgency" class="form-control" onchange="displayPrice();">
+         {% for val in co.URGENCY %}
+           {% if forloop.first %}
+             <option value="{{val.0}}" {% if not form.urgency.value %}selected {% endif %} disabled>{{val.1}}</option>
+           {% else %}
+             <option value="{{val.0}}" {% if form.urgency.value == val.0 %}selected{% endif %}>{{val.1}}</option>
+           {% endif %}
+         {% endfor %}
+	   </select>
+       {% if form.urgency.errors %}<span class="validation-message">{{form.urgency.errors|striptags}}</span>{% endif %}
       </div>
      </div>
      <div class="form-group {% if form.spacing.errors %}has-error{% endif %}">
@@ -240,28 +199,6 @@
       <div class="col-sm-5">
        <input name="page_number" type="number" class="form-control" value="{{form.page_number.value|default:1}}" onchange="displayPrice();">
        {% if form.page_number.errors %}<span class="validation-message">{{form.page_number.errors|striptags}}</span>{% endif %}
-      </div>
-     </div>
-     <div class="form-group {% if form.urgency.errors %}has-error{% endif %}">
-      <label class="col-sm-5 control-label">
-       First Draft Deadline
-       <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages tooltip">
-         <i class="icon-info-popup"></i>
-        </a>
-       </span>
-      </label>
-      <div class="col-sm-5">
-       <select name="urgency" class="form-control" onchange="displayPrice();">
-         {% for val in co.URGENCY %}
-           {% if forloop.first %}
-             <option value="{{val.0}}" {% if not form.urgency.value %}selected {% endif %} disabled>{{val.1}}</option>
-           {% else %}
-             <option value="{{val.0}}" {% if form.urgency.value == val.0 %}selected{% endif %}>{{val.1}}</option>
-           {% endif %}
-         {% endfor %}
-       </select>
-       {% if form.urgency.errors %}<span class="validation-message">{{form.urgency.errors|striptags}}</span>{% endif %}
       </div>
      </div>
 
@@ -434,4 +371,98 @@
  {% include 'html/sidebar-left.html' %}
 </div>
 <!-- END LEFT SIDEBAR LAYOUT -->
+
+<script type="text/javascript">
+
+{% autoescape off %}
+var pricelist = {{co.PRICELIST}};
+{% endautoescape %}
+
+(function ($) {
+	var assigment = $('select[name=assigment] option:selected').val();
+	var levelSelect = $("select[name=level]"),
+		urgencySelect = $("select[name=urgency]");
+		
+	if (assigment == "0")
+	{
+		levelSelect.attr("disabled", true);
+		urgencySelect.attr("disabled", true);
+	}else{
+		levelSelect.attr("disabled", false);
+		urgencySelect.attr("disabled", false);
+	}
+})(jQuery);
+
+
+//
+var getData = function(assigment)
+{
+	var foundItems = null;
+	$.each(pricelist, function(key, val) {
+	  if(val.assigments.indexOf(assigment) !== -1) {
+		foundItems = val;
+		return;
+	  }
+	})
+	return foundItems;
+};
+
+//
+var clearPrice = function() {
+  $('label.js-total-price').html('$0.00');
+};
+
+//
+var onAssigmentChange = function() {
+	var curItem = $('select[name=assigment] option:selected').text();
+	var items = getData(curItem);
+	if (items)
+	{
+	  var levelSelect = $("select[name=level]"),
+          urgencySelect = $("select[name=urgency]");
+		  
+	  // При першому виборі значення забираємо атрибут disabled 
+	  levelSelect.attr("disabled", false);
+	  urgencySelect.attr("disabled", false);
+		  
+	  // Очищаємо вміст тегів
+	  levelSelect.empty();
+	  urgencySelect.empty();
+	  
+	  // Встановлюємо заглушку з нульовими значенями
+	  levelSelect.append($("<option disabled selected/>").val('0').text('Please select'));
+	  urgencySelect.append($("<option disabled selected/>").val('0').text('Please select')); 
+
+	  // Наповнюємо тегами із значеннями теги select
+	  $.each(items.urgencies, function(key, val) {
+		urgencySelect.append($("<option />").val(key).text(val));
+	  });
+	  $.each(items.levels, function(key, val) {
+		levelSelect.append($("<option />").val(key).text(val));
+	  });
+	  
+	} else {
+	  clearPrice();
+	}
+};
+
+//
+var displayPrice = function() {
+	var assigment = $('select[name=assigment] option:selected').text(),
+		level = $('select[name=level] option:selected').val(),
+		urgency = $('select[name=urgency] option:selected').val(),
+		spacing = $('select[name=spacing] option:selected').val(),
+		pages = $('input[name=page_number]').val();
+
+	try {
+	  var pagePrice = getData(assigment).prices[urgency][level];
+	  if (pagePrice === 0) {
+		$('label.js-total-price').html('Configuration is not correct.');
+	  } else {
+		var totalPrice = pagePrice * (spacing == '2' ? 2 : 1) * pages;
+		$('label.js-total-price').html('$' + Number(totalPrice ? totalPrice : 0).toFixed(2));
+	  }
+	} catch (e) {}
+}
+</script>
 {% endblock %}

@@ -11,19 +11,22 @@
 <div class="breadcrumbs">
   <a href="{% url 'home' %}">Home</a>
   <span class="separator"><i class="fa fa-angle-right"></i></span>
-  <a href="{% url 'my-account-edit' request.user.pk %}" class="active">Account</a>
+  <a href="{% url 'my-account-edit' request.user.pk %}" class="active">My account</a>
 </div>
 {% endblock %}
 
 {% block sidebar_right %}
 <div id="layout-right" class="col-md-3 col-sm-12">
-  <section class="sibebar-section">
-    <ul class="list-group">
-      <li class="list-group-item"><a href="{% url 'my-orders' %}">My orders</a></li>
-      <li class="list-group-item"><a href="{% url 'forgot' %}">Restore Password</a></li>
-    </ul>
-  </section>
+ <section class="sibebar-section">
+  <ul class="list-group">
+   <li class="list-group-item"><a href="{% url 'my-orders' %}">My Orders</a></li>
+   <li class="list-group-item active"><a href="{% url 'my-account' request.user.pk %}">My account</a></li>
+   <li class="list-group-item"><a href="{% url 'password-change' %}">Password change</a></li>
+   <li class="list-group-item"><a href="{% url 'logout' %}">Exit</a></li>
+  </ul>
+ </section>
 </div>
+
 {% endblock %}
 
 {% block content %}
