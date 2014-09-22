@@ -46,14 +46,14 @@
        <div class="form-group {% if form.email.errors %} has-error {% endif %}" title="{{form.email.errors|striptags}}">
         <label class="col-sm-4 control-label">Email <span class="require">*</span></label>
         <div class="col-sm-8">
-         <input type="email" name="email" class="form-control" required value="{{form.email.value|default:''}}">
+         <input type="email" disabled class="form-control" required value="{{form.email.value}}">
          {% if form.email.errors %}<span class="validation-message">{{form.email.errors|striptags}}</span>{% endif %}
         </div>
        </div>
-       <div class="form-group {% if form.username.errors %} has-error {% endif %}" title="{{form.username.errors|striptags}}">
+       <div class="form-group {% if form.username.errors %} has-error {% endif %}" title="{{form.username.errors}}">
         <label class="col-sm-4 control-label">Nickname <span class="require">*</span></label>
         <div class="col-sm-8">
-         <input type="text" name="username" class="form-control" required value="{{form.username.value|default:''}}">
+         <input type="text" disabled class="form-control" required value="{{form.username.value|default:''}}">
          {% if form.username.errors %}<span class="validation-message">{{form.username.errors|striptags}}</span>{% endif %}
         </div>
        </div>
@@ -78,13 +78,16 @@
          {% if form.country.errors %}<span class="validation-message">{{form.country.errors|striptags}}</span>{% endif %}
         </div>
        </div>
+
        <div class="form-group {% if form.phone.errors %} has-error {% endif %}" title="{{form.phone.errors|striptags}}">
         <label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
         <div class="col-sm-8">
-         <input type="tel" name="phone" class="form-control" required value="{{form.phone.value|default:''}}">
+          <label class="control-label" style="float:left; padding-left:5px; padding-right:5px;">+1 </label>
+		  <input type="tel" name="phone" value="{{form.phone.value|default:''}}" required class="form-control" style="width:226px">
          {% if form.phone.errors %}<span class="validation-message">{{form.phone.errors|striptags}}</span>{% endif %}
         </div>
        </div>
+	   
       </fieldset>
       <div class="form-group submit-group">
        <label class="col-sm-4 control-label">&nbsp;</label>

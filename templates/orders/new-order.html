@@ -308,7 +308,7 @@
          
          <div class="form-group">
           <div class="col-sm-12 text-center">
-           <a href="forgot">Forget Password?</a> 
+           <a href="{% url 'forgot' %}" rel="nofollow">Forget Password?</a> 
           </div>
          </div>
          
@@ -345,17 +345,16 @@
      </div>
      <div class="form-group">
       <div class="col-sm-12 text-center">
-       <p>By clicking "Proceed to safe payment" button you agree to the <a href="#">Terms and Conditions</a>, <a href="#">MoneyBack Policy</a> and <a href="#">Privacy Policy</a></p> 
+       <p>By clicking "Proceed to safe payment" button you agree to the <a href="{% url 'terms-conditions' %}" rel="nofollow" target="_blank">Terms and Conditions</a>, <a href="{% url 'money-back-guarantee' %}" rel="nofollow" target="_blank">MoneyBack Policy</a> and <a href="{% url 'privacy-policy' %}" rel="nofollow" target="_blank">Privacy Policy</a></p> 
       </div>
      </div>
      </br>
      <div class="form-group">
-      <div class="col-sm-8 col-md-offset-4">
-       <button type="submit" name="send_auth" class="btn btn-primary" style="">Proceed to safe payment</button>
+      <div class="col-sm-8 col-md-offset-4 new-oreder-button">
+       <button type="submit" name="send_auth" class="btn btn-primary">Proceed to safe payment</button>
       </div>
      </div>
      </br></br>
-
     </div><!--price-form-->
  
    </form>
@@ -385,11 +384,11 @@ var pricelist = {{co.PRICELIST}};
 		
 	if (assigment == "0")
 	{
-		levelSelect.attr("disabled", true);
-		urgencySelect.attr("disabled", true);
+		levelSelect.prop("disabled", true);
+		urgencySelect.prop("disabled", true);
 	}else{
-		levelSelect.attr("disabled", false);
-		urgencySelect.attr("disabled", false);
+		levelSelect.prop("disabled", false);
+		urgencySelect.prop("disabled", false);
 	}
 })(jQuery);
 
@@ -416,35 +415,37 @@ var clearPrice = function() {
 var onAssigmentChange = function() {
 	var curItem = $('select[name=assigment] option:selected').text();
 	var items = getData(curItem);
+	
 	if (items)
 	{
-    var levelSelect = $("select[name=level]"),
-        urgencySelect = $("select[name=urgency]");
-    var curLevelSelect = $("select[name=level] option:selected").val(),
-        curUrgencySelect = $("select[name=urgency] option:selected").val();
+		var levelSelect = $("select[name=level]"),
+			urgencySelect = $("select[name=urgency]");
+		var curLevelSelect = $("select[name=level] option:selected").val(),
+			curUrgencySelect = $("select[name=urgency] option:selected").val();
 
-	  // При першому виборі значення забираємо атрибут disabled 
-	  levelSelect.attr("disabled", false);
-	  urgencySelect.attr("disabled", false);
-    
-	  // Очищаємо вміст тегів
-	  levelSelect.empty();
-	  urgencySelect.empty();
+		// При першому виборі значення забираємо атрибут disabled 
+		levelSelect.prop("disabled", false);
+		urgencySelect.prop("disabled", false);
 
-	  // Встановлюємо заглушку з нульовими значеннями
-	  levelSelect.append($("<option disabled selected/>").val('0').text('Please select'));
-	  urgencySelect.append($("<option disabled selected/>").val('0').text('Please select')); 
+		// Очищаємо вміст тегів
+		levelSelect.empty();
+		urgencySelect.empty();
 
-	  // Наповнюємо тегами із значеннями теги select
-	  $.each(items.urgencies, function(key, val) {
-		urgencySelect.append($("<option />").val(key).text(val));
-	  });
-	  $.each(items.levels, function(key, val) {
-		levelSelect.append($("<option />").val(key).text(val));
-	  });
-	  // Restore prev values.
-	  levelSelect.val(curLevelSelect);
-	  urgencySelect.val(curUrgencySelect);
+		// Встановлюємо заглушку з нульовими значеннями
+		levelSelect.append($("<option disabled selected />").val('0').text('Please select'));
+		urgencySelect.append($("<option disabled selected />").val('0').text('Please select'));
+
+		// Наповнюємо тегами із значеннями теги select
+		$.each(items.urgencies, function(key, val) {
+			urgencySelect.append($("<option />").val(key).text(val));
+		});
+		$.each(items.levels, function(key, val) {
+			levelSelect.append($("<option />").val(key).text(val));
+		});
+		
+		// ??? Restore prev values.
+		/*levelSelect.val(curLevelSelect);
+		urgencySelect.val(curUrgencySelect);*/
 
 	} else {
 	  clearPrice();
@@ -464,6 +465,13 @@ var displayPrice = function() {
 	  if (pagePrice === 0) {
 		$('label.js-total-price').html('Configuration is not correct.');
 	  } else {
+		// Якщо число відємне
+		if (pages < 1)
+		{
+			pages = -pages;
+			$('input[name=page_number]').val(pages);
+		}
+		
 		var totalPrice = pagePrice * (spacing == '2' ? 2 : 1) * pages;
 		$('label.js-total-price').html('$' + Number(totalPrice ? totalPrice : 0).toFixed(2));
 	  }

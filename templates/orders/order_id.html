@@ -171,6 +171,7 @@
     {% endif %}
     <a href="{% url 'order-id-buy' order.pk %}" class="btn btn-primary">Pay now ({{order.get_price}}$)</a>
    </div>
+   
   </div><!-- End Details Tab -->
 
   {% include "orders/files_tab.html" %}

@@ -1,37 +1,42 @@
   <div class="tab-pane {% if request.GET.messages %}active{% endif %}" id="messages">
    <div id="messages-list">
-    {% for msg in msgs %}
-      {% if request.user.pk == msg.mowner.pk %}
-      <div class="row message-mine">
-       <div class="col-md-2 col-sm-2 col-xs-2">
-  <div class="user-avatar"><img src="{{ STATIC_URL }}images/thumb-user-default.jpg" alt=""></div>
-       </div>
-       <div class="col-md-10 col-sm-10 col-xs-10 message">
-        <div class="message-time">I am at: {{msg.created}}</div>
-        <div class="message-subj">{{msg.title}}</div>
-        <div class="message-text">{{msg.body}}</div>
-       </div>
-      </div>
-      {% else %}
-      <div class="row message-support">
-       <div class="col-md-10 col-sm-10 col-xs-10 message">
-        <div class="message-time">Support at: {{msg.created}}</div>
-        <div class="message-subj">{{msg.title}}</div>
-        <div class="message-text">{{msg.body}}</div>
-       </div>
-       <div class="col-md-2 col-sm-2 col-xs-2">
-        <div>{{msg.mowner.username}}</div>
-       <div class="user-avatar">
-       {% if msg.mowner.get_group == co.ADMIN_GROUP %}
-         <img src="{{ STATIC_URL }}images/thumb-support-default.png" alt=""></div>
-       {% else %}
-         <img src="{{ STATIC_URL }}images/thumb-writter-default.png" alt=""></div>
-       {% endif %}
-       </div>
-      </div>
-      {% endif %}
-    {% endfor %}
+	{% if msgs %}
+		{% for msg in msgs %}
+		  {% if request.user.pk == msg.mowner.pk %}
+		  <div class="row message-mine">
+		   <div class="col-md-2 col-sm-2 col-xs-2">
+			<div class="user-avatar"><img src="{{ STATIC_URL }}images/thumb-user-default.jpg" alt=""></div>
+		   </div>
+		   <div class="col-md-10 col-sm-10 col-xs-10 message">
+			<div class="message-time">I am at: {{msg.created}}</div>
+			<div class="message-subj">{{msg.title}}</div>
+			<div class="message-text">{{msg.body}}</div>
+		   </div>
+		  </div>
+		  {% else %}
+		  <div class="row message-support">
+		   <div class="col-md-10 col-sm-10 col-xs-10 message">
+			<div class="message-time">Support at: {{msg.created}}</div>
+			<div class="message-subj">{{msg.title}}</div>
+			<div class="message-text">{{msg.body}}</div>
+		   </div>
+		   <div class="col-md-2 col-sm-2 col-xs-2">
+			<div>{{msg.mowner.username}}</div>
+		   <div class="user-avatar">
+		   {% if msg.mowner.get_group == co.ADMIN_GROUP %}
+			 <img src="{{ STATIC_URL }}images/thumb-support-default.png" alt=""></div>
+		   {% else %}
+			 <img src="{{ STATIC_URL }}images/thumb-writter-default.png" alt=""></div>
+		   {% endif %}
+		   </div>
+		  </div>
+		  {% endif %}
+		{% endfor %}
+	{% else %}
+		No message yet.
+	{% endif %}
    </div>
+   
    {# if perm.can_message #}
    <div class="row message-reply-form">
     <form action="{% url 'order-msg-new' order.pk %}" class="form-horizontal" method="post">
@@ -42,6 +47,7 @@
        <label class="col-md-2 col-sm-2 col-xs-12 control-label">Send to:</label>
        <div class="col-md-4 col-sm-4 col-xs-12">
         <select name="visibility" class="form-control">
+         <option value="0" disabled selected="selected">Please select</option>
          <option value="{{co.MSGS_WRITER}}" >Writer</option>
          <option value="{{co.MSGS_ADM}}" >Admin&Editor</option>
         </select>

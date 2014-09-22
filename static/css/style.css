@@ -302,10 +302,7 @@ blockquote{
 	letter-spacing: 0;
 }
 .tab-pane{
-	padding: 28px 0 0 2px;
-}
-#details.tab-pane{
-	padding: 10px 0 0 2px; 
+	padding: 28px 0 0 2px
 }
 .tab-pane .form-group{
 	margin-left: 0;
@@ -2239,8 +2236,11 @@ fieldset + fieldset{
 #forgot-form input[type=email]{
 	max-width: 252px;
 }
+#update-form .form-group{
+	margin-bottom: 9px;
+}
 .submit-group{
-	margin-top: 18px;
+	margin-top: 20px;
 }
 .price-form-wrapper .submit-group{
 	margin-top: 27px;
@@ -2740,7 +2740,7 @@ address + .sibebar-section .social-icons{
 	text-align: right;	
 }
 .order-actions{
-	margin: 81px 0 0 0;
+	margin: 20px 0 0 0;
 }
 .order-actions .btn{
 	min-width: 108px;
@@ -2887,9 +2887,15 @@ address + .sibebar-section .social-icons{
 	}
 	.order-actions .btn + .btn{
 		margin-left: 0;
+		width:100%
 	}
-
 }
+@media (max-width: 530px) {
+	.btn-primary {
+		width:100%
+	}
+}
+
 .captcha-wrapper{
 	border: 1px solid #bdbdbd;
 	width: 122px;
@@ -3025,7 +3031,7 @@ address + .sibebar-section .social-icons{
 }
 .message-reply-form{
 	background: #eaeaea;
-	margin: 33px 0 0 !important;
+	margin: 25px 0 0 !important;
 	padding: 14px 19px;
 }
 .tab-pane .message-reply-form .form-group{
@@ -3056,6 +3062,11 @@ address + .sibebar-section .social-icons{
 	max-height: 415px;
 	overflow-y: scroll;
 }*/
+#messages-list{
+	border: 1px solid #E4E4E4;
+	padding: 15px;
+}
+
 @media (max-width: 530px){
 	#messages .message-mine .col-md-2.col-sm-2.col-xs-2,
 	#messages .message-support .col-md-2.col-sm-2.col-xs-2{
@@ -3136,4 +3147,11 @@ address + .sibebar-section .social-icons{
 		margin-top: 10px;
 		margin-left: 0;
 	}
+}
+
+.new-oreder-button{
+	margin: 0 auto;
+	width: 100%;
+	text-align: center;
+	padding: 0;
 }
