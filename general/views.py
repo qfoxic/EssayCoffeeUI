@@ -3,6 +3,8 @@ import tempfile
 from django.views.generic import TemplateView, View
 from django.views.generic import ListView
 from django.contrib.auth.views import login, logout, password_reset, password_change
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import authenticate
 from django.contrib.auth.views import password_reset_done, password_reset_confirm, password_reset_complete
 from django.core.urlresolvers import reverse_lazy
 from django.core.exceptions import PermissionDenied
@@ -172,9 +174,14 @@ class LoginView(BaseView, TemplateView):
                  extra_context=context)
 
   def post(self, *args, **kwargs):
-    kwargs.update(self.settings)
-    return login(request=self.request, template_name=self.get_template_names(),
-                 extra_context=kwargs)
+    email = self.request.POST.get('email')
+    passwd = self.request.POST.get('password')
+    user = authenticate(email=email, password=passwd)
+    if not user:
+      return self.render_to_response({'auth_error':
+          ('Please enter correct password or email')}) 
+    auth_login(self.request, user)
+    return HttpResponseRedirect(reverse_lazy('my-orders'))
 
 
 class LogoutView(BaseView, TemplateView):

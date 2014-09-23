@@ -47,13 +47,6 @@
          {% if form.email.errors %}<span class="validation-message">{{form.email.errors|striptags}}</span>{% endif %}
         </div>
        </div>
-       <div class="form-group {% if form.username.errors %} has-error {% endif %}" title="{{form.username.errors|striptags}}">
-        <label class="col-sm-4 control-label">Login <span class="require">*</span></label>
-        <div class="col-sm-8">
-         <input type="text" name="username" class="form-control" required value="{{form.username.value|default:''}}">
-         {% if form.username.errors %}<span class="validation-message">{{form.username.errors|striptags}}</span>{% endif %}
-        </div>
-       </div>
        <div class="form-group {% if form.first_name.errors %} has-error {% endif %}" title="{{form.first_name.errors|striptags}}">
         <label class="col-sm-4 control-label">First Name <span class="require">*</span></label>
         <div class="col-sm-8">

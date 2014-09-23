@@ -73,8 +73,8 @@
         </td>
         <td align="center">
          <a href="{% url 'order-id' draft.pk %}" class="order-action-btn order-search"></a>
-         {% if perm.can_edit %}<a href="{% url 'order-id-edit' draft.pk %}" class="order-action-btn order-edit"></a>{% endif %}
-         {% if perm.can_delete %}<a href="{% url 'order-id-delete' draft.pk %}" class="order-action-btn order-remove"></a>{% endif %}
+         {% if draft|check_perm:"can_edit" %}<a href="{% url 'order-id-edit' draft.pk %}" class="order-action-btn order-edit"></a>{% endif %}
+         {% if draft|check_perm:"can_delete" %}<a href="{% url 'order-id-delete' draft.pk %}" class="order-action-btn order-remove"></a>{% endif %}
         </td>
        </tr>
        {% empty %}
@@ -113,8 +113,8 @@
         <td>{{order.get_price}}$</td>
         <td align="center">
          <a href="{% url 'order-id' order.pk %}" class="order-action-btn order-search"></a>
-         {% if perm.can_edit %}<a href="{% url 'order-id-edit' order.pk %}" class="order-action-btn order-edit"></a>{% endif %}
-         {% if perm.can_delete %}<a href="{% url 'order-id-delete' order.pk %}" class="order-action-btn order-remove"></a>{% endif %}
+         {% if order|check_perm:"can_edit" %}<a href="{% url 'order-id-edit' draft.pk %}" class="order-action-btn order-edit"></a>{% endif %}
+         {% if order|check_perm:"can_delete" %}<a href="{% url 'order-id-delete' draft.pk %}" class="order-action-btn order-remove"></a>{% endif %}
         </td>
        </tr>
        {% empty %}
@@ -153,8 +153,8 @@
         <td>{{order.get_price}}$</td>
         <td align="center">
          <a href="{% url 'order-id' order.pk %}" class="order-action-btn order-search"></a>
-         {% if perm.can_edit %}<a href="{% url 'order-id-edit' order.pk %}" class="order-action-btn order-edit"></a>{% endif %}
-         {% if perm.can_delete %}<a href="{% url 'order-id-delete' order.pk %}" class="order-action-btn order-remove"></a>{% endif %}
+         {% if order|check_perm:"can_edit" %}<a href="{% url 'order-id-edit' draft.pk %}" class="order-action-btn order-edit"></a>{% endif %}
+         {% if order|check_perm:"can_delete" %}<a href="{% url 'order-id-delete' draft.pk %}" class="order-action-btn order-remove"></a>{% endif %}
         </td>
        </tr>
        {% empty %}

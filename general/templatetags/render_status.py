@@ -28,6 +28,10 @@ def is_bought(d, task_id):
         return False
     return True
 
+@register.filter()
+def check_perm(entity, action):
+  return co.CheckPermissionTmpl(entity, action)
+
 
 @register.filter(name='locked_by_user')
 def locked_by_user(task, user):

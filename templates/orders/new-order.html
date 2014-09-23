@@ -21,7 +21,7 @@
  <!-- BEGIN PRICE FORM -->
  <div class="row">
   <div class="col-md-12 col-sm-12">
-   <form action="{% url 'new-order' %}" method="post" class="form-horizontal new-order-form-wrapper" >
+   <form action="{% url 'new-order' %}" method="post" class="form-horizontal new-order-form-wrapper" novalidate >
      {% csrf_token %}
     <div class="price-form">
      <ul class="nav nav-tabs margin10353530" role="tablist">
@@ -213,59 +213,50 @@
       <!-- Begin new_customer Tab -->
       <div class="tab-pane active" id="new_customer">
        <fieldset>
-    
+	   
+		<legend>Your personal details</legend>
+		
         <div class="form-group {% if request.usr_form.email.errors %}has-error{% endif %}">
          <label class="col-sm-4 control-label">Email <span class="require">*</span></label>
          <div class="col-sm-8">
-          <input type="email" name="email" class="form-control" value="{{request.usr_form.email.value}}">
+          <input type="email" name="email" class="form-control" value="{{request.usr_form.email.value}}" autocomplete="off">
           {% if request.usr_form.email.errors %}<span class="validation-message">{{request.usr_form.email.errors|striptags}}</span>{% endif %}
          </div>
         </div>
-  
-        <div class="form-group {% if request.usr_form.password.errors %}has-error{% endif %}" >
-         <label class="col-sm-4 control-label">Password <span class="require">*</span></label>
+    
+        <div class="form-group {% if request.usr_form.first_name.errors %} has-error {% endif %}" title="{{request.usr_form.first_name.errors|striptags}}">
+         <label class="col-sm-4 control-label">First Name <span class="require">*</span></label>
          <div class="col-sm-8">
-          <input type="password" name="password" class="form-control">
+          <input type="text" name="first_name" class="form-control" value="{{request.usr_form.first_name.value|default:''}}">
+          {% if request.usr_form.first_name.errors %}<span class="validation-message">{{request.usr_form.first_name.errors|striptags}}</span>{% endif %}
          </div>
         </div>
-  
-        <div class="form-group {% if request.usr_form.password.errors %}has-error{% endif %}">
-         <label class="col-sm-4 control-label">Confirm password <span class="require">*</span></label>
+    
+        <div class="form-group {% if request.usr_form.last_name.errors %} has-error {% endif %}" title="{{request.usr_form.first_name.errors|striptags}}">
+         <label class="col-sm-4 control-label">Last Name <span class="require">*</span></label>
          <div class="col-sm-8">
-          <input type="password" name="password2" class="form-control">
-          {% if request.usr_form.password.errors %}<span class="validation-message">{{request.usr_form.password.errors|striptags}}</span>{% endif %}
+          <input type="text" name="last_name" class="form-control" value="{{request.usr_form.last_name.value|default:''}}">
+          {% if request.usr_form.last_name.errors %}<span class="validation-message">{{request.usr_form.last_name.errors|striptags}}</span>{% endif %}
          </div>
         </div>
-        </br>
-  
-       <div class="form-group {% if request.usr_form.username %} has-error {% endif %}" title="{{form.username.errors|striptags}}">
-        <label class="col-sm-4 control-label">Login <span class="require">*</span></label>
-        <div class="col-sm-8">
-         <input type="text" name="username" class="form-control" value="{{request.usr_form.username.value|default:''}}">
-         {% if request.usr_form.username.errors %}<span class="validation-message">{{request.usr_form.username.errors|striptags}}</span>{% endif %}
-        </div>
-       </div>
-    
-       <div class="form-group {% if request.usr_form.first_name.errors %} has-error {% endif %}" title="{{request.usr_form.first_name.errors|striptags}}">
-        <label class="col-sm-4 control-label">First Name </label>
-        <div class="col-sm-8">
-         <input type="text" name="first_name" class="form-control" value="{{request.usr_form.first_name.value|default:''}}">
-         {% if request.usr_form.first_name.errors %}<span class="validation-message">{{request.usr_form.first_name.errors|striptags}}</span>{% endif %}
-        </div>
-       </div>
-    
-       <div class="form-group {% if request.usr_form.last_name.errors %} has-error {% endif %}" title="{{request.usr_form.first_name.errors|striptags}}">
-        <label class="col-sm-4 control-label">Last Name </label>
-        <div class="col-sm-8">
-         <input type="text" name="last_name" class="form-control" value="{{request.usr_form.last_name.value|default:''}}">
-         {% if request.usr_form.last_name.errors %}<span class="validation-message">{{request.usr_form.last_name.errors|striptags}}</span>{% endif %}
-        </div>
-       </div>
+		
+		<script type='application/javascript'>
+		$.getJSON("http://api.hostip.info/get_json.php", function(data){
+			CountryName = data.country_name;
+			CountryName = CountryName.toLowerCase(); // нижній регістр
+			CountryName = CountryName.slice(0, 1).toUpperCase() + CountryName.slice(1); // перва буква тексту з верхного регістру
+			
+			if("(unknown country?)" != CountryName)
+			{
+				$('#country').val(CountryName);
+			}
+		});  
+		</script>
     
         <div class="form-group {% if request.usr_form.country.errors %}has-error{% endif %}">
          <label class="col-sm-4 control-label">Your country <span class="require">*</span></label>
          <div class="col-sm-8">
-          <input name="country" type="text" class="form-control" value="{{request.usr_form.country.value|default:''}}">
+          <input type="text" name="country" class="form-control" id="country" value="">
           {% if request.usr_form.country.errors %}<span class="validation-message">{{request.usr_form.country.errors|striptags}}</span>{% endif %}
          </div>
         </div>
@@ -273,8 +264,26 @@
         <div class="form-group {% if request.usr_form.phone.errors %}has-error{% endif %}">
          <label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
          <div class="col-sm-8">
-          <input name="phone" type="text" class="form-control" value="{{request.usr_form.phone.value|default:''}}">
+          <label class="control-label" style="float: left;padding-left: 5px;padding-right: 5px;padding-top: 8px;width: 8%;text-align: left;">+1 </label>
+          <input name="phone" type="tel" class="form-control" value="{{request.usr_form.phone.value|default:''}}" style="width:92%;">
           {% if request.usr_form.phone.errors %}<span class="validation-message">{{request.usr_form.phone.errors|striptags}}</span>{% endif %}
+         </div>
+        </div>
+		
+		<legend>Your password</legend>
+  
+        <div class="form-group {% if request.usr_form.password.errors %}has-error{% endif %}" >
+         <label class="col-sm-4 control-label">Password <span class="require">*</span></label>
+         <div class="col-sm-8">
+          <input type="password" name="password" class="form-control" autocomplete="off">
+         </div>
+        </div>
+  
+        <div class="form-group {% if request.usr_form.password.errors %}has-error{% endif %}">
+         <label class="col-sm-4 control-label">Confirm password <span class="require">*</span></label>
+         <div class="col-sm-8">
+          <input type="password" name="password2" class="form-control" autocomplete="off">
+          {% if request.usr_form.password.errors %}<span class="validation-message">{{request.usr_form.password.errors|striptags}}</span>{% endif %}
          </div>
         </div>
   
@@ -412,7 +421,7 @@ var clearPrice = function() {
 };
 
 //
-var onAssigmentChange = function() {
+var onAssigmentChange = function(onload) {
 	var curItem = $('select[name=assigment] option:selected').text();
 	var items = getData(curItem);
 	
@@ -442,10 +451,12 @@ var onAssigmentChange = function() {
 		$.each(items.levels, function(key, val) {
 			levelSelect.append($("<option />").val(key).text(val));
 		});
-		
-		// ??? Restore prev values.
-		/*levelSelect.val(curLevelSelect);
-		urgencySelect.val(curUrgencySelect);*/
+
+	        if(onload) {	
+		  // Restore prev values.
+		  levelSelect.val(curLevelSelect);
+	   	  urgencySelect.val(curUrgencySelect);
+                }
 
 	} else {
 	  clearPrice();
@@ -465,7 +476,7 @@ var displayPrice = function() {
 	  if (pagePrice === 0) {
 		$('label.js-total-price').html('Configuration is not correct.');
 	  } else {
-		// Якщо число відємне
+		// Якщо число від'ємне
 		if (pages < 1)
 		{
 			pages = -pages;
@@ -478,7 +489,7 @@ var displayPrice = function() {
 	} catch (e) {}
 }
 
-onAssigmentChange();
+onAssigmentChange(true);
 displayPrice();
 
 </script>

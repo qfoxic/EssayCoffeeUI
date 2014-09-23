@@ -37,7 +37,7 @@
  <!--BEGIN TABS-->
  <ul class="nav nav-tabs" role="tablist">
   <li class="{% if request.GET.details or not request.GET.files and not request.GET.messages%}active{% endif %}"><a href="#details" role="tab" data-toggle="tab">Order details</a></li>
-  <li class="{% if request.GET.files %}active{% endif %}"><a href="#files" role="tab" data-toggle="tab">Files</a></li>
+  <li class="{% if request.GET.files %}active{% endif %}"><a href="#files" role="tab" data-toggle="tab">Files ({{uploads|length}})</a></li>
   <li class="{% if request.GET.messages %}active{% endif %}"><a href="#messages" role="tab" data-toggle="tab">Messages ({{msgs|length}})</a></li>
  </ul>
  

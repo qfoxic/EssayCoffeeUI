@@ -356,6 +356,12 @@ def CheckPermissions(user, entity, action, entity_type='task'):
 
   return PERMISSIONS_TABLE[entity_type].get(group+str(status)+action) is not None
 
+def CheckPermissionTmpl(entity, action):
+  status = entity.status
+  group = CUSTOMER_GROUP
+  return PERMISSIONS_TABLE[entity.__class__.__name__.lower()].get(group+str(status)+action) is not None
+  
+
 MALE = 0
 FEMALE = 1
 GENDER = ((MALE, 'Mr.'),

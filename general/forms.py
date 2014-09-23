@@ -72,7 +72,7 @@ class NewTaskForm(BaseForm):
     passwd = self.request.POST.get('auth_password')
     user = None
     if not self.request.user.is_authenticated():
-        if email and passwd:
+        if email and passwd: # user entered email and password.
             user = authenticate(email=email, password=passwd)
             if not user:
               self.errors.update({'auth_error': ('Please enter correct'
@@ -80,7 +80,7 @@ class NewTaskForm(BaseForm):
               raise ValidationError('Not authorized.', code='not_auth')
             else:
               login(self.request, user)
-        else:
+        else: # user created new account.
             usr_form = NewProfileForm(group_name=co.CUSTOMER_GROUP,
                                       request=self.request,
                                       data=self.request.POST)
@@ -89,7 +89,7 @@ class NewTaskForm(BaseForm):
                 raise ValidationError('Entered user data are incorrect.')
             else:
                 usr_form.save()
-                user = authenticate(username=self.request.POST.get('username'),
+                user = authenticate(email=self.request.POST.get('email'),
                                     password=self.request.POST.get('password'))
                 login(self.request, user)
     return self.request.user
