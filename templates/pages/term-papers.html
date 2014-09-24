@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+{% block meta_title %}Term Papers{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block meta_keywords %}{% endblock %}
+
+{% block breadcrump %}
+<div class="breadcrumbs">
+	<a href="{% url 'home' %}">Home</a>
+	<span class="separator"><i class="fa fa-angle-right"></i></span>
+	<a href="{% url 'term-papers' %}" class="active">Term Papers</a>
+</div>
+{% endblock %}
+			
+{% block content %}
+<!-- BEGIN MIDDLE LAYOUT -->
+
+<div id="layout-middle" class="col-md-9 col-sm-9 content-page">
+
+	<h1 class="page-title margin-top">Term Papers</h1>
+	
+	<section>
+		<p>Term papers are research papers written by students during academic term. Students cannot avoid writing term papers as large part of the grade depends on term paper. They are inevitable and must be properly written to get a good grade. Unfortunately, most term papers are time consuming and require a lot of hard work. Even though writing them is not easy, many professors ask their students to write term papers at the same time, thus students have to find time to write more than one term paper at once. Many students find such situations stressful and look for something that will alleviate trouble they found themselves in.</p>
+		
+		<p>We have a solution for students like this. It is the era of web technologies and you have a wonderful opportunity to join thousands of other students who turn to online custom writing services like our company. Now you can buy cheap, affordable term papers in just two clicks.</p>
+		
+		<p>Just think of this: you can get a high quality custom term paper written by expert exclusively for you, and it will come with affordable price. Our expert will write custom written term paper for you from scratch within almost any deadline!. We are proud of the quality of our service and you can become a proud member  just by placing order at our website and get unique, non-plagiarised paper written by the best experts one can find online!</p>
+		
+		<div class="banner-large">
+			<img src="{{ STATIC_URL }}images/demo/banner-large.jpg" alt="">
+			<div class="banner-title">Buy Term Paper</div>
+			<a href="{% url 'new-order' %}" class="btn btn-primary">Order Now</a>
+			<div class="tag-bg"><span class="currency">$<span class="price-numb">12.99</span></span>/page</div>
+		</div>
+		
+		<p>So, right now all you need to do is to fill out our order form, proceed to trusted payment service and wait till one of our experts handle your order. Do not worry about providing us with details as we will not disclose your identity to anyone and no one will ever find out about you using some help on our website. So don’t waste your time any more and enjoy us helping you get your much deserved academic success!</p>
+	</section>
+</div>
+<!-- END MIDDLE LAYOUT -->
+
+<!-- BEGIN LEFT SIDEBAR LAYOUT -->
+<div id="layout-left" class="col-md-3 col-sm-12">
+	{% include 'html/sidebar-left.html' %}
+</div>
+<!-- END LEFT SIDEBAR LAYOUT -->
+{% endblock %}

@@ -127,8 +127,6 @@
     </div>
    </section>
    <!-- END BLOCKQUOTE BLOCK -->
-   
-
 
    <!-- BEGIN TARIFFS BOX -->
    <section id="tariffs">
@@ -142,14 +140,22 @@
      <div class="row">
       <div class="col-md-12">
        <div class="col-tariff">
-        <div class="tariff-title">High School<span>High School</span></div>
-        <div class="tariff-description">Text</div>
+        <div class="tariff-title">High School</div>
+        <div class="tariff-description">Choose deadline</div>
         <div class="tariff-period">
          <div class="tariff-period-wrapper">
           <form>
            <select name="tariff-period" class="tariff-period-select">
-            <option data-price="8.69">14 days</option>
-            <option data-price="21.69">21 days</option>
+			<option value="10800">3 hours</option>
+			<option value="21600">6 hours</option>
+			<option value="28800">8 hours</option>
+			<option value="43200">12 hours</option>
+			<option value="86400">24 hours</option>
+			<option value="172800">48 hours</option>
+			<option value="259200">3 days</option>
+			<option value="345600">4 days</option>
+			<option value="604800">7 days</option>
+			<option value="950400">11 days</option>
            </select>
           </form>
          </div>
@@ -163,14 +169,22 @@
        </div><!--col-tariff-->
 
        <div class="col-tariff">
-        <div class="tariff-title">College<span>College</span></div>
-        <div class="tariff-description">Text</div>
+        <div class="tariff-title">College</div>
+        <div class="tariff-description">Choose deadline</div>
         <div class="tariff-period">
          <div class="tariff-period-wrapper">
           <form>
            <select name="tariff-period" class="tariff-period-select">
-            <option data-price="8.79">14 days</option>
-            <option data-price="22.69">21 days</option>
+			<option value="10800">3 hours</option>
+			<option value="21600">6 hours</option>
+			<option value="28800">8 hours</option>
+			<option value="43200">12 hours</option>
+			<option value="86400">24 hours</option>
+			<option value="172800">48 hours</option>
+			<option value="259200">3 days</option>
+			<option value="345600">4 days</option>
+			<option value="604800">7 days</option>
+			<option value="950400">11 days</option>
            </select>
           </form>
          </div>
@@ -183,14 +197,22 @@
        </div><!--col-tariff-->
 
        <div class="col-tariff">
-        <div class="tariff-title">High School<span>High School</span></div>
-        <div class="tariff-description">Text</div>
+        <div class="tariff-title">University</div>
+        <div class="tariff-description">Choose deadline</div>
         <div class="tariff-period">
          <div class="tariff-period-wrapper">
           <form>
            <select name="tariff-period" class="tariff-period-select">
-            <option data-price="10.69">14 days</option>
-            <option data-price="30.69">21 days</option>
+			<option value="10800">3 hours</option>
+			<option value="21600">6 hours</option>
+			<option value="28800">8 hours</option>
+			<option value="43200">12 hours</option>
+			<option value="86400">24 hours</option>
+			<option value="172800">48 hours</option>
+			<option value="259200">3 days</option>
+			<option value="345600">4 days</option>
+			<option value="604800">7 days</option>
+			<option value="950400">11 days</option>
            </select>
           </form>
          </div>
@@ -203,14 +225,22 @@
        </div><!--col-tariff-->
 
        <div class="col-tariff">
-        <div class="tariff-title">High School<span>High School</span></div>
-        <div class="tariff-description">Text</div>
+        <div class="tariff-title">Master's</div>
+        <div class="tariff-description">Choose deadline</div>
         <div class="tariff-period">
          <div class="tariff-period-wrapper">
           <form>
            <select name="tariff-period" class="tariff-period-select">
-            <option data-price="8.69">14 days</option>
-            <option data-price="21.69">21 days</option>
+			<option value="10800">3 hours</option>
+			<option value="21600">6 hours</option>
+			<option value="28800">8 hours</option>
+			<option value="43200">12 hours</option>
+			<option value="86400">24 hours</option>
+			<option value="172800">48 hours</option>
+			<option value="259200">3 days</option>
+			<option value="345600">4 days</option>
+			<option value="604800">7 days</option>
+			<option value="950400">11 days</option>
            </select>
           </form>
          </div>
@@ -223,14 +253,22 @@
        </div><!--col-tariff-->
 
        <div class="col-tariff">
-        <div class="tariff-title">High School<span>High School</span></div>
-        <div class="tariff-description">Text</div>
+        <div class="tariff-title">PHD</div>
+        <div class="tariff-description">Choose deadline</div>
         <div class="tariff-period">
          <div class="tariff-period-wrapper">
           <form>
            <select name="tariff-period" class="tariff-period-select">
-            <option data-price="8.69">14 days</option>
-            <option data-price="21.69">21 days</option>
+			<option value="10800">3 hours</option>
+			<option value="21600">6 hours</option>
+			<option value="28800">8 hours</option>
+			<option value="43200">12 hours</option>
+			<option value="86400">24 hours</option>
+			<option value="172800">48 hours</option>
+			<option value="259200">3 days</option>
+			<option value="345600">4 days</option>
+			<option value="604800">7 days</option>
+			<option value="950400">11 days</option>
            </select>
           </form>
          </div>
@@ -243,7 +281,7 @@
        </div><!--col-tariff-->
       </div>
      </div>
-     <div class="row text-center full-price-wrapper"><a href="{% url 'pricing' %}" class="btn-transparent btn-grey">Full Price Table</a></div>
+     <div class="row text-center full-price-wrapper"><a href="{% url 'pricing' %}" class="btn-transparent btn-grey" rel="nofollow">Full Price Table</a></div>
     </div>
    </section>
    <!-- END TARIFFS BOX -->
@@ -300,7 +338,7 @@
    <section class="quote">
     <div class="container">
      <div class="row ">
-      <div class="col-md-9"><span>Metronic - The Most Complete &amp; Popular Admin &amp; Frontend Theme</span></div>
+      <div class="col-md-9"><span>Why wait?</span></div>
       <div class="col-md-3 text-right"><a href="{% url 'new-order' %}" class="btn-transparent">Order Now</a></div>
      </div>
     </div>
@@ -315,21 +353,21 @@
      <div class="row center counters">
       <div class="col-md-4 col-sm-4">
        <div class="counter counter-int">
-        <strong><span data-to="327">0</span></strong>
+        <strong><span data-to="253">0</span></strong>
         <label>writers active</label>
        </div>
       </div>
       
       <div class="col-md-4 col-sm-4">
        <div class="counter counter-demical-2">
-        <strong><span data-to="95.66">0</span>%</strong>
+        <strong><span data-to="95.67">0</span>%</strong>
         <label>of orders delivered on time</label>
        </div>
       </div>
 
       <div class="col-md-4 col-sm-4">
        <div class="counter counter-demical-1">
-        <strong><span data-to="8.5">0</span></strong>
+        <strong><span data-to="8.6">0</span></strong>
         <label>out of 10 current<br>average quality<br>score</label>
        </div>
       </div>

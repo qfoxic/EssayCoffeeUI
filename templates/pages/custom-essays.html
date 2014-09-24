@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+
+{% block meta_title %}Service{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block meta_keywords %}{% endblock %}
+
+{% block breadcrump %}
+<div class="breadcrumbs">
+	<a href="{% url 'home' %}">Home</a>
+	<span class="separator"><i class="fa fa-angle-right"></i></span>
+	<a href="{% url 'custom-essays' %}" class="active">Service</a>
+</div>
+{% endblock %}
+			
+{% block content %}
+<!-- BEGIN MIDDLE LAYOUT -->
+<div id="layout-middle" class="col-md-9 col-sm-9 content-page">
+
+	<h1 class="page-title margin-top">Custom Essays</h1>
+	
+	<p>Academic writing is the task that students perform the most while in high school, college or university. Most of you lecturers will want you and other students to write different types of papers, such as: essays, research papers, theses, etc., on a wide range of topics</p>
+
+	<p>Apart from getting the best grade possible, students have to compete against deadlines and write more than one essay on different subjects at the same time. Many students have problems with doing so and sometimes have to wait for another semester to finish the course, because they didn’t have time to write good papers on their own. Good essay requires a lot of effort and spare time, something that most students can’t can’t afford.</p>
+
+	<p>But don’t be discouraged. University is the best time of your life, and we have a solution to make it even better! Today students from all over the world order custom written essays from our experts in academic writing. We can simultaneously handle two or more orders for you as our team of experts has no problem dealing with different assignments with short deadlines. The results will amaze you, as our writers not only possess  good writing skills, but they all graduate-level and college level degrees, and knowledge of subjects and academic formats. They will have no problem writing any paper within the deadline you set.</p>
+
+	<div class="banner-large">
+		<img src="{{ STATIC_URL }}images/demo/banner-large.jpg" alt="">
+		<div class="banner-title">Buy Custom Essay</div>
+		<a href="{% url 'new-order' %}" class="btn btn-primary">Order Now</a>
+		<div class="tag-bg"><span class="currency">$<span class="price-numb">12.99</span></span>/page</div>
+	</div>
+	
+	<p>You will get high quality original paper that will meet your requirements and your  professor’s expectations. The content will be original, sound and up to date. We guarantee that your paper will not contain plagiarism of any form and will be delivered to you within the stated deadline. All this you can get for an affordable price from our writers. Simply place your order online at our website. Give your specific requirements and your paper will be sent to you. It can be revised free of charge until you are satisfied. Then you make your payment and receive your paper. No more worries and no more stress! We are always a click away, 24/7, ready to assist you.</p>
+</div>
+<!-- END MIDDLE LAYOUT -->
+
+<!-- BEGIN LEFT SIDEBAR LAYOUT -->
+<div id="layout-left" class="col-md-3 col-sm-12">
+	{% include 'html/sidebar-left.html' %}
+</div>
+<!-- END LEFT SIDEBAR LAYOUT -->
+{% endblock %}

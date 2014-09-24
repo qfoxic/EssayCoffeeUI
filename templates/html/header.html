@@ -31,25 +31,39 @@
  <div class="container">
    <div id="logo"><a href="{% url 'home' %}">EssayCoffee{#<img src="{{ STATIC_URL }}images/demo/logo.png"></a>#}</div>
 
-   <a href="javascript:void(0);" class="mobi-toggler"></a>
-
+   <a href="javascript:void(0);" class="mobi-toggler"></a> 
+   
    <!-- BEGIN NAVIGATION -->
    <div id="main-navigation" class="pull-right">
 	<ul>
-		<li class="active"><a href="{% url 'home' %}">Home</a></li>
+		<li {% if request.path == '/' %}class="active"{% endif %}><a href="{% url 'home' %}">Home</a></li>
 		<li class="dropdown">
 			<a href="#">Our Services</a>
 			<ul class="dropdown-menu">
-				<li class="active"><a href="{% url 'service' %}">Services</a></li>
-				<li><a href="{% url 'service' %}">Prices</a></li>
+				<li {% if request.path == '/custom-essays/' %}class="active"{% endif %}><a href="{% url 'custom-essays' %}">Custom Essays</a></li>
+				<li {% if request.path == '/research-papers/' %}class="active"{% endif %}><a href="{% url 'research-papers' %}">Research Papers</a></li>
+				<li {% if request.path == '/term-papers/' %}class="active"{% endif %}><a href="{% url 'term-papers' %}">Term Papers</a></li>
+				<li {% if request.path == '/coursework-writing/' %}class="active"{% endif %}><a href="{% url 'coursework-writing' %}">Coursework Writing</a></li>
 			</ul>
 		</li>
-		<li><a href="{% url 'pricing' %}">Pricing</a></li>
-		<li><a href="{% url 'guarantees' %}">Guarantees</a></li>
-		<li><a href="{% url 'faq' %}">FAQ</a></li>
-		<li><a href="{% url 'contact' %}">Contact</a></li>
+		<li {% if request.path == '/pricing/' %}class="active"{% endif %}><a href="{% url 'pricing' %}">Pricing</a></li>
+		<li class="dropdown">
+			<a href="#">Guarantees</a>
+			<ul class="dropdown-menu">
+				<li {% if request.path == '/terms-conditions/' %}class="active"{% endif %}><a href="{% url 'terms-conditions' %}" rel="nofollow">Terms and Conditions</a></li>
+				<li {% if request.path == '/plagiarism-free-guarantee/' %}class="active"{% endif %}><a href="{% url 'plagiarism-free-guarantee' %}" rel="nofollow">Plagiarism Free Guarantee</a></li>
+				<li {% if request.path == '/cookie-policy/' %}class="active"{% endif %}><a href="{% url 'cookie-policy' %}" rel="nofollow">Cookie Policy</a></li>
+				<li {% if request.path == '/money-back-guarantee/' %}class="active"{% endif %}><a href="{% url 'money-back-guarantee' %}" rel="nofollow">Money Back Guarantee</a></li>
+				<li {% if request.path == '/privacy-policy/' %}class="active"{% endif %}><a href="{% url 'privacy-policy' %}" rel="nofollow">Privacy Policy</a></li>
+				<li {% if request.path == '/revisions-policy/' %}class="active"{% endif %}><a href="{% url 'revisions-policy' %}" rel="nofollow">Revision Policy</a></li>
+				<li {% if request.path == '/disclaimer/' %}class="active"{% endif %}><a href="{% url 'disclaimer' %}" rel="nofollow">Disclaimer</a></li>
+			</ul>
+		</li>
+		<li {% if request.path == '/faq/' %}class="active"{% endif %}><a href="{% url 'faq' %}" rel="nofollow">FAQ</a></li>
+		<li {% if request.path == '/contact/' %}class="active"{% endif %}><a href="{% url 'contact' %}">Contact</a></li>
 	</ul>
    </div>
    <!-- END NAVIGATION -->
+   
  </div>
 </header><!--header-->

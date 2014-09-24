@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+
+{% block meta_title %}Coursework Writing{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block meta_keywords %}{% endblock %}
+
+{% block breadcrump %}
+<div class="breadcrumbs">
+	<a href="{% url 'home' %}">Home</a>
+	<span class="separator"><i class="fa fa-angle-right"></i></span>
+	<a href="{% url 'coursework-writing' %}" class="active">Coursework Writing</a>
+</div>
+{% endblock %}
+			
+{% block content %}
+<!-- BEGIN MIDDLE LAYOUT -->
+
+<div id="layout-middle" class="col-md-9 col-sm-9 content-page">
+
+	<h1 class="page-title margin-top">Coursework Writing</h1>
+	
+	<section>
+		<p>Courseworks are usually assigned by teachers to students or trainees for the purpose of learning. Courseworks are usually graded and have the great impact on overall course scores. Courseworks are required to broaden student’s knowledge, enhance their research skills, teach them discuss various subjects, apply theoretical knowledge, to reason and construct practical outcomes from learned information. In contrast to tests, students are usually allotted several days or even weeks to write their coursework paper, and, thus, can use their textbook materials, notes, and Web to research the topic for their coursework paper. But usually courseworks have clashing deadlines, and most students have to write two, three, or even more courseworks at the same time, which, considering the nature of the work, may be stressful for some.</p>
+		
+		<p>Some students have problems dealing with multiple coursework projects at the same time and require help with formatting and citing. The case becomes worse when their grade depends on the coursework project and students start stressing even more. If you are one of those students than you should not stress, as you are already on the right way. Our company is here to help students like you. Regardless of what kind of essay, research paper or coursework you need, we can provide you with the level of assistance you require. We provide students who seek help with their academic writing with support. We provide original, custom written papers for you on any topic. Our team of expert writers can write summaries of required readings, literature reviews, research papers, book and movie reviews, essays and so on and so forth. Our custom written coursework papers contain original, non-plagiarised material with appropriate formatting.</p>
+		
+		<div class="banner-large">
+			<img src="{{ STATIC_URL }}images/demo/banner-large.jpg" alt="">
+			<div class="banner-title">Buy Coursework</div>
+			<a href="{% url 'new-order' %}" class="btn btn-primary">Order Now</a>
+			<div class="tag-bg"><span class="currency">$<span class="price-numb">12.99</span></span>/page</div>
+		</div>
+
+		
+		<p>Our team of expert writers holds graduate-level and college level degrees in all kinds of academic disciplines.  They already have years of  writing experience on wide range of topics behind their backs. If you need help with your paper, there is no better place than our website. Try our service by placing the order and you will be pleased with the quality of your paper and your instructor will be delighted with your work after you submit your wonderful paper. Ordering with us is easy. Just fill out our order form, proceed to secure payment website and wait till one of our experts will write a perfect paper that will get you the best mark possible!</p>
+	</section>
+</div>
+<!-- END MIDDLE LAYOUT -->
+
+<!-- BEGIN LEFT SIDEBAR LAYOUT -->
+<div id="layout-left" class="col-md-3 col-sm-12">
+	{% include 'html/sidebar-left.html' %}
+</div>
+<!-- END LEFT SIDEBAR LAYOUT -->
+{% endblock %}

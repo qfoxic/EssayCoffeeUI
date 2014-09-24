@@ -1022,7 +1022,7 @@ div.radio{
 .slide-title{
 	font-size: 70px;
 	font-weight: 300;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	color: #fff;
 }
 .slide-description.tp-caption{
@@ -1330,7 +1330,7 @@ div.radio{
 	padding: 13px 0 3px;
 }
 .tariff-description{
-	padding: 15px 13px 5px;
+	padding: 15px 10px 5px 45px;
 	font-size: 16px;
 	color: #4b4b4b;
 }
@@ -1880,21 +1880,32 @@ label a{
 .price-list li + li{
 	margin-top: 6px;
 }
-.price-list .tariff-descr{
+/*.price-list .tariff-descr{
 	float: left;
 	line-height: 44px;
 	width: 84px;
 	display: block;
 	text-align: right;
+}*/
+.price-list .tariff-descr{
+	float: left;
+	line-height: 44px;
+	width: 80px;
+	display: block;
+	text-align: right;
+	margin-right: -5px;
 }
 .tag-bg{
-	width: 145px;
+	width: 190px;
 	height: 44px;
 	background: url(../images/price-tag.png) no-repeat 0 0;
 	float: right;
 	line-height: 44px;
 	padding: 0 0 0 33px;
 	font-weight: 300;
+}
+.price-list .tag-bg{
+	width: 165px;
 }
 .tag-bg .currency{
 	color: #e84d1c;
@@ -1906,6 +1917,15 @@ label a{
 	color: #e84d1c;
 	font-size: 36px;
 }
+
+.price-list .tag-bg .currency{
+	font-size: 30px;
+}
+
+.price-list .tag-bg .price-numb{
+	font-size: 28px;
+}
+
 .price-list + .btn-transparent{
 	margin: 18px auto 0;
 	display: block;
@@ -2798,6 +2818,7 @@ address + .sibebar-section .social-icons{
 	top: 0;
 	opacity: 1;
 }
+
 #modalDelete .modal-header{
 	padding-top: 35px;
 }

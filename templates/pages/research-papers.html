@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+
+{% block meta_title %}Research Papers{% endblock %}
+{% block meta_description %}{% endblock %}
+{% block meta_keywords %}{% endblock %}
+
+{% block breadcrump %}
+<div class="breadcrumbs">
+	<a href="{% url 'home' %}">Home</a>
+	<span class="separator"><i class="fa fa-angle-right"></i></span>
+	<a href="{% url 'research-papers' %}" class="active">Research Papers</a>
+</div>
+{% endblock %}
+			
+{% block content %}
+<!-- BEGIN MIDDLE LAYOUT -->
+
+<div id="layout-middle" class="col-md-9 col-sm-9 content-page">
+
+	<h1 class="page-title margin-top">Research Papers</h1>
+	
+	<section>
+		<p>One of the most important things in life is good education. It opens doors to many opportunities that are not available otherwise. But completing education is a steady process  that requires time and effort, and part of this process requires writing strong research papers.  But writing good research paper is not as easy as it seems. Writing good research paper involves a lot of hard work and includes choosing interesting topic, doing online and offline research, organizing gathered information, developing outline, writing the content and formatting the paper. After this student has to proofread and edit the paper. Many students have problem with some of the stages of writing process and ask third party to help to write a custom research paper for them. If you are one of those students and have problems when writing research papers than you can ask for our help. We will be glad to assist you with writing strong research paper.</p>
+		
+		<p>We are a professional custom writing service, and we specialize in writing custom research papers for those who seek our assistance. We are staffed with the best writers available, as well as 24/7 customer support team ready to assist you at any time. All you need to do is press “Order Now” button, fill the requirements, submit payment and relax waiting for your finished essay. We will deliver your plagiarism free original paper back to you within the given deadline.</p>
+		
+		<div class="banner-large">
+			<img src="{{ STATIC_URL }}images/demo/banner-large.jpg" alt="">
+			<div class="banner-title">Buy Research Paper</div>
+			<a href="{% url 'new-order' %}" class="btn btn-primary">Order Now</a>
+			<div class="tag-bg"><span class="currency">$<span class="price-numb">12.99</span></span>/page</div>
+		</div>
+		
+		<p>Do not hesitate any more jeopardising your academic success due to strict deadlines. Just place your order with our service and let professionals help you achieve your academic success!</p>
+	</section>
+</div>
+<!-- END MIDDLE LAYOUT -->
+
+<!-- BEGIN LEFT SIDEBAR LAYOUT -->
+<div id="layout-left" class="col-md-3 col-sm-12">
+	{% include 'html/sidebar-left.html' %}
+</div>
+<!-- END LEFT SIDEBAR LAYOUT -->
+{% endblock %}

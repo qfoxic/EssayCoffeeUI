@@ -15,26 +15,41 @@
 <div id="layout-middle" class="col-md-9 col-sm-9 content-page">
 
 	<h1 class="page-title margin-top">Contacts</h1>
+
+	<section>
+		<h4>Phone</h4>
+		<p class="page-descr">Tel: +1 888 243 7406</p>
+		<p class="page-descr">Phone working hours: Monday 00:00 AM – Saturday 01:00 PM (UTC).</p>
+		<p class="page-descr">Toll-free for US & Canada (1-888…) only. International callers are charged for incoming calls.</p>
+	</section>
 	
-	<p class="page-descr">Lorem ipsum dolor sit amet, Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat consectetuer adipiscing elit, sed diam nonummy nibh euismod tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-	<form id="contacts" action="#">
-		<div class="form-group">
-			<label for="contacts-name">Name</label>
-			<input type="text" class="form-control" id="contacts-name">
-		</div>
-		<div class="form-group has-error">
-			<label for="contacts-email">Email</label>
-			<input type="email" class="form-control" id="contacts-email">
-			<span class="validation-message">Fill in this field</span>
-		</div>
-		<div class="form-group">
-			<label for="contacts-message">Message</label>
-			<textarea class="form-control" id="contacts-message"></textarea>
-		</div>
-		<div class="form-group">
-			<button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Send</button>		
-		</div>
-	</form>
+	<section>
+		<h4>Chat</h4>
+		<p>Chat working hours: Monday 00:00 AM – Saturday 01:00 PM (UTC)</p>
+	</section>
+	
+	<br/>
+	<section>
+		<h4>Feedback</h4>
+		<form id="contacts" action="#">
+			<div class="form-group">
+				<label for="contacts-name">Name</label>
+				<input type="text" class="form-control" id="contacts-name">
+			</div>
+			<div class="form-group has-error">
+				<label for="contacts-email">Emails</label>
+				<input type="email" class="form-control" id="contacts-email">
+				<span class="validation-message">Fill in this field</span>
+			</div>
+			<div class="form-group">
+				<label for="contacts-message">Message</label>
+				<textarea class="form-control" id="contacts-message"></textarea>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Send</button>		
+			</div>
+		</form>
+	</section>
 
 </div>
 <!-- END MIDDLE LAYOUT -->
@@ -70,6 +85,7 @@
 	</section>
 	{% endcomment %}
 
+	{% comment %}
 	<section id="sidebar-about" class="sibebar-section">
 		<h3>About Us</h3>
 		<p>Sediam nonummy nibh euismod tation ullamcorper suscipit</p>
@@ -79,6 +95,7 @@
 			<li><i class="fa fa-check"></i> Deserunt fpicia</li>
 		</ul>
 	</section>
+	{% endcomment %}
 </div>
 <!-- END LEFT SIDEBAR LAYOUT -->
 {% endblock %}
