@@ -26,6 +26,7 @@ from django.views.generic import DetailView
 from django.views.static import serve as djserve
 from django.http import HttpResponseRedirect, Http404
 from django.contrib import messages
+from django.core.mail import send_mail
 
 import lib.confreader as conf
 import constants as co
@@ -230,6 +231,7 @@ class UpdatePswdView(BaseView, TemplateView):
     context.update(self.settings)
     return password_change(request=self.request,
                            template_name=self.template_name,
+    
                            post_change_redirect=reverse_lazy('password-change-done'),
                            extra_context=context)
 
@@ -384,6 +386,23 @@ class RemoveTaskView(BaseView, DeleteView):
     # We can remove task only in draft version.
     if not co.CheckPermissions(user, obj, co.CAN_DELETE):
       raise PermissionDenied
+
+
+  def delete(self, request, *args, **kwargs):
+    """
+    Calls the delete() method on the fetched object and then
+    redirects to the success URL.
+    """
+    user = request.user
+    obj = self.get_object()
+    send_mail(co.DELETE_ORDER_SUBJECT,
+              co.DELETE_ORDER_EMAIL % {'order_title': obj.paper_title,
+                                       'order_id': obj.pk,
+                                       'first_name': user.first_name},
+              co.ADMIN_EMAIL,
+              [user.email])
+    messages.success(request, 'Your order has been deleted. Please check your email.')
+    return super(RemoveTaskView, self).delete(request, *args, **kwargs)
 
   def user_id(self):
     return self.get_object().owner.pk

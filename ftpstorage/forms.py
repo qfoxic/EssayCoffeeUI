@@ -1,9 +1,9 @@
-from django.forms import ModelForm, ValidationError
+from django.forms import ValidationError
 from ftpstorage.models import Upload
-from userprofile.models import UserProfile
 from general.models import Task
 from general.forms import BaseForm
-from django.core.exceptions import PermissionDenied
+from django.contrib import messages
+
 
 import constants as co
 
@@ -30,6 +30,23 @@ class UploadForm(BaseForm):
     """Raises an exception if there are no permissions to save a form."""
     if not co.CheckPermissions(self.request.user,
         self.cleaned_data['ftask'], co.CAN_UPLOAD):
-      raise ValidationError('You can not upload file.') 
+      raise ValidationError('You can not upload file.')
+
+  def save(self):
+    filename = self.instance.get_filename()
+    length = len(self.instance.attach) / 1024 / 1024
+    try:
+      if length > 5:
+        raise Exception('A file size should not exceeds 5MB.')
+      ext = filename.split('.')[-1]
+      if ext not in ['txt', 'doc', 'docx', 'xls', 'xlsx', 'pdf',
+                     'rtf', 'odt', 'jpg', 'png']:
+        raise Exception(('Please provide files with following '
+          'extensions: .txt, .doc, .docx, .xls, .xlsx, .pdf, .rtf, .odt, .jpg, .png'))
+    except Exception, e:
+      messages.error(self.request, str(e))
+      return
+    messages.success(self.request, 'File was successfully uploaded.')
+    return super(UploadForm, self).save()
 
 

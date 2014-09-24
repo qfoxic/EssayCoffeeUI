@@ -4,14 +4,11 @@ from django import forms
 from django.core import validators
 from django.contrib.auth.models import Group
 from django.core.mail import send_mail
+from django.contrib import messages
 
 import constants as co
 
 class ProfileForm(forms.ModelForm):
-  username = forms.CharField(min_length=4, max_length=30, validators=[
-    validators.RegexValidator(re.compile('^[\w]+$'),
-                              'Username should contains only characters on lower or upper case.',
-                              'invalid')])
   first_name = forms.CharField(min_length=3, validators=[
     validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'First name should contains only characters on lower or upper case.',
@@ -33,8 +30,8 @@ class ProfileForm(forms.ModelForm):
 
   class Meta:
     model = UserProfile
-    fields = ['username', 'password', 'first_name', 'last_name', 'email',
-              'country', 'phone', 'site']
+    fields = ['password', 'first_name', 'last_name',
+              'country', 'phone', 'site', 'email']
 
   def clean_phone(self):
     phone =self.request.POST.get('phone')
@@ -48,12 +45,6 @@ class ProfileForm(forms.ModelForm):
     """Specifies default Host parameter."""
     return self.request.get_host()
 
-  def clean_email(self):
-    if UserProfile.objects.filter(email=self.request.POST.get('email')):
-      raise forms.ValidationError('Email already exists',
-                                  code='email_exists')
-    return self.request.POST.get('email')
-
   def clean_password(self):
     if self.request.POST.get('password') != self.request.POST.get('password2'):
       raise forms.ValidationError('Passwords do not match.')
@@ -63,14 +54,11 @@ class ProfileForm(forms.ModelForm):
     user = UserProfile.objects.create_user(**self.cleaned_data)
     user.groups.add(Group.objects.get(name=self.group_name))
     user.save()
+    messages.success(self.request, 'Your user profile has been saved.')
     return user
 
 
 class EditProfileForm(forms.ModelForm):
-  username = forms.CharField(min_length=4, max_length=30, validators=[
-                             validators.RegexValidator(re.compile('^[\w]+$'),
-                              'Username should contains only characters on lower or upper case.',
-                              'invalid')])
   first_name = forms.CharField(min_length=3, validators=[
     validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'First name should contains only characters on lower or upper case.',
@@ -88,12 +76,11 @@ class EditProfileForm(forms.ModelForm):
     super(EditProfileForm, self).__init__(*args, **kwargs)
     self.user_id = user_id
     self.request = request
-    self.fields['username'].required = False
     self.fields['email'].required = False
 
   class Meta:
     model = UserProfile
-    fields = ['username','email', 'first_name', 'last_name', 'country', 'phone']
+    fields = ['first_name', 'last_name', 'country', 'phone', 'email']
 
   def clean_phone(self):
     phone =self.request.POST.get('phone')
@@ -110,15 +97,12 @@ class EditProfileForm(forms.ModelForm):
     user.country=self.cleaned_data['country']
     user.phone=self.cleaned_data['phone']
     user.save()
+    messages.success(self.request, 'Your user profile has been updated.')
     return user
 
 
 class NewProfileForm(forms.ModelForm):
   email = forms.EmailField(required=True)
-  username = forms.CharField(min_length=4, required=True, max_length=30, validators=[
-                             validators.RegexValidator(re.compile('^[\w]+$'),
-                             'Username should contains only characters on lower or upper case.',
-                             'invalid')])
   first_name = forms.CharField(min_length=3,  required=True, validators=[
     validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'First name should contains only characters on lower or upper case.',
@@ -132,7 +116,6 @@ class NewProfileForm(forms.ModelForm):
                               'Country should contains only characters on lower or upper case.',
                               'invalid')])
   password = forms.CharField(min_length=4, required=True)
-  
   phone = forms.CharField(min_length=10, required=True, validators=[validators.RegexValidator(re.compile('^[\d ]+$'), 'Phone number should contains only numbers and spaces.')])
 
   def __init__(self, group_name=None, request=None, *args, **kwargs):
@@ -142,7 +125,7 @@ class NewProfileForm(forms.ModelForm):
 
   class Meta:
     model = UserProfile
-    fields = ['username', 'password', 'first_name', 'last_name', 'email',
+    fields = ['password', 'first_name', 'last_name', 'email',
               'country', 'phone', 'site']
   
   def clean_phone(self):
@@ -169,6 +152,7 @@ class NewProfileForm(forms.ModelForm):
     return self.request.POST.get('password')
 
   def save(self, commit=True):
+    self.cleaned_data['username'] = self.cleaned_data['email']
     user = UserProfile.objects.create_user(**self.cleaned_data)
     user.groups.add(Group.objects.get(name=self.group_name))
     user.save()

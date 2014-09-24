@@ -42,11 +42,20 @@
   <body>
     <div class="wrap">
     {% if messages %}
-    <ul class="messages">
       {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% if message.tags == 'error'%}
+          <div class="alert alert-danger fade in" role="alert">
+             <button class="close" data-dismiss="alert"><span aria-hidden="true"></span></button>
+             <p>>{{ message }}</p>
+          </div>
+        {% endif %}
+        {% if message.tags == 'success'%}
+          <div class="alert alert-success fade in" role="alert">
+             <button class="close" data-dismiss="alert"><span aria-hidden="true"></span></button>
+             <p>>{{ message }}</p>
+          </div>
+        {% endif %}
       {% endfor %}
-    </ul>
     {% endif %}
     {% include 'html/header.html' %}
     {# hack due to incorrect design of home page#}

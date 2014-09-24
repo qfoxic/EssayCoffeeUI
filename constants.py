@@ -25,6 +25,16 @@ Administration
 
 NEW_PROFILE_SUBJECT = 'Thanks for registering.'
 ORDER_MAIL_SUBJECT = 'Thanks for ordering.'
+DELETE_ORDER_SUBJECT = 'Your order has been deleted.'
+DELETE_ORDER_EMAIL = """ 
+Dear %(first_name)s 
+
+Your order "%(order_title)s" with id "%(order_id)s" has been deleted.
+
+Regards,
+Administration
+"""
+
 
 #EMAIL_HOST = 'smtp.ukr.net'
 #EMAIL_HOST_PASSWORD = 'QAZqaz1983'

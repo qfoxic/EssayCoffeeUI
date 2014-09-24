@@ -179,60 +179,6 @@
  </div>
  <!--END TABS-->
 
- <!-- BEGIN MODALS -->
- <!-- begin Extend modal-->
- <div class="modal fade order-modal" id="modalExtend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md">
-   <div class="modal-content">
-    <div class="modal-header">
-     <button type="button" class="close" data-dismiss="modal">
-      <span aria-hidden="true"></span><span class="sr-only">Close</span>
-     </button>
-     <h4 class="modal-title" id="myModalLabel">Extend Deadline</h4>
-    </div>
-    <div class="modal-body">
-     <form class="form-inline">
-      <div class="form-group">
-       <label>Add</label>
-       <input type="text" class="form-control" placeholder="1">
-      </div>
-      <div class="form-group">
-       <label>day(s) and</label>
-       <input type="text" class="form-control" placeholder="0">
-       <label>hours</label>
-      </div>
-      <div class="submit-group">
-       <button class="btn btn-primary">Extend</button>
-      </div>
-     </form>
-    </div>
-   </div>
-  </div>
- </div>
- <!-- end Extend modal-->
- 
-
- <!-- begin Delete modal-->
- {% comment %}
- <div class="modal fade order-modal" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md">
-   <div class="modal-content">
-    <div class="modal-header">
-     <button type="button" class="close" data-dismiss="modal">
-      <span aria-hidden="true"></span><span class="sr-only">Close</span>
-     </button>
-     <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
-    </div>
-    <div class="modal-footer">
-     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-     <button type="submit" data-toggle="modal" data-target="#modalDeleteSuccess" class="btn btn-primary">Delete</button>
-   </div>
-   </div>
-  </div>
- </div>
- {% endcomment %}
- 
- 
 <!-- begin Delete modal-->
  <div class="modal fade order-modal" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
@@ -270,20 +216,12 @@
       <div class="form-group">
        <label class="col-sm-3 control-label">File input</label>
        <div class="col-sm-8">
-        <input type="file" name="attach" class="form-control">
+        <input type="file" name="attach" class="form-control" accept=".txt,.doc,.docx,.xls,.xlsx,.pdf,.rtf,.odt,.jpg,.png">
         <input type="hidden" name="access_level" value="1">
        </div>
       </div>
-      {% comment %}
-      <div class="form-group">
-       <label class="col-sm-3 control-label">Comment</label>
-       <div class="col-sm-8">
-        <textarea class="form-control"></textarea>
-       </div>
-      </div>
-      {% endcomment %}
       <div class="submit-group">
-       <button type="submit" data-toggle="modal" data-target="#modalUploadSuccess" class="btn btn-primary">Upload</button>
+       <button type="submit" class="btn btn-primary">Upload</button>
       </div>
      </form>
     </div>
@@ -292,28 +230,6 @@
   </div>
  </div>
  <!-- end Upload File modal-->
-
- <!-- begin Upload Success modal-->
- <div class="modal fade order-modal notification-modal" id="modalUploadSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md">
-   <div class="modal-content">
-    <div class="modal-body">File uploaded successfull</div>
-   </div>
-  </div>
- </div>
- <!-- end Upload Success modal-->
-
- <!-- begin Delete Success modal-->
- <div class="modal fade order-modal notification-modal" id="modalDeleteSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md">
-   <div class="modal-content">
-    <div class="modal-body">File deleted successfull</div>
-   </div>
-  </div>
- </div>
- <!-- end Delete Success modal-->
- 
- <!-- END MODALS -->
 </div>
 <!-- END MIDDLE LAYOUT -->
 {% endblock %}
