@@ -17,7 +17,7 @@ class UploadForm(BaseForm):
     super(UploadForm, self).__init__(*args, **kwargs)
     self.request = request
     self.task_id = task_id
-
+  
   def clean_fowner(self):
     """Specifies default User parameter."""
     return self.request.user

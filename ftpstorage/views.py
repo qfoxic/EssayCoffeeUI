@@ -28,7 +28,7 @@ class UploadFileView(BaseView, CreateView):
 
   def form_invalid(self, form):
     # If form is invalid redirect to task details with an error.
-    messages.add_message(self.request, messages.ERROR, str(form.errors))
+    messages.error(self.request, 'Did you forget to add an attachment?')
     return HttpResponseRedirect(self.get_success_url())
 
 

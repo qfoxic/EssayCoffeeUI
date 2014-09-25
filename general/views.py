@@ -117,11 +117,11 @@ class BaseView(View):
       self._add_request_to_obj(request, self.get_object())
     except AttributeError:
       pass
-    try:
-      return super(BaseView, self).dispatch(request, *args, **kwargs)
-    except Exception, e:
-      messages.add_message(request, messages.ERROR, str(e))
-      return HttpResponseRedirect('/')
+    #try:
+    return super(BaseView, self).dispatch(request, *args, **kwargs)
+    #except Exception, e:
+    #  messages.add_message(request, messages.ERROR, str(e))
+    #  return HttpResponseRedirect('/')
 
   def render_to_response(self, context, **response_kwargs):
     context.update(self.settings)
@@ -319,9 +319,6 @@ class UpdateTaskView(BaseView, UpdateView):
     if not co.CheckPermissions(user, obj, co.CAN_EDIT):
       raise PermissionDenied
   
-  def render_to_response(self, context, **response_kwargs):
-    return super(UpdateTaskView, self).render_to_response(context, **response_kwargs)
-
   def get_form_kwargs(self):
     kwargs = super(UpdateTaskView, self).get_form_kwargs()
     kwargs['request'] = self.request
@@ -341,11 +338,6 @@ class UpdateTaskView(BaseView, UpdateView):
 
   def get_success_url(self):
       return reverse_lazy('order-id-edit', args=(self.get_object().pk,))
-
-  def form_invalid(self, form):
-    # If form is invalid redirect to task details with an error.
-    messages.add_message(self.request, messages.ERROR, str(form.errors))
-    return HttpResponseRedirect(self.get_success_url())
 
   def user_id(self):
     return self.get_object().owner.pk

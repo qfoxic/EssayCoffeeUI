@@ -147,7 +147,7 @@ class CreateMsgView(BaseView, CreateView):
 
   def form_invalid(self, form):
     # If form is invalid redirect to task details with an error.
-    messages.add_message(self.request, messages.ERROR, str(form.errors))
+    messages.error(self.request, 'Please fill out all necessary message fields.')
     return HttpResponseRedirect(self.get_success_url())
 
 
