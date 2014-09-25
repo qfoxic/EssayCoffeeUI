@@ -5,6 +5,7 @@ from django.core import validators
 from django.contrib.auth.models import Group
 from django.core.mail import send_mail
 from django.contrib import messages
+from django.contrib.auth import login, authenticate
 
 import constants as co
 
@@ -130,7 +131,8 @@ class NewProfileForm(forms.ModelForm):
   
   def clean_phone(self):
     phone =self.request.POST.get('phone')
-    phone = phone.strip(' -')
+    phone = phone.replace(' ', '')
+    phone = phone.replace('-', '')
     if len(phone) > 10:
       raise forms.ValidationError('Phone should contains less then 10 numbers',
                                   code='number_overflow')
@@ -163,4 +165,8 @@ class NewProfileForm(forms.ModelForm):
                                       'email': user.email},
               co.ADMIN_EMAIL,
               [user.email])
+    user = authenticate(email=self.cleaned_data['email'],
+                        password=self.cleaned_data['password'])
+    login(self.request, user)
     return user
+

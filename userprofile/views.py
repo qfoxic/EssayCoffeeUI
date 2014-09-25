@@ -5,7 +5,6 @@ from django.views.generic import ListView
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.db.models import Count
-from django.contrib.auth.views import login
 
 from general.views import BaseView
 from general.models import Task
@@ -27,7 +26,6 @@ class CreateProfileView(BaseView, CreateView):
     return kwargs
 
   def get_success_url(self):
-    login(request=self.request)
     return reverse_lazy('my-orders')
 
 
