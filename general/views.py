@@ -1,6 +1,7 @@
 import tempfile
 
 from django.views.generic import TemplateView, View
+from django.views.generic.edit import FormView
 from django.views.generic import ListView
 from django.contrib.auth.views import login, logout, password_reset, password_change
 from django.contrib.auth import login as auth_login
@@ -15,7 +16,7 @@ from userprofile.models import UserProfile
 from msgs.models import Message
 from ftpstorage.models import Upload
 from ftpstorage.storage import FTPStorage
-from general.forms import TaskForm, SwitchStatusForm, NewTaskForm
+from general.forms import TaskForm, SwitchStatusForm, NewTaskForm, SendContactForm
 from payments.views import get_payments_status,get_payment_url,update_payment_status 
 
 from django.views.generic.edit import UpdateView
@@ -289,6 +290,17 @@ class TaskIndexView(BaseView, ListView):
     context['proc_tasks'] = list(Task.get_processing_tasks(0, **{'owner__id': self.request.user.id})) + list(Task.get_unprocessed_tasks(0, **{'owner__id': self.request.user.id}))
     context['completed_tasks'] = Task.get_finished_tasks(0, **{'owner__id': self.request.user.id})
     return context
+
+
+class SendContactView(FormView):
+  template_name = 'pages/contact.html'
+  form_class = SendContactForm 
+  success_url = reverse_lazy('contact')
+  
+  def form_valid(self, form):
+    form.send_email()
+    messages.success(self.request, 'Thanks for your comment. We will contact to you as soon as possible.')
+    return super(SendContactView, self).form_valid(form)
 
 
 class UpdateTaskView(BaseView, UpdateView):

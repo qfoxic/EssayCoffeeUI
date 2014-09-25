@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
 
 from general.views import RemoveTaskView,SwitchStatusView, HomeView
-from general.views import StaticPageView
+from general.views import StaticPageView, SendContactView
 from general.views import CreateTaskView,UpdateTaskView,DetailTaskView,TaskIndexView
 from msgs.views import CreateMsgView, RemoveMsgView, ListMsgsView,DetailMsgView
 from ftpstorage.views import UploadFileView,RemoveUploadView
@@ -51,8 +51,8 @@ urlpatterns = patterns('',
                                               name='pricing'),
     url(r'^faq/$', StaticPageView.as_view(module_name='customer', template_name='faq.html'),
                                           name='faq'),
-    url(r'^contact/$', StaticPageView.as_view(module_name='customer', template_name='contact.html'),
-                                              name='contact'),
+    url(r'^contact/$', SendContactView.as_view(template_name='pages/contact.html'),
+                                               name='contact'),
     url(r'^terms-conditions/$', StaticPageView.as_view(module_name='customer', template_name='terms-conditions.html'),
                                               name='terms-conditions'),
     url(r'^cookie-policy/$', StaticPageView.as_view(module_name='customer', template_name='cookie-policy.html'),

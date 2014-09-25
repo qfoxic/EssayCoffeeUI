@@ -1,10 +1,29 @@
-from django.forms import ModelForm, ValidationError
+import re
+from django.core.mail import send_mail
+from django.forms import ModelForm, ValidationError, Form, EmailField, CharField
+from django.core import validators
 from general.models import Task, calc_price
 from payments.models import Payment
 from django.contrib.auth import login, authenticate
 from userprofile.forms import NewProfileForm
 
 import constants as co
+
+class SendContactForm(Form):
+  email = EmailField(required=True)
+  name = CharField(min_length=3, required=True, validators=[
+    validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
+                              'Name should contains only characters on lower or upper case.',
+                              'invalid')])
+  comment = CharField(max_length=1000, required=True)
+
+  def send_email(self):
+    data = self.cleaned_data
+    send_mail('Request from %s' % data['email'],
+              data['comment'],
+              co.ADMIN_EMAIL,
+              [co.INFO_EMAIL])
+    
 
 
 class BaseForm(ModelForm):

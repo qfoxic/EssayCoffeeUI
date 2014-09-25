@@ -11,19 +11,9 @@
 {% endblock %}
 
 {% block sidebar_right %}
-<!-- BEGIN RIGHT SIDEBAR LAYOUT -->
-<div id="layout-right" class="col-md-3 col-sm-12">
- <section class="sibebar-section">
-  <ul class="list-group">
-   <li class="list-group-item active"><a href="{% url 'my-orders' %}">My Orders</a></li>
-   <li class="list-group-item"><a href="{% url 'my-account' request.user.pk %}">My account</a></li>
-   <li class="list-group-item"><a href="{% url 'password-change' %}">Password change</a></li>
-   <li class="list-group-item"><a href="{% url 'logout' %}">Exit</a></li>
-  </ul>
- </section>
-</div>
-<!-- END RIGHT SIDEBAR LAYOUT -->
+	{% include 'html/sidebar-account.html' %}
 {% endblock %}
+
 {% block content %}
 <!-- BEGIN MIDDLE LAYOUT -->
 <div id="layout-middle" class="col-md-9 col-sm-12 col-xs-12">

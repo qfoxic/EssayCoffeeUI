@@ -31,19 +31,22 @@
 	<br/>
 	<section>
 		<h4>Feedback</h4>
-		<form id="contacts" action="#">
-			<div class="form-group">
+		<form id="contacts" action="{% url 'contact' %}" method="post">
+                        {% csrf_token %}
+			<div class="form-group {% if form.name.errors %} has-error{% endif %}">
 				<label for="contacts-name">Name</label>
-				<input type="text" class="form-control" id="contacts-name">
+				<input name="name" type="text" class="form-control" id="contacts-name" {% if request.user.is_authenticated %}value="{{request.user.first_name}}"{% endif %}>
+				{% if form.name.errors %}<span class="validation-message">{{form.name.errors|striptags}}</span>{% endif %}
 			</div>
-			<div class="form-group has-error">
-				<label for="contacts-email">Emails</label>
-				<input type="email" class="form-control" id="contacts-email">
-				<span class="validation-message">Fill in this field</span>
+			<div class="form-group{% if form.email.errors %} has-error{% endif %}">
+				<label for="contacts-email">Your Email</label>
+				<input name="email" type="email" class="form-control" id="contacts-email" {% if request.user.is_authenticated %}value="{{request.user.email}}"{% endif %}>
+				{% if form.email.errors %}<span class="validation-message">{{form.email.errors|striptags}}</span>{% endif %}
 			</div>
-			<div class="form-group">
+			<div class="form-group {% if form.comment.errors %} has-error{% endif %}">
 				<label for="contacts-message">Message</label>
-				<textarea class="form-control" id="contacts-message"></textarea>
+				<textarea name="comment" class="form-control" id="contacts-message"></textarea>
+				{% if form.comment.errors %}<span class="validation-message">{{form.comment.errors|striptags}}</span>{% endif %}
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Send</button>		

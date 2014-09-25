@@ -31,8 +31,8 @@
 	<!-- BEGIN PRICE -->
 	<div class="row tariffs">
 		<div class="col-tariff">
-			<div class="tariff-title">High School<span>High School</span></div>
-			<div class="tariff-description">Text</div>
+			<div class="tariff-title">High School</div>
+			<div class="tariff-description">Choose deadline</div>
 			<div class="tariff-period">
 				<div class="tariff-period-wrapper">
 					<form>
@@ -45,15 +45,15 @@
 			</div>
 			<div class="tafiff-price">
 				$<span class="text-large">0</span><span class="text-small">.00</span>
-				<span>Per Month</span>
+				<span>Per one page</span>
 				<a href="{% url 'new-order' %}" class="btn-grey-bg">Order Now</a>
 			</div>
 			
 		</div><!--col-tariff-->
 
 		<div class="col-tariff">
-			<div class="tariff-title">College<span>College</span></div>
-			<div class="tariff-description">Text</div>
+			<div class="tariff-title">College</div>
+			<div class="tariff-description">Choose deadline</div>
 			<div class="tariff-period">
 				<div class="tariff-period-wrapper">
 					<form>
@@ -66,14 +66,14 @@
 			</div>
 			<div class="tafiff-price">
 				$<span class="text-large">0</span><span class="text-small">.00</span>
-				<span>Per Month</span>
+				<span>Per one page</span>
 				<a href="{% url 'new-order' %}" class="btn-grey-bg">Order Now</a>
 			</div>
 		</div><!--col-tariff-->
 
 		<div class="col-tariff">
-			<div class="tariff-title">High School<span>High School</span></div>
-			<div class="tariff-description">Text</div>
+			<div class="tariff-title">University</div>
+			<div class="tariff-description">Choose deadline</div>
 			<div class="tariff-period">
 				<div class="tariff-period-wrapper">
 					<form>
@@ -86,14 +86,14 @@
 			</div>
 			<div class="tafiff-price">
 				$<span class="text-large">0</span><span class="text-small">.00</span>
-				<span>Per Month</span>
+				<span>Per one page</span>
 				<a href="{% url 'new-order' %}" class="btn-grey-bg">Order Now</a>
 			</div>
 		</div><!--col-tariff-->
 
 		<div class="col-tariff">
-			<div class="tariff-title">High School<span>High School</span></div>
-			<div class="tariff-description">Text</div>
+			<div class="tariff-title">Master's</div>
+			<div class="tariff-description">Choose deadline</div>
 			<div class="tariff-period">
 				<div class="tariff-period-wrapper">
 					<form>
@@ -106,14 +106,14 @@
 			</div>
 			<div class="tafiff-price">
 				$<span class="text-large">0</span><span class="text-small">.00</span>
-				<span>Per Month</span>
+				<span>Per one page</span>
 				<a href="{% url 'new-order' %}" class="btn-grey-bg">Order Now</a>
 			</div>
 		</div><!--col-tariff-->
 
 		<div class="col-tariff">
-			<div class="tariff-title">High School<span>High School</span></div>
-			<div class="tariff-description">Text</div>
+			<div class="tariff-title">PHD</div>
+			<div class="tariff-description">Choose deadline</div>
 			<div class="tariff-period">
 				<div class="tariff-period-wrapper">
 					<form>
@@ -126,13 +126,14 @@
 			</div>
 			<div class="tafiff-price">
 				$<span class="text-large">0</span><span class="text-small">.00</span>
-				<span>Per Month</span>
+				<span>Per one page</span>
 				<a href="{% url 'new-order' %}" class="btn-grey-bg">Order Now</a>
 			</div>
 		</div><!--col-tariff-->
 	</div>
 	<!-- END PRICE -->
 
+	{% comment %}
 	<div class="order-btn-wrapper">
 		<a href="#" class="btn btn-primary">Place Your Order for Writing From Scratch Now!</a>
 	</div>
@@ -140,8 +141,11 @@
 	<p class="note">All prices are presented in US dollars for writing 1 page. You are able to choose different currency during checkout. If you happen to have a coupon discount code – please paste it in the appropriate field.</p>
 
 	<p class="bg-warning text-center">These prices do not include the <strong>Value Added TAX</strong>. Prices for EU customers will be 20% higher.</p>
+	{% endcomment %}
+	<p>&nbsp;</p>
 	<p class="bg-warning">The prices for writing do not include conducting any primary research. Our writers will not be able to gather primary data for your academic work using such data collection methods as questionnaires,interviews, focus groups interviews, observations and others due to geographical reasons and time/resources required. In case such methods are essential for your academic work our writers will be glad to assist you in creating questionnaires as well as analyzing and discussing the results.</p>
-
+	
+	{% comment %}
 	<!-- BEGIN PRICE FORM -->
 	<div class="row">
 		<div class="col-md-12 col-sm-12">
@@ -210,6 +214,7 @@
 		</div>
 	</div>
 	<!-- END PRICE FORM -->
+	{% endcomment %}
 
 	<section>
 		<h3>About the Pricing Policy</h3>
