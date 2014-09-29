@@ -7,7 +7,7 @@ from django.contrib.auth.views import login, logout, password_reset, password_ch
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import authenticate
 from django.contrib.auth.views import password_reset_done, password_reset_confirm, password_reset_complete
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy,reverse
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 
@@ -17,7 +17,7 @@ from msgs.models import Message
 from ftpstorage.models import Upload
 from ftpstorage.storage import FTPStorage
 from general.forms import TaskForm, SwitchStatusForm, NewTaskForm, SendContactForm
-from payments.views import get_payments_status,get_payment_url,update_payment_status 
+from payments.views import get_payments_status,get_payment_url,update_payment_status
 
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import CreateView
@@ -117,11 +117,11 @@ class BaseView(View):
       self._add_request_to_obj(request, self.get_object())
     except AttributeError:
       pass
-    #try:
-    return super(BaseView, self).dispatch(request, *args, **kwargs)
-    #except Exception, e:
-    #  messages.add_message(request, messages.ERROR, str(e))
-    #  return HttpResponseRedirect('/')
+    try:
+      return super(BaseView, self).dispatch(request, *args, **kwargs)
+    except Exception, e:
+      messages.add_message(request, messages.ERROR, str(e))
+      return HttpResponseRedirect('/')
 
   def render_to_response(self, context, **response_kwargs):
     context.update(self.settings)
@@ -279,7 +279,10 @@ class ResetPswdDoneView(BaseView, TemplateView):
 
 
 class TaskIndexView(BaseView, ListView):
-  """Displays all tasks for signed users."""
+  """Displays all tasks for signed users.
+  This handler is usually passed as redirect url after payments.
+  So, we have to update order.
+  """
   template_name = 'orders/my-orders.html'
   context_object_name = 'tasks'
   model=Task
@@ -329,7 +332,8 @@ class UpdateTaskView(BaseView, UpdateView):
     task_id = self.get_object().pk
     task_payments = context['payments'].get(task_id)
     if task_payments and task_payments[1] in [co.IN_PROCESS]:
-      update_payment_status(task_payments[3], self.get_object())
+      update_payment_status(task_payments[3], self.get_object(), self.request,
+                            task_payments[-1])
     context['msgs'] = get_msgs_for_task(self.request, task_id)
     task_q = Q(ftask_id__exact=task_id)
     m_ups = Upload.objects.filter(task_q, Q(fowner_id__exact=self.request.user.id))
@@ -364,7 +368,8 @@ class DetailTaskView(BaseView, DetailView):
     task_id = self.get_object().pk
     task_payments = context['payments'].get(task_id)
     if task_payments and task_payments[1] in [co.IN_PROCESS]:
-      update_payment_status(task_payments[3], self.get_object())
+      update_payment_status(task_payments[3], self.get_object(), self.request,
+                            task_payments[-1])
     context['msgs'] = get_msgs_for_task(self.request, task_id)
     task_q = Q(ftask_id__exact=task_id)
     m_ups = Upload.objects.filter(task_q, Q(fowner_id__exact=self.request.user.id))
@@ -425,7 +430,7 @@ class SwitchStatusView(UpdateTaskView):
       params = {'price': self.object.get_price(),
                 'title': self.object.paper_title,
                 'order_id': self.object.pk}
-      return get_payment_url(co.LIQPAY, self.request, params)
+      return get_payment_url(co.TWOCHECKOUT, self.request, params)
     return self.object.to_link()
 
 

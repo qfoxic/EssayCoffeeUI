@@ -10,7 +10,7 @@ from ftpstorage.views import UploadFileView,RemoveUploadView
 from ftpstorage.views import DownloadFileView
 from general.views import LoginView, LogoutView, ResetPswdView, StaticHtmlView
 from general.views import ResetPswdDoneView, ResetPswdConfirmView, ResetPswdCompleteView, UpdatePswdView, UpdatePswdDoneView
-
+from payments.views import two_checkout_payment_notification
 from userprofile.views import CreateProfileView, UpdateProfileView
 
 import constants as co
@@ -41,6 +41,7 @@ task_status = login_required(
 task_update = login_required(
   UpdateTaskView.as_view(module_name='customer'),
   login_url=reverse_lazy('login'))
+
 
 urlpatterns = patterns('',
     # Pages
@@ -101,6 +102,7 @@ urlpatterns = patterns('',
     url(r'^upload/(?P<pk>\d+)/download/$', upload_download, name='order-upload-download'),
     url(r'^msg/(?P<task_id>\d+)/new$', msg_add, name='order-msg-new'),
     url(r'^html/(?P<path>.*)$', StaticHtmlView.as_view(), name='html'),
+    url(r'^two-payment-notification', two_checkout_payment_notification, name='payment-notification'),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve'),
 )
 

@@ -1,4 +1,5 @@
 import re
+from django.contrib import messages
 from django.core.mail import send_mail
 from django.forms import ModelForm, ValidationError, Form, EmailField, CharField
 from django.core import validators
@@ -142,8 +143,10 @@ class SwitchStatusForm(BaseForm):
     cur_status = self.instance.status
     allowed = switch_table.get(cur_status)
     if not allowed:
+      messages.error(self.request, 'This action is not eligible.')
       raise ValidationError('That status can not be modified.')
     if not next_status in allowed:
+      messages.error(self.request, 'This action is not eligible.')
       raise ValidationError('This status is inappropriate. You can not set to it.')
 
   def check_permissions(self, cleaned_data):
@@ -171,7 +174,7 @@ class SwitchStatusForm(BaseForm):
       # Add processing payment.
       payment = Payment(powner=self.request.user, ptask=self.instance,
                         values='{}', payment_status=co.IN_PROCESS,
-                        payment_type=self.request.GET.get('ptype', co.LIQPAY))
+                        payment_type=self.request.GET.get('ptype', co.TWOCHECKOUT))
       payment.save()
     return super(SwitchStatusForm, self).save(*args, **kwargs)
 

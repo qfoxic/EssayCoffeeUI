@@ -60,16 +60,20 @@
         <td class="momdl">{{draft.admin_deadline}}</td>
         <td>{{draft.revision}}</td>
         <td>{{draft.get_price}}$
+          {% if not payments|is_bought:draft.pk %}
           <form action="{% url 'order-id-buy' draft.pk %}" method="POST">
             <input type="hidden" name="status" value="{{co.UNPROCESSED}}">
             {% csrf_token %}
             <button class="btn btn-primary btn-xs" type="submit">Pay now</button>
           </form>
+          {% else %}
+            <span>{% with payment as payments|dget:draft.pk %}{{payment.0}}{% endwith  %}</span>
+          {% endif %}
         </td>
         <td align="center">
          <a href="{% url 'order-id' draft.pk %}" class="order-action-btn order-search"></a>
          {% if draft|check_perm:"can_edit" %}<a href="{% url 'order-id-edit' draft.pk %}" class="order-action-btn order-edit"></a>{% endif %}
-         {% if draft|check_perm:"can_delete" %}<a href="{% url 'order-id-delete' draft.pk %}" class="order-action-btn order-remove"></a>{% endif %}
+         {# {% if draft|check_perm:"can_delete" %}<a href="{% url 'order-id-delete' draft.pk %}" class="order-action-btn order-remove"></a>{% endif %} #}
         </td>
        </tr>
        {% empty %}
@@ -105,11 +109,13 @@
         <td>{{order.created}}</td>
         <td class="momdl">{{order.admin_deadline}}</td>
         <td>{{order.revision}}</td>
-        <td>{{order.get_price}}$</td>
+        <td>{{order.get_price}}$
+          <div>{{payments|get_order_status:order.pk}}</div>
+        </td>
         <td align="center">
          <a href="{% url 'order-id' order.pk %}" class="order-action-btn order-search"></a>
-         {% if order|check_perm:"can_edit" %}<a href="{% url 'order-id-edit' draft.pk %}" class="order-action-btn order-edit"></a>{% endif %}
-         {% if order|check_perm:"can_delete" %}<a href="{% url 'order-id-delete' draft.pk %}" class="order-action-btn order-remove"></a>{% endif %}
+         {% if order|check_perm:"can_edit" %}<a href="{% url 'order-id-edit' order.pk %}" title="View" class="order-action-btn order-edit"></a>{% endif %}
+         {# {% if order|check_perm:"can_delete" %}<a href="{% url 'order-id-delete' draft.pk %}" title="Edit" class="order-action-btn order-remove"></a>{% endif %} #}
         </td>
        </tr>
        {% empty %}
@@ -148,8 +154,8 @@
         <td>{{order.get_price}}$</td>
         <td align="center">
          <a href="{% url 'order-id' order.pk %}" class="order-action-btn order-search"></a>
-         {% if order|check_perm:"can_edit" %}<a href="{% url 'order-id-edit' draft.pk %}" class="order-action-btn order-edit"></a>{% endif %}
-         {% if order|check_perm:"can_delete" %}<a href="{% url 'order-id-delete' draft.pk %}" class="order-action-btn order-remove"></a>{% endif %}
+         {% if order|check_perm:"can_edit" %}<a href="{% url 'order-id-edit' order.pk %}" class="order-action-btn order-edit"></a>{% endif %}
+         {# {% if order|check_perm:"can_delete" %}<a href="{% url 'order-id-delete' draft.pk %}" class="order-action-btn order-remove"></a>{% endif %} #}
         </td>
        </tr>
        {% empty %}

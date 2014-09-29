@@ -1,0 +1,14 @@
+<!-- BEGIN RIGHT SIDEBAR LAYOUT -->
+<div id="layout-right" class="col-md-3 col-sm-12">
+ <section class="sibebar-section">
+  <ul class="list-group">
+   <li class="list-group-item {% if request.path == '/new-order/' %}active{% endif %}"><a href="{% url 'new-order' %}">NEW ORDER</a></li>
+   <li>&nbsp;</a></li>
+   <li class="list-group-item {% if request.path == '/orders/' %}active{% endif %}"><a href="{% url 'my-orders' %}">My Orders</a></li>
+   <li class="list-group-item {% if request.path == '/my-account/' %}active{% endif %}"><a href="{% url 'my-account' request.user.pk %}">My account</a></li>
+   <li class="list-group-item {% if request.path == '/password-change/' %}active{% endif %}"><a href="{% url 'password-change' %}">Password change</a></li>
+   <li class="list-group-item"><a href="{% url 'logout' %}">Exit</a></li>
+  </ul>
+ </section>
+</div>
+<!-- END RIGHT SIDEBAR LAYOUT -->
