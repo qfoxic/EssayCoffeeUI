@@ -41,46 +41,7 @@
   <div class="tab-pane {% if request.GET.details or not request.GET.files and not request.GET.messages%}active{% endif %}" id="details">
    <form action="{% url 'order-id-edit' order.pk %}" class="form-horizontal new-order-form-wrapper" method="post">
      {% csrf_token %}
-     <div class="form-group {% if form.level.errors %}has-error{% endif %}">
-      <label class="col-sm-5 control-label">Academic Level</label>
-      <div class="col-sm-5">
-       <select name="level" class="form-control">
-         {% for val in co.LEVELS %}
-           <option value="{{val.0}}" {%if form.level.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
-         {% endfor %}
-       </select>
-       {% if form.level.errors %}<span class="validation-message">{{form.level.errors|striptags}}</span>{% endif %}
-      </div>
-     </div>
-     <div class="form-group {% if form.spacing.errors %}has-error{% endif %}">
-      <label class="col-sm-5 control-label">Type of Paper Needed</label>
-      <div class="col-sm-5">
-       <select name="spacing" class="form-control">
-         {% for val in co.SPACING %}
-           <option value="{{val.0}}" {%if form.spacing.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
-         {% endfor %}
-       </select>
-       {% if form.spacing.errors %}<span class="validation-message">{{form.spacing.errors|striptags}}</span>{% endif %}
-      </div>
-     </div>
-     <div class="form-group {% if form.discipline.errors %}has-error{% endif %}">
-      <label class="col-sm-5 control-label">
-       Subject or Discipline
-       <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Subject or Discipline tooltip">
-         <i class="icon-info-popup"></i>
-        </a>
-       </span>
-      </label>
-      <div class="col-sm-5">
-       <select name="discipline" class="form-control">
-         {% for val in co.DISCIPLINES %}
-           <option value="{{val.0}}" {%if form.discipline.value == val.0%}selected{% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
-         {% endfor %}
-       </select>
-       {% if form.discipline.errors %}<span class="validation-message">{{form.discipline.errors|striptags}}</span>{% endif %}
-      </div>
-     </div>
+	 
      <div class="form-group {% if form.assigment.errors %}has-error{% endif %}">
       <label class="col-sm-5 control-label">
        Assigment Type
@@ -99,73 +60,19 @@
        {% if form.assigment.errors %}<span class="validation-message">{{form.assigment.errors|striptags}}</span>{% endif %}
       </div>
      </div>
-     <div class="form-group {% if form.paper_title.errors %}has-error{% endif %}">
-      <label class="col-sm-5 control-label">
-       Topic
-       <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Topic tooltip">
-         <i class="icon-info-popup"></i>
-        </a>
-       </span>
-      </label>
+	 
+     <div class="form-group {% if form.level.errors %}has-error{% endif %}">
+      <label class="col-sm-5 control-label">Academic Level</label>
       <div class="col-sm-5">
-       <input name="paper_title" type="text" class="form-control" value="{{form.paper_title.value|default:''}}">
-       {% if form.paper_title.errors %}<span class="validation-message">{{form.paper_title.errors|striptags}}</span>{% endif %}
-      </div>
-     </div>
-     <div class="form-group {% if form.instructions.errors %}has-error{% endif %}">
-      <label class="col-sm-5 control-label">
-       Paper Instructions
-       <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Paper Instructions tooltip">
-         <i class="icon-info-popup"></i>
-        </a>
-       </span>
-      </label>
-      <div class="col-sm-5">
-       <textarea name="instructions" class="form-control" rows="2">{{form.instructions.value|default:''}}</textarea>
-       {% if form.instructions.errors %}<span class="validation-message">{{form.instructions.errors|striptags}}</span>{% endif %}
-      </div>
-     </div>
-     <div class="form-group {% if form.source_number.errors %}has-error{% endif %}">
-      <label class="col-sm-5 control-label">
-       Number of sources
-       <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Number of sources">
-         <i class="icon-info-popup"></i>
-        </a>
-       </span>
-      </label>
-      <div class="col-sm-5">
-       <input name="source_number" type="number" class="form-control" value="{{form.source_number.value|default:1}}">
-       {% if form.source_number.errors %}<span class="validation-message">{{form.source_number.errors|striptags}}</span>{% endif %}
-      </div>
-     </div>
-     <div class="form-group {% if form.style.errors %}has-error{% endif %}">
-      <label class="col-sm-5 control-label">Paper format or citation style</label>
-      <div class="col-sm-5">
-       <select name="style" class="form-control">
-         {% for val in co.STYLES %}
-           <option value="{{val.0}}" {%if form.style.value == val.0%}selected{% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+       <select name="level" class="form-control">
+         {% for val in co.LEVELS %}
+           <option value="{{val.0}}" {%if form.level.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
          {% endfor %}
        </select>
-       {% if form.style.errors %}<span class="validation-message">{{form.style.errors|striptags}}</span>{% endif %}
+       {% if form.level.errors %}<span class="validation-message">{{form.level.errors|striptags}}</span>{% endif %}
       </div>
      </div>
-     <div class="form-group {% if form.page_number.errors %}has-error{% endif %}">
-      <label class="col-sm-5 control-label">
-       Pages
-       <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages">
-         <i class="icon-info-popup"></i>
-        </a>
-       </span>
-      </label>
-      <div class="col-sm-5">
-       <input name="page_number" type="number" class="form-control" value="{{form.page_number.value|default:1}}">
-       {% if form.page_number.errors %}<span class="validation-message">{{form.page_number.errors|striptags}}</span>{% endif %}
-      </div>
-     </div>
+	 
      <div class="form-group {% if form.urgency.errors %}has-error{% endif %}">
       <label class="col-sm-5 control-label">
        First Draft Deadline
@@ -184,16 +91,122 @@
        {% if form.urgency.errors %}<span class="validation-message">{{form.urgency.errors|striptags}}</span>{% endif %}
       </div>
      </div>
+	 
+     <div class="form-group {% if form.spacing.errors %}has-error{% endif %}">
+      <label class="col-sm-5 control-label">Type of Paper Needed</label>
+      <div class="col-sm-5">
+       <select name="spacing" class="form-control">
+         {% for val in co.SPACING %}
+           <option value="{{val.0}}" {%if form.spacing.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+         {% endfor %}
+       </select>
+       {% if form.spacing.errors %}<span class="validation-message">{{form.spacing.errors|striptags}}</span>{% endif %}
+      </div>
+     </div>
+	 
+     <div class="form-group {% if form.discipline.errors %}has-error{% endif %}">
+      <label class="col-sm-5 control-label">
+       Subject or Discipline
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Subject or Discipline tooltip">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-5">
+       <select name="discipline" class="form-control">
+         {% for val in co.DISCIPLINES %}
+           <option value="{{val.0}}" {%if form.discipline.value == val.0%}selected{% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+         {% endfor %}
+       </select>
+       {% if form.discipline.errors %}<span class="validation-message">{{form.discipline.errors|striptags}}</span>{% endif %}
+      </div>
+     </div>
+
+     <div class="form-group {% if form.paper_title.errors %}has-error{% endif %}">
+      <label class="col-sm-5 control-label">
+       Topic
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Topic tooltip">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-5">
+       <input name="paper_title" type="text" class="form-control" value="{{form.paper_title.value|default:''}}">
+       {% if form.paper_title.errors %}<span class="validation-message">{{form.paper_title.errors|striptags}}</span>{% endif %}
+      </div>
+     </div>
+	 
+     <div class="form-group {% if form.instructions.errors %}has-error{% endif %}">
+      <label class="col-sm-5 control-label">
+       Paper Instructions
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Paper Instructions tooltip">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-5">
+       <textarea name="instructions" class="form-control" rows="2">{{form.instructions.value|default:''}}</textarea>
+       {% if form.instructions.errors %}<span class="validation-message">{{form.instructions.errors|striptags}}</span>{% endif %}
+      </div>
+     </div>
+	 
+     <div class="form-group {% if form.source_number.errors %}has-error{% endif %}">
+      <label class="col-sm-5 control-label">
+       Number of sources
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Number of sources">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-5">
+       <input name="source_number" type="number" class="form-control" value="{{form.source_number.value|default:1}}">
+       {% if form.source_number.errors %}<span class="validation-message">{{form.source_number.errors|striptags}}</span>{% endif %}
+      </div>
+     </div>
+	 
+     <div class="form-group {% if form.style.errors %}has-error{% endif %}">
+      <label class="col-sm-5 control-label">Paper format or citation style</label>
+      <div class="col-sm-5">
+       <select name="style" class="form-control">
+         {% for val in co.STYLES %}
+           <option value="{{val.0}}" {%if form.style.value == val.0%}selected{% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+         {% endfor %}
+       </select>
+       {% if form.style.errors %}<span class="validation-message">{{form.style.errors|striptags}}</span>{% endif %}
+      </div>
+     </div>
+	 
+     <div class="form-group {% if form.page_number.errors %}has-error{% endif %}">
+      <label class="col-sm-5 control-label">
+       Pages
+       <span class="tooltip-wrapper">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages">
+         <i class="icon-info-popup"></i>
+        </a>
+       </span>
+      </label>
+      <div class="col-sm-5">
+       <input name="page_number" type="number" class="form-control" value="{{form.page_number.value|default:1}}">
+       {% if form.page_number.errors %}<span class="validation-message">{{form.page_number.errors|striptags}}</span>{% endif %}
+      </div>
+     </div>
+
      <div class="row text-center order-actions">
        <a href="#" class="btn btn-default" data-toggle="modal" data-target="#modalDelete">Delete</a> 
        <button type="submit" class="btn btn-primary">Save changes</button>
-       {% if not payments|is_bought:order.pk %}
+       {% comment %}
+	   {% if not payments|is_bought:order.pk %}
          <form action="{% url 'order-id-buy' order.pk %}" method="POST">
           {% csrf_token %}
           <input type="hidden" name="status" value="{{co.UNPROCESSED}}">
           <button class="btn btn-primary" >Buy ({{order.get_price}}$)</button>
          </form>
        {% endif %}
+	   {% endcomment %}
      </div>
    </form>
   </div><!-- End Details Tab -->

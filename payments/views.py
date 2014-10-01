@@ -5,6 +5,7 @@ from django.views.generic import View
 import json
 import constants as co
 from django.views.decorators.csrf import csrf_exempt
+from django.core.urlresolvers import reverse
 
 def lds(values):
     try:
@@ -98,7 +99,9 @@ def get_payment_url(ptype, request, params):
   if ptype == co.TWOCHECKOUT:
     params['sid'] = co.TWOSID
     params['currency_code'] = 'USD'
+    params['return_url'] = co.ADMIN_DOMAIN + reverse('order-id', args=(params['order_id'],))
     return ('https://www.2checkout.com/checkout/purchase/?sid=%(sid)s&mode=2CO&'
+            'x_receipt_link_url=%(return_url)s&'
             'li_0_type=product&li_0_name=%(title)s&li_0_quantity=1&li_0_tangible=N&currency_code=%(currency_code)s&'
             'li_0_description=%(title)s&li_0_product_id=%(order_id)s&merchant_order_id=%(order_id)s&li_0_price=%(price)s' % params)
   elif ptype == co.LIQPAY:

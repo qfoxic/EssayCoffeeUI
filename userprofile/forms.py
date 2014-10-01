@@ -158,13 +158,16 @@ class NewProfileForm(forms.ModelForm):
     user = UserProfile.objects.create_user(**self.cleaned_data)
     user.groups.add(Group.objects.get(name=self.group_name))
     user.save()
-    send_mail(co.NEW_PROFILE_SUBJECT,
-              co.NEW_PROFILE_EMAIL % {'first_name': user.first_name,
-                                      'domain': co.ADMIN_DOMAIN,
-                                      'username': user.username,
-                                      'email': user.email},
-              co.ADMIN_EMAIL,
-              [user.email])
+    try:
+      send_mail(co.NEW_PROFILE_SUBJECT,
+                co.NEW_PROFILE_EMAIL % {'first_name': user.first_name,
+                                        'domain': co.ADMIN_DOMAIN,
+                                        'username': user.username,
+                                        'email': user.email},
+                co.ADMIN_EMAIL,
+                [user.email])
+    except Exception, e:
+      messages.error(self.request, 'Could not send email to %s: %s' % (user.email, e))
     user = authenticate(email=self.cleaned_data['email'],
                         password=self.cleaned_data['password'])
     login(self.request, user)

@@ -341,7 +341,8 @@ class UpdateTaskView(BaseView, UpdateView):
     return context
 
   def get_success_url(self):
-      return reverse_lazy('order-id-edit', args=(self.get_object().pk,))
+      messages.success(self.request, 'Your order has been successfully updated')
+      return reverse_lazy('order-id', args=(self.get_object().pk,))
 
   def user_id(self):
     return self.get_object().owner.pk
@@ -402,15 +403,18 @@ class RemoveTaskView(BaseView, DeleteView):
     Calls the delete() method on the fetched object and then
     redirects to the success URL.
     """
-    user = request.user
-    obj = self.get_object()
-    send_mail(co.DELETE_ORDER_SUBJECT,
-              co.DELETE_ORDER_EMAIL % {'order_title': obj.paper_title,
-                                       'order_id': obj.pk,
-                                       'first_name': user.first_name},
-              co.ADMIN_EMAIL,
-              [user.email])
-    messages.success(request, 'Your order has been deleted. Please check your email.')
+    try:
+      user = request.user
+      obj = self.get_object()
+      send_mail(co.DELETE_ORDER_SUBJECT,
+                co.DELETE_ORDER_EMAIL % {'order_title': obj.paper_title,
+                                         'order_id': obj.pk,
+                                         'first_name': user.first_name},
+                co.ADMIN_EMAIL,
+                [user.email])
+    except Exception, e:
+      messages.error(request, 'Could not send email to %s: %s' % (user.email, e))
+    messages.success(request, 'Your order has been deleted.')
     return super(RemoveTaskView, self).delete(request, *args, **kwargs)
 
   def user_id(self):
