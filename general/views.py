@@ -117,11 +117,11 @@ class BaseView(View):
       self._add_request_to_obj(request, self.get_object())
     except AttributeError:
       pass
-    #try:
-    return super(BaseView, self).dispatch(request, *args, **kwargs)
-    #except Exception, e:
-    #  messages.add_message(request, messages.ERROR, str(e))
-    #  return HttpResponseRedirect('/')
+    try:
+      return super(BaseView, self).dispatch(request, *args, **kwargs)
+    except Exception, e:
+      messages.add_message(request, messages.ERROR, str(e))
+      return HttpResponseRedirect('/')
 
   def render_to_response(self, context, **response_kwargs):
     context.update(self.settings)
