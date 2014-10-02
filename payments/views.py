@@ -63,9 +63,9 @@ def update_payment_status(ptype, task, request, data=None):
     import twocheckout
     # mode: production, mode:sandbox
     twocheckout.Api.auth_credentials({'private_key': co.TWO_PRIV_KEY,
-                                      'seller_id': co.TWOSID,'mode': 'sandbox'})
+                                      'seller_id': co.TWOSID})
     twocheckout.Api.credentials({'username': co.TWO_USERNAME,
-                                 'password': co.TWO_PASSWORD,'mode': 'sandbox'})
+                                 'password': co.TWO_PASSWORD})
     sale_id = data.get('sale_id')
     try:
       sale_status = twocheckout.Sale.find({'sale_id': sale_id})['invoices'][0]['status']

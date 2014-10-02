@@ -25,12 +25,12 @@ SESSION_COOKIE_NAME = 'sessc'
 #CSRF_COOKIE_DOMAIN = '.customers.yourseller.net'
 #SESSION_COOKIE_DOMAIN = '.customers.yourseller.net'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True 
+DEBUG = False 
 
 
-TEMPLATE_DEBUG = True 
+TEMPLATE_DEBUG = False 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.essaycoffee.com']
 
 
 # Application definition
