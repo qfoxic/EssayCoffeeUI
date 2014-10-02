@@ -117,11 +117,11 @@ class BaseView(View):
       self._add_request_to_obj(request, self.get_object())
     except AttributeError:
       pass
-    try:
-      return super(BaseView, self).dispatch(request, *args, **kwargs)
-    except Exception, e:
-      messages.add_message(request, messages.ERROR, str(e))
-      return HttpResponseRedirect('/')
+    #try:
+    return super(BaseView, self).dispatch(request, *args, **kwargs)
+    #except Exception, e:
+    #  messages.add_message(request, messages.ERROR, str(e))
+    #  return HttpResponseRedirect('/')
 
   def render_to_response(self, context, **response_kwargs):
     context.update(self.settings)
@@ -365,6 +365,8 @@ class DetailTaskView(BaseView, DetailView):
   context_object_name = 'order'
 
   def get_context_data(self, **kwargs):
+    if self.request.GET.get('merchant_order_id'):
+      messages.success(self.request, 'An order has been successfully performed.')
     context = super(DetailTaskView, self).get_context_data(**kwargs)
     task_id = self.get_object().pk
     task_payments = context['payments'].get(task_id)
@@ -430,7 +432,7 @@ class SwitchStatusView(UpdateTaskView):
     pass
  
   def get_success_url(self):
-    if self.object.status == co.UNPROCESSED:
+    if self.object.status == co.DRAFT:
       params = {'price': self.object.get_price(),
                 'title': self.object.paper_title,
                 'order_id': self.object.pk}

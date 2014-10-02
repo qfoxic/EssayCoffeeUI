@@ -62,7 +62,7 @@
         <td>{{draft.get_price}}$
           {% if not payments|is_bought:draft.pk %}
           <form action="{% url 'order-id-buy' draft.pk %}" method="POST">
-            <input type="hidden" name="status" value="{{co.UNPROCESSED}}">
+            <input type="hidden" name="status" value="{{co.DRAFT}}">
             {% csrf_token %}
             <button class="btn btn-primary btn-xs" type="submit">Pay now</button>
           </form>

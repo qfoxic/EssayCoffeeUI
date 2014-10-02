@@ -17,12 +17,20 @@ def lds(values):
 def _two_checkout_payment(request):
   pst = request.POST
   order_id = pst.get('vendor_order_id')
-  order = Task.objects.all().filter(id=order_id)
+  if not order_id:
+    return
+  try:
+    order = Task.objects.all().filter(id=order_id)
+  except (TypeError, ValueError):
+    # order_id is not an integer
+    return
   order = order and order[0]
   if order:
     vals = {'sale_id': request.POST.get('sale_id'),
             'customer_ip': request.POST.get('customer_ip'),
             'amount': request.POST.get('invoice_usd_amount')}
+    order.status = co.UNPROCESSED
+    order.save()
     payment = Payment(powner=order.owner, ptask=order,
                       values=json.dumps(vals), payment_status=co.IN_PROCESS,
                       payment_type=co.TWOCHECKOUT)
@@ -77,10 +85,9 @@ def update_payment_status(ptype, task, request, data=None):
 
 def get_payments_status():
   sql = ('SELECT max(id) as id, powner_id, ptask_id,'
-         ' SUBSTRING_INDEX(GROUP_CONCAT(`payment_status` ORDER BY `Id` DESC SEPARATOR \',\'),\',\',1)'
-         ' as status, payment_type, '
-         'SUBSTRING_INDEX(GROUP_CONCAT(`values` order by `Id` desc separator \'|\'),\'|\',1) as ovalues'
-         ' FROM payments GROUP BY ptask_id')
+         ' `payment_status` as status, payment_type,'
+         ' `values` as ovalues'
+         ' FROM payments GROUP BY ptask_id DESC')
   _d = {}
   [_d.setdefault(int(i.ptask_id),
              [
