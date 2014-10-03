@@ -479,7 +479,7 @@ var displayPrice = function() {
 
 	try {
 	  var pagePrice = getData(assigment).prices[urgency][level];
-	  if (pagePrice === 0) {
+	  if (pagePrice === 0 || pagePrice === undefined) {
 		$('label.js-total-price').html('Configuration is not correct.');
 	  } else {
 		// Якщо число від'ємне
