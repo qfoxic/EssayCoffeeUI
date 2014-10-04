@@ -44,6 +44,15 @@ Regards,
 Administration
 """
 
+ORDER_FINISHED_EMAIL = """ 
+Dear %(first_name)s 
+
+Your order "%(order_title)s" with id "%(order_id)s" has been completed.
+
+Regards,
+Administration
+"""
+
 #EMAIL_HOST = 'smtp.ukr.net'
 #EMAIL_HOST_PASSWORD = 'QAZqaz1983'
 #EMAIL_HOST_USER = 'workforum@ukr.net'
