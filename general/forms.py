@@ -170,11 +170,5 @@ class SwitchStatusForm(BaseForm):
     status = self.cleaned_data['status']
     if status == co.PROCESSING:
       self.instance.access_level = co.PUBLIC_ACCESS
-    if status == co.DRAFT:
-      # Add processing payment.
-      payment = Payment(powner=self.request.user, ptask=self.instance,
-                        values='{}', payment_status=co.IN_PROCESS,
-                        payment_type=self.request.GET.get('ptype', co.TWOCHECKOUT))
-      payment.save()
     return super(SwitchStatusForm, self).save(*args, **kwargs)
 

@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.views import password_reset_done, password_reset_confirm, password_reset_complete
 from django.core.urlresolvers import reverse_lazy,reverse
 from django.core.exceptions import PermissionDenied
+from payments.models import Payment
 from django.db.models import Q
 
 from general.models import Task
@@ -219,6 +220,12 @@ class UpdatePswdDoneView(BaseView, TemplateView):
   template_name='auth/password_update_done.html'
 
   def render_to_response(self, context, **response_kwargs):
+    user = self.request.user
+    send_mail('Password has been updated',
+              co.UPDATE_PASSWORD_EMAIL % {
+                   'first_name': user.first_name},
+              co.ADMIN_EMAIL,
+              [user.email])
     context.update(self.settings)
     return password_reset_done(request=self.request,
                                template_name=self.get_template_names(),
@@ -290,7 +297,12 @@ class TaskIndexView(BaseView, ListView):
   def get_context_data(self, **kwargs):
     context = super(TaskIndexView, self).get_context_data(**kwargs)
     context['draft_tasks'] = Task.get_draft_tasks(0, **{'owner__id': self.request.user.id})
-    context['proc_tasks'] = list(Task.get_processing_tasks(0, **{'owner__id': self.request.user.id})) + list(Task.get_unprocessed_tasks(0, **{'owner__id': self.request.user.id}))
+    context['proc_tasks'] = (list(Task.get_processing_tasks(0, **{'owner__id': self.request.user.id}))
+                            + list(Task.get_unprocessed_tasks(0, **{'owner__id': self.request.user.id}))
+                            + list(Task.get_sent_tasks(0, **{'owner__id': self.request.user.id}))
+                            + list(Task.get_suspicious_tasks(0, **{'owner__id': self.request.user.id}))
+                            + list(Task.get_rejected_tasks(0, **{'owner__id': self.request.user.id})))
+                            
     context['completed_tasks'] = Task.get_finished_tasks(0, **{'owner__id': self.request.user.id})
     return context
 
@@ -365,10 +377,20 @@ class DetailTaskView(BaseView, DetailView):
   context_object_name = 'order'
 
   def get_context_data(self, **kwargs):
-    if self.request.GET.get('merchant_order_id'):
-      messages.success(self.request, 'An order has been successfully performed.')
     context = super(DetailTaskView, self).get_context_data(**kwargs)
-    task_id = self.get_object().pk
+    order = self.get_object()
+    # Simple order procesing after payment. Shouldn't be there. 
+    if self.request.GET.get('merchant_order_id') and order.status == co.DRAFT:
+      messages.success(self.request, 'An order has been successfully performed.')
+      # Add processing payment.
+      payment = Payment(powner=self.request.user, ptask=order,
+                        values='{}', payment_status=co.IN_PROCESS,
+                        payment_type=self.request.GET.get('ptype', co.TWOCHECKOUT))
+      payment.save()
+      # Move an order to UNPROCESSED.
+      order.status = co.UNPROCESSED
+      order.save()
+    task_id = order.pk
     task_payments = context['payments'].get(task_id)
     if task_payments and task_payments[1] in [co.IN_PROCESS]:
       update_payment_status(task_payments[3], self.get_object(), self.request,

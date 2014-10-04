@@ -35,6 +35,14 @@ Regards,
 Administration
 """
 
+UPDATE_PASSWORD_EMAIL = """ 
+Dear %(first_name)s 
+
+Your password has been updated sucessfully.
+
+Regards,
+Administration
+"""
 
 #EMAIL_HOST = 'smtp.ukr.net'
 #EMAIL_HOST_PASSWORD = 'QAZqaz1983'
@@ -579,6 +587,7 @@ URGENCY_11_DAYS = dict((URGENCY[1], URGENCY[2], URGENCY[3],
                        URGENCY[4], URGENCY[5], URGENCY[6], URGENCY[7],
                        URGENCY[8], URGENCY[10], URGENCY[12]))
 URGENCY_6_HOURS = dict((URGENCY[1], URGENCY[2], URGENCY[3]))
+URGENCY_3_6_HOURS = dict((URGENCY[1], URGENCY[2]))
 URGENCY_2_MONTHS = dict((URGENCY[6], URGENCY[9], URGENCY[11], URGENCY[13],
                         URGENCY[14], URGENCY[15], URGENCY[16]))
 URGENCY_10_DAYS = dict((URGENCY[1], URGENCY[2], URGENCY[4], URGENCY[5], URGENCY[6],
@@ -620,7 +629,7 @@ PRICELIST = [
   },
   {
     "assigments": ["Online Test"],
-    "urgencies": URGENCY_6_HOURS,
+    "urgencies": URGENCY_3_6_HOURS,
     "levels": LEVELS5_HCUMP,
     "prices": {
         21600: {1:34.99, 2:38.99, 3:43.99, 4:0, 5:0},
