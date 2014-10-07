@@ -14,7 +14,7 @@
         <tr>
          <td>{{upload.created}}</td>
          <td><a href="{% url 'order-upload-download' upload.pk %}">{{upload.attach}}</a></td>
-         <td>{% if not upload.access_level %}Public{% else %}Private{% endif %}</td>
+         <td>{% if not upload.access_level %}Private{% else %}Public{% endif %}</td>
         </tr>
       {% empty %}
         <tr>

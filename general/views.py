@@ -397,8 +397,14 @@ class DetailTaskView(BaseView, DetailView):
                             task_payments[-1])
     context['msgs'] = get_msgs_for_task(self.request, task_id)
     task_q = Q(ftask_id__exact=task_id)
+    or_q = Q(access_level__in=(co.PUBLIC_ACCESS,))
+    not_owner_q = ~Q(fowner_id__exact=self.request.user.id)
+    w_ups = Upload.objects.filter(fowner__groups__name=co.WRITER_GROUP).filter(task_q, or_q, not_owner_q)
     m_ups = Upload.objects.filter(task_q, Q(fowner_id__exact=self.request.user.id))
-    context['uploads'] = m_ups
+    ups = []
+    ups.extend(m_ups)
+    ups.extend(w_ups)
+    context['uploads'] = ups
     return context
 
   def user_id(self):
