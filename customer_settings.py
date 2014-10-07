@@ -30,7 +30,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False 
 
-ALLOWED_HOSTS = ['www.essaycoffee.com']
+ALLOWED_HOSTS = ['www.essaycoffee.com', '54.68.163.223']
 
 
 # Application definition
@@ -66,6 +66,7 @@ AUTHENTICATION_BACKENDS = (
 )
 EMAIL_BACKEND = 'userprofile.smtp.SSLEmailBackend'
 
+#FTP_DATA = ('50.112.171.103', 2121, 'ftp', 'q1w2e3r4t5y6')
 FTP_DATA = ('127.0.0.1', 2121, 'ftp', 'q1w2e3r4t5y6')
 
 DEFAULT_FILE_STORAGE = (
@@ -97,7 +98,8 @@ DATABASES = {
         'NAME': 'transport',
         'USER': 'transport',
         'PASSWORD': 'Secret677',
-        'HOST': '50.112.171.103',
+        #'HOST': '50.112.171.103',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
