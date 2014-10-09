@@ -130,7 +130,7 @@ class NewProfileForm(forms.ModelForm):
   class Meta:
     model = UserProfile
     fields = ['password', 'first_name', 'last_name', 'email',
-              'country', 'phone', 'site']
+              'country', 'phone', 'site', 'timezone']
   
   def clean_phone(self):
     phone = self.request.POST.get('phone')

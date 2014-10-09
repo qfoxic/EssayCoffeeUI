@@ -475,6 +475,7 @@ CREATE TABLE `user_profiles` (
   `user_ptr_id` int(11) NOT NULL,
   `gender` smallint(6) NOT NULL,
   `country` varchar(100) COLLATE utf16_unicode_ci NOT NULL,
+  `timezone` varchar(100) COLLATE utf16_unicode_ci NOT NULL,
   `phone` varchar(100) COLLATE utf16_unicode_ci NOT NULL,
   `site` varchar(100) COLLATE utf16_unicode_ci DEFAULT NULL,
   `updated` datetime NOT NULL,
