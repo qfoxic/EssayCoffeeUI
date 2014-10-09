@@ -297,11 +297,11 @@ class TaskIndexView(BaseView, ListView):
   def get_context_data(self, **kwargs):
     context = super(TaskIndexView, self).get_context_data(**kwargs)
     context['draft_tasks'] = Task.get_draft_tasks(0, **{'owner__id': self.request.user.id})
+    context['rejected_tasks'] = Task.get_rejected_tasks(0, **{'owner__id': self.request.user.id})
     context['proc_tasks'] = (list(Task.get_processing_tasks(0, **{'owner__id': self.request.user.id}))
                             + list(Task.get_unprocessed_tasks(0, **{'owner__id': self.request.user.id}))
                             + list(Task.get_sent_tasks(0, **{'owner__id': self.request.user.id}))
-                            + list(Task.get_suspicious_tasks(0, **{'owner__id': self.request.user.id}))
-                            + list(Task.get_rejected_tasks(0, **{'owner__id': self.request.user.id})))
+                            + list(Task.get_suspicious_tasks(0, **{'owner__id': self.request.user.id})))
                             
     context['completed_tasks'] = Task.get_finished_tasks(0, **{'owner__id': self.request.user.id})
     return context
