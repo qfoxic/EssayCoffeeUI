@@ -390,6 +390,7 @@ class DetailTaskView(BaseView, DetailView):
       # Move an order to UNPROCESSED.
       order.status = co.UNPROCESSED
       order.save()
+      context['order'] = order
     task_id = order.pk
     task_payments = context['payments'].get(task_id)
     if task_payments and task_payments[1] in [co.IN_PROCESS]:
