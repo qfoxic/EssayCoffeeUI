@@ -107,7 +107,7 @@
            {% if forloop.first %}
              <option value="{{val.0}}" {% if not form.spacing.value %}selected {% endif %} disabled>{{val.1}}</option>
            {% else %}
-             <option value="{{val.0}}" {% if form.spacing.value == val.0 %}selected{% endif %}>{{val.1}}</option>
+             <option value="{{val.0}}" {% if form.spacing.value|to_int == val.0 %}selected{% endif %}>{{val.1}}</option>
            {% endif %}
          {% endfor %}
        </select>
@@ -186,7 +186,7 @@
            {% if forloop.first %}
              <option value="{{val.0}}" {% if not form.style.value %}selected {% endif %} disabled>{{val.1}}</option>
            {% else %}
-             <option value="{{val.0}}" {% if form.style.value == val.0 %}selected{% endif %}>{{val.1}}</option>
+             <option value="{{val.0}}" {% if form.style.value|to_int == val.0 %}selected{% endif %}>{{val.1}}</option>
            {% endif %}
          {% endfor %}
        </select>

@@ -66,7 +66,7 @@
       <div class="col-sm-5">
        <select name="level" class="form-control">
          {% for val in co.LEVELS %}
-           <option value="{{val.0}}" {%if form.level.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+           <option value="{{val.0}}" {%if form.level.value|to_int == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
          {% endfor %}
        </select>
        {% if form.level.errors %}<span class="validation-message">{{form.level.errors|striptags}}</span>{% endif %}
@@ -85,7 +85,7 @@
       <div class="col-sm-5">
        <select name="urgency" class="form-control">
          {% for val in co.URGENCY %}
-           <option value="{{val.0}}" {%if form.urgency.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+           <option value="{{val.0}}" {%if form.urgency.value|to_int == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
          {% endfor %}
        </select>
        {% if form.urgency.errors %}<span class="validation-message">{{form.urgency.errors|striptags}}</span>{% endif %}
@@ -97,7 +97,7 @@
       <div class="col-sm-5">
        <select name="spacing" class="form-control">
          {% for val in co.SPACING %}
-           <option value="{{val.0}}" {%if form.spacing.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+           <option value="{{val.0}}" {%if form.spacing.value|to_int == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
          {% endfor %}
        </select>
        {% if form.spacing.errors %}<span class="validation-message">{{form.spacing.errors|striptags}}</span>{% endif %}
@@ -173,7 +173,7 @@
       <div class="col-sm-5">
        <select name="style" class="form-control">
          {% for val in co.STYLES %}
-           <option value="{{val.0}}" {%if form.style.value == val.0%}selected{% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
+           <option value="{{val.0}}" {%if form.style.value|to_int == val.0%}selected{% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
          {% endfor %}
        </select>
        {% if form.style.errors %}<span class="validation-message">{{form.style.errors|striptags}}</span>{% endif %}
