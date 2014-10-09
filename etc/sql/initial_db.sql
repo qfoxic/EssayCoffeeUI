@@ -448,7 +448,7 @@ CREATE TABLE `uploads` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `attach` varchar(100) COLLATE utf16_unicode_ci NOT NULL,
+  `attach` varchar(500) COLLATE utf16_unicode_ci NOT NULL,
   `fowner_id` int(11) NOT NULL,
   `ftask_id` int(11) NOT NULL,
   `access_level` varchar(1) COLLATE utf16_unicode_ci NOT NULL,

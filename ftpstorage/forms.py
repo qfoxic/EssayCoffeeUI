@@ -38,11 +38,6 @@ class UploadForm(BaseForm):
     try:
       if length > 5:
         raise Exception('A file size should not exceeds 5MB.')
-      ext = filename.split('.')[-1]
-      if ext not in ['txt', 'doc', 'docx', 'xls', 'xlsx', 'pdf',
-                     'rtf', 'odt', 'jpg', 'png']:
-        raise Exception(('Please provide files with following '
-          'extensions: .txt, .doc, .docx, .xls, .xlsx, .pdf, .rtf, .odt, .jpg, .png'))
     except Exception, e:
       messages.error(self.request, str(e))
       return
