@@ -22,7 +22,7 @@ class ProfileForm(forms.ModelForm):
     validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'Country should contains only characters on lower or upper case.',
                               'invalid')])
-  phone = forms.CharField(min_length=5, max_length=14, required=True,
+  phone = forms.CharField(min_length=5, max_length=20, required=True,
                           validators=[validators.RegexValidator(re.compile('^[\d ]+$'), 'Phone number should contains only numbers and spaces')])
 
   def __init__(self, group_name=None, request=None, *args, **kwargs):
@@ -38,7 +38,7 @@ class ProfileForm(forms.ModelForm):
   def clean_phone(self):
     phone =self.request.POST.get('phone')
     phone = phone.strip(' -')
-    if len(phone) > 14:
+    if len(phone) > 20:
       raise forms.ValidationError('Phone should contains less then 15 numbers',
                                   code='number_overflow')
     return phone
@@ -73,7 +73,7 @@ class EditProfileForm(forms.ModelForm):
     validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
                               'Country should contains only characters on lower or upper case.',
                               'invalid')])
-  phone = forms.CharField(min_length=5, max_length=14, required=True,
+  phone = forms.CharField(min_length=5, max_length=20, required=True,
                           validators=[validators.RegexValidator(re.compile('^[\d ]+$'), 'Phone number should contains only numbers and spaces')])
   def __init__(self, user_id=None, request=None, *args, **kwargs):
     super(EditProfileForm, self).__init__(*args, **kwargs)
@@ -88,7 +88,7 @@ class EditProfileForm(forms.ModelForm):
   def clean_phone(self):
     phone =self.request.POST.get('phone')
     phone = phone.strip(' -')
-    if len(phone) > 14:
+    if len(phone) > 20:
       raise forms.ValidationError('Phone should contains less then 15 numbers',
                                   code='number_overflow')
     return phone
@@ -119,7 +119,7 @@ class NewProfileForm(forms.ModelForm):
                               'Country should contains only characters on lower or upper case.',
                               'invalid')])
   password = forms.CharField(min_length=6, required=True)
-  phone = forms.CharField(min_length=5, max_length=14, required=True,
+  phone = forms.CharField(min_length=5, max_length=20, required=True,
                           validators=[validators.RegexValidator(re.compile('^[\d ]+$'), 'Phone number should contains only numbers and spaces')])
 
   def __init__(self, group_name=None, request=None, *args, **kwargs):
@@ -136,7 +136,7 @@ class NewProfileForm(forms.ModelForm):
     phone = self.request.POST.get('phone')
     phone = phone.replace(' ', '')
     phone = phone.replace('-', '')
-    if len(phone) > 14:
+    if len(phone) > 20:
       raise forms.ValidationError('Phone should contains less then 15 numbers',
                                   code='number_overflow')
     return phone

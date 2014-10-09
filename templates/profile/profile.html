@@ -65,8 +65,7 @@
        <div class="form-group {% if form.phone.errors %} has-error {% endif %}" title="{{form.phone.errors|striptags}}">
         <label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
         <div class="col-sm-8">
-          <label class="control-label" style="float:left; padding-left:5px; padding-right:5px;">+1 </label>
-		  <input type="tel" name="phone" value="{{form.phone.value|default:''}}" required class="form-control" style="width:226px">
+		  <input type="tel" name="phone" value="{{form.phone.value|default:''}}" required class="form-control" style="width:226px" maxlength="20">
          {% if form.phone.errors %}<span class="validation-message">{{form.phone.errors|striptags}}</span>{% endif %}
         </div>
        </div>
