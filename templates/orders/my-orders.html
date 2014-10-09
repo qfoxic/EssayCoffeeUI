@@ -55,7 +55,7 @@
        <tr>
         <td>{{draft.pk}}</td>
         <td><a href="{% url 'order-id' draft.pk %}">{{draft.paper_title}}</a></td>
-        <td>{% if draft.assignee.username %}{{draft.assignee.username}}{% else %}-{% endif %} </td>
+        <td>{% if draft.assignee.username %}{{draft.assignee.pk}}{% else %}-{% endif %} </td>
         <td>{{draft.created}}</td>
         <td class="momdl">{{draft.admin_deadline}}</td>
         <td>{{draft.revision}}</td>
