@@ -8,7 +8,7 @@
 			<div class="user-avatar"><img src="{{ STATIC_URL }}images/thumb-user-default.jpg" alt=""></div>
 		   </div>
 		   <div class="col-md-10 col-sm-10 col-xs-10 message">
-			<div class="message-time">I am at: {{msg.created}}</div>
+			<div class="message-time">I am at: {{msg.created}} to {% if msg.visibility == co.MSGS_WRITER %}Writer{% else %}Support{% endif %}</div>
 			<div class="message-subj">{{msg.title}}</div>
 			<div class="message-text">{{msg.body}}</div>
 		   </div>
