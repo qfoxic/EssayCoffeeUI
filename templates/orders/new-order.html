@@ -489,7 +489,7 @@ var displayPrice = function() {
 			$('input[name=page_number]').val(pages);
 		}
 		
-		var totalPrice = pagePrice * (spacing == '2' ? 2 : 1) * pages;
+		var totalPrice = pagePrice * (spacing == '2' ? 1 : 2) * pages;
 		$('label.js-total-price').html('$' + Number(totalPrice ? totalPrice : 0).toFixed(2));
 	  }
 	} catch (e) {}
