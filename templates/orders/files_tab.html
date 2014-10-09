@@ -6,7 +6,6 @@
       <tr>
        <th>Date created</th>
        <th>File name</th>
-       <th>Visibility</th>
       </tr>
      </thead>
      <tbody>
@@ -14,7 +13,6 @@
         <tr>
          <td>{{upload.created}}</td>
          <td><a href="{% url 'order-upload-download' upload.pk %}">{{upload.get_filename}}</a></td>
-         <td>{% if not upload.access_level %}Private{% else %}Public{% endif %}</td>
         </tr>
       {% empty %}
         <tr>
