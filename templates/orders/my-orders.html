@@ -105,7 +105,7 @@
        <tr>
         <td>{{order.pk}}</td>
         <td><a href="{% url 'order-id' order.pk %}">{{order.paper_title}}</a></td>
-        <td>{{order.assignee.username}}</td>
+        <td>{{order.assignee.pk}}</td>
         <td>{{order.created}}</td>
         <td class="momdl">{{order.admin_deadline}}</td>
         <td>{{order.revision}}</td>

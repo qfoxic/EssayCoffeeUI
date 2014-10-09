@@ -45,7 +45,7 @@
       </tr>
       <tr>
        <th width="155px">Status</th>
-       <td>{{order.get_status}}</td>
+       <td>{% if order.status != co.DRAFT and order.status != co.COMPLETED %}PROCESSING{% else  %}{{order.get_status}}{% endif %}</td>
       </tr>
 
       <tr>
