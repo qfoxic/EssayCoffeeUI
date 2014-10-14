@@ -52,7 +52,7 @@
        </span>
       </label>
       <div class="col-sm-5">
-       <select name="assigment" class="form-control">
+       <select name="assigment" class="form-control" onchange="onAssigmentChange(); displayPrice(); clearPrice();">
          {% for val in co.ASSIGMENTS %}
            <option value="{{val.0}}" {%if form.assigment.value == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
          {% endfor %}
@@ -64,7 +64,7 @@
      <div class="form-group {% if form.level.errors %}has-error{% endif %}">
       <label class="col-sm-5 control-label">Academic Level</label>
       <div class="col-sm-5">
-       <select name="level" class="form-control">
+       <select name="level" class="form-control" onchange="displayPrice();">
          {% for val in co.LEVELS %}
            <option value="{{val.0}}" {%if form.level.value|to_int == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
          {% endfor %}
@@ -83,7 +83,7 @@
        </span>
       </label>
       <div class="col-sm-5">
-       <select name="urgency" class="form-control">
+       <select name="urgency" class="form-control" onchange="displayPrice();">
          {% for val in co.URGENCY %}
            <option value="{{val.0}}" {%if form.urgency.value|to_int == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
          {% endfor %}
@@ -95,7 +95,7 @@
      <div class="form-group {% if form.spacing.errors %}has-error{% endif %}">
       <label class="col-sm-5 control-label">Type of Paper Needed</label>
       <div class="col-sm-5">
-       <select name="spacing" class="form-control">
+       <select name="spacing" class="form-control" onchange="displayPrice();">
          {% for val in co.SPACING %}
            <option value="{{val.0}}" {%if form.spacing.value|to_int == val.0%}selected {% endif %}{% if not val.0 %}disabled{% endif %}>{{val.1}}</option>
          {% endfor %}
@@ -190,7 +190,7 @@
        </span>
       </label>
       <div class="col-sm-5">
-       <input name="page_number" type="number" class="form-control" value="{{form.page_number.value|default:1}}">
+       <input name="page_number" type="number" class="form-control" value="{{form.page_number.value|default:1}}" onchange="displayPrice();">
        {% if form.page_number.errors %}<span class="validation-message">{{form.page_number.errors|striptags}}</span>{% endif %}
       </div>
      </div>
@@ -304,6 +304,119 @@
    </div>
   </div>
  </div>
+<script type="text/javascript">
+
+{% autoescape off %}
+var pricelist = {{co.PRICELIST}};
+{% endautoescape %}
+
+(function ($) {
+	var assigment = $('select[name=assigment] option:selected').val();
+	var levelSelect = $("select[name=level]"),
+		urgencySelect = $("select[name=urgency]");
+		
+	if (assigment == "0")
+	{
+		levelSelect.prop("disabled", true);
+		urgencySelect.prop("disabled", true);
+	}else{
+		levelSelect.prop("disabled", false);
+		urgencySelect.prop("disabled", false);
+	}
+})(jQuery);
+
+
+//
+var getData = function(assigment)
+{
+	var foundItems = null;
+	$.each(pricelist, function(key, val) {
+	  if(val.assigments.indexOf(assigment) !== -1) {
+		foundItems = val;
+		return;
+	  }
+	})
+	return foundItems;
+};
+
+//
+var clearPrice = function() {
+  $('label.js-total-price').html('$0.00');
+};
+
+//
+var onAssigmentChange = function(onload) {
+	var curItem = $('select[name=assigment] option:selected').text();
+	var items = getData(curItem);
+	
+	if (items)
+	{
+		var levelSelect = $("select[name=level]"),
+			urgencySelect = $("select[name=urgency]");
+		var curLevelSelect = $("select[name=level] option:selected").val(),
+			curUrgencySelect = $("select[name=urgency] option:selected").val();
+
+		// При першому виборі значення забираємо атрибут disabled 
+		levelSelect.prop("disabled", false);
+		urgencySelect.prop("disabled", false);
+
+		// Очищаємо вміст тегів
+		levelSelect.empty();
+		urgencySelect.empty();
+
+		// Встановлюємо заглушку з нульовими значеннями
+		levelSelect.append($("<option disabled selected />").val('0').text('Please select'));
+		urgencySelect.append($("<option disabled selected />").val('0').text('Please select'));
+
+		// Наповнюємо тегами із значеннями теги select
+		$.each(items.urgencies, function(key, val) {
+			urgencySelect.append($("<option />").val(key).text(val));
+		});
+		$.each(items.levels, function(key, val) {
+			levelSelect.append($("<option />").val(key).text(val));
+		});
+
+	        if(onload) {	
+		  // Restore prev values.
+		  levelSelect.val(curLevelSelect);
+	   	  urgencySelect.val(curUrgencySelect);
+                }
+
+	} else {
+	  clearPrice();
+	}
+};
+
+//
+var displayPrice = function() {
+	var assigment = $('select[name=assigment] option:selected').text(),
+		level = $('select[name=level] option:selected').val(),
+		urgency = $('select[name=urgency] option:selected').val(),
+		spacing = $('select[name=spacing] option:selected').val(),
+		pages = $('input[name=page_number]').val();
+
+	try {
+	  var pagePrice = getData(assigment).prices[urgency][level];
+	  if (pagePrice === 0 || pagePrice === undefined) {
+		$('label.js-total-price').html('Configuration is not correct.');
+	  } else {
+		// Якщо число від'ємне
+		if (pages < 1)
+		{
+			pages = -pages;
+			$('input[name=page_number]').val(pages);
+		}
+		
+		var totalPrice = pagePrice * (spacing == '2' ? 1 : 2) * pages;
+		$('label.js-total-price').html('$' + Number(totalPrice ? totalPrice : 0).toFixed(2));
+	  }
+	} catch (e) {}
+}
+
+onAssigmentChange(true);
+displayPrice();
+
+</script>
  <!-- end Upload File modal-->
  <!-- END MODALS -->
 </div>
