@@ -46,8 +46,8 @@ def check_mobile(request):
 
 def serve(request, path):
   ftp = FTPStorage()
-  if not ftp.exists(path):
-      raise Http404(_('"%(path)s" does not exist') % {'path': path})
+  if not ftp.check_path(path):
+      raise Http404('"%(path)s" does not exist' % {'path': path})
   tmp_file = tempfile.NamedTemporaryFile() 
   ftp.cp(path, tmp_file)
   return djserve(request, tmp_file.name, '/')
@@ -118,11 +118,11 @@ class BaseView(View):
       self._add_request_to_obj(request, self.get_object())
     except AttributeError:
       pass
-    try:
-      return super(BaseView, self).dispatch(request, *args, **kwargs)
-    except Exception, e:
-      messages.add_message(request, messages.ERROR, str(e))
-      return HttpResponseRedirect('/')
+    #try:
+    return super(BaseView, self).dispatch(request, *args, **kwargs)
+    #except Exception, e:
+    #  messages.add_message(request, messages.ERROR, str(e))
+    #  return HttpResponseRedirect('/')
 
   def render_to_response(self, context, **response_kwargs):
     context.update(self.settings)

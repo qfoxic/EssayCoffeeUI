@@ -10,6 +10,10 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 #BASE_DIR = '/var/www'
 PROJECT_DIR = os.path.join(BASE_DIR, 'transport_cust')
@@ -25,10 +29,10 @@ SESSION_COOKIE_NAME = 'sessc'
 #CSRF_COOKIE_DOMAIN = '.customers.yourseller.net'
 #SESSION_COOKIE_DOMAIN = '.customers.yourseller.net'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False 
+DEBUG = True 
 
 
-TEMPLATE_DEBUG = False 
+TEMPLATE_DEBUG = True 
 
 ALLOWED_HOSTS = ['www.essaycoffee.com', '54.68.163.223']
 
@@ -67,7 +71,7 @@ AUTHENTICATION_BACKENDS = (
 EMAIL_BACKEND = 'userprofile.smtp.SSLEmailBackend'
 
 #FTP_DATA = ('50.112.171.103', 2121, 'ftp', 'q1w2e3r4t5y6')
-FTP_DATA = ('127.0.0.1', 2121, 'ftp', 'q1w2e3r4t5y6')
+FTP_DATA = ('127.0.0.1', 21, 'ftpuser', '(a@4=4ab=b@4)')
 
 DEFAULT_FILE_STORAGE = (
     'ftpstorage.storage.FTPStorage'

@@ -51,7 +51,7 @@ class DownloadFileView(BaseView):
     try:
       request = serve(self.request, self.upload.attach.name)
       filename = self.upload.get_filename()
-      request['Content-Disposition'] = 'attachment; filename=%s' % filename 
+      request['Content-Disposition'] = 'attachment; filename={0}'.format(filename)
       return request 
     except Exception, e:
       messages.add_message(self.request, messages.ERROR, str(e))
