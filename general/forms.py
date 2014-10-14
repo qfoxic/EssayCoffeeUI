@@ -70,11 +70,9 @@ class TaskForm(BaseForm):
 
   def save(self, *args, **kwargs):
     # send email
-    #mail = co.ORDER_MAIL % {'first_name': self.request.user.first_name,
-    #                        'domain': co.ADMIN_DOMAIN}
-    #
-    #    send_mail(co.ORDER_MAIL_SUBJECT, mail, co.ADMIN_EMAIL,
-    #              [self.request.user.email]
+    mail = co.ORDER_MAIL % {'first_name': self.request.user.first_name}
+    send_mail(co.ORDER_MAIL_SUBJECT, mail, co.ADMIN_EMAIL,
+              [self.request.user.email])
     return super(TaskForm, self).save(*args, **kwargs)
 
 
@@ -170,5 +168,9 @@ class SwitchStatusForm(BaseForm):
     status = self.cleaned_data['status']
     if status == co.PROCESSING:
       self.instance.access_level = co.PUBLIC_ACCESS
+    elif status == co.COMPLETED:
+      mail = co.ORDER_FINISHED_EMAIL % {'first_name': self.request.user.first_name}
+      send_mail('Your order has been completed', mail, co.ADMIN_EMAIL,
+                [self.request.user.email])
     return super(SwitchStatusForm, self).save(*args, **kwargs)
 
