@@ -1,5 +1,17 @@
 import re
 
+ORDER_BUY_MAIL = """
+Dear %(first_name)s,
+
+your recent order titled %(order_title)s was sucessfuly verified!
+
+Our writer will start working on your order and will deliver it in due time.
+In case you have any questions please inform us via live chat or toll free phone.
+
+Kind regards,
+EssayCoffee Administration
+"""
+
 ORDER_MAIL = """
 Dear %(first_name)s,
 thank you for using our service!
