@@ -68,10 +68,10 @@
 			CountryName = CountryName.toLowerCase(); // нижній регістр
 			CountryName = CountryName.slice(0, 1).toUpperCase() + CountryName.slice(1); // перва буква тексту з верхного регістру
 			
+                        var timezone = (new Date().getTimezoneOffset()) / 60 * -1;
+                        $('#tmz').val(timezone >= 0 ? '+' + timezone : timezone);
 			if("(unknown country?)" != CountryName)
 			{
-                                var timezone = (new Date().getTimezoneOffset()) / 60 * -1;
-                                $('#tmz').val(timezone >= 0 ? '+' + timezone : timezone);
 				$('#country').val(CountryName);
 			}
 		});  
