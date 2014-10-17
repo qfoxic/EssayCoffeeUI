@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 
+{% load render_status %}
 {% block meta_title %}Buy Essay Online | EssayCoffee.com{% endblock %}
 {% block meta_description %}Buy essay online on EssayCoffee.com. Get the best custom written essay money can offer. We will take care of your essay writing project.{% endblock %}
 {% block meta_keywords %}Essay writing service, essay help, custom essay writing, buy, online, cheap, affordable{% endblock %}
@@ -15,8 +16,8 @@
     <div class="container">
      <div class="row text-center">
       <div class="col-md-12">
-       <span class="section-title">Advantages of EssayCoffee custom <span>writing services</span></span>
-       <p class="section-description">At EssayCoffee we provide customers only with the best custom written  papers as well as all kinds of additional services students can imagine. Become one of our customers to get the best solution market can provide!</p>
+       <h3 class="section-title">Advantages of EssayCoffee custom <span>writing services</span></h3>
+       <h4 class="section-description">At EssayCoffee we provide customers only with the best custom written  papers as well as all kinds of additional services students can imagine. Become one of our customers to get the best solution market can provide!</h4>
       </div>
      </div>
 
@@ -72,7 +73,7 @@
    <section class="quote">
     <div class="container">
      <div class="row">
-      <div class="col-md-9"><span>Place your first order and get 5% discount!</span></div>
+      <div class="col-md-9"><span>Have your essay like your morning coffee - hot and original!</span></div>
       <div class="col-md-3 text-right"><a href="{% url 'new-order' %}" class="btn-transparent">Order Now</a></div>
      </div>
     </div>
@@ -85,8 +86,8 @@
     <div class="container">
      <div class="row text-center">
       <div class="col-md-12">
-       <span class="section-title">How it <span>works</span>?</span>
-       <p class="section-description">Placing order has never been easier than it is with EssayCoffee. Just click the  “Order Now” button, proceed to order form and fill out all the necessary information and choose payment system that suits you the best. After this relax and have a coffee while our team of professionals will handle your task and deliver it to you in due time.</p>
+       <h3 class="section-title">How it <span>works</span>?</h3>
+       <h4 class="section-description">Placing order has never been easier than it is with EssayCoffee. Just click the  “Order Now” button, proceed to order form and fill out all the necessary information and choose payment system that suits you the best. After this relax and have a coffee while our team of professionals will handle your task and deliver it to you in due time.</h4>
       </div>
      </div>
 
@@ -125,7 +126,7 @@
    <section class="quote">
     <div class="container">
      <div class="row">
-      <div class="col-md-9"><span>Place your first order and get 5% discount!</span></div>
+      <div class="col-md-9"><span>Have your essay like your morning coffee - hot and original!</span></div>
       <div class="col-md-3 text-right"><a href="{% url 'new-order' %}" class="btn-transparent">Order Now</a></div>
      </div>
     </div>
@@ -137,8 +138,8 @@
     <div class="container">
      <div class="row text-center">
       <div class="col-md-12">
-       <span class="section-title">Our <span>Prices</span></span>
-       <p class="section-description">By choosing our service you will get the best solution for the price. If you want to check how much your exact custom written paper will cost you, just use one of our calculators below:</p>
+       <h3 class="section-title">Our <span>Prices</span></h3>
+       <h4 class="section-description">By choosing our service you will get the best solution for the price. If you want to check how much your exact custom written paper will cost you, just use one of our calculators below:</h4>
       </div>
      </div>
      <div class="row">
@@ -149,7 +150,7 @@
         <div class="tariff-period">
          <div class="tariff-period-wrapper">
           <form>
-           <select name="tariff-period" class="tariff-period-select">
+           <select name="tariff-period" class="tariff-period-select" onchange="displayPrice(this, '1');">
 			<option value="10800">3 hours</option>
 			<option value="21600">6 hours</option>
 			<option value="28800">8 hours</option>
@@ -160,7 +161,7 @@
 			<option value="345600">4 days</option>
 			<option value="604800">7 days</option>
 			<option value="950400">11 days</option>
-           </select>
+           </select>		   
           </form>
          </div>
         </div>
@@ -178,7 +179,7 @@
         <div class="tariff-period">
          <div class="tariff-period-wrapper">
           <form>
-           <select name="tariff-period" class="tariff-period-select">
+           <select name="tariff-period" class="tariff-period-select" onchange="displayPrice(this, '2');">
 			<option value="10800">3 hours</option>
 			<option value="21600">6 hours</option>
 			<option value="28800">8 hours</option>
@@ -206,7 +207,7 @@
         <div class="tariff-period">
          <div class="tariff-period-wrapper">
           <form>
-           <select name="tariff-period" class="tariff-period-select">
+           <select name="tariff-period" class="tariff-period-select" onchange="displayPrice(this, '3');">
 			<option value="10800">3 hours</option>
 			<option value="21600">6 hours</option>
 			<option value="28800">8 hours</option>
@@ -234,9 +235,7 @@
         <div class="tariff-period">
          <div class="tariff-period-wrapper">
           <form>
-           <select name="tariff-period" class="tariff-period-select">
-			<option value="10800">3 hours</option>
-			<option value="21600">6 hours</option>
+           <select name="tariff-period" class="tariff-period-select" onchange="displayPrice(this, '4');">
 			<option value="28800">8 hours</option>
 			<option value="43200">12 hours</option>
 			<option value="86400">24 hours</option>
@@ -262,10 +261,7 @@
         <div class="tariff-period">
          <div class="tariff-period-wrapper">
           <form>
-           <select name="tariff-period" class="tariff-period-select">
-			<option value="10800">3 hours</option>
-			<option value="21600">6 hours</option>
-			<option value="28800">8 hours</option>
+           <select name="tariff-period" class="tariff-period-select" onchange="displayPrice(this, '5');">
 			<option value="43200">12 hours</option>
 			<option value="86400">24 hours</option>
 			<option value="172800">48 hours</option>
@@ -295,7 +291,7 @@
     <div class="container">
      <div class="row">
       <div id="testimonials" class="col-md-6 col-sm-6"> 
-       <span class="section-title">What our <span>Customers think</span>?</span>
+       <h3 class="section-title">What our <span>Customers think</span>?</h3>
        <div id="testimonials-carousel" class="owl-carousel">
         <div class="testimonial">
          <div class="testimonial-meta">
@@ -324,7 +320,7 @@
       </div><!--testimonials-->
 
       <div id="features" class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1">
-       <span class="section-title">Our <span>Free Features</span></span>
+       <h3 class="section-title">Our <span>Free Features</span></h3>
        <ul class="list-checked">
         <li>Free revisions according to our Revision Policy</li>
         <li>Free title page</li>
@@ -341,8 +337,8 @@
    <!-- BEGIN BLOCKQUOTE BLOCK -->
    <section class="quote">
     <div class="container">
-     <div class="row ">
-      <div class="col-md-9"><span>Place your first order and get 5% discount!</span></div>
+     <div class="row">
+      <div class="col-md-9"><span>Have your essay like your morning coffee - hot and original!</span></div>
       <div class="col-md-3 text-right"><a href="{% url 'new-order' %}" class="btn-transparent">Order Now</a></div>
      </div>
     </div>
@@ -352,7 +348,7 @@
 
    <!-- BEGIN SKILLS BLOCK -->
    <section id="skills">
-    <span class="section-title white-title">Our skills</span>
+    <h3 class="section-title white-title">Our skills</h3>
     <div class="container">
      <div class="row center counters">
       <div class="col-md-4 col-sm-4">
@@ -385,7 +381,7 @@
    <section class="quote">
     <div class="container">
      <div class="row">
-      <div class="col-md-9"><span>Place your first order and get 5% discount!</span></div>
+      <div class="col-md-9"><span>Have your essay like your morning coffee - hot and original!</span></div>
       <div class="col-md-3 text-right"><a href="{% url 'new-order' %}" class="btn-transparent">Order Now</a></div>
      </div> 
     </div>
@@ -398,8 +394,8 @@
     <div class="container">
      <div class="row text-center">
       <div class="col-md-12">
-       <span class="section-title">Our <span>Benefits</span></span>
-       {# <p class="section-description">Good knowledge of such citation styles as MLA, APA, Harvard, Chicago and Turabian is a must for all our writers. They can help you format your paper in any of those styles. We are a flexible and convenient writing service, you ask – we do! </p> #}
+       <h3 class="section-title">Our <span>Benefits</span></h3>
+       {# <h4 class="section-description">Good knowledge of such citation styles as MLA, APA, Harvard, Chicago and Turabian is a must for all our writers. They can help you format your paper in any of those styles. We are a flexible and convenient writing service, you ask – we do! </h4> #}
       </div>
      </div>
 
@@ -429,6 +425,44 @@
    <!-- END BENEFITS BLOCK -->
   
 </main>
+<script type="text/javascript">
+
+{% autoescape off %}
+var pricelist = {{co.PRICELIST}};
+{% endautoescape %}
+
+//
+var getData = function(assigment)
+{
+	var foundItems = null;
+	$.each(pricelist, function(key, val) {
+	  if(val.assigments.indexOf(assigment) !== -1) {
+		foundItems = val;
+		return;
+	  }
+	})
+	return foundItems;
+};
+
+//
+var displayPrice = function(el, level) {
+	$(el).closest('.col-tariff').find('span.text-small').text('.00');
+	$(el).closest('.col-tariff').find('span.text-large').text('0');
+	var assigment = "Essay",
+		urgency = $(el).closest('.col-tariff').find('select[name=tariff-period] option:selected').val(),
+		spacing = 2,
+		pages = 1;
+	try {
+	  var pagePrice = getData(assigment).prices[urgency][level];
+          var totalPrice = pagePrice * (spacing == '2' ? 1 : 2) * pages;
+          if (totalPrice) {
+	  $(el).closest('.col-tariff').find('span.text-small').text('.'+String(totalPrice).split('.')[1]);
+	  $(el).closest('.col-tariff').find('span.text-large').text(String(totalPrice).split('.')[0]);
+          }
+	} catch (e) {}
+}
+$("select[name=tariff-period]").trigger("change");
+</script>
 {% endblock %}
 {% block end_content %}{% endblock %}
 {% block end_main_wrapper %}{% endblock %}

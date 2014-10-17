@@ -29,38 +29,38 @@
 
 <header id="header">
  <div class="container">
-   <div id="logo"><a href="{% url 'home' %}">EssayCoffee{#<img src="{{ STATIC_URL }}images/demo/logo.png"></a>#}</div>
+   <div id="logo"><a href="{% url 'home' %}">EssayCoffee{#<img src="{{ STATIC_URL }}images/demo/logo.png">#}</a></div>
 
-   <a href="javascript:void(0);" class="mobi-toggler"></a> 
+   <a href="javascript:void(0);" class="mobi-toggler"></a>
    
    <!-- BEGIN NAVIGATION -->
    <div id="main-navigation" class="pull-right">
 	<ul>
-		<li {% if request.path == '/' %}class="active"{% endif %}><a href="{% url 'home' %}">Home</a></li>
+		<li {% if request.path == '/' %}class="active"{% endif %}><a {% if request.path != '/' %}href="{% url 'home' %}"{% endif %}>Home</a></li>
 		<li class="dropdown">
 			<a href="#">Our Services</a>
 			<ul class="dropdown-menu">
-				<li {% if request.path == '/custom-essays/' %}class="active"{% endif %}><a href="{% url 'custom-essays' %}">Custom Essays</a></li>
-				<li {% if request.path == '/research-papers/' %}class="active"{% endif %}><a href="{% url 'research-papers' %}">Research Papers</a></li>
-				<li {% if request.path == '/term-papers/' %}class="active"{% endif %}><a href="{% url 'term-papers' %}">Term Papers</a></li>
-				<li {% if request.path == '/coursework-writing/' %}class="active"{% endif %}><a href="{% url 'coursework-writing' %}">Coursework Writing</a></li>
+				<li {% if request.path == '/custom-essays/' %}class="active"{% endif %}><a {% if request.path != '/custom-essays/' %}href="{% url 'custom-essays' %}"{% endif %}>Custom Essays</a></li>
+				<li {% if request.path == '/research-papers/' %}class="active"{% endif %}><a {% if request.path != '/research-papers/' %}href="{% url 'research-papers' %}"{% endif %}>Research Papers</a></li>
+				<li {% if request.path == '/term-papers/' %}class="active"{% endif %}><a {% if request.path != '/term-papers/' %}href="{% url 'term-papers' %}"{% endif %}>Term Papers</a></li>
+				<li {% if request.path == '/coursework-writing/' %}class="active"{% endif %}><a {% if request.path != '/coursework-writing/' %}href="{% url 'coursework-writing' %}"{% endif %}>Coursework Writing</a></li>
 			</ul>
 		</li>
 		<li {% if request.path == '/pricing/' %}class="active"{% endif %}><a href="{% url 'pricing' %}">Pricing</a></li>
 		<li class="dropdown">
 			<a href="#">Guarantees</a>
 			<ul class="dropdown-menu">
-				<li {% if request.path == '/terms-conditions/' %}class="active"{% endif %}><a href="{% url 'terms-conditions' %}" rel="nofollow">Terms and Conditions</a></li>
-				<li {% if request.path == '/plagiarism-free-guarantee/' %}class="active"{% endif %}><a href="{% url 'plagiarism-free-guarantee' %}" rel="nofollow">Plagiarism Free Guarantee</a></li>
-				<li {% if request.path == '/cookie-policy/' %}class="active"{% endif %}><a href="{% url 'cookie-policy' %}" rel="nofollow">Cookie Policy</a></li>
-				<li {% if request.path == '/money-back-guarantee/' %}class="active"{% endif %}><a href="{% url 'money-back-guarantee' %}" rel="nofollow">Money Back Guarantee</a></li>
-				<li {% if request.path == '/privacy-policy/' %}class="active"{% endif %}><a href="{% url 'privacy-policy' %}" rel="nofollow">Privacy Policy</a></li>
-				<li {% if request.path == '/revisions-policy/' %}class="active"{% endif %}><a href="{% url 'revisions-policy' %}" rel="nofollow">Revision Policy</a></li>
-				<li {% if request.path == '/disclaimer/' %}class="active"{% endif %}><a href="{% url 'disclaimer' %}" rel="nofollow">Disclaimer</a></li>
+				<li {% if request.path == '/terms-conditions/' %}class="active"{% endif %}><a {% if request.path != '/terms-conditions/' %}href="{% url 'terms-conditions' %}"{% endif %} rel="nofollow">Terms and Conditions</a></li>
+				<li {% if request.path == '/plagiarism-free-guarantee/' %}class="active"{% endif %}><a {% if request.path != '/plagiarism-free-guarantee/' %}href="{% url 'plagiarism-free-guarantee' %}"{% endif %} rel="nofollow">Plagiarism Free Guarantee</a></li>
+				<li {% if request.path == '/cookie-policy/' %}class="active"{% endif %}><a {% if request.path != '/cookie-policy/' %}href="{% url 'cookie-policy' %}"{% endif %} rel="nofollow">Cookie Policy</a></li>
+				<li {% if request.path == '/money-back-guarantee/' %}class="active"{% endif %}><a {% if request.path != '/money-back-guarantee/' %}href="{% url 'money-back-guarantee' %}"{% endif %} rel="nofollow">Money Back Guarantee</a></li>
+				<li {% if request.path == '/privacy-policy/' %}class="active"{% endif %}><a {% if request.path != '/privacy-policy/' %}href="{% url 'privacy-policy' %}"{% endif %} rel="nofollow">Privacy Policy</a></li>
+				<li {% if request.path == '/revisions-policy/' %}class="active"{% endif %}><a {% if request.path != '/revisions-policy/' %}href="{% url 'revisions-policy' %}"{% endif %} rel="nofollow">Revision Policy</a></li>
+				<li {% if request.path == '/disclaimer/' %}class="active"{% endif %}><a {% if request.path != '/disclaimer/' %}href="{% url 'disclaimer' %}"{% endif %} rel="nofollow">Disclaimer</a></li>
 			</ul>
 		</li>
-		<li {% if request.path == '/faq/' %}class="active"{% endif %}><a href="{% url 'faq' %}" rel="nofollow">FAQ</a></li>
-		<li {% if request.path == '/contact/' %}class="active"{% endif %}><a href="{% url 'contact' %}">Contact</a></li>
+		<li {% if request.path == '/faq/' %}class="active"{% endif %}><a {% if request.path != '/faq/' %}href="{% url 'faq' %}"{% endif %} rel="nofollow">FAQ</a></li>
+		<li {% if request.path == '/contact/' %}class="active"{% endif %}><a {% if request.path != '/contact/' %}href="{% url 'contact' %}"{% endif %}>Contact</a></li>
 	</ul>
    </div>
    <!-- END NAVIGATION -->

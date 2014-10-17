@@ -44,7 +44,7 @@
       <label class="col-sm-5 control-label">
        Assigment Type
        <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Assigment Type">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Please, choose the most suitable assignment type of assignment you need.">
          <i class="icon-info-popup"></i>
         </a>
        </span>
@@ -81,7 +81,7 @@
       <label class="col-sm-5 control-label">
        First Draft Deadline
        <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages tooltip">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Please specify when you need your first draft. Make sure that your final submission deadline exceed your first draft deadline by 30% so our writer can make needed corrections before it, if necessary.">
          <i class="icon-info-popup"></i>
         </a>
        </span>
@@ -118,7 +118,7 @@
       <label class="col-sm-5 control-label">
        Subject or Discipline
        <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Subject or Discipline tooltip">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Make sure to select the subject or discipline of your paper.">
          <i class="icon-info-popup"></i>
         </a>
        </span>
@@ -140,13 +140,13 @@
       <label class="col-sm-5 control-label">
        Topic
        <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Topic tooltip">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="If you have a topic, then make it clear and concise. If you don’t have any, then just write “Writer’s Choice”.">
          <i class="icon-info-popup"></i>
         </a>
        </span>
       </label>
       <div class="col-sm-5">
-       <input name="paper_title" type="text" class="form-control" value="{{form.paper_title.value|default:''}}">
+       <input name="paper_title" type="text" class="form-control" value="{{form.paper_title.value|default:''}}" autocomplete="off">
        {% if form.paper_title.errors %}<span class="validation-message">{{form.paper_title.errors|striptags}}</span>{% endif %}
       </div>
      </div>
@@ -154,7 +154,7 @@
       <label class="col-sm-5 control-label">
        Paper Instructions
        <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Paper Instructions tooltip">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Please make sure to leave clear and detailed requirements.">
          <i class="icon-info-popup"></i>
         </a>
        </span>
@@ -168,13 +168,13 @@
       <label class="col-sm-5 control-label">
        Number of sources
        <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Number of sources">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Please specify number of sources writer has to use for your paper.">
          <i class="icon-info-popup"></i>
         </a>
        </span>
       </label>
       <div class="col-sm-5">
-       <input name="source_number" type="number"  min=1 class="form-control" value="{{form.source_number.value|default:1}}">
+       <input name="source_number" type="number"  min=1 class="form-control" value="{{form.source_number.value|default:1}}" autocomplete="off">
        {% if form.source_number.errors %}<span class="validation-message">{{form.source_number.errors|striptags}}</span>{% endif %}
       </div>
      </div>
@@ -197,13 +197,13 @@
       <label class="col-sm-5 control-label">
        Pages
        <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Title page and bibliography are already included into the order for free. One page is approx. 275 words.">
          <i class="icon-info-popup"></i>
         </a>
        </span>
       </label>
       <div class="col-sm-5">
-       <input min=1 name="page_number" type="number" class="form-control" value="{{form.page_number.value|default:1}}" onchange="displayPrice();">
+       <input min=1 name="page_number" type="number" class="form-control" value="{{form.page_number.value|default:1}}" onchange="displayPrice();" autocomplete="off">
        {% if form.page_number.errors %}<span class="validation-message">{{form.page_number.errors|striptags}}</span>{% endif %}
       </div>
      </div>
@@ -233,7 +233,7 @@
         <div class="form-group {% if request.usr_form.first_name.errors %} has-error {% endif %}" title="{{request.usr_form.first_name.errors|striptags}}">
          <label class="col-sm-4 control-label">First Name <span class="require">*</span></label>
          <div class="col-sm-8">
-          <input type="text" name="first_name" class="form-control" value="{{request.usr_form.first_name.value|default:''}}">
+          <input type="text" name="first_name" class="form-control" value="{{request.usr_form.first_name.value|default:''}}" autocomplete="off">
           {% if request.usr_form.first_name.errors %}<span class="validation-message">{{request.usr_form.first_name.errors|striptags}}</span>{% endif %}
          </div>
         </div>
@@ -241,7 +241,7 @@
         <div class="form-group {% if request.usr_form.last_name.errors %} has-error {% endif %}" title="{{request.usr_form.first_name.errors|striptags}}">
          <label class="col-sm-4 control-label">Last Name <span class="require">*</span></label>
          <div class="col-sm-8">
-          <input type="text" name="last_name" class="form-control" value="{{request.usr_form.last_name.value|default:''}}">
+          <input type="text" name="last_name" class="form-control" value="{{request.usr_form.last_name.value|default:''}}" autocomplete="off">
           {% if request.usr_form.last_name.errors %}<span class="validation-message">{{request.usr_form.last_name.errors|striptags}}</span>{% endif %}
          </div>
         </div>
@@ -262,7 +262,7 @@
         <div class="form-group {% if request.usr_form.country.errors %}has-error{% endif %}">
          <label class="col-sm-4 control-label">Your country <span class="require">*</span></label>
          <div class="col-sm-8">
-          <input type="text" name="country" class="form-control" id="country" value="">
+          <input type="text" name="country" class="form-control" id="country" value="" autocomplete="off">
           {% if request.usr_form.country.errors %}<span class="validation-message">{{request.usr_form.country.errors|striptags}}</span>{% endif %}
          </div>
         </div>
@@ -309,14 +309,14 @@
          <div class="form-group {% if form.errors.auth_error %}has-error{% endif %}">
           <label class="col-sm-4 control-label">Email <span class="require">*</span></label>
           <div class="col-sm-8">
-           <input type="email" name="auth_email" class="form-control">
+           <input type="email" name="auth_email" class="form-control" autocomplete="off">
           </div>
          </div>
 
          <div class="form-group {% if form.errors.auth_error %}has-error{% endif %}">
           <label class="col-sm-4 control-label">Password <span class="require">*</span></label>
           <div class="col-sm-8">
-           <input type="password" name="auth_password" class="form-control">
+           <input type="password" name="auth_password" class="form-control" autocomplete="off">
            {% if form.errors.auth_error %}<span class="validation-message">Incorrect password or email</span>{% endif %}
           </div>
          </div>
@@ -338,18 +338,18 @@
       <label class="col-sm-5 control-label">
        Payment system
        <span class="tooltip-wrapper">
-        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Pages tooltip">
+        <a href="#" class="custom-tooltip" data-toggle="tooltip" data-placement="top" title="Please, choose a suitable payment system.">
          <i class="icon-info-popup"></i>
         </a>
        </span>
       </label>
       <div class="col-sm-6">
        <label class="radio-inline" style="border:1px #ddd solid; height:34px; margin-right:10px;  padding:6px 12px; float:left;">
-        <input type="radio" checked name="materials"><span><img style="width: 70px;" src="https://www.liqpay.com/static/img/logo.png" alt=""></span>
+        <input type="radio" checked name="materials" autocomplete="off"><span><img style="width: 70px;" src="https://www.liqpay.com/static/img/logo.png" alt=""></span>
        </label>
        {% comment %}
        <label class="radio-inline" style="border:1px #ddd solid; height:34px; margin-left:0px;  margin-top:-1px; padding:6px 12px;">
-        <input type="radio" name="materials" checked><span><img src="https://essayhave.com/img/common/cs/moneybookerssmall.png" alt=""></span>
+        <input type="radio" name="materials" autocomplete="off" checked><span><img src="https://essayhave.com/img/common/cs/moneybookerssmall.png" alt=""></span>
        </label>
        {% endcomment %}
       </div>

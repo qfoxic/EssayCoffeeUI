@@ -1,5 +1,7 @@
 {% extends 'index.html' %}
 
+{% block head_meta %}<meta name="robots" content="nofollow, noindex" />{% endblock %}
+
 {% block meta_title %}Contact us | EssayCoffee.com{% endblock %}
 {% block meta_description %}EssayCoffee Contact us{% endblock %}
 {% block meta_keywords %}essaycoffee contact us, essaycoffee livechat, to contact, how to contact, call{% endblock %}
@@ -24,17 +26,25 @@
 		<p class="page-descr">Phone working hours: Monday 00:00 AM – Saturday 01:00 PM (UTC).</p>
 		<p class="page-descr">Toll-free for US & Canada (1-888…) only. International callers are charged for incoming calls.</p>
 	</section>
+	<br/>
+	
+	<section>
+		<h4>Email</h4>
+		<a href="mailto:support@essaycoffee.com">support@essaycoffee.com</a><br>
+		<a href="mailto:info@essaycoffee.com">info@essaycoffee.com</a>
+	</section>
+	<br/>
 	
 	<section>
 		<h4>Chat</h4>
 		<p>Chat working hours: Monday 00:00 AM – Saturday 01:00 PM (UTC)</p>
 	</section>
-	
 	<br/>
+	
 	<section>
 		<h4>Feedback</h4>
 		<form id="contacts" action="{% url 'contact' %}" method="post">
-                        {% csrf_token %}
+			{% csrf_token %}
 			<div class="form-group {% if form.name.errors %} has-error{% endif %}">
 				<label for="contacts-name">Name</label>
 				<input name="name" type="text" class="form-control" id="contacts-name" {% if request.user.is_authenticated %}value="{{request.user.first_name}}"{% endif %}>
@@ -60,25 +70,27 @@
 <!-- END MIDDLE LAYOUT -->
 
 <!-- BEGIN LEFT SIDEBAR LAYOUT -->
+<div id="layout-left" class="col-md-3 col-sm-12">
+	{% include 'html/sidebar-left.html' %}
+</div>
+<!-- END LEFT SIDEBAR LAYOUT -->
+
+{% comment %}
 <div id="layout-left" class="col-md-3 col-sm-9">
 	
 	<address>
-		{% comment %}
 		<h3>Our location</h3>
 		795 Park Ave, Suite 120<br>
 		San Francisco, CA 94107<br>
-		{% endcomment %}
 		<abbr title="Phone">P:</abbr> +1 888 243 7406
 	</address>
 	
-
 	<address>
 		<strong>Email</strong>
 		<a href="mailto:support@essaycoffee.com">support@essaycoffee.com</a><br>
 		<a href="mailto:info@essaycoffee.com">info@essaycoffee.com</a>
 	</address>
 
-	{% comment %}
 	<section class="sibebar-section">
 		<ul class="social-icons">
 			<li><a href="#" title="Facebook" class="facebook"></a></li>
@@ -88,9 +100,7 @@
 			<li><a href="#" title="RSS" class="rss"></a></li>
 		</ul>
 	</section>
-	{% endcomment %}
 
-	{% comment %}
 	<section id="sidebar-about" class="sibebar-section">
 		<h3>About Us</h3>
 		<p>Sediam nonummy nibh euismod tation ullamcorper suscipit</p>
@@ -100,7 +110,7 @@
 			<li><i class="fa fa-check"></i> Deserunt fpicia</li>
 		</ul>
 	</section>
-	{% endcomment %}
 </div>
-<!-- END LEFT SIDEBAR LAYOUT -->
+{% endcomment %}
+
 {% endblock %}

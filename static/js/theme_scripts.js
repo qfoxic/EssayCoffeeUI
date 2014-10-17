@@ -91,20 +91,6 @@ $(document).ready(function() {
 		}, 1500);
 	});
 
-	//Price Select
-	function changePrice(){
-		$('.tariff-period-select').each(function(){
-			var select = $(this);
-			var priceBlock = select.parents('.col-tariff:first').find('.tafiff-price');
-			var selectPrice = select.find('option:selected').data('price').toString().split('.');
-			$('.text-large', priceBlock).text(selectPrice[0]);
-			$('.text-small', priceBlock).text('.'+selectPrice[1]);
-		});
-	};
-
-	$('.tariff-period-select').change(changePrice);
-	changePrice();
-
 
 	// Menu Main
 	$(".mobi-toggler").on("click", function(event) {

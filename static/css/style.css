@@ -38,16 +38,19 @@ strong{
 	font-weight:400;
 }
 
+p{
+	text-align: justify;
+}
 
-span.section-title{
+h3.section-title{
 	display:block;
 	font-size: 36px;
 	color: #5a5d66;
 	font-weight: 300;
 	text-transform: uppercase;
-	margin: 48px 0 33px;
+	margin: 38px 0 37px !important;
 }
-span.section-title span{
+h3.section-title span{
 	color: #e84d1c;
 }
 
@@ -105,12 +108,13 @@ span.section-title span{
 	background: #b7bbbf;
 	position: absolute;
 	left: 50%;
-	margin: 13px 0 0 -36px;
+	margin: 17px 0 0 -36px;
 }
-.section-description{
+h4.section-description{
 	margin-bottom: 37px;
 	line-height: 1.18;
 	font-size: 18px;
+	font-weight: 300;
 }
 
 
@@ -1075,7 +1079,7 @@ div.radio{
 #service{
 
 }
-#service span{
+#service h3.section-title{
 	margin-top: 35px;
 }
 .iconboxes{
@@ -1167,7 +1171,7 @@ div.radio{
  * Steps
  * ------------------------------------- */
 .steps-wrapper{
-	margin-top: 15px;
+	/*margin-top: 15px;*/
 	margin-bottom: 8px;
 }
 .step-col{
@@ -1275,7 +1279,7 @@ div.radio{
 #tariffs{
 
 }
-#tariffs span.section-title{
+#tariffs h3.section-title{
 	margin-top: 44px;
 }
 #tariffs .col-md-12{
@@ -1525,21 +1529,21 @@ ul.list-checked li + li{
 	background-size: cover;
 }
 
-#skills span{
+#skills h3.section-title{
 	text-align: center;
 	color: #fff;
-	margin: 0 0 53px;
+	margin: 0 0 53px !important;
 	padding: 6px 0;
 }
 
-#skills span:after{
+#skills h3.section-title:after{
 	content: none;
 }
 #skills .row{
 	margin-left: 0;
 	margin-right: 0;
 }
-#skills .white-title{
+#skills h3.white-title{
 	background: rgba(0,0,0,0.4);
 }
 .counter{
@@ -1589,7 +1593,7 @@ label a{
 /*
  * Benefits
  * ------------------------------------- */
-#benefits span.section-title{
+#benefits h3.section-title{
 	margin-top: 63px;
 }
 .iconboxes{}
@@ -2443,7 +2447,7 @@ ul.red-bullets li + li{
 @media (min-width: 768px){
 	.pricing-page .tariffs{
 		padding: 18px 0 0 15px;
-		text-align: center;
+		/*text-align: center;*/
 	}
 	.pricing-page .tariff-title{
 		padding: 12px 0 15px;
@@ -2625,7 +2629,9 @@ address + .sibebar-section .social-icons{
 	padding: 47px 0 0 0;
 	font-size: 14px;
 }
-#footer span.block-title{
+#footer h1.block-title,
+#footer h2.block-title,
+#footer h3.block-title{
 	display:block;
 	color: #b0b0b0;
 	font-size: 28px;
@@ -2633,7 +2639,9 @@ address + .sibebar-section .social-icons{
 	margin: 48px 0 15px;
 	text-transform: uppercase;
 }
-#footer span.block-title span{
+#footer h1.block-title span,
+#footer h2.block-title span,
+#footer h3.block-title span{
 	color: #ff6f42;
 }
 #footer p{
@@ -2650,7 +2658,9 @@ address + .sibebar-section .social-icons{
 	}
 }
 
-#footer section + section span.block-title{
+#footer section + section h1.block-title,
+#footer section + section h2.block-title,
+#footer section + section h3.block-title{
 	margin-top: 27px;
 }
 #copyright{

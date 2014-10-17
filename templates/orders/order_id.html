@@ -162,8 +162,6 @@
     {% endif %}
     {% if perm.can_edit %}
       <a href="{% url 'order-id-edit' order.pk %}" class="btn btn-default">Edit</a>
-    {% endif %}
-    {% if not payments|is_bought:order.pk %}
      <form action="{% url 'order-id-buy' order.pk %}" method="POST" class="btn">
         {% csrf_token %}
         <input type="hidden" name="status" value="{{co.DRAFT}}">

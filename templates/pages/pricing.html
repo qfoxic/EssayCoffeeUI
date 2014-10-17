@@ -1,6 +1,6 @@
 {% extends 'index.html' %}
 
-{% block head_meta %}<meta name="robots" content="nofollow, noindex" />{% endblock %}
+{% block head_meta %}{% endblock %}
 
 {% block meta_title %}Custom writing service pricing at EssayCoffee | EssayCoffee.com{% endblock %}
 {% block meta_description %}Best prices for custom essay writing! We guarantee affordable, high quality papers that will meet your expectations!{% endblock %}
@@ -28,17 +28,49 @@
 		<li>Type of paper needed.</li>
 	</ul>
 
+
+	
+
+
+	
+	
 	<!-- BEGIN PRICE -->
 	<div class="row tariffs">
+		{% comment %}	
+		<!--div class="form-group">
+			<label class="control-label" style="padding-left:5px; padding-top:8px; float:left;">Assigment Type</label>
+			<div style="margin-left:125px; width:200px;">
+				<select name="assigment" class="form-control" onchange="onAssigmentChange(); displayPrice(); clearPrice();">
+				 {% for val in co.ASSIGMENTS %}
+				   {% if forloop.first %}
+					 <option value="{{val.0}}" {% if not form.assigment.value %}selected{% endif %} disabled>{{val.1}}</option>
+				   {% else %}
+					 <option value="{{val.0}}" {% if form.assigment.value == val.0 %}selected{% endif %}>{{val.1}}</option>
+				   {% endif %}
+				 {% endfor %}
+			   </select>
+			   {% if form.assigment.errors %}<span class="validation-message">{{form.assigment.errors|striptags}}</span>{% endif %}
+			</div>
+		</div-->
+		{% endcomment %}	
+	
 		<div class="col-tariff">
 			<div class="tariff-title">High School</div>
 			<div class="tariff-description">Choose deadline</div>
 			<div class="tariff-period">
 				<div class="tariff-period-wrapper">
 					<form>
-						<select name="tariff-period" class="tariff-period-select">
-							<option data-price="8.69">14 days</option>
-							<option data-price="21.69">21 days</option>
+                                                <select name="tariff-period" class="tariff-period-select" onchange="displayPrice(this, '1');">
+							<option value="10800">3 hours</option>
+							<option value="21600">6 hours</option>
+							<option value="28800">8 hours</option>
+							<option value="43200">12 hours</option>
+							<option value="86400">24 hours</option>
+							<option value="172800">48 hours</option>
+							<option value="259200">3 days</option>
+							<option value="345600">4 days</option>
+							<option value="604800">7 days</option>
+							<option value="950400">11 days</option>
 						</select>
 					</form>
 				</div>
@@ -57,9 +89,17 @@
 			<div class="tariff-period">
 				<div class="tariff-period-wrapper">
 					<form>
-						<select name="tariff-period" class="tariff-period-select">
-							<option data-price="8.69">14 days</option>
-							<option data-price="21.69">21 days</option>
+                                                <select name="tariff-period" class="tariff-period-select" onchange="displayPrice(this, '2');">
+							<option value="10800">3 hours</option>
+							<option value="21600">6 hours</option>
+							<option value="28800">8 hours</option>
+							<option value="43200">12 hours</option>
+							<option value="86400">24 hours</option>
+							<option value="172800">48 hours</option>
+							<option value="259200">3 days</option>
+							<option value="345600">4 days</option>
+							<option value="604800">7 days</option>
+							<option value="950400">11 days</option>
 						</select>
 					</form>
 				</div>
@@ -77,9 +117,17 @@
 			<div class="tariff-period">
 				<div class="tariff-period-wrapper">
 					<form>
-						<select name="tariff-period" class="tariff-period-select">
-							<option data-price="8.69">14 days</option>
-							<option data-price="21.69">21 days</option>
+                                                <select name="tariff-period" class="tariff-period-select" onchange="displayPrice(this, '3');">
+							<option value="10800">3 hours</option>
+							<option value="21600">6 hours</option>
+							<option value="28800">8 hours</option>
+							<option value="43200">12 hours</option>
+							<option value="86400">24 hours</option>
+							<option value="172800">48 hours</option>
+							<option value="259200">3 days</option>
+							<option value="345600">4 days</option>
+							<option value="604800">7 days</option>
+							<option value="950400">11 days</option>
 						</select>
 					</form>
 				</div>
@@ -97,65 +145,76 @@
 			<div class="tariff-period">
 				<div class="tariff-period-wrapper">
 					<form>
-						<select name="tariff-period" class="tariff-period-select">
-							<option data-price="8.69">14 days</option>
-							<option data-price="21.69">21 days</option>
+                                                <select name="tariff-period" class="tariff-period-select" onchange="displayPrice(this, '4');">
+							<option value="28800">8 hours</option>
+							<option value="43200">12 hours</option>
+							<option value="86400">24 hours</option>
+							<option value="172800">48 hours</option>
+							<option value="259200">3 days</option>
+							<option value="345600">4 days</option>
+							<option value="604800">7 days</option>
+							<option value="950400">11 days</option>
 						</select>
-					</form>
+						</form>
+					</div>
 				</div>
-			</div>
-			<div class="tafiff-price">
-				$<span class="text-large">0</span><span class="text-small">.00</span>
-				<span>Per one page</span>
-				<a href="{% url 'new-order' %}" class="btn-grey-bg">Order Now</a>
-			</div>
-		</div><!--col-tariff-->
-
-		<div class="col-tariff">
-			<div class="tariff-title">PHD</div>
-			<div class="tariff-description">Choose deadline</div>
-			<div class="tariff-period">
-				<div class="tariff-period-wrapper">
-					<form>
-						<select name="tariff-period" class="tariff-period-select">
-							<option data-price="8.69">14 days</option>
-							<option data-price="21.69">21 days</option>
-						</select>
-					</form>
+				<div class="tafiff-price">
+					$<span class="text-large">0</span><span class="text-small">.00</span>
+					<span>Per one page</span>
+					<a href="{% url 'new-order' %}" class="btn-grey-bg">Order Now</a>
 				</div>
-			</div>
-			<div class="tafiff-price">
-				$<span class="text-large">0</span><span class="text-small">.00</span>
-				<span>Per one page</span>
-				<a href="{% url 'new-order' %}" class="btn-grey-bg">Order Now</a>
-			</div>
-		</div><!--col-tariff-->
-	</div>
-	<!-- END PRICE -->
+			</div><!--col-tariff-->
 
-	{% comment %}
-	<div class="order-btn-wrapper">
-		<a href="#" class="btn btn-primary">Place Your Order for Writing From Scratch Now!</a>
-	</div>
+			<div class="col-tariff">
+				<div class="tariff-title">PHD</div>
+				<div class="tariff-description">Choose deadline</div>
+				<div class="tariff-period">
+					<div class="tariff-period-wrapper">
+						<form>
+                                                        <select name="tariff-period" class="tariff-period-select" onchange="displayPrice(this, '5');">
+								<option value="43200">12 hours</option>
+								<option value="86400">24 hours</option>
+								<option value="172800">48 hours</option>
+								<option value="259200">3 days</option>
+								<option value="345600">4 days</option>
+								<option value="604800">7 days</option>
+								<option value="950400">11 days</option>
+							</select>
+						</form>
+					</div>
+				</div>
+				<div class="tafiff-price">
+					$<span class="text-large">0</span><span class="text-small">.00</span>
+					<span>Per one page</span>
+					<a href="{% url 'new-order' %}" class="btn-grey-bg">Order Now</a>
+				</div>
+			</div><!--col-tariff-->
+		</div>
+		<!-- END PRICE -->
 
-	<p class="note">All prices are presented in US dollars for writing 1 page. You are able to choose different currency during checkout. If you happen to have a coupon discount code – please paste it in the appropriate field.</p>
+		{% comment %}
+		<div class="order-btn-wrapper">
+			<a href="#" class="btn btn-primary">Place Your Order for Writing From Scratch Now!</a>
+		</div>
 
-	<p class="bg-warning text-center">These prices do not include the <strong>Value Added TAX</strong>. Prices for EU customers will be 20% higher.</p>
-	{% endcomment %}
-	<p>&nbsp;</p>
-	<p class="bg-warning">The prices for writing do not include conducting any primary research. Our writers will not be able to gather primary data for your academic work using such data collection methods as questionnaires,interviews, focus groups interviews, observations and others due to geographical reasons and time/resources required. In case such methods are essential for your academic work our writers will be glad to assist you in creating questionnaires as well as analyzing and discussing the results.</p>
-	
-	{% comment %}
-	<!-- BEGIN PRICE FORM -->
-	<div class="row">
-		<div class="col-md-12 col-sm-12">
-			<form class="form-horizontal price-form-wrapper">
-				<div class="price-form">
-					<div class="form-group">
-						<label class="col-sm-5 control-label">Type of Paper Needed</label>
-						<div class="col-sm-5">
-							<select class="form-control">
-								<option>Select One</option>
+		<p class="note">All prices are presented in US dollars for writing 1 page. You are able to choose different currency during checkout. If you happen to have a coupon discount code – please paste it in the appropriate field.</p>
+
+		<p class="bg-warning text-center">These prices do not include the <strong>Value Added TAX</strong>. Prices for EU customers will be 20% higher.</p>
+		{% endcomment %}
+		<p>&nbsp;</p>
+		<p class="bg-warning">The prices for writing do not include conducting any primary research. Our writers will not be able to gather primary data for your academic work using such data collection methods as questionnaires,interviews, focus groups interviews, observations and others due to geographical reasons and time/resources required. In case such methods are essential for your academic work our writers will be glad to assist you in creating questionnaires as well as analyzing and discussing the results.</p>
+		
+		{% comment %}
+		<!-- BEGIN PRICE FORM -->
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<form class="form-horizontal price-form-wrapper">
+					<div class="price-form">
+						<div class="form-group">
+							<label class="col-sm-5 control-label">Type of Paper Needed</label>
+							<div class="col-sm-5">
+								<select class="form-control">
+									<option>Select One</option>
 								<option>Select Two</option>
 							</select>
 						</div>
@@ -236,5 +295,43 @@
 <div id="layout-left" class="col-md-3 col-sm-12">
 	{% include 'html/sidebar-left.html' %}
 </div>
+<script type="text/javascript">
+
+{% autoescape off %}
+var pricelist = {{co.PRICELIST}};
+{% endautoescape %}
+
+//
+var getData = function(assigment)
+{
+	var foundItems = null;
+	$.each(pricelist, function(key, val) {
+	  if(val.assigments.indexOf(assigment) !== -1) {
+		foundItems = val;
+		return;
+	  }
+	})
+	return foundItems;
+};
+
+//
+var displayPrice = function(el, level) {
+	$(el).closest('.col-tariff').find('span.text-small').text('.00');
+	$(el).closest('.col-tariff').find('span.text-large').text('0');
+	var assigment = "Essay",
+		urgency = $(el).closest('.col-tariff').find('select[name=tariff-period] option:selected').val(),
+		spacing = 2,
+		pages = 1;
+	try {
+	  var pagePrice = getData(assigment).prices[urgency][level];
+          var totalPrice = pagePrice * (spacing == '2' ? 1 : 2) * pages;
+          if (totalPrice) {
+	  $(el).closest('.col-tariff').find('span.text-small').text('.'+String(totalPrice).split('.')[1]);
+	  $(el).closest('.col-tariff').find('span.text-large').text(String(totalPrice).split('.')[0]);
+          }
+	} catch (e) {}
+}
+$("select[name=tariff-period]").trigger("change");
+</script>
 <!-- END LEFT SIDEBAR LAYOUT -->
 {% endblock %}
