@@ -1,0 +1,24 @@
+[28-Oct-2014 19:56:48 UTC] PHP Fatal error:  Call to undefined function the_experpt() in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php on line 52
+[28-Oct-2014 19:56:49 UTC] PHP Fatal error:  Call to undefined function the_experpt() in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php on line 52
+[28-Oct-2014 19:56:49 UTC] PHP Fatal error:  Call to undefined function the_experpt() in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php on line 52
+[28-Oct-2014 20:07:00 UTC] PHP Parse error:  syntax error, unexpected $end in /home/bh48185/public_html/essay/wp-content/themes/essay/functions.php on line 81
+[29-Oct-2014 22:03:58 UTC] PHP Warning:  Missing argument 1 for wp_get_nav_menu_items(), called in /home/bh48185/public_html/essay/wp-content/themes/essay/header.php on line 100 and defined in /home/bh48185/public_html/essay/wp-includes/nav-menu.php on line 540
+[29-Oct-2014 22:04:00 UTC] PHP Warning:  Missing argument 1 for wp_get_nav_menu_items(), called in /home/bh48185/public_html/essay/wp-content/themes/essay/header.php on line 100 and defined in /home/bh48185/public_html/essay/wp-includes/nav-menu.php on line 540
+[01-Nov-2014 09:57:06 UTC] PHP Parse error:  syntax error, unexpected T_VAR in /home/bh48185/public_html/essay/wp-content/themes/essay/content.php on line 111
+[01-Nov-2014 10:05:44 UTC] PHP Parse error:  syntax error, unexpected T_VAR in /home/bh48185/public_html/essay/wp-content/themes/essay/content.php on line 111
+[01-Nov-2014 10:06:10 UTC] PHP Parse error:  syntax error, unexpected T_VAR in /home/bh48185/public_html/essay/wp-content/themes/essay/content.php on line 111
+[01-Nov-2014 10:40:23 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/bh48185/public_html/essay/wp-content/themes/essay/content.php on line 120
+[02-Nov-2014 10:56:12 UTC] PHP Fatal error:  Cannot redeclare disqus_count() (previously declared in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php:54) in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php on line 54
+[02-Nov-2014 11:05:54 UTC] PHP Fatal error:  Cannot redeclare disqus_count() (previously declared in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php:53) in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php on line 53
+[02-Nov-2014 11:07:27 UTC] PHP Fatal error:  Cannot redeclare disqus_count() (previously declared in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php:53) in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php on line 53
+[02-Nov-2014 11:07:30 UTC] PHP Fatal error:  Cannot redeclare disqus_count() (previously declared in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php:53) in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php on line 53
+[02-Nov-2014 11:09:48 UTC] PHP Fatal error:  Cannot redeclare disqus_count() (previously declared in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php:53) in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php on line 53
+[02-Nov-2014 11:10:41 UTC] PHP Fatal error:  Call to undefined function disqus_count() in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php on line 54
+[02-Nov-2014 11:18:03 UTC] PHP Fatal error:  Cannot redeclare disqus_count() (previously declared in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php:52) in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php on line 52
+[02-Nov-2014 11:25:57 UTC] PHP Fatal error:  Call to undefined function disqus_count() in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php on line 49
+[02-Nov-2014 11:52:14 UTC] PHP Fatal error:  Cannot redeclare disqus_count() (previously declared in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php:52) in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php on line 52
+[02-Nov-2014 11:52:33 UTC] PHP Fatal error:  Cannot redeclare disqus_count() (previously declared in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php:52) in /home/bh48185/public_html/essay/wp-content/themes/essay/index.php on line 52
+[02-Nov-2014 13:52:41 UTC] PHP Fatal error:  Can't use function return value in write context in /home/bh48185/public_html/essay/wp-content/themes/essay/sidebar.php on line 28
+[02-Nov-2014 13:53:14 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/bh48185/public_html/essay/wp-content/themes/essay/sidebar.php on line 29
+[02-Nov-2014 13:54:36 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/bh48185/public_html/essay/wp-content/themes/essay/sidebar.php on line 30
+[02-Nov-2014 13:55:08 UTC] PHP Fatal error:  Call to undefined function get_the_field() in /home/bh48185/public_html/essay/wp-content/themes/essay/sidebar.php on line 28
