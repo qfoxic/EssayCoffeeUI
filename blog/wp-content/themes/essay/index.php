@@ -18,14 +18,6 @@ get_header(); ?>
 
 <!-- BEGIN MIDDLE LAYOUT -->
 <div id="layout-middle" class="col-md-9 col-sm-9">
-	<!-- BEGIN BREADCRUMBS -->
-	<div class="breadcrumbs">
-		<?php if(function_exists('bcn_display'))
-	    {
-	        bcn_display();
-	    }?>
-	</div>
-	<!-- END BREADCRUMBS -->
 
 		<h3 class="page-title">Blog</h3>
 

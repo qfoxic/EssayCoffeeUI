@@ -20,6 +20,21 @@
 			</div>
 		</section>
 	</div>
+	
+	<section class="sibebar-section">
+		<h3>Tags</h3>
+		<?php //the_tags('<ul class="tags-list"><li>','</li><li>','</li></ul>'); ?>
+		<ul class="tags-list custom-tags-list">
+			<?php wp_tag_cloud(); ?>
+		</ul>
+	</section>
+	
+	<section class="sibebar-section">
+		<div class="sibebar-banner" style="background: #F0EDED; padding:5px; color:#525050">
+			<div style="padding-top:3px; padding-right:3px; background: rgba(255,255,255,0.6); font-size:14px; text-align:right; color:#525050">(Toll Free)</div>
+			<div class="banner-title" style="position: relative; font-size:25px; color:#525050">+1 888 243 7406</div>
+		</div>
+	</section>
 
 	<section class="sibebar-section">
 		<h3>Best Prices!</h3>
@@ -62,14 +77,6 @@
 			<li><i class="box-icon-small" style="background-image: url(<?php the_field('benefits_item_2_icon',22); ?>);"></i><span><?php the_field('benefits_item_2_text',22); ?></span></li>
 			<li><i class="box-icon-small" style="background-image: url(<?php the_field('benefits_item_3_icon',22); ?>);"></i><span><?php the_field('benefits_item_3_text',22); ?></span></li>
 			<li><i class="box-icon-small" style="background-image: url(<?php the_field('benefits_item_4_icon',22); ?>);"></i><span><?php the_field('benefits_item_4_text',22); ?></span></li>
-		</ul>
-	</section>
-
-	<section class="sibebar-section">
-		<h3>Tags</h3>
-		<?php //the_tags('<ul class="tags-list"><li>','</li><li>','</li></ul>'); ?>
-		<ul class="tags-list custom-tags-list">
-			<?php wp_tag_cloud(); ?>
 		</ul>
 	</section>
 
