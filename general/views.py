@@ -109,7 +109,7 @@ class BaseView(View):
     return super(BaseView, self).form_valid(form)
 
   def dispatch(self, request, *args, **kwargs):
-    if request.META.get('GEOIP_COUNTRY_CODE') in ['RU', 'CH']:
+    if request.META.get('GEOIP_COUNTRY_CODE') in ['UA', 'RU', 'CH']:
         raise PermissionDenied
     if request.user.is_authenticated() and self.non_login_required:
         raise Http404
