@@ -50,7 +50,7 @@
 				    	?>
 				    		<li>
 				    			<span class="tariff-descr"><?php echo get_field('price_'.$i.'_title',67) ?></span>
-				    			<div class="tag-bg"><span class="currency">$<span class="price-numb"><?php echo get_field('price_'.$i.'_number',67) ?></span></span>/page</div>
+				    			<div class="tag-bg"><span class="currency">$<span class="price-numb"><?php echo get_field('price_'.$i.'_number',67) ?>.<span>99</span></span></span>/page</div>
 				    		</li>
 				    	<?php
 				    }
@@ -58,8 +58,7 @@
 
 			?>
 		</ul>
-		<a href="<?php the_field('url_for_button_full_price_table',22); ?>" class="btn-transparent btn-grey">Full Price Table</a>
-		<!--  -->
+		<a href="<?php the_field('url_for_button_full_price_table',22); ?>" class="btn-transparent btn-grey" rel="nofollow">Full Price Table</a>
 	</section>
 
 	<section class="sibebar-section">

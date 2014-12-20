@@ -14,8 +14,9 @@
 	<link href="<?php echo get_template_directory_uri(); ?>/css/owl.theme.css" rel="stylesheet" media="screen">
 	<link href="<?php echo get_template_directory_uri(); ?>/css/uniform.default.css" rel="stylesheet" media="screen">
 	<link href="<?php echo get_template_directory_uri(); ?>/css/theme.default.css" rel="stylesheet" media="screen">
-	<link href="<?php echo get_template_directory_uri(); ?>/style.css?v=6" rel="stylesheet" media="screen">
-
+	<!--<link href="<?php// echo get_template_directory_uri(); ?>/style.css?v=6" rel="stylesheet" media="screen">-->
+	<link href="http://essaycoffee.com/static/css/style.css?v=6" rel="stylesheet" media="screen">
+	
 	<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.min.js"></script>
 	
 	<script src="<?php echo get_template_directory_uri(); ?>/js/bootstrap.js"></script>
@@ -65,14 +66,14 @@
 
 	  	<header id="header">
 	  		<div class="container">
-  			 	<div id="logo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="http://essaycoffee.com/static/images/demo/logo.png"></a></div>
+  			 	<div id="logo"><a href="http://essaycoffee.com">EssayCoffee</a></div>
 
   			 	<a href="javascript:void(0);" class="mobi-toggler"></a>
 
 			   <!-- BEGIN NAVIGATION -->
 			   <div id="main-navigation" class="pull-right">
 				<ul>
-					<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
+					<li><a href="http://essaycoffee.com">Home</a></li>
 					<li class="dropdown">
 						<a href="#">Our Services</a>
 						<ul class="dropdown-menu">
@@ -95,7 +96,7 @@
 							<li><a href="http://essaycoffee.com/disclaimer/" rel="nofollow">Disclaimer</a></li>
 						</ul>
 					</li>
-					<li class="active"><a href="http://essaycoffee.com/pricing/">Blog</a></li>
+					<li class="active"><a>Blog</a></li>
 					<li><a href="http://essaycoffee.com/faq/" rel="nofollow">FAQ</a></li>
 					<li><a href="http://essaycoffee.com/contact/">Contact</a></li>
 				</ul>

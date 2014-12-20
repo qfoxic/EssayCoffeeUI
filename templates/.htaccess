@@ -1,0 +1,5 @@
+SetEnvIf GEOIP_COUNTRY_CODE RU BlockCountry
+SetEnvIf GEOIP_COUNTRY_CODE CN BlockCountry
+SetEnvIf GEOIP_COUNTRY_CODE UA BlockCountry
+Deny from env=BlockCountry
+

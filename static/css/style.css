@@ -1968,6 +1968,8 @@ label a{
 	height: 50px;
 	background-size: 40px auto;
 	float: left;
+	background-position: 50% 0;
+	background-repeat: no-repeat;
 }
 
 .benefits-list .box-icon-small.icon-timer{

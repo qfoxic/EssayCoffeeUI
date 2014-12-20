@@ -59,6 +59,7 @@
 				<li {% if request.path == '/disclaimer/' %}class="active"{% endif %}><a {% if request.path != '/disclaimer/' %}href="{% url 'disclaimer' %}"{% endif %} rel="nofollow">Disclaimer</a></li>
 			</ul>
 		</li>
+		<li {% if request.path == '/blog/' %}class="active"{% endif %}><a {% if request.path != '/blog/' %}href="http://blog.essaycoffee.com/"{% endif %}>Blog</a></li>
 		<li {% if request.path == '/faq/' %}class="active"{% endif %}><a {% if request.path != '/faq/' %}href="{% url 'faq' %}"{% endif %} rel="nofollow">FAQ</a></li>
 		<li {% if request.path == '/contact/' %}class="active"{% endif %}><a {% if request.path != '/contact/' %}href="{% url 'contact' %}"{% endif %}>Contact</a></li>
 	</ul>

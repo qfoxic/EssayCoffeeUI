@@ -37,9 +37,11 @@
 </head>
   <body>
     <div class="wrap">
-	{% include 'html/header.html' %}
+    {% include 'html/header.html' %}
     {% block content %}
-      404
+    <p>
+             The page you have requested not found.
+    </p>
     {% endblock %}
     </div>
     {% include 'html/footer.html' %}
