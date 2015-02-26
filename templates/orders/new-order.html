@@ -263,6 +263,7 @@
          <label class="col-sm-4 control-label">Your country <span class="require">*</span></label>
          <div class="col-sm-8">
           <input type="text" name="country" class="form-control" id="country" value="" autocomplete="off">
+          <input type="hidden" name="timezone" class="form-control" id="country" value="0" autocomplete="off">
           {% if request.usr_form.country.errors %}<span class="validation-message">{{request.usr_form.country.errors|striptags}}</span>{% endif %}
          </div>
         </div>

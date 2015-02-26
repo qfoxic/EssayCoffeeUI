@@ -35,7 +35,7 @@ get_header(); ?>
 					<h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
 					<ul class="blog-meta">
 						<li><i class="fa fa-calendar"></i> <?php echo get_the_date();?></li>
-						<li><i class="fa fa-comments"></i> 17</li>
+						<?php /* <li><i class="fa fa-comments"></i> 17</li> */ ?>
 						<?php 
 							$post_tags = wp_get_post_tags($post->ID);
 								if(!empty($post_tags)) { ?>

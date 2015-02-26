@@ -19,7 +19,7 @@ class ProfileForm(forms.ModelForm):
                               'Last name should contains only characters on lower or upper case.',
                               'invalid')])
   country =  forms.CharField(min_length=3, validators=[
-    validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
+    validators.RegexValidator(re.compile('^[a-zA-Z ]+$'),
                               'Country should contains only characters on lower or upper case.',
                               'invalid')])
   phone = forms.CharField(min_length=5, max_length=20, required=True,
@@ -70,7 +70,7 @@ class EditProfileForm(forms.ModelForm):
                               'Last name should contains only characters on lower or upper case.',
                               'invalid')])
   country =  forms.CharField(min_length=3, validators=[
-    validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
+    validators.RegexValidator(re.compile('^[a-zA-Z ]+$'),
                               'Country should contains only characters on lower or upper case.',
                               'invalid')])
   phone = forms.CharField(min_length=5, max_length=20, required=True,
@@ -115,7 +115,7 @@ class NewProfileForm(forms.ModelForm):
                               'Last name should contains only characters on lower or upper case.',
                               'invalid')])
   country = forms.CharField(min_length=3,  required=True, validators=[
-    validators.RegexValidator(re.compile('^[a-zA-Z]+$'),
+    validators.RegexValidator(re.compile('^[a-zA-Z ]+$'),
                               'Country should contains only characters on lower or upper case.',
                               'invalid')])
   password = forms.CharField(min_length=6, required=True)
