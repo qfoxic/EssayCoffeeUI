@@ -1,4 +1,7 @@
 import re
+import random
+import string
+
 from userprofile.models import UserProfile
 from django import forms
 from django.core import validators
@@ -152,8 +155,12 @@ class NewProfileForm(forms.ModelForm):
     return self.request.POST.get('email')
 
   def clean_password(self):
+    gen_pass = self.request.POST.get('gen_pass')
+    password = ''.join([random.choice(string.digits + string.letters) for i in range(0, 10)])
     if self.request.POST.get('password') != self.request.POST.get('password2'):
       raise forms.ValidationError('Passwords do not match.')
+    if gen_pass:
+      return password
     return self.request.POST.get('password')
 
   def save(self, commit=True):
@@ -162,6 +169,13 @@ class NewProfileForm(forms.ModelForm):
     user.groups.add(Group.objects.get(name=self.group_name))
     user.save()
     try:
+      gen_pass = self.request.POST.get('gen_pass')
+      if gen_pass:
+        send_mail(co.GENERATED_PASSWD_SUBJECT,
+                  co.GENERATED_PASSWD_EMAIL % {'first_name': user.first_name,
+                                               'password': self.cleaned_data['password']},
+                  co.ADMIN_EMAIL,
+                  [user.email])
       send_mail(co.NEW_PROFILE_SUBJECT,
                 co.NEW_PROFILE_EMAIL % {'first_name': user.first_name,
                                         'domain': co.ADMIN_DOMAIN,

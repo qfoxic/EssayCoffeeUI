@@ -34,7 +34,17 @@ Kind Regards,
 EssayCoffee Administration
 """
 
+GENERATED_PASSWD_EMAIL = """ 
+Dear %(first_name)s 
+
+We have generated a password for you "%(password)s", which you can change any time.
+
+Kind Regards,
+EssayCoffee Administration
+"""
+
 NEW_PROFILE_SUBJECT = 'Thanks for registering.'
+GENERATED_PASSWD_SUBJECT = 'We have generated a password for you.'
 ORDER_MAIL_SUBJECT = 'Thanks for ordering.'
 DELETE_ORDER_SUBJECT = 'Your order has been deleted.'
 DELETE_ORDER_EMAIL = """ 

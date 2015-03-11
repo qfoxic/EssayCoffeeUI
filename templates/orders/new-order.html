@@ -276,23 +276,9 @@
           {% if request.usr_form.phone.errors %}<span class="validation-message">{{request.usr_form.phone.errors|striptags}}</span>{% endif %}
          </div>
         </div>
-		
-		<legend>Your password</legend>
-  
-        <div class="form-group {% if request.usr_form.password.errors %}has-error{% endif %}" >
-         <label class="col-sm-4 control-label">Password <span class="require">*</span></label>
-         <div class="col-sm-8">
-          <input type="password" name="password" class="form-control" autocomplete="off">
-         </div>
-        </div>
-  
-        <div class="form-group {% if request.usr_form.password.errors %}has-error{% endif %}">
-         <label class="col-sm-4 control-label">Confirm password <span class="require">*</span></label>
-         <div class="col-sm-8">
-          <input type="password" name="password2" class="form-control" autocomplete="off">
-          {% if request.usr_form.password.errors %}<span class="validation-message">{{request.usr_form.password.errors|striptags}}</span>{% endif %}
-         </div>
-        </div>
+        <input type="hidden" name="password" value="123RFVrfv193123">
+        <input type="hidden" name="password2" value="123RFVrfv193123">
+        <input type="hidden" name="gen_pass" value="123">
   
         <div class="form-group">
          <div class="col-sm-12 text-center">
