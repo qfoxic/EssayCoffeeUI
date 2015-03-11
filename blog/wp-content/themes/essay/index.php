@@ -38,12 +38,15 @@ get_header(); ?>
 						<h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
 						<ul class="blog-meta">
 							<li><i class="fa fa-calendar"></i> <?php echo get_the_date();?></li>
-							
 							<?php 
-								$post_tags = wp_get_post_tags($post->ID);
-									if(!empty($post_tags)) { ?>
-									<li><i class="fa fa-tags"></i> <?php the_tags('<ul><li>','</li>,<li>','</li></ul>'); ?></li>
-							<?php } ?>
+							$post_tags = wp_get_post_tags($post->ID);
+							if(!empty($post_tags))
+								{
+								?>
+								<li><i class="fa fa-tags"></i> <?php the_tags('<ul><li>','</li>,<li>','</li></ul>'); ?></li>
+								<?php
+								}
+							?>
 						</ul>
 						<p class="blog-exp"><?php the_excerpt();?></p>
 						<a href="<?php the_permalink();?>" class="more">Read more <i class="icon-angle-right"></i></a>

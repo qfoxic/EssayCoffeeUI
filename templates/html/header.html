@@ -29,7 +29,7 @@
 
 <header id="header">
  <div class="container">
-   <div id="logo"><a href="{% url 'home' %}">EssayCoffee{#<img src="{{ STATIC_URL }}images/demo/logo.png">#}</a></div>
+   <div id="logo"><a href="{% url 'home' %}"><div>EssayCoffee</div></a></div>
 
    <a href="javascript:void(0);" class="mobi-toggler"></a>
    
@@ -61,7 +61,8 @@
 		</li>
 		<li {% if request.path == '/blog/' %}class="active"{% endif %}><a {% if request.path != '/blog/' %}href="http://blog.essaycoffee.com/"{% endif %}>Blog</a></li>
 		<li {% if request.path == '/faq/' %}class="active"{% endif %}><a {% if request.path != '/faq/' %}href="{% url 'faq' %}"{% endif %} rel="nofollow">FAQ</a></li>
-		<li {% if request.path == '/contact/' %}class="active"{% endif %}><a {% if request.path != '/contact/' %}href="{% url 'contact' %}"{% endif %}>Contact</a></li>
+		<li {% if request.path == '/contact/' %}class="active"{% endif %}><a {% if request.path != '/contact/' %}href="{% url 'contact' %}"{% endif %} style="margin-right: 20px;">Contact</a></li>
+		<li style="margin-top: 15px;"><a href="{% url 'new-order' %}" class="btn-transparent">ORDER NOW</a></li>
 	</ul>
    </div>
    <!-- END NAVIGATION -->

@@ -37,48 +37,19 @@
 		<?php endif; ?>
 	</article>
 
-	<!-- BEGIN SOCIAL SHARE BUTTONS -->
-	<div class="social-share">
-		<!-- Google Plus Button -->
-		<div class="g-plusone" data-size="medium" data-href="<?php the_permalink();?>"></div>
-		<script type="text/javascript">
-		  (function() {
-		    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-		    po.src = 'https://apis.google.com/js/platform.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-		  })();
-		</script>
-		<!-- end Google Plus Button -->
-
-		<!-- Twitter Button -->
-		<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php the_permalink();?>">Tweet</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-		<!-- end Twitter Button -->
-
-		<!-- Facebook Button -->
-		<div id="fb-root"></div>
-		<script>(function(d, s, id) {
-		  var js, fjs = d.getElementsByTagName(s)[0];
-		  if (d.getElementById(id)) return;
-		  js = d.createElement(s); js.id = id;
-		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=387897624670260&version=v2.0";
-		  fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
-		<div class="fb-like" data-href="<?php the_permalink();?>" data-width="100" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-		<!-- end Facebook Button -->
-	</div>
-	<!-- END SOCIAL SHARE BUTTONS -->
-
 	<!-- BEGIN POST META -->
 	<ul class="blog-meta">
-		<li><i class="fa fa-user"></i> By <?php the_author();?></li>
+		<?php /*<li><i class="fa fa-user"></i> By <?php the_author();?></li>*/ ?>
 		<li><i class="fa fa-calendar"></i> <?php echo get_the_date();?></li>
-		<li class="comments-count"><i class="fa fa-comments"></i> </li>
+		<?php /*<li class="comments-count"><i class="fa fa-comments"></i></li>*/ ?>
 		<?php 
-			$post_tags = wp_get_post_tags($post->ID);
-				if(!empty($post_tags)) { ?>
-				<li><i class="fa fa-tags"></i> <?php the_tags('<ul><li>','</li>,<li>','</li></ul>'); ?></li>
-		<?php } ?>
+		$post_tags = wp_get_post_tags($post->ID);
+		if(!empty($post_tags)) {
+		?>
+			<li><i class="fa fa-tags"></i> <?php the_tags('<ul><li>','</li>,<li>','</li></ul>'); ?></li>
+		<?php
+			}
+		?>
 		
 	</ul>
 	<!-- END POST META -->
@@ -100,11 +71,8 @@
 	<!-- END COMMENTS -->
 
 
-
-
-
-
 <?php
+/*
 $disqus_shortname = 'essaycoffee';
 function disqus_count($disqus_shortname) {
     wp_enqueue_script('disqus_count','http://essaycoffee.disqus.com/count.js');
@@ -120,6 +88,9 @@ setTimeout(function() {
 	$('.comments-count').append(commentsCount);
 }, 1500)
 </script>
+<?php
+*/
+?>
 
 </div>
 <!-- END MIDDLE LAYOUT -->

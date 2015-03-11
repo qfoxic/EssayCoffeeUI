@@ -36,6 +36,9 @@
 	<script src="<?php echo get_template_directory_uri(); ?>/js/theme_scripts.js"></script>
 
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<meta name="description" itemprop="description" content="" />
+	<meta name="keywords" itemprop="keywords" content="" />
+	
   </head>
 
 	<body>
@@ -66,7 +69,7 @@
 
 	  	<header id="header">
 	  		<div class="container">
-  			 	<div id="logo"><a href="http://essaycoffee.com">EssayCoffee</a></div>
+				<div id="logo"><a href="http://essaycoffee.com"><div>EssayCoffee</div></a></div>
 
   			 	<a href="javascript:void(0);" class="mobi-toggler"></a>
 
@@ -98,7 +101,8 @@
 					</li>
 					<li class="active"><a>Blog</a></li>
 					<li><a href="http://essaycoffee.com/faq/" rel="nofollow">FAQ</a></li>
-					<li><a href="http://essaycoffee.com/contact/">Contact</a></li>
+					<li><a href="http://essaycoffee.com/contact/" style="margin-right: 20px;">Contact</a></li>
+					<li style="margin-top: 15px;"><a href="http://essaycoffee.com/order-essay/new/" class="btn-transparent">ORDER NOW</a></li>
 				</ul>
 			   </div>
 			   <!-- END NAVIGATION -->

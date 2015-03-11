@@ -799,13 +799,25 @@ div.radio{
 	padding-bottom: 4px;
 }
 #header.menuOpened{
-	background: none;
+	background: url(../images/header-bg.png) repeat-x 0 100%;
+	padding-bottom: 4px;
 }
 #logo{
 	float: left;
-	margin-right: 70px;
+	margin-right: 30px;
 	padding: 12px 0;
+
 }
+
+#logo div{
+	line-height: 0px; margin: 20px 0px 0px 0px; font-size: 35px; color: #5F6066;
+}
+
+#logo a,
+#logo a:hover{
+	text-decoration:none;
+}
+
 
 
 
@@ -827,7 +839,7 @@ div.radio{
 	width: 32px;
 	height: 32px;
 	display: none;
-	margin: 25px 0 0 30px;
+	margin: 17px 0px 17px 30px; 
 	position: relative;
 	background: #FFF url(../images/toggler.png) no-repeat 6px 8px;
 }
@@ -981,6 +993,28 @@ div.radio{
 }
 
 
+#main-navigation .btn-transparent{
+	color: #fff !important;
+	background: #e6400c !important;
+	border-color: #e6400c;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: 300;
+	display: inline-block;
+	padding: 8px 15px; 
+	width: 160px;
+	text-align: center;
+	cursor: pointer;
+}
+#main-navigation .btn-transparent:hover{
+	color: #fff !important;
+	background: #e6400c;
+	border-color: #e6400c;
+	text-decoration: none;
+}
+
+
+
 @media (max-width: 992px){
 	#cat-list .mobi-toggler-cat {
 		display: block;
@@ -1040,7 +1074,14 @@ div.radio{
 #slider .btn-transparent{
 	font-weight: 400;
 }
-@media only screen and (min-width: 0px) and (max-width: 530px) {
+
+@media only screen and (min-width: 0px) and (max-width: 760px) {
+	#slider{
+		display:none;
+	}
+}
+
+/*@media only screen and (min-width: 0px) and (max-width: 530px) {
 	#slider #fullwidthbanner-container{
 		height: 400px !important;
 	}
@@ -1059,18 +1100,17 @@ div.radio{
 	}
 	#slider .tp-simpleresponsive .caption.slide-btn{
 		top: 350px !important;
-		font-size:20px !important;
+		font-size:18px !important;
 		padding: 10px 10px !important;
 		border: 1px solid #FFF !important;
 		text-align: center;
-		width: 200px !important;
+		width: 160px !important;
 		left:  0 !important;
 		right:  0 !important;
 		display: inline-block;
 		margin: 0 auto !important;
 	}
-
-}
+}*/
 
 
 /*
@@ -1412,7 +1452,7 @@ div.radio{
 }
 #testimonials span,
 #features span{
-	border-bottom: 12px solid #f8f8f8;
+	/*border-bottom: 12px solid #f8f8f8;*/
 	padding-bottom: 3px;
 	margin-bottom: 14px;
 }
@@ -1845,7 +1885,7 @@ label a{
 }
 .sibebar-section .social-share{
 	border-top: 1px solid #ccc;
-	padding-top: 17px;
+	/*padding-top: 17px;*/
 	padding-bottom: 0;
 }
 .sibebar-section .social-share > div:first-child{

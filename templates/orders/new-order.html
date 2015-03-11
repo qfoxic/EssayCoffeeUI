@@ -271,8 +271,8 @@
         <div class="form-group {% if request.usr_form.phone.errors %}has-error{% endif %}">
          <label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
          <div class="col-sm-8">
-          <label class="control-label" style="float: left;padding-left: 5px;padding-right: 5px;padding-top: 8px;width: 8%;text-align: left;">+1 </label>
-          <input name="phone" type="tel" class="form-control" value="{{request.usr_form.phone.value|default:''}}" style="width:92%;">
+          {#<label class="control-label" style="float: left;padding-left: 5px;padding-right: 5px;padding-top: 8px;width: 8%;text-align: left;">+1 </label>#}
+          <input name="phone" type="tel" class="form-control" value="{{request.usr_form.phone.value|default:''}}">
           {% if request.usr_form.phone.errors %}<span class="validation-message">{{request.usr_form.phone.errors|striptags}}</span>{% endif %}
          </div>
         </div>
@@ -439,19 +439,15 @@ var onAssigmentChange = function(onload) {
 		var curLevelSelect = $("select[name=level] option:selected").val(),
 			curUrgencySelect = $("select[name=urgency] option:selected").val();
 
-		// При першому виборі значення забираємо атрибут disabled 
 		levelSelect.prop("disabled", false);
 		urgencySelect.prop("disabled", false);
 
-		// Очищаємо вміст тегів
 		levelSelect.empty();
 		urgencySelect.empty();
 
-		// Встановлюємо заглушку з нульовими значеннями
 		levelSelect.append($("<option disabled selected />").val('0').text('Please select'));
 		urgencySelect.append($("<option disabled selected />").val('0').text('Please select'));
 
-		// Наповнюємо тегами із значеннями теги select
 		$.each(items.urgencies, function(key, val) {
 			urgencySelect.append($("<option />").val(key).text(val));
 		});
@@ -483,7 +479,6 @@ var displayPrice = function() {
 	  if (pagePrice === 0 || pagePrice === undefined) {
 		$('label.js-total-price').html('Configuration is not correct.');
 	  } else {
-		// Якщо число від'ємне
 		if (pages < 1)
 		{
 			pages = -pages;

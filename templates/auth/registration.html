@@ -88,7 +88,8 @@
         <label class="col-sm-4 control-label">Your phone <span class="require">*</span></label>
         <div class="col-sm-8">
 		  <input type="hidden" id="tmz" name="timezone" autocomplete="off">
-		  <input type="tel" name="phone" value="{{form.phone.value|default:''}}" class="form-control" style="width:226px" maxlength="20" autocomplete="off" required>
+          {#<label class="control-label" style="float: left;padding-left: 5px;padding-right: 5px;padding-top: 8px;width: 8%;text-align: left;">+1 </label>#}
+		  <input name="phone" type="tel" value="{{form.phone.value|default:''}}" class="form-control" maxlength="20" autocomplete="off" required>
          {% if form.phone.errors %}<span class="validation-message">{{form.phone.errors|striptags}}</span>{% endif %}
         </div>
        </div>
