@@ -75,7 +75,7 @@
   <div id="copyright">
     <div class="container">
      <div class="row">
-      <div class="col-md-6 col-sm-12">Copyright © 2013-2014 All Rights Reserved | <a href="http://essaycoffee.com/">essaycoffee.com</a></div>
+      <div class="col-md-6 col-sm-12">Copyright © 2013-2015 All Rights Reserved | <a href="http://essaycoffee.com/">essaycoffee.com</a></div>
       <div class="col-md-6 col-sm-12 text-right">
        <?php
 	   /**

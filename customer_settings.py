@@ -34,7 +34,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False 
 
-ALLOWED_HOSTS = ['www.essaycoffee.com', '54.68.163.223']
+ALLOWED_HOSTS = ['www.essaycoffee.com', 'essaycoffee.com', '54.68.163.223']
 
 
 # Application definition
