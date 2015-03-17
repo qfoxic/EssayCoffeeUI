@@ -171,18 +171,22 @@ class NewProfileForm(forms.ModelForm):
     try:
       gen_pass = self.request.POST.get('gen_pass')
       if gen_pass:
-        send_mail(co.GENERATED_PASSWD_SUBJECT,
+        send_mail(co.NEW_PROFILE_SUBJECT,
                   co.GENERATED_PASSWD_EMAIL % {'first_name': user.first_name,
+                                               'domain': co.ADMIN_DOMAIN,
+                                               'username': user.username,
+                                               'email': user.email,
                                                'password': self.cleaned_data['password']},
                   co.ADMIN_EMAIL,
                   [user.email])
-      send_mail(co.NEW_PROFILE_SUBJECT,
-                co.NEW_PROFILE_EMAIL % {'first_name': user.first_name,
-                                        'domain': co.ADMIN_DOMAIN,
-                                        'username': user.username,
-                                        'email': user.email},
-                co.ADMIN_EMAIL,
-                [user.email])
+      else:
+        send_mail(co.NEW_PROFILE_SUBJECT,
+                  co.NEW_PROFILE_EMAIL % {'first_name': user.first_name,
+                                          'domain': co.ADMIN_DOMAIN,
+                                          'username': user.username,
+                                          'email': user.email},
+                  co.ADMIN_EMAIL,
+                  [user.email])
     except Exception, e:
       messages.error(self.request, 'Could not send email to %s: %s' % (user.email, e))
     user = authenticate(email=self.cleaned_data['email'],

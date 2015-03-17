@@ -28,7 +28,7 @@ NEW_PROFILE_EMAIL = """
 Dear %(first_name)s 
 
 Thank you for registering at %(domain)s, the best writing service on the Web!
-Your username is %(username)s
+Your username is %(username)s.
 
 Kind Regards,
 EssayCoffee Administration
@@ -37,14 +37,15 @@ EssayCoffee Administration
 GENERATED_PASSWD_EMAIL = """ 
 Dear %(first_name)s 
 
-We have generated a password for you "%(password)s", which you can change any time.
+Thank you for registering at %(domain)s, the best writing service on the Web!
+Your username is %(username)s.
+Your password is %(password)s.
 
 Kind Regards,
 EssayCoffee Administration
 """
 
 NEW_PROFILE_SUBJECT = 'Thanks for registering.'
-GENERATED_PASSWD_SUBJECT = 'We have generated a password for you.'
 ORDER_MAIL_SUBJECT = 'Thanks for ordering.'
 DELETE_ORDER_SUBJECT = 'Your order has been deleted.'
 DELETE_ORDER_EMAIL = """ 
@@ -84,7 +85,9 @@ EMAIL_HOST_USER = 'AKIAILRHCFXQWXJEGIVA'
 EMAIL_PORT = 465
 
 #ADMIN_EMAIL = 'workforum@ukr.net'#'no-reply@essaycoffee.com'
-ADMIN_EMAIL = 'no-reply@essaycoffee.com'
+#ADMIN_EMAIL = 'no-reply@essaycoffee.com'
+ADMIN_EMAIL = 'essaycoffee@essaycoffee.com'
+
 INFO_EMAIL = 'info@essaycoffee.com'
 ADMIN_DOMAIN = 'www.essaycoffee.com'
 
