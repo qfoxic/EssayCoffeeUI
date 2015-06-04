@@ -79,6 +79,8 @@ urlpatterns = patterns('',
                                               name='coursework-writing'),
     url(r'^googlee9cc7c2d2c0cd556\.html$', StaticPageView.as_view(module_name='customer', template_name='googlee9cc7c2d2c0cd556.html'),
                                               name='google-check'),
+    url(r'^google03466ed68386e6b8\.html$', StaticPageView.as_view(module_name='customer', template_name='google03466ed68386e6b8.html'),
+                                              name='google-check1'),
     url(r'^robots\.txt$', StaticPageView.as_view(module_name='customer', template_name='robots.txt'),
                                               name='robots-txt'),
 											  
