@@ -86,7 +86,7 @@ EMAIL_PORT = 465
 
 #ADMIN_EMAIL = 'workforum@ukr.net'#'no-reply@essaycoffee.com'
 #ADMIN_EMAIL = 'no-reply@essaycoffee.com'
-ADMIN_EMAIL = 'essaycoffee@essaycoffee.com'
+ADMIN_EMAIL = 'EssayCoffee.com<info@essaycoffee.com>'
 
 INFO_EMAIL = 'info@essaycoffee.com'
 ADMIN_DOMAIN = 'www.essaycoffee.com'
